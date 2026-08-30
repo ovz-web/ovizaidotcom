@@ -26,35 +26,38 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
         <p className="mono text-[10.5px] uppercase text-fg-muted2 mb-3 tracking-wider">
           {t.followLabel}
         </p>
-        <div className="flex items-center justify-center gap-6 sm:gap-8">
+        <div className="flex items-center justify-center gap-5 sm:gap-7 flex-wrap">
           <a
             href="https://youtube.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-fg-muted hover:text-gold-bright transition-colors text-xs"
+            title="OVIZai YouTube Channel"
+            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
           >
-            <Youtube className="w-4 h-4 text-gold" />
-            <span>YouTube</span>
+            <Youtube className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
+            <span>YouTube <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
           </a>
 
           <a
             href="https://instagram.com/ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-fg-muted hover:text-gold-bright transition-colors text-xs"
+            title="OVIZai Instagram Profile"
+            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
           >
-            <Instagram className="w-4 h-4 text-gold" />
-            <span>Instagram</span>
+            <Instagram className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
+            <span>Instagram <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
           </a>
 
           <a
             href="https://tiktok.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-fg-muted hover:text-gold-bright transition-colors text-xs"
+            title="OVIZai TikTok Profile"
+            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
           >
-            <Video className="w-4 h-4 text-gold" />
-            <span>TikTok</span>
+            <Video className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
+            <span>TikTok <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
           </a>
         </div>
       </div>
