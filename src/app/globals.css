@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0a08;
+  --bg-card: #141210;
+  --bg-dark: #080808;
+  --bg-inset: #000000;
+  --fg: #ece4d3;
+  --muted: #8c8375;
+  --muted-2: #5c564c;
+  --gold: #caa243;
+  --gold-bright: #f0c869;
+  --gold-dim: #7a5f21;
+  --border: rgba(236, 228, 211, 0.08);
+  --border-strong: rgba(236, 228, 211, 0.16);
+  --border-gold: rgba(202, 162, 67, 0.3);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(202, 162, 67, 0.25);
+  color: var(--gold-bright);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #26221c;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dim);
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.font-display {
+  font-family: 'Syne', 'Archivo Black', sans-serif;
+}
+
+/* 35mm Silver Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+}
+
+/* Gold Radial Glow Ambient Aura */
+.aura {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 580px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(closest-side, rgba(202, 162, 67, 0.22), rgba(202, 162, 67, 0) 75%);
+  filter: blur(20px);
+  animation: auraPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes auraPulse {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* Glassmorphic TopBar */
+.topbar-glass {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(11, 10, 8, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Metallic Gold Text Gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F0C869 0%, #CAA243 50%, #7A5F21 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-glow {
+  text-shadow: 0 0 15px rgba(202, 162, 67, 0.4);
+}
+
+/* Fine Gold Border Accent */
+.border-gold-fine {
+  border: 1px solid rgba(202, 162, 67, 0.22);
+}
+
+/* Card Container */
+.ovizai-card {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ovizai-card:hover {
+  border-color: rgba(202, 162, 67, 0.35);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.9), 0 0 20px rgba(202, 162, 67, 0.08);
+}
+
+/* Focus styles */
+button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Keyboard KBD styling */
+kbd {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(236, 228, 211, 0.15);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--muted);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
