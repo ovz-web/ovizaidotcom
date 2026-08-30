@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Youtube, Instagram, Video, ShieldCheck, FileText } from 'lucide-react';
+import { Youtube, Instagram, ShieldCheck, FileText } from 'lucide-react';
 import { DICTIONARY } from '@/lib/i18n';
 import { Language } from '@/types';
 
@@ -26,38 +26,25 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
         <p className="mono text-[10.5px] uppercase text-fg-muted2 mb-3 tracking-wider">
           {t.followLabel}
         </p>
-        <div className="flex items-center justify-center gap-5 sm:gap-7 flex-wrap">
+        <div className="flex items-center justify-center gap-8">
           <a
             href="https://youtube.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            title="OVIZai YouTube Channel"
-            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
+            className="flex items-center gap-2 text-fg-muted hover:text-gold-bright transition-colors text-xs font-medium"
           >
-            <Youtube className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
-            <span>YouTube <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
+            <Youtube className="w-4 h-4 text-gold" />
+            <span>YouTube</span>
           </a>
 
           <a
-            href="https://instagram.com/ovizaidotcom"
+            href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            title="OVIZai Instagram Profile"
-            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
+            className="flex items-center gap-2 text-fg-muted hover:text-gold-bright transition-colors text-xs font-medium"
           >
-            <Instagram className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
-            <span>Instagram <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
-          </a>
-
-          <a
-            href="https://tiktok.com/@ovizaidotcom"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="OVIZai TikTok Profile"
-            className="flex items-center gap-1.5 text-fg-muted hover:text-gold-bright transition-colors text-xs mono group"
-          >
-            <Video className="w-4 h-4 text-gold group-hover:scale-110 transition-transform" />
-            <span>TikTok <span className="text-[10px] text-fg-muted2">(@ovizaidotcom)</span></span>
+            <Instagram className="w-4 h-4 text-gold" />
+            <span>Instagram</span>
           </a>
         </div>
       </div>
