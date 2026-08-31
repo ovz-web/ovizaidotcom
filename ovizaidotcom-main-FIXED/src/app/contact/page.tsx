@@ -26,7 +26,7 @@ function ContactPageContent() {
   const isFr = lang === 'fr';
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-[#bg] text-fg overflow-x-hidden">
+    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
       <TopBar
         lang={lang}

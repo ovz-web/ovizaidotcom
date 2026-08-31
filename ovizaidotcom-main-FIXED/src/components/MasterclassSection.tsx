@@ -64,7 +64,7 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
             {isFr ? '02 // FORMATION & MASTERCLASS IA' : '02 // AI MASTERCLASS & TRAINING'}
           </span>
           <span className="mono text-[10px] uppercase font-bold text-black bg-[#CAA243] px-2.5 py-0.5 rounded-full flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-black" />
+            <Sparkles className="w-3 h-3 text-black" />
             {isFr ? 'PROGRAMME PRO' : 'PRO CURRICULUM'}
           </span>
         </div>
