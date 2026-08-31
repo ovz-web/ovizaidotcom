@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, GraduationCap } from 'lucide-react';
-import OvizaiLogo from '@/components/OvizaiLogo';
 import { Language } from '@/types';
 
 interface HeroBrutalistProps {
@@ -21,10 +20,15 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </p>
 
       {/* Enlarged Clean Hero Logo & Centered Diffuse Halo */}
-      <div className="relative flex justify-center items-center mb-6 p-0 m-0">
-        <div className="absolute -z-10 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
-        <OvizaiLogo
-          className="max-h-[150px] sm:max-h-[200px] w-auto object-contain drop-shadow-[0_0_40px_rgba(202,162,67,0.4)] scale-105 transition-transform duration-300 hover:scale-[1.07]"
+      <div className="relative flex items-center justify-center my-4">
+        {/* Halo doré diffus centré */}
+        <div className="absolute -z-10 w-64 h-64 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
+
+        {/* Logo principal agrandi sans aucun conteneur limitant */}
+        <img
+          src="/logo.png"
+          alt="OVIZai"
+          className="h-28 sm:h-36 w-auto object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(202,162,67,0.4)] scale-105"
         />
       </div>
 

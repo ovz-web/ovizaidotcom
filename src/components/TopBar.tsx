@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Globe, DollarSign, Youtube, Instagram, ArrowUpRight } from 'lucide-react';
-import OvizaiLogo from '@/components/OvizaiLogo';
 import { Language, Currency } from '@/types';
 
 interface TopBarProps {
@@ -40,10 +39,12 @@ export default function TopBar({
       {/* 100% Fixed TopBar */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-4 flex items-center justify-between">
         <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-3">
-          {/* Top-Left: OVIZai Logo Image Link */}
-          <Link href="/" className="flex items-center group hover:opacity-90 transition-opacity p-0 m-0">
-            <OvizaiLogo
-              className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(202,162,67,0.3)]"
+          {/* Top-Left: Standard Clean Logo Image Link */}
+          <Link className="flex items-center" href="/">
+            <img
+              src="/logo.png"
+              alt="OVIZai"
+              className="h-9 sm:h-10 w-auto object-contain mix-blend-screen drop-shadow-[0_0_15px_rgba(202,162,67,0.3)]"
             />
           </Link>
 
@@ -108,7 +109,11 @@ export default function TopBar({
                   onClick={() => setIsDrawerOpen(false)}
                   className="flex items-center gap-2"
                 >
-                  <OvizaiLogo className="h-7 w-auto object-contain" />
+                  <img
+                    src="/logo.png"
+                    alt="OVIZai"
+                    className="h-7 w-auto object-contain mix-blend-screen"
+                  />
                 </Link>
 
                 <button
