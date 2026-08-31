@@ -30,11 +30,11 @@ export default function FormationPage() {
         {/* The 5 Masterclass Modules */}
         <MasterclassSection lang={lang} />
 
-        {/* 06 // ARSENAL & OUTILS MAÎTRISÉS DANS LA MASTERCLASS */}
+        {/* 06 // STACK TECHNIQUE & OUTILS DE LA MASTERCLASS */}
         <div id="stack">
           <AIPipeline
             lang={lang}
-            customEyebrow={lang === 'fr' ? '06 // ARSENAL & OUTILS MAÎTRISÉS DANS LA MASTERCLASS' : '06 // MASTERCLASS TOOLSET & STACK'}
+            customEyebrow={lang === 'fr' ? '06 // STACK TECHNIQUE & OUTILS DE LA MASTERCLASS' : '06 // MASTERCLASS TOOLSET & STACK'}
             customTitle={lang === 'fr' ? 'Moteurs Génératifs, Lip-Sync & Post-Production 4K' : 'Generative Engines, Lip-Sync & 4K Post-Production'}
           />
         </div>

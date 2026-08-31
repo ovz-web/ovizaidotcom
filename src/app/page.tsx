@@ -5,7 +5,6 @@ import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
 import CommandMenu from '@/components/CommandMenu';
-import AIPipeline from '@/components/AIPipeline';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
@@ -36,27 +35,22 @@ export default function Home() {
       {/* 35mm Silver Film Grain Filter & Ambient Gold Aura */}
       <FilmGrain />
 
-      {/* Single Unified Sticky TopBar */}
+      {/* 1. Single Unified Sticky TopBar */}
       <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
       {/* Main Content Area */}
       <main className="flex-grow relative z-10">
-        {/* Minimalist Hero Section */}
+        {/* 2. Minimalist Hero Section */}
         <HeroBrutalist lang={lang} />
 
-        {/* Central Bento Command Card Hub */}
+        {/* 3. Central Bento Command Card Hub */}
         <CommandMenu lang={lang} onShowToast={showToast} />
 
-        {/* AI Tech Stack & Pipeline Showcase */}
-        <div id="pipeline">
-          <AIPipeline lang={lang} />
-        </div>
-
-        {/* Newsletter & Free Prompts Capture (Supabase Integration) */}
+        {/* 4. Newsletter & Free Prompts Capture (Supabase Integration) */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
-      {/* Footer with social links & legal */}
+      {/* 5. Footer with social links & legal */}
       <Footer lang={lang} onShowToast={showToast} />
 
       {/* Gold Toast Notification Bar */}
