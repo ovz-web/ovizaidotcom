@@ -19,16 +19,18 @@ export default function Hero({ lang }: HeroProps) {
       </p>
 
       {/* Central Logo & Absolute Radial Halo */}
-      <div className="relative flex items-center justify-center my-4">
-        {/* Halo doré diffus centré */}
-        <div className="absolute -z-10 w-64 h-64 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
+      <div className="relative flex items-center justify-center my-6 overflow-visible">
+        {/* Halo doré diffus arrière-plan */}
+        <div className="absolute -z-10 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
 
-        {/* Logo principal agrandi sans aucun conteneur limitant */}
-        <img
-          src="/logo.png"
-          alt="OVIZai"
-          className="h-28 sm:h-36 w-auto object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(202,162,67,0.4)] scale-105"
-        />
+        {/* Conteneur de recadrage compact sans aucun fond */}
+        <div className="relative flex items-center justify-center p-0 m-0 bg-transparent">
+          <img
+            src="/logo.png"
+            alt="OVIZai"
+            className="h-32 sm:h-44 w-auto object-contain mix-blend-screen scale-125 sm:scale-135 [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_90%)] drop-shadow-[0_0_35px_rgba(202,162,67,0.45)] priority"
+          />
+        </div>
       </div>
 
       {/* Value Proposition Title */}
