@@ -16,7 +16,7 @@ export default function ContactPage() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const toggleLanguage = () => {
-    setLang(prev => (prev === 'fr' ? 'en' : 'fr'));
+    setLang((prev) => (prev === 'fr' ? 'en' : 'fr'));
   };
 
   const showToast = (msg: string) => {
@@ -50,7 +50,6 @@ export default function ContactPage() {
           lang={lang}
           currency={currency}
           onSelectCurrency={setCurrency}
-          onShowToast={showToast}
         />
       </main>
 
