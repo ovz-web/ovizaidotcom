@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import OvizaiLogo from '@/components/OvizaiLogo';
 import { DICTIONARY } from '@/lib/i18n';
 import { Language } from '@/types';
 
@@ -21,10 +22,8 @@ export default function Hero({ lang }: HeroProps) {
       {/* Central Logo & Absolute Radial Halo */}
       <div className="relative flex justify-center items-center my-1 p-0 m-0">
         <div className="absolute -z-10 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
-        <img
-          src="/logo.png"
-          alt="OVIZai"
-          className="max-h-[140px] sm:max-h-[180px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_40px_rgba(202,162,67,0.35)] scale-105 transition-transform duration-300 hover:scale-[1.07]"
+        <OvizaiLogo
+          className="max-h-[150px] sm:max-h-[200px] w-auto object-contain drop-shadow-[0_0_40px_rgba(202,162,67,0.4)] scale-105 transition-transform duration-300 hover:scale-[1.07]"
         />
       </div>
 
