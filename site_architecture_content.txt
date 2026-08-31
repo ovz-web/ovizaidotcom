@@ -1,0 +1,166 @@
+================================================================================
+          CARTOGRAPHIE TEXTUELLE & ARCHITECTURE DE CONTENU — OVIZAI.COM
+================================================================================
+
+1. COMPOSANTS GLOBAUX & STRUCTURE PERMANENTE
+--------------------------------------------------------------------------------
+
+[TOPBAR - HAUT DE PAGE]
+- Logo Haut-Gauche: Image logo.png cliquable -> /
+- Pilule Annonce Centre (FR): "⚡ FORMATION VIDÉO IA — ACCÉDER +" -> /formation
+- Pilule Annonce Centre (EN): "⚡ AI VIDEO MASTERCLASS — ACCESS +" -> /formation
+- Sélecteur de Langue (Haut-Droite): Bouton FR / EN
+- Menu Burger (Haut-Droite): Bouton avec icône 3 barres -> Ouvre le Drawer droit
+
+[DRAWER LATÉRAL DROIT]
+- Navigation Principale:
+  • 00. Accueil (FR) / 00. Home (EN) -> /
+  • 01. Prestations & Services IA (FR) / 01. AI Services (EN) -> /services
+  • 02. Formation Vidéo IA (FR) / 02. AI Masterclass (EN) -> /formation
+  • 03. Devis & Contact (FR) / 03. Contact & Quote (EN) -> /contact
+- Sélecteur de Devise Segmenté:
+  • Devise de facturation : USD | EUR | CAD
+- Sélecteur Bilingue:
+  • Langue d'affichage : Français (FR) / English (EN)
+- Réseaux Sociaux:
+  • Instagram (@ovizai.co) -> https://instagram.com/ovizai.co
+  • YouTube (@ovizaidotcom) -> https://youtube.com/@ovizaidotcom
+
+[FOOTER - BAS DE PAGE]
+- Copyright: © 2026 OVIZai. Direction Artistique & Cinéma IA. Tous droits réservés.
+- Liens officiels: Instagram (@ovizai.co) | YouTube (@ovizaidotcom)
+
+
+2. PAGE D'ACCUEIL (/)
+--------------------------------------------------------------------------------
+
+[SECTION HERO]
+- Surtitre Monospace:
+  • FR: DIRECTEURS ARTISTIQUES & CINÉASTES IA AUGMENTÉS
+  • EN: AI ART DIRECTORS & AUGMENTED FILMMAKERS
+- Logo Principal: /logo.png avec masque radial et drop-shadow doré
+- Titre H1:
+  • FR: L’ART CINÉMATOGRAPHIQUE AUGMENTÉ PAR L'IA
+  • EN: CINEMATIC ARTISTRY AUGMENTED BY AI
+- Sous-titre Description:
+  • FR: Direction artistique humaine et cinéma génératif de pointe pour créer des univers visuels immersifs.
+  • EN: Human art direction and cutting-edge generative cinema to craft immersive visual universes.
+- Boutons d'Action:
+  • Services + -> /services
+  • Masterclass + -> /formation
+
+[HUB DE COMMANDE BENTO]
+- Surtitre: 00 // HUB DE COMMANDE
+- Titre H2: CHOISISSEZ VOTRE ACCÈS
+- Carte 01: 01 // PRESTATIONS & SERVICES IA
+  • Descriptif: Direction artistique, clips, films publicitaires et univers génératifs sur-mesure. -> /services
+- Carte 02: 02 // FORMATION & MASTERCLASS IA
+  • Descriptif: Apprenez à maîtriser le pipeline vidéo IA professionnel du prompt au master final. -> /formation
+- Carte 03: 03 // PIPELINE TECHNIQUE (STACK 4K)
+  • Descriptif: Découvrez notre écosystème de moteurs génératifs et outils de post-production. -> Déclenche la modale AIPipeline
+- Carte 04: 04 // DEVIS & BRIEF QUALIFIÉ
+  • Descriptif: Obtenez une estimation personnalisée sous 24h à 48h ouvrées. -> /contact
+
+[FORMULAIRE NEWSLETTER]
+- Titre: REJOINDRE LE FLUX OVIZai
+- Sous-titre: Recevez nos breakdowns de workflows IA et analyses cinématiques.
+- Champ E-mail: votre@email.com
+- Bouton: S’inscrire + -> POST /api/leads
+
+
+3. PAGE SERVICES & PRESTATIONS (/services)
+--------------------------------------------------------------------------------
+
+[EN-TÊTE PAGE]
+- Bouton Retour: ← Retour Accueil -> /
+- Surtitre: 01 // PÔLES D’EXPERTISE & PRESTATIONS
+- Titre H1: CE QUE NOUS FAISONS
+- Description: De la conception à la livraison finale, nous mettons l’intelligence artificielle au service de votre vision.
+
+[PÔLE 01: RÉALISATION DE FILMS & SÉRIES IA]
+- Description: Nous prenons en charge l'ensemble de la chaîne de production : développement du concept, écriture, storyboard IA, génération des plans 8K, montage rythmé et étalonnage cinématographique.
+- Livrables: Concept & écriture, Storyboard IA, Génération des plans, Montage & étalonnage ACES, Sound design spatialisé, Livraison multi-formats.
+- Tarif Indicatif: 8 000 $ – 15 000 $ USD (ou EUR / CAD dynamique).
+- Bouton Action: Demander un Devis + -> /contact
+
+[PÔLE 02: CLIPS VIDÉOS IA & VISUALISERS]
+- Description: De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l'univers de l'artiste. Moodboards, séquences IA d'animation et scénographies de scène.
+- Livrables: Direction artistique, Moodboard & références, Séquences IA animées, Montage rythmé, Effets VFX & Lip-sync, Formats réseaux sociaux (Vertical 9:16).
+- Tarif Indicatif: 3 000 $ – 8 000 $ USD (dynamique).
+- Bouton Action: Demander un Devis + -> /contact
+
+[PÔLE 03: PUBLICITÉS IA & BRAND CONTENT]
+- Description: Spots publicitaires, contenus de marque et formats courts réseaux sociaux. Nous concevons des publicités sur-mesure intégrant votre charte de marque.
+- Livrables: Concept publicitaire, Script & storyboard, Production IA rapide, Déclinaisons multi-formats, Intégration charte de marque, Optimisation conversion.
+- Tarif Indicatif: 3 000 $ – 8 000 $ USD (dynamique).
+- Bouton Action: Demander un Devis + -> /contact
+
+[PÔLE 04: DIRECTION ARTISTIQUE & UNIVERS DE MARQUE]
+- Description: Direction artistique globale, création d'univers visuels, chartes graphiques génératives et visuels clés pour marques et artistes.
+- Livrables: Direction artistique globale, Univers visuel génératif, Charte graphique & Brandbook, Visuels clés 8K, Guidelines de marque.
+- Tarif Indicatif: 1 000 $ – 3 000 $ USD (dynamique).
+- Bouton Action: Demander un Devis + -> /contact
+
+[PÔLE 05: CRÉATION DE SITES WEB & PLATEFORMES DIGITALES]
+- Description: Conception et développement de sites vitrines et landing pages. Design sur-mesure dark luxury, intégration responsive mobile-first, animations fluides et SEO.
+- Livrables: Maquette & design UI/UX, Développement Next.js sur-mesure, Animations & interactions, SEO sémantique, Mise en ligne & hébergement.
+- Tarif Indicatif: 3 000 $ – 8 000 $ USD (dynamique).
+- Bouton Action: Demander un Devis + -> /contact
+
+
+4. PAGE FORMATION & MASTERCLASS (/formation)
+--------------------------------------------------------------------------------
+
+[EN-TÊTE MASTERCLASS]
+- Bouton Retour: ← Retour Accueil -> /
+- Surtitre: 02 // FORMATION & MASTERCLASS IA
+- Titre H1: MAÎTRISEZ LE CINÉMA IA DU PROMPT AU MASTER FINAL
+- Tarif Pro: 490 $ USD / 450 € / 650 $ CAD (Mis à jour en direct via API 24h).
+- Réassurance: Accès à vie + Mises à jour des modèles incluses.
+- Bouton Inscription: S’inscrire à la Masterclass + -> /contact
+
+[LES 5 MODULES DU PROGRAMME]
+- Module 01: Ingénierie de Prompts & Direction Visuelle 8K (Midjourney v6.1 & Flux.1 Dev)
+- Module 02: Cinéma Génératif & Caméra Virtuelle (Runway Gen-3 Alpha, Kling AI, Luma Dream Machine)
+- Module 03: Post-Production & Upscaling 4K/8K (Topaz Video AI, DaVinci Resolve Studio, ACES)
+- Module 04: Sound Design & Doublage Voix IA (ElevenLabs, Suno v4, Adobe Audition)
+- Module 05: Monétisation & Workflow Client Pro (Devis, droits d'auteur, contrats clients)
+
+[STACK TECHNIQUE GÉNÉRATIVE]
+- Moteurs & Outils: Midjourney, Flux.1, Kling AI, Runway Gen-3, Topaz Video AI, DaVinci Resolve, ElevenLabs, Suno v4.
+
+
+5. PAGE DEVIS & CONTACT (/contact)
+--------------------------------------------------------------------------------
+
+[FORMULAIRE DE BRIEF QUALIFIÉ]
+- Bouton Retour: ← Retour Accueil -> /
+- Surtitre: 03 // DEVIS & BRIEF QUALIFIÉ
+- Titre H1: DÉMARRER UN PROJET
+- Engagement SLA: Notre équipe étudie votre projet sous 24h à 48h ouvrées.
+
+[ÉTAPE 1: TYPE DE PRESTATION]
+- Cartes Cliquables:
+  • 01. Publicité & Brand Content
+  • 02. Clip Vidéo IA & Visualiser
+  • 03. Film & Série IA
+  • 04. Direction Artistique
+  • 05. Site Web sur-mesure
+  • 06. Formation Masterclass IA
+
+[ÉTAPE 2: FOURCHETTE BUDGÉTAIRE DYNAMIQUE]
+- Cartes Budgétaires (selon la devise sélectionnée):
+  • 1 000 $ – 3 000 $ (USD / EUR / CAD)
+  • 3 000 $ – 8 000 $ (USD / EUR / CAD)
+  • 8 000 $ – 15 000 $ (USD / EUR / CAD)
+  • 15 000 $ + (USD / EUR / CAD)
+
+[ÉTAPE 3: INFORMATIONS DE CONTACT]
+- Nom / Organisation : ex: Jean Dupont (Studio X)
+- Adresse E-mail * : contact@domaine.com
+- Message / Brief : Objectifs visuels, références, délais souhaités...
+- Bouton d'Envoi: Envoyer mon Brief Qualifié + -> POST /api/leads + Notification Resend Email
+
+================================================================================
+                              FIN DE FICHIER
+================================================================================
