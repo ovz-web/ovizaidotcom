@@ -37,13 +37,14 @@ function ContactPageContent() {
 
       <main className="flex-grow relative z-10 pt-20 pb-12">
         <div className="max-w-3xl mx-auto px-4">
-          <Link
-            href="/"
-            className="font-mono text-xs text-[#8C8375] hover:text-[#CAA243] transition-colors inline-flex items-center gap-2 mb-6"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{isFr ? 'Retour Accueil' : 'Back Home'}</span>
-          </Link>
+<Link
+  href="/"
+  className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors mb-6"
+>
+  <ArrowLeft className="w-3.5 h-3.5" />
+  <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
+</Link>
+
         </div>
 
         <QualifiedContact
