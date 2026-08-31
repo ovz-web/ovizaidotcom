@@ -13,23 +13,27 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section className="relative z-10 max-w-2xl mx-auto pt-4 pb-6 px-4 flex flex-col items-center justify-center text-center">
+    <section className="relative z-10 max-w-2xl mx-auto pt-2 pb-4 px-4 flex flex-col items-center justify-center text-center">
       {/* Eyebrow */}
-      <p className="text-[11px] uppercase tracking-[0.25em] text-[#CAA243] mb-4 font-mono font-bold">
+      <p className="text-[11px] uppercase tracking-[0.25em] text-[#CAA243] mb-2 font-mono font-bold">
         {isFr ? 'DIRECTEURS ARTISTIQUES & CINÉASTES IA AUGMENTÉS' : 'AI ART DIRECTORS & AUGMENTED FILMMAKERS'}
       </p>
 
-      {/* Hero Logo with radial mask dissolve */}
-      <div className="relative flex items-center justify-center my-4 overflow-visible">
+      {/* Hero Logo : masque radial strict, aucun halo, bords dissous dans le noir */}
+      <div className="relative flex items-center justify-center my-1 overflow-visible">
         <img
           src="/logo.png"
           alt="OVIZai"
-          className="h-36 sm:h-48 w-auto object-contain mix-blend-screen scale-125 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_85%)] drop-shadow-[0_0_30px_rgba(202,162,67,0.35)] priority"
+          style={{
+            WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 40%, transparent 80%)',
+            maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 40%, transparent 80%)',
+          }}
+          className="h-36 sm:h-48 w-auto object-contain mix-blend-screen scale-115 sm:scale-125"
         />
       </div>
 
       {/* Sobriety Main Title */}
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-3 leading-snug">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-2 leading-snug">
         {isFr ? (
           <>
             L’ART CINÉMATOGRAPHIQUE <br className="hidden sm:inline" />
@@ -44,14 +48,14 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </h1>
 
       {/* Short Subtitle */}
-      <p className="text-xs sm:text-sm text-[#8C8375] max-w-md text-center mx-auto mb-6 leading-relaxed">
+      <p className="text-xs sm:text-sm text-[#8C8375] max-w-md text-center mx-auto mb-4 leading-relaxed">
         {isFr
           ? 'Direction artistique humaine et cinéma génératif de pointe pour créer des univers visuels immersifs.'
           : 'Human art direction and cutting-edge generative cinema to craft immersive visual universes.'}
       </p>
 
       {/* Dual Navigation Buttons */}
-      <div className="flex items-center justify-center gap-3 w-full max-w-sm">
+      <div className="flex items-center justify-center gap-2 w-full max-w-sm">
         <Link
           href="/services"
           className="flex-1 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-lg mono text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(202,162,67,0.25)] hover:scale-[1.02]"
