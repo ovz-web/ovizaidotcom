@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface ServicesGridProps {
   lang: Language;
@@ -31,11 +32,8 @@ const FIVE_SERVICES = [
       fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
       en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
-    pricing: {
-      USD: '8 000 $ – 15 000 $ USD',
-      EUR: '8 000 € – 15 000 €',
-      CAD: '10 500 $ – 20 000 $ CAD'
-    },
+    minUsd: 8000,
+    maxUsd: 15000,
     icon: Film
   },
   {
@@ -57,11 +55,8 @@ const FIVE_SERVICES = [
       fr: ['Direction artistique', 'Moodboard & références', 'Séquences IA animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
       en: ['Art Direction', 'Moodboards & References', 'Animated AI Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
     },
-    pricing: {
-      USD: '3 000 $ – 8 000 $ USD',
-      EUR: '3 000 € – 8 000 €',
-      CAD: '4 000 $ – 10 500 $ CAD'
-    },
+    minUsd: 3000,
+    maxUsd: 8000,
     icon: Music2
   },
   {
@@ -83,11 +78,8 @@ const FIVE_SERVICES = [
       fr: ['Concept publicitaire', 'Script & storyboard', 'Production IA rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
       en: ['Ad Concept', 'Script & Storyboard', 'Fast AI Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
     },
-    pricing: {
-      USD: '3 000 $ – 8 000 $ USD',
-      EUR: '3 000 € – 8 000 €',
-      CAD: '4 000 $ – 10 500 $ CAD'
-    },
+    minUsd: 3000,
+    maxUsd: 8000,
     icon: Clapperboard
   },
   {
@@ -109,11 +101,8 @@ const FIVE_SERVICES = [
       fr: ['Direction artistique globale', 'Univers visuel génératif', 'Charte graphique & Brandbook', 'Visuels clés 8K', 'Guidelines de marque'],
       en: ['Global Art Direction', 'Generative Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals', 'Brand Guidelines']
     },
-    pricing: {
-      USD: '1 000 $ – 3 000 $ USD',
-      EUR: '1 000 € – 3 000 €',
-      CAD: '1 350 $ – 4 000 $ CAD'
-    },
+    minUsd: 1000,
+    maxUsd: 3000,
     icon: Palette
   },
   {
@@ -135,18 +124,22 @@ const FIVE_SERVICES = [
       fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
       en: ['UI/UX Design Mockup', 'Custom Next.js Development', 'Animations & Micro-Interactions', 'Semantic SEO', 'Deployment & Hosting']
     },
-    pricing: {
-      USD: '3 000 $ – 8 000 $ USD',
-      EUR: '3 000 € – 8 000 €',
-      CAD: '4 000 $ – 10 500 $ CAD'
-    },
+    minUsd: 3000,
+    maxUsd: 8000,
     icon: Globe2
   }
 ];
 
-export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency }: ServicesGridProps) {
+export default function ServicesGrid({ lang, currency: propCurrency, onSelectCurrency }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>('films-series');
+  const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
+
+  const activeCurrency = propCurrency || ctxCurrency;
+  const handleSelectCurrency = (curr: Currency) => {
+    if (onSelectCurrency) onSelectCurrency(curr);
+    setCtxCurrency(curr);
+  };
 
   const toggleService = (id: string) => {
     setOpenService(prev => (prev === id ? null : id));
@@ -169,34 +162,32 @@ export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency 
         </p>
 
         {/* Currency Switcher */}
-        {onSelectCurrency && (
-          <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
-            <span className="text-[10px] text-[#8C8375] px-2 font-mono">
-              {isFr ? 'Devise :' : 'Currency:'}
-            </span>
-            {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
-              <button
-                key={curr}
-                type="button"
-                onClick={() => onSelectCurrency(curr)}
-                className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                  currency === curr
-                    ? 'bg-[#CAA243] text-black'
-                    : 'text-[#8C8375] hover:text-[#ECE4D3]'
-                }`}
-              >
-                {curr}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
+          <span className="text-[10px] text-[#8C8375] px-2 font-mono">
+            {isFr ? 'Devise :' : 'Currency:'}
+          </span>
+          {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
+            <button
+              key={curr}
+              type="button"
+              onClick={() => handleSelectCurrency(curr)}
+              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                activeCurrency === curr
+                  ? 'bg-[#CAA243] text-black'
+                  : 'text-[#8C8375] hover:text-[#ECE4D3]'
+              }`}
+            >
+              {curr}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Accordion / Details Grid */}
       <div className="space-y-4">
         {FIVE_SERVICES.map(service => {
           const isOpen = openService === service.id;
-          const currentPrice = service.pricing[currency];
+          const currentPriceRange = formatRange(service.minUsd, service.maxUsd, activeCurrency);
 
           return (
             <div
@@ -229,7 +220,7 @@ export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency 
 
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <span className="mono text-[10.5px] px-2.5 py-1 rounded bg-black/60 border border-white/[0.08] text-[#CAA243] font-semibold hidden md:inline-block">
-                    {currentPrice}
+                    {currentPriceRange}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-[#CAA243] transition-transform duration-300 ${
@@ -268,7 +259,7 @@ export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
                     <span className="mono text-xs text-[#8c8375]">
                       {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
-                      <strong className="text-[#CAA243]">{currentPrice}</strong>
+                      <strong className="text-[#CAA243]">{currentPriceRange}</strong>
                     </span>
 
                     <Link

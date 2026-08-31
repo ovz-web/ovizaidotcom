@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { GraduationCap, BookOpen, ShieldCheck, ArrowUpRight, Zap } from 'lucide-react';
+import { GraduationCap, ArrowUpRight, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
 import { Language, Currency } from '@/types';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface MasterclassSectionProps {
   lang: Language;
@@ -13,181 +14,127 @@ interface MasterclassSectionProps {
 
 const MODULES = [
   {
-    number: 'M01',
-    title: {
-      fr: 'Fondations & Prompts Avancés',
-      en: 'Foundations & Advanced Prompting'
-    },
-    tools: 'Midjourney v6.1 • Flux.1 Pro • Stable Diffusion',
-    desc: {
-      fr: 'Maîtrise de l’éclairage studio, des optiques de caméra (Anamorphique 2.39:1), des textures de peau et création de moodboards de production.',
-      en: 'Mastering lighting, camera optics (Anamorphic 2.39:1), skin textures, and production-ready moodboards.'
-    }
+    num: '01',
+    title: { fr: 'Ingénierie de Prompts & Direction Visuelle 8K', en: 'Prompt Engineering & 8K Visual Direction' },
+    desc: { fr: 'Maîtriser Midjourney v6.1 et Flux.1 Dev pour générer des images cinématiques ultradétaillées.', en: 'Master Midjourney v6.1 and Flux.1 Dev to generate ultra-detailed cinematic imagery.' }
   },
   {
-    number: 'M02',
-    title: {
-      fr: 'Génération Vidéo & Mouvements de Caméra',
-      en: 'Video Generation & Camera Controls'
-    },
-    tools: 'Runway Gen-3 Alpha • Kling AI 1.5 • Luma Dream Machine',
-    desc: {
-      fr: 'Contrôle précis des trajectoires de caméra (crane, orbit, dolly, zoom), physiques naturelles et scènes d’action.',
-      en: 'Precise virtual camera trajectory control (crane, orbit, dolly), natural physics, and action scenes.'
-    }
+    num: '02',
+    title: { fr: 'Cinéma Génératif & Caméra Virtuelle', en: 'Generative Cinema & Virtual Camera' },
+    desc: { fr: 'Contrôler Runway Gen-3 Alpha, Kling AI et Luma Dream Machine pour animer vos plans avec une fluidité 60fps.', en: 'Control Runway Gen-3 Alpha, Kling AI, and Luma Dream Machine for 60fps camera movements.' }
   },
   {
-    number: 'M03',
-    title: {
-      fr: 'Lip-Sync & Cohérence des Personnages',
-      en: 'Lip-Sync & Character Consistency'
-    },
-    tools: 'ElevenLabs • Sync Labs • Character LoRA Weights',
-    desc: {
-      fr: 'Méthode pas-à-pas pour maintenir la consistance faciale d’un personnage à travers plusieurs plans et doublage vocal IA.',
-      en: 'Step-by-step method to maintain facial character consistency across multiple shots with AI voice synthesis.'
-    }
+    num: '03',
+    title: { fr: 'Post-Production & Upscaling 4K/8K', en: 'Post-Production & 4K/8K Upscaling' },
+    desc: { fr: 'Utiliser Topaz Video AI, DaVinci Resolve Studio et l’étalonnage colorimétrique ACES pour un rendu pro.', en: 'Leverage Topaz Video AI, DaVinci Resolve Studio, and ACES color grading for pro finish.' }
   },
   {
-    number: 'M04',
-    title: {
-      fr: 'Post-Production, Upscaling 4K & VFX',
-      en: 'Post-Production, 4K Upscaling & VFX'
-    },
-    tools: 'Topaz Video AI 5 • DaVinci Resolve 19 • After Effects',
-    desc: {
-      fr: 'Restauration de textures, étalonnage couleur cinématographique ACES, émulation de film 35mm et upscaling 4K sans perte.',
-      en: 'Texture recovery, ACES cinematic color grading, 35mm film emulation, and crisp 4K master upscaling.'
-    }
+    num: '04',
+    title: { fr: 'Sound Design & Doublage Voix IA', en: 'Sound Design & AI Voice Synchronization' },
+    desc: { fr: 'Créer des bandes-son immersives avec ElevenLabs, Suno v4 et Adobe Audition.', en: 'Build immersive soundtracks with ElevenLabs, Suno v4, and spatial audio editing.' }
   },
   {
-    number: 'M05',
-    title: {
-      fr: 'Workflows Commerciaux & Monétisation',
-      en: 'Commercial Workflows & Monetization'
-    },
-    tools: 'Pricing B2B • Briefs Client • Livrables Industriels',
-    desc: {
-      fr: 'Cadre tarifaire commercial, rédaction des devis, workflow client efficace et monétisation de votre savoir-faire vidéo IA.',
-      en: 'B2B pricing framework, quoting client briefs, production efficiency, and monetization of your AI video expertise.'
-    }
+    num: '05',
+    title: { fr: 'Monétisation & Workflow Client Pro', en: 'Monetization & Professional Client Pipeline' },
+    desc: { fr: 'Structures de devis, gestion des droits d’auteur IA et méthodes pour signer vos premiers contrats.', en: 'Quote structures, AI copyright frameworks, and methods to land your first commercial contracts.' }
   }
 ];
 
-export default function MasterclassSection({ lang, currency = 'USD', onSelectCurrency }: MasterclassSectionProps) {
+export default function MasterclassSection({ lang, currency: propCurrency }: MasterclassSectionProps) {
   const isFr = lang === 'fr';
+  const { currency: ctxCurrency, formatPrice } = useCurrency();
+  const activeCurrency = propCurrency || ctxCurrency;
 
-  const MASTERCLASS_PRICES: Record<Currency, string> = {
-    USD: '490 $ USD',
-    EUR: '450 € EUR',
-    CAD: '650 $ CAD'
-  };
+  const formattedPrice = formatPrice(490, activeCurrency);
 
   return (
     <section id="masterclass" className="max-w-3xl mx-auto mb-14 px-4">
-      {/* Container Box */}
-      <div className="border border-[#CAA243]/40 bg-[#0B0A08] rounded-xl p-5 sm:p-7 relative overflow-hidden shadow-[0_0_30px_rgba(202,162,67,0.1)]">
-        {/* Glow */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#CAA243]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Container Card */}
+      <div className="relative border border-[#CAA243]/40 bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_0_35px_rgba(202,162,67,0.1)] overflow-hidden">
+        {/* Ambient Radial Aura */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-radial from-[#CAA243]/15 to-transparent blur-3xl pointer-events-none -z-10" />
 
-        {/* Section Header */}
-        <div className="mb-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#CAA243]/10 border border-[#CAA243]/30 mb-3">
-            <GraduationCap className="w-3.5 h-3.5 text-[#CAA243]" />
-            <span className="mono text-[10px] uppercase font-bold tracking-widest text-[#f0c869]">
-              {isFr ? 'ACCÈS IMMÉDIAT • BIBLIOTHÈQUE DE PROMPTS • ACCÈS À VIE' : 'IMMEDIATE ACCESS • RAW PROMPTS • LIFETIME ACCESS'}
-            </span>
-          </div>
-
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
-            {isFr ? 'FORMATION VIDÉO IA ULTRA-RÉALISTE' : 'ULTRA-REALISTIC AI VIDEO MASTERCLASS'}
-          </h2>
-
-          <p className="text-xs sm:text-sm text-[#8c8375] max-w-lg mx-auto mb-3">
-            {isFr
-              ? 'Le programme d’apprentissage accéléré pour maîtriser l’ensemble de la chaîne de production vidéo IA et monétiser vos créations.'
-              : 'The accelerated learning system to master the entire AI video production chain and monetize your creations.'}
-          </p>
-
-          {/* Currency Selector */}
-          {onSelectCurrency && (
-            <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
-              <span className="text-[10px] text-[#8C8375] px-2 font-mono">
-                {isFr ? 'Devise :' : 'Currency:'}
-              </span>
-              {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
-                <button
-                  key={curr}
-                  type="button"
-                  onClick={() => onSelectCurrency(curr)}
-                  className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                    currency === curr
-                      ? 'bg-[#CAA243] text-black'
-                      : 'text-[#8C8375] hover:text-[#ECE4D3]'
-                  }`}
-                >
-                  {curr}
-                </button>
-              ))}
-            </div>
-          )}
+        {/* Section Eyebrow */}
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <span className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono font-bold flex items-center gap-1.5">
+            <GraduationCap className="w-4 h-4 text-[#CAA243]" />
+            {isFr ? '02 // FORMATION & MASTERCLASS IA' : '02 // AI MASTERCLASS & TRAINING'}
+          </span>
+          <span className="mono text-[10px] uppercase font-bold text-black bg-[#CAA243] px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-black" />
+            {isFr ? 'PROGRAMME PRO' : 'PRO CURRICULUM'}
+          </span>
         </div>
 
-        {/* 5 Modules List */}
-        <div className="space-y-3.5 mb-6">
+        {/* Header Title */}
+        <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-[#ECE4D3] mb-3 leading-tight">
+          {isFr ? (
+            <>
+              MAÎTRISEZ LE CINÉMA IA <br />
+              <span className="text-gold-gradient text-gold-glow">DU PROMPT AU MASTER FINAL</span>
+            </>
+          ) : (
+            <>
+              MASTER AI CINEMATOGRAPHY <br />
+              <span className="text-gold-gradient text-gold-glow">FROM PROMPT TO FINAL MASTER</span>
+            </>
+          )}
+        </h2>
+
+        <p className="text-xs sm:text-sm text-[#8c8375] leading-relaxed max-w-xl mb-6">
+          {isFr
+            ? 'Une formation ultra-pratique conçue pour les créateurs, réalisateurs et directeurs artistiques souhaitant intégrer l’IA générative dans leurs productions.'
+            : 'An ultra-practical masterclass built for creators, directors, and art directors looking to integrate generative AI into high-end film pipelines.'}
+        </p>
+
+        {/* Modules List */}
+        <div className="space-y-3 mb-8">
+          <h3 className="mono text-xs font-bold uppercase text-[#ECE4D3] tracking-wider mb-2">
+            {isFr ? 'LES 5 MODULES DU PROGRAMME :' : 'CURRICULUM 5 MODULES:'}
+          </h3>
+
           {MODULES.map(mod => (
             <div
-              key={mod.number}
-              className="p-4 rounded-lg bg-black/50 border border-white/[0.08] hover:border-[#CAA243]/40 transition-colors"
+              key={mod.num}
+              className="flex items-start gap-3 p-3.5 rounded-xl border border-white/[0.06] bg-black/40 hover:border-[#CAA243]/30 transition-all"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                <div className="flex items-center gap-2.5">
-                  <span className="mono text-xs font-bold text-[#CAA243] bg-[#CAA243]/10 px-2 py-0.5 rounded border border-[#CAA243]/20">
-                    {mod.number}
-                  </span>
-                  <h3 className="mono text-sm font-bold text-[#ECE4D3]">
-                    {mod.title[lang]}
-                  </h3>
-                </div>
-                <span className="mono text-[10px] text-[#8c8375]">
-                  {mod.tools}
-                </span>
+              <span className="mono text-xs font-bold text-[#CAA243] bg-black/60 border border-[#CAA243]/30 px-2 py-0.5 rounded">
+                {mod.num}
+              </span>
+              <div>
+                <h4 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
+                  {mod.title[lang]}
+                </h4>
+                <p className="text-[11.5px] text-[#8c8375] mt-0.5 leading-normal">
+                  {mod.desc[lang]}
+                </p>
               </div>
-              <p className="text-xs text-[#8c8375] leading-relaxed mt-1">
-                {mod.desc[lang]}
-              </p>
             </div>
           ))}
         </div>
 
-        {/* Perks Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 pt-4 border-t border-white/[0.08]">
-          <div className="flex items-center gap-2 text-xs text-[#ECE4D3] bg-white/[0.02] p-2.5 rounded-lg border border-white/[0.06]">
-            <BookOpen className="w-4 h-4 text-[#CAA243] flex-shrink-0" />
-            <span>{isFr ? 'Bibliothèque de Prompts RAW' : 'RAW Prompt Library'}</span>
+        {/* Pricing & Guarantee Box */}
+        <div className="pt-5 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-extrabold text-[#CAA243] font-mono">
+                {formattedPrice}
+              </span>
+              <span className="text-xs text-[#8c8375] line-through font-mono">
+                {activeCurrency === 'EUR' ? '900 €' : activeCurrency === 'CAD' ? '1 300 $ CAD' : '990 $ USD'}
+              </span>
+            </div>
+            <p className="text-[11px] text-[#8c8375] mt-0.5 flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#CAA243]" />
+              {isFr ? 'Accès à vie + Mises à jour des modèles incluses' : 'Lifetime Access + Model Updates Included'}
+            </p>
           </div>
-          <div className="flex items-center gap-2 text-xs text-[#ECE4D3] bg-white/[0.02] p-2.5 rounded-lg border border-white/[0.06]">
-            <Zap className="w-4 h-4 text-[#CAA243] flex-shrink-0" />
-            <span>{isFr ? 'Workflows Production 4K' : '4K Production Workflows'}</span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-[#ECE4D3] bg-white/[0.02] p-2.5 rounded-lg border border-white/[0.06]">
-            <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0" />
-            <span>{isFr ? 'Accès Immédiat & Mises à Jour' : 'Lifetime Access & Updates'}</span>
-          </div>
-        </div>
-
-        {/* Action Button & Pricing */}
-        <div className="text-center">
-          <p className="mono text-xs text-[#8c8375] mb-3">
-            {isFr ? 'Tarif d’accès complet :' : 'Full Access Price:'}{' '}
-            <strong className="text-[#f0c869] text-base font-bold">{MASTERCLASS_PRICES[currency]}</strong>
-          </p>
 
           <Link
             href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-7 py-3.5 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.02]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.3)] hover:scale-[1.02] cursor-pointer"
           >
-            <span>{isFr ? 'Rejoindre la Formation +' : 'Access Masterclass +'}</span>
+            <span>{isFr ? 'S’inscrire à la Masterclass +' : 'Enroll in Masterclass +'}</span>
             <ArrowUpRight className="w-4 h-4 text-black" />
           </Link>
         </div>
