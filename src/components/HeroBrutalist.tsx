@@ -20,12 +20,12 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </p>
 
       {/* Enlarged Clean Hero Logo & Centered Diffuse Halo */}
-      <div className="relative flex justify-center items-center mb-6">
-        <div className="absolute -z-10 w-64 h-64 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
+      <div className="relative flex justify-center items-center mb-6 p-0 m-0">
+        <div className="absolute -z-10 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
         <img
           src="/logo.png"
           alt="OVIZai"
-          className="max-h-[110px] sm:max-h-[140px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(202,162,67,0.35)] transition-transform duration-300 hover:scale-[1.02]"
+          className="max-h-[140px] sm:max-h-[180px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_40px_rgba(202,162,67,0.35)] scale-105 transition-transform duration-300 hover:scale-[1.07]"
         />
       </div>
 

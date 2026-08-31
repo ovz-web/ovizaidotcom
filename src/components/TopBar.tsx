@@ -40,11 +40,11 @@ export default function TopBar({
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-4 flex items-center justify-between">
         <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-3">
           {/* Top-Left: OVIZai Logo Image Link */}
-          <Link href="/" className="flex items-center gap-2 group hover:opacity-90 transition-opacity">
+          <Link href="/" className="flex items-center group hover:opacity-90 transition-opacity p-0 m-0">
             <img
               src="/logo.png"
               alt="OVIZai"
-              className="h-7 sm:h-8 w-auto object-contain mix-blend-screen drop-shadow-[0_0_10px_rgba(202,162,67,0.2)]"
+              className="h-9 sm:h-11 w-auto object-contain mix-blend-screen drop-shadow-[0_0_15px_rgba(202,162,67,0.2)]"
             />
           </Link>
 

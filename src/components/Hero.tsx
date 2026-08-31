@@ -19,12 +19,12 @@ export default function Hero({ lang }: HeroProps) {
       </p>
 
       {/* Central Logo & Absolute Radial Halo */}
-      <div className="relative flex justify-center items-center my-1">
-        <div className="absolute -z-10 w-52 h-52 rounded-full bg-radial from-[#CAA243]/20 blur-3xl pointer-events-none" />
+      <div className="relative flex justify-center items-center my-1 p-0 m-0">
+        <div className="absolute -z-10 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
         <img
           src="/logo.png"
-          alt="OVIZai Studio"
-          className="object-contain w-auto h-auto max-h-[70px] sm:max-h-[90px] mix-blend-screen drop-shadow-[0_0_25px_rgba(202,162,67,0.25)] transition-transform duration-300 hover:scale-[1.02]"
+          alt="OVIZai"
+          className="max-h-[140px] sm:max-h-[180px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_40px_rgba(202,162,67,0.35)] scale-105 transition-transform duration-300 hover:scale-[1.07]"
         />
       </div>
 
