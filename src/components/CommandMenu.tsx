@@ -140,7 +140,8 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
                 </div>
 
                 <div className="flex items-center gap-2.5 flex-shrink-0">
-                  <kbd className="mono text-[10px] text-[#8c8375]">
+                  {/* CHANTIER 4: Hide keyboard shortcut pills on mobile breakpoint */}
+                  <kbd className="mono text-[10px] text-[#8c8375] hidden sm:inline-flex">
                     {modKey}{item.key}
                   </kbd>
                   <span className="mono text-[10.5px] text-[#CAA243] group-hover:text-[#f0c869] hidden sm:inline transition-colors font-medium">

@@ -12,6 +12,14 @@ interface ServicesGridProps {
   onSelectCurrency?: (curr: Currency) => void;
 }
 
+const SERVICE_TYPE_MAP: Record<string, { type: string; budget: string }> = {
+  'films-series': { type: 'film-series', budget: 'tier-3' },
+  'clips-visualisers': { type: 'clip-visualiser', budget: 'tier-2' },
+  'pub-brand-content': { type: 'pub-brand', budget: 'tier-2' },
+  'da-univers-visuels': { type: 'da-univers', budget: 'tier-1' },
+  'web-digital': { type: 'web-digital', budget: 'tier-2' },
+};
+
 const FIVE_SERVICES = [
   {
     id: 'films-series',
@@ -188,6 +196,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
         {FIVE_SERVICES.map(service => {
           const isOpen = openService === service.id;
           const currentPriceRange = formatRange(service.minUsd, service.maxUsd, activeCurrency);
+          const mappedTarget = SERVICE_TYPE_MAP[service.id] || { type: 'pub-brand', budget: 'tier-2' };
 
           return (
             <div
@@ -198,14 +207,14 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   : 'border-white/[0.08] hover:border-[#CAA243]/30'
               }`}
             >
-              {/* Header Toggle Row */}
+              {/* Header Toggle Row (CHANTIER 4: Stack title & price on mobile flex-col sm:flex-row) */}
               <button
                 type="button"
                 onClick={() => toggleService(service.id)}
-                className="w-full p-4 sm:p-5 flex items-center justify-between text-left cursor-pointer transition-colors"
+                className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer transition-colors gap-2.5 sm:gap-4"
               >
                 <div className="flex items-center gap-3.5 min-w-0 pr-2">
-                  <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2 py-1 rounded">
+                  <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2 py-1 rounded flex-shrink-0">
                     {service.number}
                   </span>
                   <div className="min-w-0">
@@ -218,8 +227,9 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <span className="mono text-[10.5px] px-2.5 py-1 rounded bg-black/60 border border-white/[0.08] text-[#CAA243] font-semibold hidden md:inline-block">
+                {/* Price & Toggle Icon Container */}
+                <div className="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
+                  <span className="mono text-[10.5px] px-2.5 py-1 rounded bg-black/60 border border-white/[0.08] text-[#CAA243] font-semibold">
                     {currentPriceRange}
                   </span>
                   <ChevronDown
@@ -255,7 +265,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </div>
                   </div>
 
-                  {/* Action CTA */}
+                  {/* Action CTA with CHANTIER 3 ?type=...&budget=... forwarding */}
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
                     <span className="mono text-xs text-[#8c8375]">
                       {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
@@ -263,7 +273,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </span>
 
                     <Link
-                      href={`/contact?service=${service.id}`}
+                      href={`/contact?service=${service.id}&type=${mappedTarget.type}&budget=${mappedTarget.budget}`}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer"
                     >
                       <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>

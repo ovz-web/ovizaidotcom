@@ -112,12 +112,12 @@ export async function sendProspectConfirmation(email: string, name?: string) {
   const htmlContent = `
     <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 32px; border-radius: 12px; border: 1px solid rgba(202,162,67,0.3); max-width: 560px; margin: 0 auto;">
       <div style="text-align: center; margin-bottom: 24px;">
-        <h1 style="color: #CAA243; font-size: 24px; tracking: 0.1em; margin: 0;">OVIZai</h1>
+        <h1 style="color: #CAA243; font-size: 24px; letter-spacing: 0.1em; margin: 0;">OVIZai</h1>
         <p style="color: #8C8375; font-size: 11px; text-transform: uppercase; margin-top: 4px;">Direction Artistique & Production IA</p>
       </div>
 
-      <p style="font-size: 14px; leading: 1.6; color: #ECE4D3;">Bonjour ${safeName},</p>
-      <p style="font-size: 14px; leading: 1.6; color: #8C8375;">Nous avons bien reçu votre demande concernant votre projet visuel.</p>
+      <p style="font-size: 14px; line-height: 1.6; color: #ECE4D3;">Bonjour ${safeName},</p>
+      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Nous avons bien reçu votre demande concernant votre projet visuel.</p>
       
       <div style="margin: 24px 0; padding: 16px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
         <p style="margin: 0; font-size: 13px; color: #ECE4D3; font-weight: bold;">⚡ Engagement SLA :</p>
@@ -146,6 +146,59 @@ export async function sendProspectConfirmation(email: string, name?: string) {
     return { success: res.ok };
   } catch (error) {
     console.error('[MAIL] Failed to dispatch prospect confirmation:', error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Send automated Masterclass Welcome & Access email to paying student (Dark Luxury Theme)
+ */
+export async function sendMasterclassWelcome(email: string, name?: string) {
+  if (!RESEND_API_KEY) return { success: false, reason: 'MISSING_API_KEY' };
+
+  const safeName = escapeHtml(name || '');
+
+  const htmlContent = `
+    <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 32px; border-radius: 12px; border: 1px solid rgba(202,162,67,0.3); max-width: 560px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h1 style="color: #CAA243; font-size: 24px; letter-spacing: 0.1em; margin: 0;">OVIZai</h1>
+        <p style="color: #8C8375; font-size: 11px; text-transform: uppercase; margin-top: 4px;">Masterclass Cinéma IA — Confirmation d'accès</p>
+      </div>
+
+      <p style="font-size: 14px; line-height: 1.6; color: #ECE4D3;">Bonjour ${safeName ? safeName : ''},</p>
+      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Félicitations ! Votre inscription à la Masterclass Cinéma IA OVIZai a bien été validée.</p>
+      
+      <div style="margin: 24px 0; padding: 20px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
+        <p style="margin: 0; font-size: 13px; color: #CAA243; font-weight: bold;">⚡ Votre accès au programme :</p>
+        <p style="margin: 8px 0 0 0; font-size: 12px; color: #ECE4D3; line-height: 1.5;">
+          Un second e-mail contenant vos identifiants personnels et les liens d'accès aux 5 modules vidéo ainsi qu'à la communauté privée vous parviendra d'ici quelques minutes.
+        </p>
+      </div>
+
+      <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">Pour toute question, contactez notre équipe support : <a href="mailto:cinemaaistudio.contact@gmail.com" style="color: #CAA243; text-decoration: underline;">cinemaaistudio.contact@gmail.com</a></p>
+
+      <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">À très bientôt,<br/><strong style="color: #ECE4D3;">L'équipe OVIZai Studio</strong></p>
+    </div>
+  `;
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: SENDER_EMAIL,
+        to: [email],
+        subject: `⚡ Accès Masterclass Cinéma IA — OVIZai`,
+        html: htmlContent,
+      }),
+    });
+
+    return { success: res.ok };
+  } catch (error) {
+    console.error('[MAIL] Failed to dispatch Masterclass welcome email:', error);
     return { success: false, error };
   }
 }

@@ -18,6 +18,8 @@ function ContactPageContent() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('service');
+  const typeParam = searchParams.get('type');
+  const budgetParam = searchParams.get('budget');
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -26,7 +28,7 @@ function ContactPageContent() {
   const isFr = lang === 'fr';
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-[#bg] text-fg overflow-x-hidden">
+    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
       <TopBar
         lang={lang}
@@ -52,6 +54,8 @@ function ContactPageContent() {
           currency={currency}
           onSelectCurrency={setCurrency}
           initialServiceId={serviceId}
+          initialType={typeParam}
+          initialBudget={budgetParam}
         />
       </main>
 

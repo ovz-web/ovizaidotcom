@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { GraduationCap, ArrowUpRight, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { GraduationCap, ArrowUpRight, ShieldCheck, Sparkles, Loader2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
 
@@ -44,8 +43,35 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
   const isFr = lang === 'fr';
   const { currency: ctxCurrency, formatPrice } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const formattedPrice = formatPrice(490, activeCurrency);
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    setErrorMsg(null);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currency: activeCurrency.toLowerCase() }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('[CHECKOUT ERROR]', data);
+        setErrorMsg(data.error || (isFr ? 'Erreur lors de l’initialisation de la session Stripe.' : 'Failed to create checkout session.'));
+        setLoading(false);
+      }
+    } catch (err: any) {
+      console.error('[CHECKOUT FETCH ERROR]', err);
+      setErrorMsg(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="masterclass" className="max-w-3xl mx-auto mb-14 px-4">
@@ -133,14 +159,29 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
             </p>
           </div>
 
-          <Link
-            href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.3)] hover:scale-[1.02] cursor-pointer"
+          <button
+            type="button"
+            disabled={loading}
+            onClick={handleCheckout}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.3)] hover:scale-[1.02] cursor-pointer"
           >
-            <span>{isFr ? 'S’inscrire à la Masterclass +' : 'Enroll in Masterclass +'}</span>
-            <ArrowUpRight className="w-4 h-4 text-black" />
-          </Link>
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 text-black animate-spin" />
+                <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
+              </>
+            ) : (
+              <>
+                <span>{isFr ? 'S’inscrire à la Masterclass +' : 'Enroll in Masterclass +'}</span>
+                <ArrowUpRight className="w-4 h-4 text-black" />
+              </>
+            )}
+          </button>
         </div>
+
+        {errorMsg && (
+          <p className="text-xs text-red-400 font-mono mt-3 text-center">{errorMsg}</p>
+        )}
       </div>
     </section>
   );

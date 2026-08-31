@@ -14,7 +14,7 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
   const t = DICTIONARY[lang];
 
   return (
-    <footer className="relative z-10 max-w-xl mx-auto pt-6 pb-12 px-4 border-t border-border flex flex-col gap-5 items-center text-center font-mono text-[11px] text-fg-muted2">
+    <footer className="relative z-10 max-w-xl mx-auto pt-6 pb-12 px-4 border-t border-border flex flex-col gap-5 items-center text-center font-mono text-[11px] text-fg-muted">
       {/* Helper Keyboard Bar */}
       <div className="flex items-center justify-between w-full pb-4 border-b border-border/40 text-[10.5px]">
         <span>{t.pressCmd}</span>
@@ -23,7 +23,7 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
 
       {/* Social Links Row */}
       <div className="w-full">
-        <p className="mono text-[10.5px] uppercase text-fg-muted2 mb-3 tracking-wider">
+        <p className="mono text-[10.5px] uppercase text-fg-muted mb-3 tracking-wider">
           {t.followLabel}
         </p>
         <div className="flex items-center justify-center gap-8">
@@ -52,7 +52,7 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
       {/* Bottom Rights & Legal */}
       <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3 pt-3">
         <span>{t.rights}</span>
-        <div className="flex items-center gap-4 text-fg-muted2">
+        <div className="flex items-center gap-4 text-fg-muted">
           <button
             type="button"
             onClick={() => onShowToast(t.privacy)}

@@ -44,7 +44,7 @@ export default function ShowcasePipeline({ lang }: ShowcasePipelineProps) {
                     <h3 className="mono text-sm font-bold text-fg group-hover:text-gold-bright transition-colors">
                       {tool.name}
                     </h3>
-                    <span className="mono text-[10px] tracking-wider text-fg-muted2 uppercase">
+                    <span className="mono text-[10px] tracking-wider text-fg-muted uppercase">
                       {tool.category} • {tool.version}
                     </span>
                   </div>
@@ -64,7 +64,7 @@ export default function ShowcasePipeline({ lang }: ShowcasePipelineProps) {
                 {tool.features[lang].map((feat, fIdx) => (
                   <span
                     key={`${tool.id}-feat-${fIdx}`}
-                    className="mono text-[10px] text-fg-muted2 bg-black/40 border border-border/80 px-2 py-0.5 rounded-sm"
+                    className="mono text-[10px] text-fg-muted bg-black/40 border border-border/80 px-2 py-0.5 rounded-sm"
                   >
                     #{feat}
                   </span>

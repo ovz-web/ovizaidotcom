@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, DollarSign } from 'lucide-react';
+import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, Clock } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
 
@@ -10,6 +10,8 @@ interface QualifiedContactProps {
   currency?: Currency;
   onSelectCurrency?: (curr: Currency) => void;
   initialServiceId?: string | null;
+  initialType?: string | null;
+  initialBudget?: string | null;
 }
 
 const PROJECT_TYPES = [
@@ -37,7 +39,14 @@ const BUDGET_TIERS = [
   { id: 'tier-4', minUsd: 15000, maxUsd: null },
 ];
 
-export default function QualifiedContact({ lang, currency: propCurrency, onSelectCurrency, initialServiceId }: QualifiedContactProps) {
+export default function QualifiedContact({
+  lang,
+  currency: propCurrency,
+  onSelectCurrency,
+  initialServiceId,
+  initialType,
+  initialBudget,
+}: QualifiedContactProps) {
   const isFr = lang === 'fr';
   const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
@@ -51,10 +60,16 @@ export default function QualifiedContact({ lang, currency: propCurrency, onSelec
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
-    if (initialServiceId && SERVICE_ID_MAP[initialServiceId]) {
+    if (initialType && PROJECT_TYPES.some(p => p.id === initialType)) {
+      setSelectedProject(initialType);
+    } else if (initialServiceId && SERVICE_ID_MAP[initialServiceId]) {
       setSelectedProject(SERVICE_ID_MAP[initialServiceId]);
     }
-  }, [initialServiceId]);
+
+    if (initialBudget && BUDGET_TIERS.some(b => b.id === initialBudget)) {
+      setSelectedBudget(initialBudget);
+    }
+  }, [initialServiceId, initialType, initialBudget]);
 
   const handleCurrencySwitch = (curr: Currency) => {
     if (onSelectCurrency) onSelectCurrency(curr);
@@ -146,21 +161,30 @@ export default function QualifiedContact({ lang, currency: propCurrency, onSelec
           </div>
         </div>
 
+        {/* Persistent Visual Confirmation State Post-Submission (CHANTIER 3) */}
         {status === 'success' ? (
-          <div className="p-6 rounded-xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-3">
-            <CheckCircle2 className="w-10 h-10 text-[#CAA243] mx-auto" />
-            <h3 className="mono text-base font-bold text-[#ECE4D3]">
+          <div className="p-6 sm:p-8 rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]">
+            <CheckCircle2 className="w-12 h-12 text-[#CAA243] mx-auto animate-pulse" />
+            <h3 className="mono text-lg font-extrabold text-[#ECE4D3] tracking-wide">
               {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
             </h3>
-            <p className="text-xs text-[#8c8375] max-w-sm mx-auto">
-              {isFr
-                ? 'Merci pour votre confiance. Notre équipe artistique examine vos données et revient vers vous très rapidement.'
-                : 'Thank you for your inquiry. Our art directors are reviewing your details and will get back to you shortly.'}
-            </p>
+            
+            <div className="bg-black/60 border border-white/[0.08] p-4.5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
+              <p className="text-xs font-bold text-[#CAA243] uppercase flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#CAA243]" />
+                <span>{isFr ? 'Engagement Réponse (SLA OVIZai) :' : 'Response Commitment (OVIZai SLA):'}</span>
+              </p>
+              <p className="text-xs text-[#ECE4D3] leading-relaxed font-sans">
+                {isFr
+                  ? 'Merci pour votre confiance. Notre équipe artistique examine votre brief avec attention et revient vers vous avec une proposition d’orientation et un devis personnalisé sous 24h à 48h ouvrées.'
+                  : 'Thank you for your trust. Our art directors are reviewing your details carefully and will return to you with creative proposals and a custom quote within 24 to 48 business hours.'}
+              </p>
+            </div>
+
             <button
               type="button"
               onClick={() => setStatus('idle')}
-              className="mt-2 text-xs text-[#CAA243] underline font-mono cursor-pointer"
+              className="mt-3 text-xs text-[#CAA243] hover:text-[#f0c869] underline font-mono cursor-pointer transition-colors"
             >
               {isFr ? 'Envoyer une autre demande' : 'Submit another inquiry'}
             </button>

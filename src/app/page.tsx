@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
-      {/* 35mm Silver Film Grain Filter (aura dorée globale supprimée) */}
+      {/* 35mm Silver Film Grain Filter */}
       <FilmGrain />
 
       {/* 1. Single 100% Fixed Persistent TopBar */}
@@ -49,7 +49,7 @@ export default function Home() {
         {/* 3. Central Bento Command Card Hub */}
         <CommandMenu lang={lang} onShowToast={showToast} />
 
-        {/* 4. Newsletter & Free Prompts Capture (Supabase Integration) */}
+        {/* 4. Newsletter & Free Prompts Capture */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
