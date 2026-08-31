@@ -5,7 +5,9 @@ import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import Hero from '@/components/Hero';
 import CommandMenu from '@/components/CommandMenu';
-import ShowcasePipeline from '@/components/ShowcasePipeline';
+import ProofBanner from '@/components/ProofBanner';
+import ServicesGrid from '@/components/ServicesGrid';
+import AIPipeline from '@/components/AIPipeline';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
@@ -47,8 +49,14 @@ export default function Home() {
         {/* Command Menu & Interactive ⌘K Palette */}
         <CommandMenu lang={lang} onShowToast={showToast} />
 
-        {/* AI Video Production Pipeline Showcase */}
-        <ShowcasePipeline lang={lang} />
+        {/* Proof of Excellence & Credibility Banner */}
+        <ProofBanner lang={lang} />
+
+        {/* Core Services Grid (DA & Ads, Visualisers, Masterclasses) */}
+        <ServicesGrid lang={lang} />
+
+        {/* AI Generative Video Stack & Technical Pipeline */}
+        <AIPipeline lang={lang} />
 
         {/* Newsletter & Free Workflows Capture (Supabase integration) */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
