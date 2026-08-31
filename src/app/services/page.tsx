@@ -8,10 +8,11 @@ import TopBar from '@/components/TopBar';
 import ServicesGrid from '@/components/ServicesGrid';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
-import { Language } from '@/types';
+import { Language, Currency } from '@/types';
 
 export default function ServicesPage() {
   const [lang, setLang] = useState<Language>('fr');
+  const [currency, setCurrency] = useState<Currency>('USD');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const toggleLanguage = () => {
@@ -27,7 +28,12 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
-      <TopBar lang={lang} onToggleLang={toggleLanguage} />
+      <TopBar
+        lang={lang}
+        onToggleLang={toggleLanguage}
+        currency={currency}
+        onSelectCurrency={setCurrency}
+      />
 
       <main className="flex-grow relative z-10 pt-20 pb-12">
         <div className="max-w-3xl mx-auto px-4">
@@ -40,7 +46,11 @@ export default function ServicesPage() {
           </Link>
         </div>
 
-        <ServicesGrid lang={lang} />
+        <ServicesGrid
+          lang={lang}
+          currency={currency}
+          onSelectCurrency={setCurrency}
+        />
       </main>
 
       <Footer lang={lang} onShowToast={showToast} />

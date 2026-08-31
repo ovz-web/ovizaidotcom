@@ -13,19 +13,19 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section className="relative z-10 max-w-2xl mx-auto pt-8 pb-6 px-4 flex flex-col items-center justify-center text-center">
+    <section className="relative z-10 max-w-2xl mx-auto pt-4 pb-6 px-4 flex flex-col items-center justify-center text-center">
       {/* Eyebrow */}
-      <p className="text-[11px] uppercase tracking-[0.25em] text-[#CAA243] mb-3 font-mono font-bold">
+      <p className="text-[11px] uppercase tracking-[0.25em] text-[#CAA243] mb-4 font-mono font-bold">
         {isFr ? 'DIRECTEURS ARTISTIQUES & CINÉASTES IA AUGMENTÉS' : 'AI ART DIRECTORS & AUGMENTED FILMMAKERS'}
       </p>
 
-      {/* Clean Logo & Diffuse Background Halo */}
-      <div className="relative flex justify-center items-center mb-4">
-        <div className="absolute -z-10 w-44 h-44 rounded-full bg-radial from-[#CAA243]/20 via-[#CAA243]/5 to-transparent blur-2xl pointer-events-none" />
+      {/* Enlarged Clean Hero Logo & Centered Diffuse Halo */}
+      <div className="relative flex justify-center items-center mb-6">
+        <div className="absolute -z-10 w-64 h-64 rounded-full bg-radial from-[#CAA243]/25 via-[#CAA243]/5 to-transparent blur-3xl pointer-events-none" />
         <img
           src="/logo.png"
-          alt="OVIZai Studio"
-          className="max-h-[65px] sm:max-h-[80px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_20px_rgba(202,162,67,0.3)] transition-transform duration-300 hover:scale-[1.02]"
+          alt="OVIZai"
+          className="max-h-[110px] sm:max-h-[140px] w-auto object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(202,162,67,0.35)] transition-transform duration-300 hover:scale-[1.02]"
         />
       </div>
 

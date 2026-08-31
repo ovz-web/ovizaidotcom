@@ -40,7 +40,7 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
       id: 'nav-formation',
       number: '02',
       title: isFr ? '02. Masterclass & Formation Vidéo IA' : '02. AI Video Masterclass',
-      sub: isFr ? '5 modules pratiques, prompts secret & Discord' : '5 practical modules, secret prompts & Discord',
+      sub: isFr ? '5 modules pratiques, prompts secrets & accès 4K' : '5 practical modules, secret prompts & 4K access',
       href: '/formation',
       key: 'D',
       action: isFr ? 'Accéder' : 'Access',
@@ -62,7 +62,7 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
     {
       id: 'nav-contact',
       number: '04',
-      title: isFr ? '04. Devis & Contact Studio' : '04. Quote & Studio Contact',
+      title: isFr ? '04. Devis & Contact' : '04. Quote & Contact',
       sub: isFr ? 'Brief intelligent & réponse garantie sous 24/48h' : 'Smart brief form & guaranteed 24/48h SLA',
       href: '/contact',
       key: 'C',

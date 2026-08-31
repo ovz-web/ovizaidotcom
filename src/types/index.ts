@@ -1,4 +1,5 @@
 export type Language = 'fr' | 'en';
+export type Currency = 'USD' | 'EUR' | 'CAD';
 
 export interface CommandItem {
   id: string;

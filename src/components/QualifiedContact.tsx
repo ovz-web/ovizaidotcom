@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, Clock, CheckCircle2, AlertCircle, ShieldCheck } from 'lucide-react';
-import { Language } from '@/types';
+import { Send, Clock, CheckCircle2 } from 'lucide-react';
+import { Language, Currency } from '@/types';
 
 interface QualifiedContactProps {
   lang: Language;
+  currency?: Currency;
+  onSelectCurrency?: (curr: Currency) => void;
   onShowToast: (msg: string) => void;
 }
 
@@ -15,22 +17,39 @@ const PROJECT_TYPES = [
   { id: 'ad', label: { fr: 'Publicité IA & Brand Content', en: 'AI Ad & Brand Content' } },
   { id: 'da', label: { fr: 'Direction Artistique & Branding', en: 'Art Direction & Branding' } },
   { id: 'web', label: { fr: 'Création de Site Web', en: 'Custom Web Design' } },
-  { id: 'masterclass', label: { fr: 'Formation & Masterclass', en: 'Masterclass & Training' } },
+  { id: 'masterclass', label: { fr: 'Formation Vidéo IA', en: 'AI Video Masterclass' } },
 ];
 
-const BUDGET_RANGES = [
-  '1 000 € – 3 000 €',
-  '3 000 € – 8 000 €',
-  '8 000 € – 15 000 €',
-  '15 000 € +',
-  'À définir / Quote'
-];
+const BUDGET_OPTIONS: Record<Currency, string[]> = {
+  USD: [
+    '1 000 $ – 3 000 $ USD',
+    '3 000 $ – 8 000 $ USD',
+    '8 000 $ – 15 000 $ USD',
+    '15 000 $ + USD',
+    'À définir / Quote'
+  ],
+  EUR: [
+    '1 000 € – 3 000 €',
+    '3 000 € – 8 000 €',
+    '8 000 € – 15 000 €',
+    '15 000 € +',
+    'À définir / Quote'
+  ],
+  CAD: [
+    '1 350 $ – 4 000 $ CAD',
+    '4 000 $ – 10 500 $ CAD',
+    '10 500 $ – 20 000 $ CAD',
+    '20 000 $ + CAD',
+    'À définir / Quote'
+  ]
+};
 
-export default function QualifiedContact({ lang, onShowToast }: QualifiedContactProps) {
+export default function QualifiedContact({ lang, currency = 'USD', onSelectCurrency, onShowToast }: QualifiedContactProps) {
   const isFr = lang === 'fr';
 
+  const currentBudgetRanges = BUDGET_OPTIONS[currency];
   const [selectedType, setSelectedType] = useState('film');
-  const [selectedBudget, setSelectedBudget] = useState('3 000 € – 8 000 €');
+  const [selectedBudget, setSelectedBudget] = useState(currentBudgetRanges[1]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -44,20 +63,18 @@ export default function QualifiedContact({ lang, onShowToast }: QualifiedContact
     setLoading(true);
 
     try {
-      // 1. Submit lead to Supabase /api/leads endpoint
-      const res = await fetch('/api/leads', {
+      await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
 
-      // 2. Open Mailto with prefilled project brief parameters
       const subject = `Demande de Devis — ${selectedType} (${selectedBudget})`;
-      const bodyText = `Bonjour OVIZai Studio,\n\nNom: ${name}\nEmail: ${email}\nType de Projet: ${selectedType}\nBudget Estimé: ${selectedBudget}\n\nMessage / Brief:\n${message}\n`;
+      const bodyText = `Bonjour OVIZai,\n\nNom: ${name}\nEmail: ${email}\nType de Projet: ${selectedType}\nBudget Estimé: ${selectedBudget}\nDevise: ${currency}\n\nMessage / Brief:\n${message}\n`;
       const mailtoUrl = `mailto:contact@ovizai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
 
       setSubmitted(true);
-      onShowToast(isFr ? 'Brief préparé. Ouverture de votre client mail...' : 'Brief ready. Opening email client...');
+      onShowToast(isFr ? 'Brief préparé. Ouverture du client mail...' : 'Brief ready. Opening email client...');
 
       setTimeout(() => {
         window.location.href = mailtoUrl;
@@ -81,11 +98,34 @@ export default function QualifiedContact({ lang, onShowToast }: QualifiedContact
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
             {isFr ? 'DÉMARRER UN PROJET' : 'START A PROJECT'}
           </h2>
-          <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-3">
             {isFr
               ? 'Remplissez les détails de votre vision. Nous étudions votre brief sous 24h à 48h ouvrées.'
               : 'Fill in your project details. We review your brief within 24 to 48 business hours.'}
           </p>
+
+          {/* Currency Switcher */}
+          {onSelectCurrency && (
+            <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
+              <span className="text-[10px] text-[#8C8375] px-2 font-mono">
+                {isFr ? 'Devise :' : 'Currency:'}
+              </span>
+              {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
+                <button
+                  key={curr}
+                  type="button"
+                  onClick={() => onSelectCurrency(curr)}
+                  className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                    currency === curr
+                      ? 'bg-[#CAA243] text-black'
+                      : 'text-[#8C8375] hover:text-[#ECE4D3]'
+                  }`}
+                >
+                  {curr}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {submitted ? (
@@ -126,10 +166,10 @@ export default function QualifiedContact({ lang, onShowToast }: QualifiedContact
             {/* Step B: Clickable Budget Cards */}
             <div>
               <label className="mono text-xs uppercase font-bold text-[#ECE4D3] block mb-2">
-                2. {isFr ? 'Fourchette Budgétaire Estimée :' : 'Estimated Budget Range:'}
+                2. {isFr ? `Fourchette Budgétaire Estimée (${currency}) :` : `Estimated Budget Range (${currency}):`}
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-                {BUDGET_RANGES.map(bRange => (
+                {currentBudgetRanges.map(bRange => (
                   <button
                     key={bRange}
                     type="button"
@@ -157,7 +197,7 @@ export default function QualifiedContact({ lang, onShowToast }: QualifiedContact
                   required
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  placeholder={isFr ? 'ex: Alex Morgan (Studio X)' : 'e.g. Alex Morgan'}
+                  placeholder={isFr ? 'ex: Alex Morgan' : 'e.g. Alex Morgan'}
                   className="w-full bg-black/60 border border-white/[0.1] rounded-lg p-2.5 text-xs text-[#ECE4D3] mono focus:outline-none focus:border-[#CAA243]"
                 />
               </div>

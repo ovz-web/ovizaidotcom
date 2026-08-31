@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import { Language } from '@/types';
+import { Language, Currency } from '@/types';
 
 interface ServicesGridProps {
   lang: Language;
+  currency?: Currency;
+  onSelectCurrency?: (curr: Currency) => void;
 }
 
 const FIVE_SERVICES = [
@@ -21,14 +23,18 @@ const FIVE_SERVICES = [
       en: 'Films and series entirely generated or augmented by AI, from writing to final master.'
     },
     description: {
-      fr: 'Nous prenons en charge l\'ensemble de la chaîne de production : développement du concept, écriture, storyboard IA, génération des plans 8K, montage rythmé et étalonnage cinématographique. Idéal pour courts-métrages, pilotes, teasers et contenus narratifs ambitieux sans contraintes de tournage.',
-      en: 'We manage the entire production pipeline: concept development, scriptwriting, AI storyboarding, 8K shot generation, editing, and cinematic color grading. Ideal for short films, series pilots, and narrative teasers.'
+      fr: 'Nous prenons en charge l\'ensemble de la chaîne de production : développement du concept, écriture, storyboard IA, génération des plans 8K, montage rythmé et étalonnage cinématographique.',
+      en: 'We manage the entire production pipeline: concept development, scriptwriting, AI storyboarding, 8K shot generation, editing, and cinematic color grading.'
     },
     deliverables: {
-      fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats (DCP / ProRes)'],
-      en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery (DCP / ProRes)']
+      fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
+      en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
-    pricing: '8 000 € – 15 000 €+',
+    pricing: {
+      USD: '8 000 $ – 15 000 $ USD',
+      EUR: '8 000 € – 15 000 €',
+      CAD: '10 500 $ – 20 000 $ CAD'
+    },
     icon: Film
   },
   {
@@ -43,14 +49,18 @@ const FIVE_SERVICES = [
       en: 'Unique aesthetic music videos and stage visualisers engineered to make an impact.'
     },
     description: {
-      fr: 'De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l\'univers de l\'artiste. Recherche visuelle, moodboards, séquences IA d\'animation, scénographies de scène (Bercy / Festivals) et formats verticaux optimisés.',
-      en: 'From art direction to final delivery, we create music videos that elevate the artist\'s universe. Visual research, moodboards, AI animation sequences, stage visuals (Accor Arena / Festivals).'
+      fr: 'De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l\'univers de l\'artiste. Moodboards, séquences IA d\'animation et scénographies de scène.',
+      en: 'From art direction to final delivery, we create music videos that elevate the artist\'s universe. Moodboards, animated AI sequences, and stage visualisers.'
     },
     deliverables: {
       fr: ['Direction artistique', 'Moodboard & références', 'Séquences IA animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
       en: ['Art Direction', 'Moodboards & References', 'Animated AI Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
     },
-    pricing: '3 000 € – 8 000 €',
+    pricing: {
+      USD: '3 000 $ – 8 000 $ USD',
+      EUR: '3 000 € – 8 000 €',
+      CAD: '4 000 $ – 10 500 $ CAD'
+    },
     icon: Music2
   },
   {
@@ -65,14 +75,18 @@ const FIVE_SERVICES = [
       en: 'High-impact advertising campaigns produced faster with unlimited creative freedom.'
     },
     description: {
-      fr: 'Spots publicitaires, contenus de marque et formats courts réseaux sociaux. Nous concevons des publicités sur-mesure intégrant votre charte de marque avec des itérations rapides et des déclinaisons multi-plateformes.',
-      en: 'Commercial spots, brand content, and short social formats. We design custom ads integrating your brand guidelines with fast iterations and multi-platform variations.'
+      fr: 'Spots publicitaires, contenus de marque et formats courts réseaux sociaux. Nous concevons des publicités sur-mesure intégrant votre charte de marque.',
+      en: 'Commercial spots, brand content, and short social formats. We design custom ads integrating your brand guidelines.'
     },
     deliverables: {
       fr: ['Concept publicitaire', 'Script & storyboard', 'Production IA rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
       en: ['Ad Concept', 'Script & Storyboard', 'Fast AI Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
     },
-    pricing: '3 000 € – 8 000 €',
+    pricing: {
+      USD: '3 000 $ – 8 000 $ USD',
+      EUR: '3 000 € – 8 000 €',
+      CAD: '4 000 $ – 10 500 $ CAD'
+    },
     icon: Clapperboard
   },
   {
@@ -87,14 +101,18 @@ const FIVE_SERVICES = [
       en: 'We shape your brand\'s complete visual identity from concept to generative visual universe.'
     },
     description: {
-      fr: 'Direction artistique globale, création d\'univers visuels, chartes graphiques génératives et visuels clés. Nous accompagnons les marques et artistes dans la définition d\'un langage visuel fort, cohérent et différenciant.',
-      en: 'Global art direction, visual universe creation, generative brandbooks, and key visuals. We define a strong, consistent, and unique visual language.'
+      fr: 'Direction artistique globale, création d\'univers visuels, chartes graphiques génératives et visuels clés pour marques et artistes.',
+      en: 'Global art direction, visual universe creation, generative brandbooks, and key visuals for brands and artists.'
     },
     deliverables: {
       fr: ['Direction artistique globale', 'Univers visuel génératif', 'Charte graphique & Brandbook', 'Visuels clés 8K', 'Guidelines de marque'],
       en: ['Global Art Direction', 'Generative Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals', 'Brand Guidelines']
     },
-    pricing: '1 500 € – 5 000 €',
+    pricing: {
+      USD: '1 000 $ – 3 000 $ USD',
+      EUR: '1 000 € – 3 000 €',
+      CAD: '1 350 $ – 4 000 $ CAD'
+    },
     icon: Palette
   },
   {
@@ -109,19 +127,23 @@ const FIVE_SERVICES = [
       en: 'Custom Next.js/React websites aligned with your aesthetic and engineered for conversion.'
     },
     description: {
-      fr: 'Conception et développement de sites vitrines, portfolios immersifs et landing pages haute performance. Design sur-mesure dark luxury, intégration responsive mobile-first, animations fluides et optimisation SEO de pointe.',
-      en: 'Design and development of immersive portfolios and high-performance landing pages. Dark luxury design, mobile-first responsive integration, smooth animations, and advanced SEO.'
+      fr: 'Conception et développement de sites vitrines et landing pages. Design sur-mesure dark luxury, intégration responsive mobile-first, animations fluides et SEO.',
+      en: 'Design and development of immersive portfolios and high-performance landing pages. Dark luxury design, mobile-first responsive integration, smooth animations, and SEO.'
     },
     deliverables: {
-      fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique de base', 'Mise en ligne & hébergement'],
+      fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
       en: ['UI/UX Design Mockup', 'Custom Next.js Development', 'Animations & Micro-Interactions', 'Semantic SEO', 'Deployment & Hosting']
     },
-    pricing: '2 500 € – 6 000 €',
+    pricing: {
+      USD: '3 000 $ – 8 000 $ USD',
+      EUR: '3 000 € – 8 000 €',
+      CAD: '4 000 $ – 10 500 $ CAD'
+    },
     icon: Globe2
   }
 ];
 
-export default function ServicesGrid({ lang }: ServicesGridProps) {
+export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>('films-series');
 
@@ -129,35 +151,51 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
     setOpenService(prev => (prev === id ? null : id));
   };
 
-  const scrollToContact = (serviceTitle: string) => {
-    const contactEl = document.querySelector('#contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
     <section id="services" className="max-w-3xl mx-auto mb-14 px-4">
       {/* Section Header */}
-      <div className="mb-8 text-center">
+      <div className="mb-6 text-center">
         <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
           {isFr ? '01 // PÔLES D’EXPERTISE & PRESTATIONS' : '01 // SERVICES & CORE PILLARS'}
         </p>
         <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
           {isFr ? 'CE QUE NOUS FAISONS' : 'WHAT WE DO'}
         </h2>
-        <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto">
+        <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-4">
           {isFr
             ? 'De la conception à la livraison finale, nous mettons l’intelligence artificielle au service de votre vision.'
             : 'From concept to final delivery, we put generative AI at the service of your creative vision.'}
         </p>
+
+        {/* Currency Switcher */}
+        {onSelectCurrency && (
+          <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
+            <span className="text-[10px] text-[#8C8375] px-2 font-mono">
+              {isFr ? 'Devise :' : 'Currency:'}
+            </span>
+            {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
+              <button
+                key={curr}
+                type="button"
+                onClick={() => onSelectCurrency(curr)}
+                className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                  currency === curr
+                    ? 'bg-[#CAA243] text-black'
+                    : 'text-[#8C8375] hover:text-[#ECE4D3]'
+                }`}
+              >
+                {curr}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Accordion / Details Grid */}
       <div className="space-y-4">
         {FIVE_SERVICES.map(service => {
-          const IconComp = service.icon;
           const isOpen = openService === service.id;
+          const currentPrice = service.pricing[currency];
 
           return (
             <div
@@ -190,7 +228,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
 
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <span className="mono text-[10.5px] px-2.5 py-1 rounded bg-black/60 border border-white/[0.08] text-[#CAA243] font-semibold hidden md:inline-block">
-                    {service.pricing}
+                    {currentPrice}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-[#CAA243] transition-transform duration-300 ${
@@ -229,17 +267,16 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
                     <span className="mono text-xs text-[#8c8375]">
                       {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
-                      <strong className="text-[#CAA243]">{service.pricing}</strong>
+                      <strong className="text-[#CAA243]">{currentPrice}</strong>
                     </span>
 
-                    <button
-                      type="button"
-                      onClick={() => scrollToContact(service.title[lang])}
+                    <a
+                      href="/contact"
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer"
                     >
                       <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               )}

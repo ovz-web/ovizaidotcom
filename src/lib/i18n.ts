@@ -2,7 +2,7 @@ import { CommandItem, Language, PipelineTool } from '../types';
 
 export const DICTIONARY = {
   fr: {
-    status: 'STUDIO VIDÉO IA — PROJETS SÉLECTIONNÉS UNIQUEMENT',
+    status: 'PRODUCTION VIDÉO IA — PROJETS SÉLECTIONNÉS UNIQUEMENT',
     eyebrow: 'DIRECTION ARTISTIQUE & CINÉMATOGRAPHIE IA',
     heroTitle: 'OVIZai',
     heroTagline: 'L’Art Algorithmique au service du Cinéma Narratif.',
@@ -18,20 +18,20 @@ export const DICTIONARY = {
     subscribedMsg: 'Inscrit avec succès. Vérifiez votre boîte mail.',
     alreadySubscribedMsg: 'Cet e-mail est déjà enregistré. Merci de votre confiance !',
     errorMsg: 'Une erreur est survenue. Veuillez réinstaller votre email.',
-    followLabel: 'SUIVRE LE STUDIO OVIZAI',
+    followLabel: 'SUIVRE OVIZAI',
     pressCmd: '⌘K pour le menu rapide',
     pressEsc: 'ESC pour fermer',
     toastContact: 'Ouverture du client mail…',
     toastResources: 'Navigation vers les workflows & ressources…',
     toastCopied: 'Lien copié dans le presse-papier !',
-    rights: '© 2026 OVIZai Studio. Tous droits réservés.',
+    rights: '© 2026 OVIZai. Tous droits réservés.',
     privacy: 'Confidentialité',
     terms: 'Conditions',
     pipelineTitle: 'PIPELINE & STACK TECHNIQUE DE PRODUCTION',
     pipelineSub: 'Architecture d’outils génératifs haute fidélité combinée à de la post-production cinématographique professionnelle.',
   },
   en: {
-    status: 'AI VIDEO STUDIO — SELECT PROJECTS ONLY',
+    status: 'AI VIDEO PRODUCTION — SELECT PROJECTS ONLY',
     eyebrow: 'AI ART DIRECTION & CINEMATOGRAPHY',
     heroTitle: 'OVIZai',
     heroTagline: 'Algorithmic Art Meets Narrative Cinema.',
@@ -47,13 +47,13 @@ export const DICTIONARY = {
     subscribedMsg: 'Subscribed successfully. Check your inbox.',
     alreadySubscribedMsg: 'This email is already registered. Thank you!',
     errorMsg: 'An error occurred. Please try again.',
-    followLabel: 'FOLLOW OVIZAI STUDIO',
+    followLabel: 'FOLLOW OVIZAI',
     pressCmd: '⌘K for fast commands',
     pressEsc: 'ESC to close',
     toastContact: 'Opening email client…',
     toastResources: 'Scrolling to workflows & resources…',
     toastCopied: 'Link copied to clipboard!',
-    rights: '© 2026 OVIZai Studio. All rights reserved.',
+    rights: '© 2026 OVIZai. All rights reserved.',
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
     pipelineTitle: 'PRODUCTION PIPELINE & AI STACK',
@@ -126,8 +126,8 @@ export const COMMANDS: CommandItem[] = [
       en: '04. Custom Projects & Collabs'
     },
     sub: {
-      fr: 'Studios, marques exigeantes et partenariats créatifs',
-      en: 'Studios, luxury brands and creative partnerships'
+      fr: 'Marques exigeantes et partenariats créatifs',
+      en: 'Luxury brands and creative partnerships'
     },
     key: 'C',
     action: {

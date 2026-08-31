@@ -8,10 +8,11 @@ import CommandMenu from '@/components/CommandMenu';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
-import { Language } from '@/types';
+import { Language, Currency } from '@/types';
 
 export default function Home() {
   const [lang, setLang] = useState<Language>('fr');
+  const [currency, setCurrency] = useState<Currency>('USD');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const toggleLanguage = () => {
@@ -36,7 +37,12 @@ export default function Home() {
       <FilmGrain />
 
       {/* 1. Single 100% Fixed Persistent TopBar */}
-      <TopBar lang={lang} onToggleLang={toggleLanguage} />
+      <TopBar
+        lang={lang}
+        onToggleLang={toggleLanguage}
+        currency={currency}
+        onSelectCurrency={setCurrency}
+      />
 
       {/* Main Content Area with Compensatory Padding Top */}
       <main className="flex-grow relative z-10 pt-16 sm:pt-20">
