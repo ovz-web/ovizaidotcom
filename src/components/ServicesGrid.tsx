@@ -263,7 +263,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </span>
 
                     <Link
-                      href="/contact"
+                      href={`/contact?service=${service.id}`}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer"
                     >
                       <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>

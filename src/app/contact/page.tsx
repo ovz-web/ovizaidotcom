@@ -1,23 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import QualifiedContact from '@/components/QualifiedContact';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
-import { Language, Currency } from '@/types';
+import { useLanguage } from '@/context/LanguageContext';
+import { useCurrency } from '@/context/CurrencyContext';
 
-export default function ContactPage() {
-  const [lang, setLang] = useState<Language>('fr');
-  const [currency, setCurrency] = useState<Currency>('USD');
+function ContactPageContent() {
+  const { lang, toggleLanguage } = useLanguage();
+  const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const toggleLanguage = () => {
-    setLang((prev) => (prev === 'fr' ? 'en' : 'fr'));
-  };
+  const searchParams = useSearchParams();
+  const serviceId = searchParams.get('service');
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -50,11 +50,20 @@ export default function ContactPage() {
           lang={lang}
           currency={currency}
           onSelectCurrency={setCurrency}
+          initialServiceId={serviceId}
         />
       </main>
 
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-bg" />}>
+      <ContactPageContent />
+    </Suspense>
   );
 }

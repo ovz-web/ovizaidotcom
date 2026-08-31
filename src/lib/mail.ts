@@ -17,6 +17,19 @@ const TEAM_NOTIFICATION_EMAIL = 'cinemaaistudio.contact@gmail.com';
 const SENDER_EMAIL = 'OVIZai <contact@ovizai.com>';
 
 /**
+ * Escapes unsafe HTML characters to prevent XSS / content injection when
+ * embedding user inputs (name, email, message) inside transactional email HTML.
+ */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
  * Send internal notification email to OVIZai team
  */
 export async function sendTeamNotification(payload: LeadEmailPayload) {
@@ -27,6 +40,13 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
 
   const { email, name = 'Prospect Anonymous', projectType = 'N/A', budgetRange = 'N/A', currency = 'USD', message = '' } = payload;
 
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeProjectType = escapeHtml(projectType);
+  const safeBudgetRange = escapeHtml(budgetRange);
+  const safeCurrency = escapeHtml(currency);
+  const safeMessage = escapeHtml(message);
+
   const htmlContent = `
     <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
       <h2 style="color: #CAA243; margin-top: 0;">⚡ NOUVELLE DEMANDE DE BRIEF — OVIZai</h2>
@@ -35,22 +55,22 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px;">
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
           <td style="padding: 8px 0; color: #8C8375;">Prospect :</td>
-          <td style="padding: 8px 0; font-weight: bold; color: #ECE4D3;">${name} (${email})</td>
+          <td style="padding: 8px 0; font-weight: bold; color: #ECE4D3;">${safeName} (${safeEmail})</td>
         </tr>
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
           <td style="padding: 8px 0; color: #8C8375;">Type de Projet :</td>
-          <td style="padding: 8px 0; color: #CAA243; font-weight: bold;">${projectType}</td>
+          <td style="padding: 8px 0; color: #CAA243; font-weight: bold;">${safeProjectType}</td>
         </tr>
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
           <td style="padding: 8px 0; color: #8C8375;">Budget Estimé :</td>
-          <td style="padding: 8px 0; color: #ECE4D3;">${budgetRange} (${currency})</td>
+          <td style="padding: 8px 0; color: #ECE4D3;">${safeBudgetRange} (${safeCurrency})</td>
         </tr>
       </table>
 
-      ${message ? `
+      ${safeMessage ? `
         <div style="margin-top: 16px; padding: 12px; background-color: #141210; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
           <p style="margin: 0; font-size: 12px; color: #8C8375; text-transform: uppercase;">Message / Brief :</p>
-          <p style="margin-top: 4px; font-size: 13px; color: #ECE4D3; white-space: pre-wrap;">${message}</p>
+          <p style="margin-top: 4px; font-size: 13px; color: #ECE4D3; white-space: pre-wrap;">${safeMessage}</p>
         </div>
       ` : ''}
 
@@ -68,7 +88,7 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
       body: JSON.stringify({
         from: SENDER_EMAIL,
         to: [TEAM_NOTIFICATION_EMAIL],
-        subject: `[LEAD OVIZAI] ${projectType} — ${budgetRange}`,
+        subject: `[LEAD OVIZAI] ${safeProjectType} — ${safeBudgetRange}`,
         html: htmlContent,
       }),
     });
@@ -87,6 +107,8 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
 export async function sendProspectConfirmation(email: string, name?: string) {
   if (!RESEND_API_KEY) return { success: false, reason: 'MISSING_API_KEY' };
 
+  const safeName = escapeHtml(name || '');
+
   const htmlContent = `
     <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 32px; border-radius: 12px; border: 1px solid rgba(202,162,67,0.3); max-width: 560px; margin: 0 auto;">
       <div style="text-align: center; margin-bottom: 24px;">
@@ -94,7 +116,7 @@ export async function sendProspectConfirmation(email: string, name?: string) {
         <p style="color: #8C8375; font-size: 11px; text-transform: uppercase; margin-top: 4px;">Direction Artistique & Production IA</p>
       </div>
 
-      <p style="font-size: 14px; leading: 1.6; color: #ECE4D3;">Bonjour ${name || ''},</p>
+      <p style="font-size: 14px; leading: 1.6; color: #ECE4D3;">Bonjour ${safeName},</p>
       <p style="font-size: 14px; leading: 1.6; color: #8C8375;">Nous avons bien reçu votre demande concernant votre projet visuel.</p>
       
       <div style="margin: 24px 0; padding: 16px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">

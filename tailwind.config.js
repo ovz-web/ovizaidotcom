@@ -31,9 +31,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['IBM Plex Mono', 'JetBrains Mono', 'monospace'],
-        display: ['Syne', 'Archivo Black', 'sans-serif']
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-plex-mono)', 'JetBrains Mono', 'monospace'],
+        display: ['var(--font-syne)', 'var(--font-archivo-black)', 'sans-serif']
       },
       boxShadow: {
         gold: '0 14px 26px rgba(202,162,67,0.16)',

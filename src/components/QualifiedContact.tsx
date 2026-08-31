@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, DollarSign } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -9,6 +9,7 @@ interface QualifiedContactProps {
   lang: Language;
   currency?: Currency;
   onSelectCurrency?: (curr: Currency) => void;
+  initialServiceId?: string | null;
 }
 
 const PROJECT_TYPES = [
@@ -20,6 +21,15 @@ const PROJECT_TYPES = [
   { id: 'formation-pro', icon: GraduationCap, title: { fr: '06. Formation Masterclass IA', en: '06. AI Masterclass Training' } },
 ];
 
+const SERVICE_ID_MAP: Record<string, string> = {
+  'pub-brand-content': 'pub-brand',
+  'clips-visualisers': 'clip-visualiser',
+  'films-series': 'film-series',
+  'da-univers-visuels': 'da-univers',
+  'web-digital': 'web-digital',
+  'formation-pro': 'formation-pro',
+};
+
 const BUDGET_TIERS = [
   { id: 'tier-1', minUsd: 1000, maxUsd: 3000 },
   { id: 'tier-2', minUsd: 3000, maxUsd: 8000 },
@@ -27,7 +37,7 @@ const BUDGET_TIERS = [
   { id: 'tier-4', minUsd: 15000, maxUsd: null },
 ];
 
-export default function QualifiedContact({ lang, currency: propCurrency, onSelectCurrency }: QualifiedContactProps) {
+export default function QualifiedContact({ lang, currency: propCurrency, onSelectCurrency, initialServiceId }: QualifiedContactProps) {
   const isFr = lang === 'fr';
   const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
@@ -39,6 +49,12 @@ export default function QualifiedContact({ lang, currency: propCurrency, onSelec
   const [brief, setBrief] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    if (initialServiceId && SERVICE_ID_MAP[initialServiceId]) {
+      setSelectedProject(SERVICE_ID_MAP[initialServiceId]);
+    }
+  }, [initialServiceId]);
 
   const handleCurrencySwitch = (curr: Currency) => {
     if (onSelectCurrency) onSelectCurrency(curr);

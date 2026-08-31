@@ -8,16 +8,13 @@ import TopBar from '@/components/TopBar';
 import ServicesGrid from '@/components/ServicesGrid';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
-import { Language, Currency } from '@/types';
+import { useLanguage } from '@/context/LanguageContext';
+import { useCurrency } from '@/context/CurrencyContext';
 
 export default function ServicesPage() {
-  const [lang, setLang] = useState<Language>('fr');
-  const [currency, setCurrency] = useState<Currency>('USD');
+  const { lang, toggleLanguage } = useLanguage();
+  const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const toggleLanguage = () => {
-    setLang(prev => (prev === 'fr' ? 'en' : 'fr'));
-  };
 
   const showToast = (msg: string) => {
     setToastMessage(msg);

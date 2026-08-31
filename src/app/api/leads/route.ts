@@ -16,10 +16,20 @@ export async function POST(req: NextRequest) {
 
     const cleanEmail = email.trim().toLowerCase();
 
-    // Insert into Supabase leads table
+    // Insert into Supabase leads table — persist the FULL qualified brief.
+    // Previously only { email } was written here, silently discarding name,
+    // project type, budget, currency and message for every /contact
+    // submission (they only ever survived in the fire-and-forget email).
     const { data, error } = await supabaseAdmin
       .from('leads')
-      .insert([{ email: cleanEmail }])
+      .insert([{
+        email: cleanEmail,
+        name: typeof name === 'string' ? name.trim() : null,
+        project_type: typeof projectType === 'string' ? projectType : null,
+        budget_range: typeof budgetRange === 'string' ? budgetRange : null,
+        currency: typeof currency === 'string' ? currency : null,
+        message: typeof message === 'string' ? message.trim() : null,
+      }])
       .select();
 
     if (error) {

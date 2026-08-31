@@ -1,9 +1,9 @@
-import { CommandItem, Language, PipelineTool } from '../types';
+import { Language, Dictionary, CommandItem, PipelineTool } from '@/types';
 
-export const DICTIONARY = {
+export const DICTIONARY: Record<Language, Dictionary> = {
   fr: {
-    status: 'PRODUCTION VIDÉO IA — PROJETS SÉLECTIONNÉS UNIQUEMENT',
-    eyebrow: 'DIRECTION ARTISTIQUE & CINÉMATOGRAPHIE IA',
+    status: 'PRODUCTION VIDÉO IA — PROJETS SÉLECTIONNÉS',
+    eyebrow: 'DIRECTION ARTISTIQUE & CINÉMA IA',
     heroTitle: 'OVIZai',
     heroTagline: 'L’Art Algorithmique au service du Cinéma Narratif.',
     heroSub: 'Vidéo IA cinématographique pour marques et artistes d’exception. Sans template, sans bruit.',
@@ -17,7 +17,7 @@ export const DICTIONARY = {
     submitting: 'Inscription…',
     subscribedMsg: 'Inscrit avec succès. Vérifiez votre boîte mail.',
     alreadySubscribedMsg: 'Cet e-mail est déjà enregistré. Merci de votre confiance !',
-    errorMsg: 'Une erreur est survenue. Veuillez réinstaller votre email.',
+    errorMsg: 'Une erreur est survenue. Veuillez réessayer.',
     followLabel: 'SUIVRE OVIZAI',
     pressCmd: '⌘K pour le menu rapide',
     pressEsc: 'ESC pour fermer',
