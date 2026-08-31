@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
+import { sendTeamNotification, sendProspectConfirmation } from '@/lib/mail';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email } = body;
+    const { email, name, projectType, budgetRange, currency, message } = body;
 
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return NextResponse.json(
@@ -22,7 +23,6 @@ export async function POST(req: NextRequest) {
       .select();
 
     if (error) {
-      // 23505 is PostgreSQL unique constraint violation
       if (error.code === '23505') {
         return NextResponse.json(
           { status: 'already_subscribed', message: 'E-mail déjà inscrit' },
@@ -35,6 +35,20 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Dispatch transactional email notifications in background
+    sendTeamNotification({
+      email: cleanEmail,
+      name,
+      projectType,
+      budgetRange,
+      currency,
+      message,
+    }).catch(err => console.error('[MAIL] Team notification error:', err));
+
+    sendProspectConfirmation(cleanEmail, name).catch(err =>
+      console.error('[MAIL] Prospect confirmation error:', err)
+    );
 
     return NextResponse.json(
       { status: 'subscribed', data },

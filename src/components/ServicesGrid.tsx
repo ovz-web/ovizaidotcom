@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 
@@ -270,13 +271,13 @@ export default function ServicesGrid({ lang, currency = 'USD', onSelectCurrency 
                       <strong className="text-[#CAA243]">{currentPrice}</strong>
                     </span>
 
-                    <a
+                    <Link
                       href="/contact"
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer"
                     >
                       <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               )}
