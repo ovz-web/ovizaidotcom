@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import FilmGrain from '@/components/FilmGrain';
+import TopBanner from '@/components/TopBanner';
 import TopBar from '@/components/TopBar';
-import Hero from '@/components/Hero';
+import HeroBrutalist from '@/components/HeroBrutalist';
 import CommandMenu from '@/components/CommandMenu';
 import ProofBanner from '@/components/ProofBanner';
 import ServicesGrid from '@/components/ServicesGrid';
+import MasterclassSection from '@/components/MasterclassSection';
 import AIPipeline from '@/components/AIPipeline';
+import QualifiedContact from '@/components/QualifiedContact';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
@@ -35,16 +38,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
-      {/* 35mm Silver Film Grain Filter & Gold Aura */}
+      {/* 35mm Silver Film Grain Filter & Ambient Gold Aura */}
       <FilmGrain />
 
-      {/* TopBar with status and language switch */}
+      {/* Top Banner Masterclass Announcement */}
+      <TopBanner lang={lang} />
+
+      {/* TopBar with Selective Status and Language Switcher */}
       <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
       {/* Main Content Area */}
       <main className="flex-grow relative z-10">
-        {/* Hero Section */}
-        <Hero lang={lang} />
+        {/* Hero Brutalist with Dual B2B / B2C CTA */}
+        <HeroBrutalist lang={lang} />
 
         {/* Command Menu & Interactive ⌘K Palette */}
         <CommandMenu lang={lang} onShowToast={showToast} />
@@ -52,13 +58,19 @@ export default function Home() {
         {/* Proof of Excellence & Credibility Banner */}
         <ProofBanner lang={lang} />
 
-        {/* Core Services Grid (DA & Ads, Visualisers, Masterclasses) */}
+        {/* The 5 Core Service Pillars with Deliverables Accordion */}
         <ServicesGrid lang={lang} />
+
+        {/* Ultra-Realistic AI Video Masterclass (5 Modules) */}
+        <MasterclassSection lang={lang} />
 
         {/* AI Generative Video Stack & Technical Pipeline */}
         <AIPipeline lang={lang} />
 
-        {/* Newsletter & Free Workflows Capture (Supabase integration) */}
+        {/* Qualified Contact & Budget Range Selector Form */}
+        <QualifiedContact lang={lang} onShowToast={showToast} />
+
+        {/* Newsletter & Free Prompts Capture (Supabase integration) */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
