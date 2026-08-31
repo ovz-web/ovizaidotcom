@@ -35,11 +35,11 @@ export default function Home() {
       {/* 35mm Silver Film Grain Filter & Ambient Gold Aura */}
       <FilmGrain />
 
-      {/* 1. Single Unified Sticky TopBar */}
+      {/* 1. Single 100% Fixed Persistent TopBar */}
       <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
-      {/* Main Content Area */}
-      <main className="flex-grow relative z-10">
+      {/* Main Content Area with Compensatory Padding Top */}
+      <main className="flex-grow relative z-10 pt-16 sm:pt-20">
         {/* 2. Minimalist Hero Section */}
         <HeroBrutalist lang={lang} />
 
