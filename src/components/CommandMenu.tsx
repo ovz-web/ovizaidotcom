@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Film, GraduationCap, Cpu, Mail, X } from 'lucide-react';
+import AIPipeline from '@/components/AIPipeline';
 import { Language } from '@/types';
 
 interface CommandMenuProps {
@@ -13,6 +14,7 @@ interface CommandMenuProps {
 export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
   const isFr = lang === 'fr';
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPipelineModalOpen, setIsPipelineModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isMac, setIsMac] = useState(true);
 
@@ -50,11 +52,12 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
       number: '03',
       title: isFr ? '03. Arsenal & Pipeline Technique' : '03. AI Tech Stack & Pipeline',
       sub: isFr ? 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3' : 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3',
-      href: '#pipeline',
+      href: '#',
       key: 'R',
       action: isFr ? 'Voir Stack' : 'View Stack',
       icon: Cpu,
-      isExternalRoute: false
+      isExternalRoute: false,
+      isPipelineModal: true
     },
     {
       id: 'nav-contact',
@@ -74,8 +77,9 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       const targetTag = (e.target as HTMLElement)?.tagName?.toLowerCase();
       if (targetTag === 'input' || targetTag === 'textarea') {
-        if (e.key === 'Escape' && isModalOpen) {
+        if (e.key === 'Escape') {
           setIsModalOpen(false);
+          setIsPipelineModalOpen(false);
         }
         return;
       }
@@ -86,12 +90,13 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
         setIsModalOpen(prev => !prev);
       } else if (e.key === 'Escape') {
         setIsModalOpen(false);
+        setIsPipelineModalOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isMac, isModalOpen]);
+  }, [isMac]);
 
   const filteredNav = NAV_ITEMS.filter(item => {
     if (!searchQuery.trim()) return true;
@@ -145,6 +150,19 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
               </div>
             );
 
+            if (item.isPipelineModal) {
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setIsPipelineModalOpen(true)}
+                  className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+                >
+                  {contentNode}
+                </button>
+              );
+            }
+
             if (item.isExternalRoute) {
               return (
                 <Link
@@ -170,7 +188,7 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
         </div>
       </div>
 
-      {/* Modal Search Palette */}
+      {/* 1. Modal Search Palette (⌘K) */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex justify-center items-start pt-20 sm:pt-28 px-4"
@@ -198,21 +216,64 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
             </div>
 
             <div className="py-2 max-h-72 overflow-y-auto space-y-1">
-              {filteredNav.map(item => (
-                <Link
-                  key={`modal-${item.id}`}
-                  href={item.href}
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-[#CAA243]/10 text-[#ECE4D3] hover:text-[#f0c869] transition-colors text-left mono text-xs cursor-pointer block"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] inline-block" />
-                    <span>{item.title}</span>
-                  </div>
-                  <span className="text-[#8c8375] text-[10.5px]">[{item.action}]</span>
-                </Link>
-              ))}
+              {filteredNav.map(item => {
+                if (item.isPipelineModal) {
+                  return (
+                    <button
+                      key={`modal-${item.id}`}
+                      type="button"
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        setIsPipelineModalOpen(true);
+                      }}
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-[#CAA243]/10 text-[#ECE4D3] hover:text-[#f0c869] transition-colors text-left mono text-xs cursor-pointer block"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] inline-block" />
+                        <span>{item.title}</span>
+                      </div>
+                      <span className="text-[#8c8375] text-[10.5px]">[{item.action}]</span>
+                    </button>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={`modal-${item.id}`}
+                    href={item.href}
+                    onClick={() => setIsModalOpen(false)}
+                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-[#CAA243]/10 text-[#ECE4D3] hover:text-[#f0c869] transition-colors text-left mono text-xs cursor-pointer block"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] inline-block" />
+                      <span>{item.title}</span>
+                    </div>
+                    <span className="text-[#8c8375] text-[10.5px]">[{item.action}]</span>
+                  </Link>
+                );
+              })}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. Dark Tech Stack Pipeline Modal */}
+      {isPipelineModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex justify-center items-center p-4 overflow-y-auto"
+          onClick={e => {
+            if (e.target === e.currentTarget) setIsPipelineModalOpen(false);
+          }}
+        >
+          <div className="w-full max-w-2xl bg-[#0B0A08]/95 border border-white/[0.12] rounded-xl p-5 shadow-2xl relative my-8">
+            <button
+              onClick={() => setIsPipelineModalOpen(false)}
+              className="absolute top-4 right-4 text-[#8c8375] hover:text-[#ECE4D3] p-1.5 rounded-lg bg-black/40 border border-white/[0.08] cursor-pointer"
+            >
+              <X className="w-4 h-4 text-[#CAA243]" />
+            </button>
+
+            <AIPipeline lang={lang} />
           </div>
         </div>
       )}

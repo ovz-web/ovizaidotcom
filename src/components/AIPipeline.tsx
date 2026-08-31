@@ -6,6 +6,8 @@ import { Language } from '@/types';
 
 interface AIPipelineProps {
   lang: Language;
+  customEyebrow?: string;
+  customTitle?: string;
 }
 
 const PIPELINE_DATA = [
@@ -76,18 +78,18 @@ const PIPELINE_DATA = [
   }
 ];
 
-export default function AIPipeline({ lang }: AIPipelineProps) {
+export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipelineProps) {
   const isFr = lang === 'fr';
 
   return (
     <section className="max-w-xl mx-auto mb-10 px-4">
       {/* Section Title */}
       <div className="mb-6 text-center">
-        <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1">
-          {isFr ? '02 // STACK TECHNIQUE & PIPELINE' : '02 // AI PIPELINE & TOOLSET'}
+        <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
+          {customEyebrow || (isFr ? '02 // STACK TECHNIQUE & PIPELINE' : '02 // AI PIPELINE & TOOLSET')}
         </p>
         <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3]">
-          {isFr ? 'Moteurs Génératifs & Post-Production' : 'Generative Engines & Post-Production'}
+          {customTitle || (isFr ? 'Moteurs Génératifs & Post-Production' : 'Generative Engines & Post-Production')}
         </h2>
       </div>
 
