@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
-      {/* 35mm Silver Film Grain Filter & Ambient Gold Aura */}
+      {/* 35mm Silver Film Grain Filter (aura dorée globale supprimée) */}
       <FilmGrain />
 
       {/* 1. Single 100% Fixed Persistent TopBar */}
