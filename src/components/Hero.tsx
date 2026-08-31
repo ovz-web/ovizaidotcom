@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { DICTIONARY } from '@/lib/i18n';
 import { Language } from '@/types';
 
@@ -13,31 +12,29 @@ export default function Hero({ lang }: HeroProps) {
   const t = DICTIONARY[lang];
 
   return (
-    <section className="relative z-10 max-w-xl mx-auto pt-10 sm:pt-14 pb-8 px-4 text-center">
+    <section className="relative z-10 max-w-xl mx-auto py-8 px-4 flex flex-col items-center justify-center gap-3 text-center">
       {/* Eyebrow */}
-      <p className="mono text-[11px] sm:text-xs tracking-[0.22em] uppercase text-gold mb-5 font-semibold">
+      <p className="mono text-[10px] sm:text-xs tracking-[0.2em] uppercase font-mono text-[#CAA243]">
         {t.eyebrow}
       </p>
 
-      {/* Central Logo */}
-      <div className="relative group inline-block mb-6">
-        <div className="absolute -inset-2 rounded-full bg-gold/20 blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
-        <div className="relative flex justify-center">
-          <img
-            src="/logo.png"
-            alt="OVIZai Studio Logo"
-            className="w-[210px] sm:w-[240px] h-auto object-contain filter drop-shadow-[0_14px_26px_rgba(202,162,67,0.22)] transition-transform duration-300 hover:scale-[1.02]"
-          />
-        </div>
+      {/* Central Logo & Absolute Radial Halo */}
+      <div className="relative flex justify-center items-center my-1">
+        <div className="absolute -z-10 w-52 h-52 rounded-full bg-radial from-[#CAA243]/20 blur-3xl pointer-events-none" />
+        <img
+          src="/logo.png"
+          alt="OVIZai Studio"
+          className="object-contain w-auto h-auto max-h-[70px] sm:max-h-[90px] mix-blend-screen drop-shadow-[0_0_25px_rgba(202,162,67,0.25)] transition-transform duration-300 hover:scale-[1.02]"
+        />
       </div>
 
-      {/* Value Proposition */}
-      <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight mb-3 text-fg leading-tight">
+      {/* Value Proposition Title */}
+      <h1 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-[#ECE4D3] leading-tight max-w-lg">
         <span className="text-gold-gradient text-gold-glow">{t.heroTagline}</span>
       </h1>
 
-      {/* Mission / Tagline */}
-      <p className="text-sm sm:text-base leading-relaxed text-fg-muted max-w-md mx-auto font-normal">
+      {/* Subtitle / Mission */}
+      <p className="text-xs sm:text-sm leading-relaxed text-fg-muted max-w-md mx-auto">
         {t.heroSub}
       </p>
     </section>
