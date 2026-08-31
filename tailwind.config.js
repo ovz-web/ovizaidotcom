@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: '#0b0a08',
+          DEFAULT: '#080808',
           card: '#141210',
           inset: '#000000',
           dark: '#080808'
