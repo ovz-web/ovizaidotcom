@@ -17,7 +17,6 @@ export default function FilmGrain() {
         </filter>
         <rect width="100%" height="100%" filter="url(#noiseFilter)" />
       </svg>
-      <div className="aura" />
     </>
   );
 }
