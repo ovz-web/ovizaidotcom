@@ -1,24 +1,17 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { Search, Film, Sparkles, Terminal, Mail, X } from 'lucide-react';
-import { COMMANDS, DICTIONARY } from '@/lib/i18n';
-import { CommandItem, Language } from '@/types';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Search, Film, GraduationCap, Cpu, Mail, X } from 'lucide-react';
+import { Language } from '@/types';
 
 interface CommandMenuProps {
   lang: Language;
   onShowToast: (msg: string) => void;
 }
 
-const ICON_MAP = {
-  video: Film,
-  art: Sparkles,
-  workflow: Terminal,
-  contact: Mail,
-};
-
 export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
-  const t = DICTIONARY[lang];
+  const isFr = lang === 'fr';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isMac, setIsMac] = useState(true);
@@ -29,26 +22,56 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
 
   const modKey = isMac ? '⌘' : 'Ctrl+';
 
-  const handleCommand = useCallback((cmd: CommandItem) => {
-    if (cmd.type === 'contact') {
-      onShowToast(t.toastContact);
-      const mailto = `mailto:contact@ovizai.com?subject=${encodeURIComponent(cmd.mailtoSubject || cmd.title[lang])}`;
-      setTimeout(() => {
-        window.location.href = mailto;
-      }, 300);
-    } else if (cmd.type === 'scroll' && cmd.target) {
-      onShowToast(t.toastResources);
-      const element = document.querySelector(cmd.target);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+  const NAV_ITEMS = [
+    {
+      id: 'nav-services',
+      number: '01',
+      title: isFr ? '01. Prestations & Services IA' : '01. AI Services & Production',
+      sub: isFr ? 'Films, visualisers, pubs & DA générative' : 'Films, visualisers, ads & art direction',
+      href: '/services',
+      key: 'P',
+      action: isFr ? 'Explorer' : 'Explore',
+      icon: Film,
+      isExternalRoute: true
+    },
+    {
+      id: 'nav-formation',
+      number: '02',
+      title: isFr ? '02. Masterclass & Formation Vidéo IA' : '02. AI Video Masterclass',
+      sub: isFr ? '5 modules pratiques, prompts secret & Discord' : '5 practical modules, secret prompts & Discord',
+      href: '/formation',
+      key: 'D',
+      action: isFr ? 'Accéder' : 'Access',
+      icon: GraduationCap,
+      isExternalRoute: true
+    },
+    {
+      id: 'nav-pipeline',
+      number: '03',
+      title: isFr ? '03. Arsenal & Pipeline Technique' : '03. AI Tech Stack & Pipeline',
+      sub: isFr ? 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3' : 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3',
+      href: '#pipeline',
+      key: 'R',
+      action: isFr ? 'Voir Stack' : 'View Stack',
+      icon: Cpu,
+      isExternalRoute: false
+    },
+    {
+      id: 'nav-contact',
+      number: '04',
+      title: isFr ? '04. Devis & Contact Studio' : '04. Quote & Studio Contact',
+      sub: isFr ? 'Brief intelligent & réponse garantie sous 24/48h' : 'Smart brief form & guaranteed 24/48h SLA',
+      href: '/contact',
+      key: 'C',
+      action: isFr ? 'Contacter' : 'Contact',
+      icon: Mail,
+      isExternalRoute: true
     }
-  }, [lang, onShowToast, t.toastContact, t.toastResources]);
+  ];
 
-  // Global Keyboard Listener
+  // Global Keyboard listener ⌘K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger shortcuts if user is typing in an input or textarea
       const targetTag = (e.target as HTMLElement)?.tagName?.toLowerCase();
       if (targetTag === 'input' || targetTag === 'textarea') {
         if (e.key === 'Escape' && isModalOpen) {
@@ -58,98 +81,90 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
       }
 
       const mod = isMac ? e.metaKey : e.ctrlKey;
-
       if (mod && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         setIsModalOpen(prev => !prev);
-        return;
-      }
-
-      if (e.key === 'Escape') {
+      } else if (e.key === 'Escape') {
         setIsModalOpen(false);
-        return;
-      }
-
-      // Single Key / Mod Key Shortcuts P, D, R, C
-      const keyUpper = e.key.toUpperCase();
-      if (!mod && ['P', 'D', 'R', 'C'].includes(keyUpper)) {
-        const matchedCmd = COMMANDS.find(c => c.key === keyUpper);
-        if (matchedCmd) {
-          e.preventDefault();
-          handleCommand(matchedCmd);
-        }
-      } else if (mod && ['P', 'D', 'R', 'C'].includes(keyUpper)) {
-        const matchedCmd = COMMANDS.find(c => c.key === keyUpper);
-        if (matchedCmd) {
-          e.preventDefault();
-          handleCommand(matchedCmd);
-        }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isMac, isModalOpen, handleCommand]);
+  }, [isMac, isModalOpen]);
 
-  const filteredCommands = COMMANDS.filter(cmd => {
+  const filteredNav = NAV_ITEMS.filter(item => {
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
-    return (
-      cmd.title[lang].toLowerCase().includes(q) ||
-      cmd.sub[lang].toLowerCase().includes(q) ||
-      cmd.key.toLowerCase().includes(q)
-    );
+    return item.title.toLowerCase().includes(q) || item.sub.toLowerCase().includes(q);
   });
 
   return (
     <>
-      {/* Command Card Container */}
+      {/* Central Bento / Command Card Hub */}
       <div className="ovizai-card max-w-xl mx-auto mb-8">
         {/* Search Trigger */}
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="w-full flex items-center justify-between bg-none border-b border-border text-fg-muted hover:bg-white/[0.02] hover:text-fg px-4 sm:px-5 py-3.5 text-xs sm:text-sm font-sans cursor-pointer transition-colors"
+          className="w-full flex items-center justify-between bg-none border-b border-white/[0.08] text-[#8c8375] hover:bg-white/[0.02] hover:text-[#ECE4D3] px-4 sm:px-5 py-3.5 text-xs sm:text-sm font-sans cursor-pointer transition-colors"
         >
           <div className="flex items-center gap-2.5">
-            <Search className="w-4 h-4 text-fg-muted2" />
-            <span>{t.searchTrigger}</span>
+            <Search className="w-4 h-4 text-[#8c8375]" />
+            <span>{isFr ? 'Rechercher une commande, un service... (⌘K)' : 'Search command or service... (⌘K)'}</span>
           </div>
           <kbd className="hidden sm:inline-block">{modKey}K</kbd>
         </button>
 
-        {/* Command Rows List */}
-        <div className="flex flex-col divide-y divide-border">
-          {COMMANDS.map(cmd => {
-            const IconComponent = ICON_MAP[cmd.icon];
-            return (
-              <button
-                key={cmd.id}
-                type="button"
-                onClick={() => handleCommand(cmd)}
-                className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
-              >
+        {/* Command Navigation List */}
+        <div className="flex flex-col divide-y divide-white/[0.06]">
+          {NAV_ITEMS.map(item => {
+            const IconComp = item.icon;
+            const contentNode = (
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3 min-w-0">
-                  <IconComponent className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
+                  <IconComp className="w-4 h-4 text-[#CAA243] group-hover:text-[#f0c869] flex-shrink-0 transition-colors" />
                   <div className="flex flex-col min-w-0">
-                    <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                      {cmd.title[lang]}
+                    <span className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors truncate">
+                      {item.title}
                     </span>
-                    <span className="text-[11px] sm:text-xs text-fg-muted2 mt-0.5 truncate">
-                      {cmd.sub[lang]}
+                    <span className="text-[11px] sm:text-xs text-[#8c8375] mt-0.5 truncate">
+                      {item.sub}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2.5 flex-shrink-0">
-                  <kbd className="mono text-[10px] text-fg-muted2">
-                    {modKey}{cmd.key}
+                  <kbd className="mono text-[10px] text-[#8c8375]">
+                    {modKey}{item.key}
                   </kbd>
-                  <span className="mono text-[10.5px] text-fg-muted group-hover:text-gold-bright hidden sm:inline transition-colors font-medium">
-                    [{cmd.action[lang]}]
+                  <span className="mono text-[10.5px] text-[#CAA243] group-hover:text-[#f0c869] hidden sm:inline transition-colors font-medium">
+                    [{item.action}]
                   </span>
                 </div>
-              </button>
+              </div>
+            );
+
+            if (item.isExternalRoute) {
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+                >
+                  {contentNode}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              >
+                {contentNode}
+              </a>
             );
           })}
         </div>
@@ -163,54 +178,40 @@ export default function CommandMenu({ lang, onShowToast }: CommandMenuProps) {
             if (e.target === e.currentTarget) setIsModalOpen(false);
           }}
         >
-          <div className="w-full max-w-xl bg-bg-card border border-border-strong rounded-xl p-3 shadow-modal">
-            {/* Modal Input */}
-            <div className="flex items-center gap-3 border-b border-border pb-3 px-2">
-              <Search className="w-4 h-4 text-fg-muted2 flex-shrink-0" />
+          <div className="w-full max-w-xl bg-[#141210] border border-white/[0.12] rounded-xl p-3 shadow-2xl">
+            <div className="flex items-center gap-3 border-b border-white/[0.08] pb-3 px-2">
+              <Search className="w-4 h-4 text-[#8c8375] flex-shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder={t.searchPlaceholder}
+                placeholder={isFr ? 'Rechercher...' : 'Search...'}
                 autoFocus
-                className="flex-1 bg-transparent border-none text-fg mono text-xs sm:text-sm focus:outline-none placeholder:text-fg-muted2"
+                className="flex-1 bg-transparent border-none text-[#ECE4D3] mono text-xs sm:text-sm focus:outline-none placeholder:text-[#8c8375]"
               />
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-fg-muted hover:text-fg p-1"
+                className="text-[#8c8375] hover:text-[#ECE4D3] p-1 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Modal Results List */}
-            <div className="py-2 max-h-72 overflow-y-auto">
-              {filteredCommands.length === 0 ? (
-                <div className="px-4 py-6 text-center mono text-xs text-fg-muted2">
-                  — Aucune commande trouvée —
-                </div>
-              ) : (
-                filteredCommands.map(cmd => (
-                  <button
-                    key={`modal-${cmd.id}`}
-                    type="button"
-                    onClick={() => {
-                      setIsModalOpen(false);
-                      handleCommand(cmd);
-                    }}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gold/10 hover:text-gold-bright transition-colors text-left mono text-xs text-fg/90 cursor-pointer mb-1"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
-                      <span>{cmd.title[lang]}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-fg-muted2 text-[10.5px]">
-                      <kbd>{cmd.key}</kbd>
-                      <span>{cmd.action[lang]}</span>
-                    </div>
-                  </button>
-                ))
-              )}
+            <div className="py-2 max-h-72 overflow-y-auto space-y-1">
+              {filteredNav.map(item => (
+                <Link
+                  key={`modal-${item.id}`}
+                  href={item.href}
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-[#CAA243]/10 text-[#ECE4D3] hover:text-[#f0c869] transition-colors text-left mono text-xs cursor-pointer block"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] inline-block" />
+                    <span>{item.title}</span>
+                  </div>
+                  <span className="text-[#8c8375] text-[10.5px]">[{item.action}]</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

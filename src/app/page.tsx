@@ -2,15 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import FilmGrain from '@/components/FilmGrain';
-import TopBanner from '@/components/TopBanner';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
 import CommandMenu from '@/components/CommandMenu';
-import ProofBanner from '@/components/ProofBanner';
-import ServicesGrid from '@/components/ServicesGrid';
-import MasterclassSection from '@/components/MasterclassSection';
 import AIPipeline from '@/components/AIPipeline';
-import QualifiedContact from '@/components/QualifiedContact';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
@@ -41,40 +36,27 @@ export default function Home() {
       {/* 35mm Silver Film Grain Filter & Ambient Gold Aura */}
       <FilmGrain />
 
-      {/* Top Banner Masterclass Announcement */}
-      <TopBanner lang={lang} />
-
-      {/* TopBar with Selective Status and Language Switcher */}
+      {/* Single Unified Sticky TopBar */}
       <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
       {/* Main Content Area */}
       <main className="flex-grow relative z-10">
-        {/* Hero Brutalist with Dual B2B / B2C CTA */}
+        {/* Minimalist Hero Section */}
         <HeroBrutalist lang={lang} />
 
-        {/* Command Menu & Interactive ⌘K Palette */}
+        {/* Central Bento Command Card Hub */}
         <CommandMenu lang={lang} onShowToast={showToast} />
 
-        {/* Proof of Excellence & Credibility Banner */}
-        <ProofBanner lang={lang} />
+        {/* AI Tech Stack & Pipeline Showcase */}
+        <div id="pipeline">
+          <AIPipeline lang={lang} />
+        </div>
 
-        {/* The 5 Core Service Pillars with Deliverables Accordion */}
-        <ServicesGrid lang={lang} />
-
-        {/* Ultra-Realistic AI Video Masterclass (5 Modules) */}
-        <MasterclassSection lang={lang} />
-
-        {/* AI Generative Video Stack & Technical Pipeline */}
-        <AIPipeline lang={lang} />
-
-        {/* Qualified Contact & Budget Range Selector Form */}
-        <QualifiedContact lang={lang} onShowToast={showToast} />
-
-        {/* Newsletter & Free Prompts Capture (Supabase integration) */}
+        {/* Newsletter & Free Prompts Capture (Supabase Integration) */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
-      {/* Footer with social links & shortcuts */}
+      {/* Footer with social links & legal */}
       <Footer lang={lang} onShowToast={showToast} />
 
       {/* Gold Toast Notification Bar */}
