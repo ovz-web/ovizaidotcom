@@ -45,22 +45,25 @@ export async function POST(req: NextRequest) {
     if (customerEmail) {
       const cleanEmail = customerEmail.trim().toLowerCase();
 
-      // 1. Insert paid lead into Supabase
-      const { error: dbError } = await supabaseAdmin.from('leads').insert([
-        {
-          email: cleanEmail,
-          name: customerName,
-          project_type: 'Masterclass IA (Payé)',
-          budget_range: `${amountTotal} ${currencyUpper}`,
-          currency: currencyUpper,
-          message: `Paiement Stripe Checkout validé (Session: ${session.id})`,
-        },
-      ]);
+      // 1. Upsert paid lead into Supabase (handles existing prospects gracefully via onConflict: 'email')
+      const { error: dbError } = await supabaseAdmin.from('leads').upsert(
+        [
+          {
+            email: cleanEmail,
+            name: customerName,
+            project_type: 'Masterclass IA (Payé)',
+            budget_range: `${amountTotal} ${currencyUpper}`,
+            currency: currencyUpper,
+            message: `Paiement Stripe Checkout validé (Session: ${session.id})`,
+          },
+        ],
+        { onConflict: 'email' }
+      );
 
       if (dbError) {
-        console.error('[STRIPE WEBHOOK] Supabase Insert Error:', dbError);
+        console.error('[STRIPE WEBHOOK] Supabase Upsert Error:', dbError);
       } else {
-        console.log(`[STRIPE WEBHOOK] Paid lead recorded for ${maskEmail(cleanEmail)}`);
+        console.log(`[STRIPE WEBHOOK] Paid lead recorded/updated for ${maskEmail(cleanEmail)}`);
       }
 
       // 2. Dispatch Welcome Email to student via Resend (Non-blocking)
