@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { supabaseAdmin } from '@/lib/supabaseServer';
-import { sendMasterclassWelcome } from '@/lib/mail';
+import { sendMasterclassWelcome, sendMasterclassSaleNotification, maskEmail } from '@/lib/mail';
 
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -60,12 +60,22 @@ export async function POST(req: NextRequest) {
       if (dbError) {
         console.error('[STRIPE WEBHOOK] Supabase Insert Error:', dbError);
       } else {
-        console.log(`[STRIPE WEBHOOK] Paid lead recorded for ${cleanEmail}`);
+        console.log(`[STRIPE WEBHOOK] Paid lead recorded for ${maskEmail(cleanEmail)}`);
       }
 
-      // 2. Dispatch Welcome Email via Resend
+      // 2. Dispatch Welcome Email to student via Resend (Non-blocking)
       sendMasterclassWelcome(cleanEmail, customerName).catch((err) =>
-        console.error('[STRIPE WEBHOOK] Welcome Email Error:', err)
+        console.error(`[STRIPE WEBHOOK] Welcome Email Error for ${maskEmail(cleanEmail)}:`, err)
+      );
+
+      // 3. Dispatch Sale Notification Email to OVIZai team via Resend (Non-blocking)
+      sendMasterclassSaleNotification({
+        email: cleanEmail,
+        name: customerName,
+        amount: amountTotal,
+        currency: currencyUpper,
+      }).catch((err) =>
+        console.error(`[STRIPE WEBHOOK] Sale Notification Email Error for ${maskEmail(cleanEmail)}:`, err)
       );
     }
   }

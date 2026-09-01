@@ -4,8 +4,6 @@ import './globals.css';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 
-// Self-hosted via next/font: removes the render-blocking @import round-trip
-// to Google Fonts and eliminates CLS by injecting matched font metrics.
 const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -36,10 +34,15 @@ const archivoBlack = Archivo_Black({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ovizai.com'),
   title: 'OVIZai — AI Art Direction & Cinematography Studio',
   description: 'Direction artistique IA, films publicitaires narratifs, clips musicaux et pipelines vidéo haute fidélité.',
   keywords: ['AI Video', 'Direction Artistique IA', 'Cinéma Génératif', 'Runway Gen-3', 'Midjourney v6', 'Kling AI', 'OVIZai'],
   authors: [{ name: 'OVIZai' }],
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'OVIZai — AI Art Direction & Cinematography',
     description: 'Cinematic AI video for visionaries, brands and artists. No templates, no noise.',
@@ -47,14 +50,20 @@ export const metadata: Metadata = {
     siteName: 'OVIZai',
     locale: 'fr_FR',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'OVIZai — AI Art Direction & Cinematography Studio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'OVIZai — AI Video',
     description: 'Algorithmic Art Meets Narrative Cinema.',
-  },
-  icons: {
-    icon: '/favicon.ico',
+    images: ['/og-image.png'],
   },
 };
 

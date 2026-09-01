@@ -12,6 +12,13 @@ export interface LeadEmailPayload {
   message?: string;
 }
 
+export interface MasterclassSalePayload {
+  email: string;
+  name?: string;
+  amount?: number;
+  currency?: string;
+}
+
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const TEAM_NOTIFICATION_EMAIL = 'cinemaaistudio.contact@gmail.com';
 const SENDER_EMAIL = 'OVIZai <contact@ovizai.com>';
@@ -30,7 +37,17 @@ function escapeHtml(str: string): string {
 }
 
 /**
- * Send internal notification email to OVIZai team
+ * Masks email address for safe logging (e.g. a***e@domaine.com)
+ */
+export function maskEmail(email: string): string {
+  if (!email || !email.includes('@')) return '***';
+  const [local, domain] = email.split('@');
+  if (local.length <= 2) return `${local[0]}***@${domain}`;
+  return `${local[0]}***${local[local.length - 1]}@${domain}`;
+}
+
+/**
+ * Send internal notification email to OVIZai team for new project brief
  */
 export async function sendTeamNotification(payload: LeadEmailPayload) {
   if (!RESEND_API_KEY) {
@@ -93,10 +110,16 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
       }),
     });
 
-    const data = await res.json();
-    return { success: res.ok, data };
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      console.error(`[MAIL ERROR] Resend API HTTP ${res.status} for team notification (${maskEmail(email)}):`, JSON.stringify(data));
+      return { success: false, status: res.status, data };
+    }
+
+    return { success: true, data };
   } catch (error) {
-    console.error('[MAIL] Failed to dispatch team email:', error);
+    console.error(`[MAIL] Failed to dispatch team email (${maskEmail(email)}):`, error);
     return { success: false, error };
   }
 }
@@ -143,9 +166,16 @@ export async function sendProspectConfirmation(email: string, name?: string) {
       }),
     });
 
-    return { success: res.ok };
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      console.error(`[MAIL ERROR] Resend API HTTP ${res.status} for prospect confirmation (${maskEmail(email)}):`, JSON.stringify(data));
+      return { success: false, status: res.status, data };
+    }
+
+    return { success: true, data };
   } catch (error) {
-    console.error('[MAIL] Failed to dispatch prospect confirmation:', error);
+    console.error(`[MAIL] Failed to dispatch prospect confirmation (${maskEmail(email)}):`, error);
     return { success: false, error };
   }
 }
@@ -196,9 +226,85 @@ export async function sendMasterclassWelcome(email: string, name?: string) {
       }),
     });
 
-    return { success: res.ok };
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      console.error(`[MAIL ERROR] Resend API HTTP ${res.status} for Masterclass welcome (${maskEmail(email)}):`, JSON.stringify(data));
+      return { success: false, status: res.status, data };
+    }
+
+    return { success: true, data };
   } catch (error) {
-    console.error('[MAIL] Failed to dispatch Masterclass welcome email:', error);
+    console.error(`[MAIL] Failed to dispatch Masterclass welcome email (${maskEmail(email)}):`, error);
+    return { success: false, error };
+  }
+}
+
+/**
+ * Send internal notification email to OVIZai team when a Masterclass sale occurs
+ */
+export async function sendMasterclassSaleNotification(payload: MasterclassSalePayload) {
+  if (!RESEND_API_KEY) {
+    console.warn('[MAIL] RESEND_API_KEY is not set in environment variables.');
+    return { success: false, reason: 'MISSING_API_KEY' };
+  }
+
+  const { email, name = 'Étudiant Masterclass', amount = 680, currency = 'CAD' } = payload;
+
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeAmount = escapeHtml(String(amount));
+  const safeCurrency = escapeHtml(currency.toUpperCase());
+
+  const htmlContent = `
+    <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; border-radius: 12px; border: 1px solid rgba(202,162,67,0.4);">
+      <h2 style="color: #CAA243; margin-top: 0;">🎉 NOUVELLE VENTE MASTERCLASS — OVIZai</h2>
+      <p style="font-size: 14px; color: #8C8375;">Un nouveau règlement a été validé avec succès via Stripe Checkout.</p>
+      
+      <table style="width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px;">
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <td style="padding: 8px 0; color: #8C8375;">Client / Étudiant :</td>
+          <td style="padding: 8px 0; font-weight: bold; color: #ECE4D3;">${safeName} (${safeEmail})</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <td style="padding: 8px 0; color: #8C8375;">Montant Encaissé :</td>
+          <td style="padding: 8px 0; color: #CAA243; font-weight: bold;">${safeAmount} ${safeCurrency}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <td style="padding: 8px 0; color: #8C8375;">Programme :</td>
+          <td style="padding: 8px 0; color: #ECE4D3;">Masterclass Cinéma IA OVIZai (Accès à vie)</td>
+        </tr>
+      </table>
+
+      <p style="margin-top: 24px; font-size: 11px; color: #8C8375; text-align: center;">OVIZai Direction Artistique & Production IA</p>
+    </div>
+  `;
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: SENDER_EMAIL,
+        to: [TEAM_NOTIFICATION_EMAIL],
+        subject: `[VENTE MASTERCLASS] ${safeName} — ${safeAmount} ${safeCurrency}`,
+        html: htmlContent,
+      }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      console.error(`[MAIL ERROR] Resend API HTTP ${res.status} for Masterclass sale notification (${maskEmail(email)}):`, JSON.stringify(data));
+      return { success: false, status: res.status, data };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error(`[MAIL] Failed to dispatch Masterclass sale notification email (${maskEmail(email)}):`, error);
     return { success: false, error };
   }
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
-import { sendTeamNotification, sendProspectConfirmation } from '@/lib/mail';
+import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib/mail';
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,9 +17,6 @@ export async function POST(req: NextRequest) {
     const cleanEmail = email.trim().toLowerCase();
 
     // Insert into Supabase leads table — persist the FULL qualified brief.
-    // Previously only { email } was written here, silently discarding name,
-    // project type, budget, currency and message for every /contact
-    // submission (they only ever survived in the fire-and-forget email).
     const { data, error } = await supabaseAdmin
       .from('leads')
       .insert([{
@@ -39,14 +36,14 @@ export async function POST(req: NextRequest) {
           { status: 200 }
         );
       }
-      console.error('Supabase Lead Insert Error:', error);
+      console.error(`[SUPABASE ERROR] Lead insert failed for ${maskEmail(cleanEmail)}:`, error.message);
       return NextResponse.json(
         { error: 'Erreur lors de l’enregistrement de l’e-mail', details: error.message },
         { status: 500 }
       );
     }
 
-    // Dispatch transactional email notifications in background
+    // Dispatch transactional email notifications in background (non-blocking)
     sendTeamNotification({
       email: cleanEmail,
       name,
@@ -54,10 +51,10 @@ export async function POST(req: NextRequest) {
       budgetRange,
       currency,
       message,
-    }).catch(err => console.error('[MAIL] Team notification error:', err));
+    }).catch(err => console.error(`[MAIL ERROR] Team notification error for ${maskEmail(cleanEmail)}:`, err));
 
     sendProspectConfirmation(cleanEmail, name).catch(err =>
-      console.error('[MAIL] Prospect confirmation error:', err)
+      console.error(`[MAIL ERROR] Prospect confirmation error for ${maskEmail(cleanEmail)}:`, err)
     );
 
     return NextResponse.json(
