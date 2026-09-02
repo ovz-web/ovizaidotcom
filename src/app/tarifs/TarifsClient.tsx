@@ -356,7 +356,7 @@ export default function TarifsClient() {
           </div>
 
           {/* ── Offre de Lancement ───────────────────────────────────── */}
-          <div className="mb-8 rounded-2xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-4.5 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="mb-8 rounded-2xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-start gap-3">
               <ShieldCheck className="w-5 h-5 text-[#CAA243] flex-shrink-0 mt-0.5" />
               <div>
@@ -440,6 +440,16 @@ export default function TarifsClient() {
 
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />
+
+      {/* Sticky Mobile CTA — visible only on small screens */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none">
+        <Link
+          href="/contact?service=sprint&type=pub-brand&budget=tier-0"
+          className="pointer-events-auto w-full min-h-[52px] flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold rounded-xl mono text-xs uppercase tracking-wider shadow-[0_4px_24px_rgba(202,162,67,0.4)] transition-all"
+        >
+          <span>{lang === 'fr' ? 'Réserver un Sprint Pilote 48h' : 'Book a 48h Pilot Sprint'}</span>
+        </Link>
+      </div>
     </div>
   );
 }

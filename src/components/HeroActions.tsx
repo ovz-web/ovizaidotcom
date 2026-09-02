@@ -44,6 +44,20 @@ export default function HeroActions({ lang }: HeroActionsProps) {
         </div>
       </div>
 
+      {/* Sprint Pilote Callout — P1 conversion lift */}
+      <div className="mt-4 flex items-center justify-center">
+        <Link
+          href="/tarifs"
+          className="inline-flex items-center gap-2 bg-[#CAA243]/10 border border-[#CAA243]/30 hover:border-[#CAA243]/60 hover:bg-[#CAA243]/15 rounded-full px-4 py-2 transition-all group"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] animate-pulse flex-shrink-0" />
+          <span className="mono text-[10.5px] font-bold text-[#CAA243] tracking-wide uppercase">
+            {isFr ? 'Sprint Pilote 48h — dès 530 $ USD' : '48h Pilot Sprint — from $530 USD'}
+          </span>
+          <ArrowUpRight className="w-3 h-3 text-[#CAA243] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </Link>
+      </div>
+
       <div className="text-center mt-3 flex items-center justify-center gap-4 flex-wrap">
         <Link
           href="/services"

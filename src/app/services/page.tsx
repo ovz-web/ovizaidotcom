@@ -59,6 +59,16 @@ export default function ServicesPage() {
 
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />
+
+      {/* Sticky Mobile CTA — visible only on small screens */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none">
+        <Link
+          href="/contact?service=sprint&type=pub-brand&budget=tier-0"
+          className="pointer-events-auto w-full min-h-[52px] flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold rounded-xl mono text-xs uppercase tracking-wider shadow-[0_4px_24px_rgba(202,162,67,0.4)] transition-all"
+        >
+          <span>{lang === 'fr' ? 'Demander un devis (24h)' : 'Request a Quote (24h)'}</span>
+        </Link>
+      </div>
     </div>
   );
 }

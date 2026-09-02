@@ -193,7 +193,7 @@ export default function QualifiedContact({
               {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
             </h3>
             
-            <div className="bg-black/60 border border-white/[0.08] p-4.5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
+            <div className="bg-black/60 border border-white/[0.08] p-4 sm:p-5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
               <p className="text-xs font-bold text-[#CAA243] uppercase flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#CAA243]" />
                 <span>{isFr ? 'Engagement Réponse (SLA OVIZai) :' : 'Response Commitment (OVIZai SLA):'}</span>
