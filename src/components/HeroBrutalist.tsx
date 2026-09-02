@@ -16,8 +16,8 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
   return (
     <section className="relative z-10 max-w-2xl mx-auto pt-1 pb-3 px-4 flex flex-col items-center justify-center text-center">
       {/* Eyebrow */}
-      <p className="text-[11px] uppercase tracking-[0.25em] text-[#CAA243] mb-1.5 font-mono font-bold">
-        {isFr ? 'DIRECTEURS ARTISTIQUES & CINÉASTES IA AUGMENTÉS' : 'AI ART DIRECTORS & AUGMENTED FILMMAKERS'}
+      <p className="text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] mb-1.5 font-mono font-bold">
+        {isFr ? 'DIRECTEURS ARTISTIQUES & CINÉASTES AUGMENTÉS' : 'ART DIRECTORS & AUGMENTED CINEMATOGRAPHERS'}
       </p>
 
       {/* Hero Logo */}
@@ -25,28 +25,28 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
         <Image
           src="/logo.png"
           alt="OVIZai"
-          width={192}
-          height={192}
+          width={150}
+          height={150}
           style={{
             WebkitMaskImage: 'radial-gradient(ellipse 65% 65% at 50% 50%, black 55%, transparent 92%)',
             maskImage: 'radial-gradient(ellipse 65% 65% at 50% 50%, black 55%, transparent 92%)',
           }}
-          className="h-36 sm:h-48 w-auto object-contain scale-[1.15] sm:scale-[1.25]"
+          className="h-28 sm:h-36 w-auto object-contain"
           priority
         />
       </div>
 
       {/* Sobriety Main Title */}
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-2 leading-snug">
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-2 leading-snug">
         {isFr ? (
           <>
             L’ART CINÉMATOGRAPHIQUE <br className="hidden sm:inline" />
-            <span className="text-gold-gradient text-gold-glow">AUGMENTÉ PAR L'IA</span>
+            <span className="text-gold-gradient text-gold-glow">AUGMENTÉ</span>
           </>
         ) : (
           <>
             CINEMATIC ARTISTRY <br className="hidden sm:inline" />
-            <span className="text-gold-gradient text-gold-glow">AUGMENTED BY AI</span>
+            <span className="text-gold-gradient text-gold-glow">AUGMENTED</span>
           </>
         )}
       </h1>

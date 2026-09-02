@@ -86,7 +86,7 @@ export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipel
       {/* Section Title */}
       <div className="mb-6 text-center">
         <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-          {customEyebrow || (isFr ? '02 // STACK TECHNIQUE & PIPELINE' : '02 // AI PIPELINE & TOOLSET')}
+          {customEyebrow || (isFr ? '03 // STACK TECHNIQUE & PIPELINE' : '03 // TECH STACK & PIPELINE')}
         </p>
         <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3]">
           {customTitle || (isFr ? 'Moteurs Génératifs & Post-Production' : 'Generative Engines & Post-Production')}

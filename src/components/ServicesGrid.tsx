@@ -25,20 +25,20 @@ const FIVE_SERVICES = [
     id: 'films-series',
     number: '01',
     title: {
-      fr: 'Réalisation de Films & Séries IA',
-      en: 'AI Film & Series Direction'
+      fr: 'Réalisation de Films & Séries',
+      en: 'Film & Series Direction'
     },
     tagline: {
-      fr: 'Des films et séries entièrement générés ou augmentés par l\'IA, de l\'écriture au master final.',
-      en: 'Films and series entirely generated or augmented by AI, from writing to final master.'
+      fr: 'Des films et séries à forte valeur visuelle, de l\'écriture au master final.',
+      en: 'Films and series with high visual production value, from writing to final master.'
     },
     description: {
-      fr: 'Nous prenons en charge l\'ensemble de la chaîne de production : développement du concept, écriture, storyboard IA, génération des plans 8K, montage rythmé et étalonnage cinématographique.',
-      en: 'We manage the entire production pipeline: concept development, scriptwriting, AI storyboarding, 8K shot generation, editing, and cinematic color grading.'
+      fr: 'Nous prenons en charge l\'ensemble de la chaîne de production : développement du concept, écriture, storyboard, génération des plans 8K, montage rythmé et étalonnage cinématographique.',
+      en: 'We manage the entire production pipeline: concept development, scriptwriting, storyboarding, 8K shot generation, editing, and cinematic color grading.'
     },
     deliverables: {
-      fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES (calibrage couleur de qualité cinéma)', 'Sound design spatialisé', 'Livraison multi-formats'],
-      en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading (cinema-grade color calibration)', 'Spatial Sound Design', 'Multi-Format Delivery']
+      fr: ['Concept & écriture', 'Storyboard numérique', 'Génération des plans', 'Montage & étalonnage ACES (calibrage couleur de qualité cinéma)', 'Sound design spatialisé', 'Livraison multi-formats'],
+      en: ['Concept & Script', 'Digital Storyboard', 'Shot Generation', 'ACES Editing & Grading (cinema-grade color calibration)', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
     minUsd: 8000,
     maxUsd: 15000,
@@ -48,20 +48,20 @@ const FIVE_SERVICES = [
     id: 'clips-visualisers',
     number: '02',
     title: {
-      fr: 'Clips Vidéos IA & Visualisers',
-      en: 'AI Music Videos & Stage Visualisers'
+      fr: 'Clips Vidéos & Visualisers',
+      en: 'Music Videos & Stage Visualisers'
     },
     tagline: {
       fr: 'Des clips musicaux et scénographies à l\'esthétique unique, pensés pour marquer les esprits.',
       en: 'Unique aesthetic music videos and stage visualisers engineered to make an impact.'
     },
     description: {
-      fr: 'De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l\'univers de l\'artiste. Moodboards, séquences IA d\'animation et scénographies de scène.',
-      en: 'From art direction to final delivery, we create music videos that elevate the artist\'s universe. Moodboards, animated AI sequences, and stage visualisers.'
+      fr: 'De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l\'univers de l\'artiste. Moodboards, séquences animées et scénographies de scène.',
+      en: 'From art direction to final delivery, we create music videos that elevate the artist\'s universe. Moodboards, animated sequences, and stage visualisers.'
     },
     deliverables: {
-      fr: ['Direction artistique', 'Moodboard & références', 'Séquences IA animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
-      en: ['Art Direction', 'Moodboards & References', 'Animated AI Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
+      fr: ['Direction artistique', 'Moodboard & références', 'Séquences animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
+      en: ['Art Direction', 'Moodboards & References', 'Animated Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
     },
     minUsd: 3000,
     maxUsd: 8000,
@@ -71,8 +71,8 @@ const FIVE_SERVICES = [
     id: 'pub-brand-content',
     number: '03',
     title: {
-      fr: 'Publicités IA & Brand Content',
-      en: 'AI Commercials & Brand Content'
+      fr: 'Publicités & Brand Content',
+      en: 'Commercials & Brand Content'
     },
     tagline: {
       fr: 'Des campagnes publicitaires percutantes, produites plus vite et avec une créativité sans limite.',
@@ -83,8 +83,8 @@ const FIVE_SERVICES = [
       en: 'Commercial spots, brand content, and short social formats. We design custom ads integrating your brand guidelines.'
     },
     deliverables: {
-      fr: ['Concept publicitaire', 'Script & storyboard', 'Production IA rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
-      en: ['Ad Concept', 'Script & Storyboard', 'Fast AI Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
+      fr: ['Concept publicitaire', 'Script & storyboard', 'Production visuelle rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
+      en: ['Ad Concept', 'Script & Storyboard', 'Fast Visual Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
     },
     minUsd: 3000,
     maxUsd: 8000,
@@ -98,16 +98,16 @@ const FIVE_SERVICES = [
       en: 'Art Direction & Brand Universes'
     },
     tagline: {
-      fr: 'Nous façonnons l\'identité visuelle complète de votre marque, du concept à l\'univers visuel génératif.',
-      en: 'We shape your brand\'s complete visual identity from concept to generative visual universe.'
+      fr: 'Nous façonnons l\'identité visuelle complète de votre marque, du concept à l\'univers visuel.',
+      en: 'We shape your brand\'s complete visual identity from concept to visual universe.'
     },
     description: {
-      fr: 'Direction artistique globale, création d\'univers visuels, chartes graphiques génératives et visuels clés pour marques et artistes.',
-      en: 'Global art direction, visual universe creation, generative brandbooks, and key visuals for brands and artists.'
+      fr: 'Direction artistique globale, création d\'univers visuels, chartes graphiques et visuels clés pour marques et artistes.',
+      en: 'Global art direction, visual universe creation, brandbooks, and key visuals for brands and artists.'
     },
     deliverables: {
-      fr: ['Direction artistique globale', 'Univers visuel génératif', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
-      en: ['Global Art Direction', 'Generative Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals (ultra high definition)', 'Brand Guidelines']
+      fr: ['Direction artistique globale', 'Univers visuel sur-mesure', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
+      en: ['Global Art Direction', 'Custom Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals (ultra high definition)', 'Brand Guidelines']
     },
     minUsd: 1000,
     maxUsd: 3000,
@@ -140,7 +140,7 @@ const FIVE_SERVICES = [
 
 export default function ServicesGrid({ lang, currency: propCurrency, onSelectCurrency }: ServicesGridProps) {
   const isFr = lang === 'fr';
-  const [openService, setOpenService] = useState<string | null>('films-series');
+  const [openService, setOpenService] = useState<string | null>(null);
   const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
 
   const activeCurrency = propCurrency || ctxCurrency;

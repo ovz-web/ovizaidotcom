@@ -16,11 +16,11 @@ interface QualifiedContactProps {
 
 const PROJECT_TYPES = [
   { id: 'pub-brand', icon: Clapperboard, title: { fr: '01. Publicité & Brand Content', en: '01. Commercial & Brand Content' } },
-  { id: 'clip-visualiser', icon: Music2, title: { fr: '02. Clip Vidéo IA & Visualiser', en: '02. AI Music Video & Visualiser' } },
-  { id: 'film-series', icon: Film, title: { fr: '03. Film & Série IA', en: '03. AI Film & Series' } },
+  { id: 'clip-visualiser', icon: Music2, title: { fr: '02. Clip Vidéo & Visualiser', en: '02. Music Video & Visualiser' } },
+  { id: 'film-series', icon: Film, title: { fr: '03. Film & Série', en: '03. Film & Series' } },
   { id: 'da-univers', icon: Palette, title: { fr: '04. Direction Artistique', en: '04. Art Direction & Branding' } },
   { id: 'web-digital', icon: Globe2, title: { fr: '05. Site Web sur-mesure', en: '05. Custom Website' } },
-  { id: 'formation-pro', icon: GraduationCap, title: { fr: '06. Formation Masterclass IA', en: '06. AI Masterclass Training' } },
+  { id: 'formation-pro', icon: GraduationCap, title: { fr: '06. Formation & Masterclass', en: '06. Masterclass Training' } },
 ];
 
 const SERVICE_ID_MAP: Record<string, string> = {
@@ -131,7 +131,7 @@ export default function QualifiedContact({
         {/* Header */}
         <div className="text-center mb-6">
           <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-            {isFr ? '03 // DEVIS & BRIEF QUALIFIÉ' : '03 // QUALIFIED QUOTE & BRIEF'}
+            {isFr ? '04 // DEVIS & BRIEF QUALIFIÉ' : '04 // QUALIFIED QUOTE & BRIEF'}
           </p>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
             {isFr ? 'DÉMARRER UN PROJET' : 'START A PROJECT'}

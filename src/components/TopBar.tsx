@@ -25,9 +25,10 @@ export default function TopBar({
 
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
-    { href: '/services', label: isFr ? '01. Prestations & Services IA' : '01. AI Services' },
-    { href: '/formation', label: isFr ? '02. Formation Vidéo IA' : '02. AI Masterclass' },
-    { href: '/contact', label: isFr ? '03. Devis & Contact' : '03. Contact & Quote' },
+    { href: '/services', label: isFr ? '01. Prestations & Services' : '01. Services & Production' },
+    { href: '/formation', label: isFr ? '02. Formation & Masterclass' : '02. Video Masterclass' },
+    { href: '/stack', label: isFr ? '03. Stack Technique & Pipeline' : '03. Tech Stack & Pipeline' },
+    { href: '/contact', label: isFr ? '04. Devis & Contact' : '04. Contact & Quote' },
   ];
 
   const handleCurrencyChange = (curr: Currency) => {
@@ -63,9 +64,9 @@ export default function TopBar({
             <Image
               src="/logo.png"
               alt="OVIZai"
-              width={120}
-              height={48}
-              className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_12px_rgba(202,162,67,0.3)]"
+              width={100}
+              height={40}
+              className="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_0_12px_rgba(202,162,67,0.3)]"
               priority
             />
           </Link>
@@ -79,11 +80,11 @@ export default function TopBar({
             <span className="mono text-[10.5px] sm:text-xs tracking-wider uppercase text-[#ECE4D3] font-medium group-hover:text-[#f0c869]">
               {isFr ? (
                 <>
-                  <strong className="text-[#CAA243]">FORMATION VIDÉO IA</strong> — ACCÉDER +
+                  <strong className="text-[#CAA243]">FORMATION & MASTERCLASS</strong> — ACCÉDER +
                 </>
               ) : (
                 <>
-                  <strong className="text-[#CAA243]">AI VIDEO MASTERCLASS</strong> — ACCESS +
+                  <strong className="text-[#CAA243]">VIDEO MASTERCLASS</strong> — ACCESS +
                 </>
               )}
             </span>
