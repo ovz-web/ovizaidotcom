@@ -29,8 +29,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "ovizaidotcom-main-FIXED",
-    "docs"
+    "node_modules"
   ]
 }
