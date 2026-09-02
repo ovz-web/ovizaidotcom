@@ -5,7 +5,15 @@ import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, projectType, budgetRange, currency, message } = body;
+    const { email, name, projectType, budgetRange, currency, message, company } = body;
+
+    // Honeypot anti-spam: silent success if hidden company field is populated
+    if (company !== undefined && company !== null && String(company).trim() !== '') {
+      return NextResponse.json(
+        { status: 'subscribed' },
+        { status: 200 }
+      );
+    }
 
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return NextResponse.json(
@@ -38,7 +46,7 @@ export async function POST(req: NextRequest) {
       }
       console.error(`[SUPABASE ERROR] Lead insert failed for ${maskEmail(cleanEmail)}:`, error.message);
       return NextResponse.json(
-        { error: 'Erreur lors de l’enregistrement de l’e-mail', details: error.message },
+        { error: 'Erreur lors de l’enregistrement de l’e-mail' },
         { status: 500 }
       );
     }
@@ -64,7 +72,7 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     console.error('API /api/leads Catch Error:', err);
     return NextResponse.json(
-      { error: 'Erreur serveur interne', details: err.message },
+      { error: 'Erreur serveur interne' },
       { status: 500 }
     );
   }

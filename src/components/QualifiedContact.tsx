@@ -56,6 +56,7 @@ export default function QualifiedContact({
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [brief, setBrief] = useState('');
+  const [company, setCompany] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -101,7 +102,8 @@ export default function QualifiedContact({
           projectType: projectObj?.title[lang] || selectedProject,
           budgetRange: formattedBudget,
           currency: activeCurrency,
-          message: brief
+          message: brief,
+          company
         }),
       });
 
@@ -111,6 +113,7 @@ export default function QualifiedContact({
         setEmail('');
         setName('');
         setBrief('');
+        setCompany('');
       } else {
         setErrorMsg(data.error || (isFr ? 'Une erreur est survenue' : 'An error occurred'));
         setStatus('error');
@@ -195,6 +198,17 @@ export default function QualifiedContact({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              aria-hidden="true"
+              autoComplete="off"
+              value={company}
+              onChange={e => setCompany(e.target.value)}
+              className="hidden"
+              style={{ position: 'absolute', left: '-9999px', top: '-9999px', width: '1px', height: '1px', opacity: 0, pointerEvents: 'none' }}
+            />
             {/* Step 1: Project Type Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">

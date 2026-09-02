@@ -13,6 +13,7 @@ interface NewsletterFormProps {
 export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProps) {
   const t = DICTIONARY[lang];
   const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'already' | 'error'>('idle');
 
@@ -29,7 +30,7 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company }),
       });
 
       const data = await res.json();
@@ -83,6 +84,17 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              aria-hidden="true"
+              autoComplete="off"
+              value={company}
+              onChange={e => setCompany(e.target.value)}
+              className="hidden"
+              style={{ position: 'absolute', left: '-9999px', top: '-9999px', width: '1px', height: '1px', opacity: 0, pointerEvents: 'none' }}
+            />
             <label htmlFor="newsletter-email" className="sr-only">
               {t.emailPlaceholder}
             </label>
