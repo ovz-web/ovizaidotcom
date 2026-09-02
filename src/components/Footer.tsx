@@ -51,31 +51,36 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
 
       {/* Bottom Rights & Legal */}
       <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3 pt-3">
-        <span>{t.rights}</span>
-        <div className="flex items-center gap-4 text-fg-muted">
+        <span className="text-[#9C9384]">{t.rights}</span>
+        <div className="flex flex-wrap items-center justify-center gap-4 text-[#9C9384]">
           <Link
             href="/tarifs"
-            className="hover:text-fg transition-colors flex items-center gap-1 cursor-pointer text-[#CAA243]"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer text-[#CAA243] font-bold min-h-[44px] px-1"
           >
             <Tag className="w-3 h-3 text-[#CAA243]" />
             <span>{lang === 'fr' ? 'Tarifs' : 'Pricing'}</span>
           </Link>
-          <button
-            type="button"
-            onClick={() => onShowToast(t.privacy)}
-            className="hover:text-fg transition-colors flex items-center gap-1 cursor-pointer"
+          <Link
+            href="/mentions-legales"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
           >
-            <ShieldCheck className="w-3 h-3" />
-            <span>{t.privacy}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onShowToast(t.terms)}
-            className="hover:text-fg transition-colors flex items-center gap-1 cursor-pointer"
+            <FileText className="w-3 h-3 text-[#CAA243]" />
+            <span>{lang === 'fr' ? 'Mentions Légales' : 'Legal Notice'}</span>
+          </Link>
+          <Link
+            href="/confidentialite"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
           >
-            <FileText className="w-3 h-3" />
-            <span>{t.terms}</span>
-          </button>
+            <ShieldCheck className="w-3 h-3 text-[#CAA243]" />
+            <span>{lang === 'fr' ? 'Confidentialité' : 'Privacy Policy'}</span>
+          </Link>
+          <Link
+            href="/cgv"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
+          >
+            <FileText className="w-3 h-3 text-[#CAA243]" />
+            <span>{lang === 'fr' ? 'CGV' : 'Terms'}</span>
+          </Link>
         </div>
       </div>
     </footer>

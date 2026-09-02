@@ -15,7 +15,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim())) {
       return NextResponse.json(
         { error: 'Adresse e-mail invalide' },
         { status: 400 }
@@ -23,18 +24,26 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanEmail = email.trim().toLowerCase();
+    const cleanName = typeof name === 'string' ? name.trim().slice(0, 100) : null;
+    const cleanMessage = typeof message === 'string' ? message.trim().slice(0, 3000) : null;
+    const cleanCurrency = typeof currency === 'string' && ['USD', 'EUR', 'CAD'].includes(currency.toUpperCase())
+      ? currency.toUpperCase()
+      : 'USD';
+    const cleanProjectType = typeof projectType === 'string' ? projectType.slice(0, 150) : null;
+    const cleanBudgetRange = typeof budgetRange === 'string' ? budgetRange.slice(0, 100) : null;
+    const cleanSourcePlan = typeof sourcePlan === 'string' ? sourcePlan.slice(0, 50) : null;
 
     // Insert into Supabase leads table — persist the FULL qualified brief.
     const { data, error } = await supabaseAdmin
       .from('leads')
       .insert([{
         email: cleanEmail,
-        name: typeof name === 'string' ? name.trim() : null,
-        project_type: typeof projectType === 'string' ? projectType : null,
-        budget_range: typeof budgetRange === 'string' ? budgetRange : null,
-        currency: typeof currency === 'string' ? currency : null,
-        message: typeof message === 'string' ? message.trim() : null,
-        source_plan: typeof sourcePlan === 'string' ? sourcePlan : null,
+        name: cleanName,
+        project_type: cleanProjectType,
+        budget_range: cleanBudgetRange,
+        currency: cleanCurrency,
+        message: cleanMessage,
+        source_plan: cleanSourcePlan,
       }])
       .select();
 

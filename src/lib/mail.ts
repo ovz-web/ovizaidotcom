@@ -199,10 +199,15 @@ export async function sendMasterclassWelcome(email: string, name?: string) {
       <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Félicitations ! Votre inscription à la Masterclass Cinéma IA OVIZai a bien été validée.</p>
       
       <div style="margin: 24px 0; padding: 20px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
-        <p style="margin: 0; font-size: 13px; color: #CAA243; font-weight: bold;">⚡ Votre accès au programme :</p>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #ECE4D3; line-height: 1.5;">
-          Un second e-mail contenant vos identifiants personnels et les liens d'accès aux 5 modules vidéo ainsi qu'à la communauté privée vous parviendra d'ici quelques minutes.
+        <p style="margin: 0; font-size: 13px; color: #CAA243; font-weight: bold;">⚡ Votre accès direct au programme :</p>
+        <p style="margin: 8px 0 12px 0; font-size: 12.5px; color: #ECE4D3; line-height: 1.5;">
+          Votre inscription vous donne un accès immédiat et à vie aux 5 modules de la Masterclass (Midjourney v6.1, Runway Gen-3 Alpha, Kling AI, Topaz Video AI, DaVinci Resolve Studio).
         </p>
+        <div style="text-align: center; margin: 16px 0 8px 0;">
+          <a href="https://ovizai.com/formation" style="display: inline-block; background-color: #CAA243; color: #000000; font-weight: bold; font-size: 12px; text-transform: uppercase; tracking: 0.05em; text-decoration: none; padding: 12px 24px; border-radius: 8px;">
+            Accéder à la Masterclass →
+          </a>
+        </div>
       </div>
 
       <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">Pour toute question, contactez notre équipe support : <a href="mailto:cinemaaistudio.contact@gmail.com" style="color: #CAA243; text-decoration: underline;">cinemaaistudio.contact@gmail.com</a></p>

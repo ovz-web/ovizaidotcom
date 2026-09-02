@@ -48,11 +48,10 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </h1>
 
       {/* Short Subtitle */}
-      <p className="text-xs sm:text-sm text-[#8C8375] max-w-sm sm:max-w-md text-center mx-auto mb-2 leading-snug">
+      <p className="text-xs sm:text-sm text-[#9C9384] max-w-sm sm:max-w-md text-center mx-auto mb-2 leading-snug">
         {isFr
-          ? 'Production vidéo haut de gamme avec les meilleurs outils IA actuels.'
-          : 'High-end video production using the best AI tools available today.'}
-
+          ? 'Conception & direction artistique cinématographique affranchies des contraintes de tournage traditionnels.'
+          : 'Cinematic art direction and visual production free from traditional filming constraints.'}
       </p>
     </section>
   );
