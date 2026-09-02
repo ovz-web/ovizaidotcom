@@ -1,4 +1,4 @@
-export const MASTERCLASS_PRICE = { USD: 500, EUR: 460, CAD: 680 } as const;
+export const MASTERCLASS_PRICE = { USD: 490, EUR: 450, CAD: 670 } as const;
 export const MASTERCLASS_ORIGINAL_PRICE = { USD: 990, EUR: 900, CAD: 1300 } as const;
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
 
@@ -19,25 +19,25 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'sprint',
     name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
-    badge: { fr: '01 // STARTER', en: '01 // STARTER' },
+    badge: { fr: '01 // TARIF DE LANCEMENT', en: '01 // LAUNCH TIER' },
     minUsd: 530,
     budgetTierId: 'tier-0',
-    tag: { fr: 'Sans engagement — paiement à la livraison', en: 'No commitment — payment on delivery' },
+    tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
     period: { fr: '/ asset 15-30s', en: '/ 15-30s asset' },
     includes: {
       fr: [
         '1 asset publicitaire court (Reel/TikTok 15-30s)',
         '1 round de révision inclus',
-        'Livraison garantie sous 48-72h',
-        'Export 4K optimisé réseaux sociaux',
-        'Direction artistique & concept inclus',
+        'Livraison garantie sous 48-72h ouvrées',
+        'Export 4K Master (16:9 & 9:16 vertical)',
+        'Direction artistique, concept & étalonnage DaVinci',
       ],
       en: [
         '1 short ad asset (Reel/TikTok 15-30s)',
         '1 revision round included',
         'Guaranteed 48-72h delivery',
-        '4K social media export',
-        'Art direction & concept included',
+        '4K Master export (16:9 & 9:16 vertical)',
+        'Art direction, concept & DaVinci Resolve grading',
       ],
     },
     primary: false,
@@ -46,24 +46,24 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'standard',
     name: { fr: 'Standard', en: 'Standard' },
-    badge: { fr: '02 // POPULAIRE', en: '02 // POPULAR' },
+    badge: { fr: '02 // PROD COMPLETE', en: '02 // FULL PROD' },
     minUsd: 1030,
     budgetTierId: 'tier-1',
-    period: { fr: '/ vidéo', en: '/ video' },
+    period: { fr: '/ film cinématographique', en: '/ cinematic film' },
     includes: {
       fr: [
-        '1 vidéo cinématographique finalisée',
+        '1 vidéo cinématographique finalisée (45-60s)',
         '2 rounds de révision inclus',
         'Livraison sous 3 à 5 jours ouvrés',
-        'Export 4K + version réseaux sociaux',
-        'Direction artistique & storyboarding',
+        'Export 4K multi-formats + sound design spatialisé',
+        'Direction artistique dédiée & storyboarding 8K',
       ],
       en: [
-        '1 finalised cinematic video',
+        '1 finalised cinematic video (45-60s)',
         '2 revision rounds included',
         'Delivery within 3 to 5 business days',
-        '4K export + social media version',
-        'Art direction & storyboarding',
+        '4K multi-format export + spatial sound design',
+        'Dedicated art direction & 8K storyboarding',
       ],
     },
     primary: false,
@@ -71,24 +71,24 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'premium',
     name: { fr: 'Premium', en: 'Premium' },
-    badge: { fr: '03 // CAMPAGNE', en: '03 // CAMPAIGN' },
+    badge: { fr: '03 // CAMPAGNE DE MARQUE', en: '03 // BRAND CAMPAIGN' },
     minUsd: 2600,
     budgetTierId: 'tier-1',
-    period: { fr: '/ campagne 3 vidéos', en: '/ 3-video campaign' },
+    period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },
     includes: {
       fr: [
-        '3 vidéos finalisées (campagne déclinée)',
+        '3 vidéos cinématographiques (campagne déclinée)',
         '3 rounds de révision inclus',
         'Livraison prioritaire 48-72h',
-        'Export multi-formats (4K, Reel, YouTube)',
-        'Direction artistique dédiée & suivi direct',
+        'Export multi-formats 4K (Ciné, Reel, YouTube)',
+        'Direction artistique dédiée & accompagnement sur-mesure',
       ],
       en: [
-        '3 finalised videos (campaign package)',
+        '3 finalised cinematic videos (campaign package)',
         '3 revision rounds included',
         'Priority delivery 48-72h',
-        'Multi-format export (4K, Reel, YouTube)',
-        'Dedicated art direction & direct support',
+        '4K multi-format export (Cinema, Reel, YouTube)',
+        'Dedicated art direction & tailored support',
       ],
     },
     primary: true,

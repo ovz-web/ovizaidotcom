@@ -58,6 +58,7 @@ export default function QualifiedContact({
   const [name, setName] = useState('');
   const [brief, setBrief] = useState('');
   const [company, setCompany] = useState('');
+  const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -109,6 +110,7 @@ export default function QualifiedContact({
           currency: activeCurrency,
           message: brief,
           company,
+          website,
           sourcePlan: originPlan || initialServiceId || null,
         }),
       });
@@ -285,6 +287,15 @@ export default function QualifiedContact({
 
             {/* Step 3: Contact Inputs */}
             <div className="space-y-3 pt-2">
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={e => setWebsite(e.target.value)}
+                className="hidden absolute opacity-0 pointer-events-none"
+              />
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-1">
                 {isFr ? '3. Vos coordonnées pour recevoir notre proposition :' : '3. Your details to receive our proposal:'}
               </legend>

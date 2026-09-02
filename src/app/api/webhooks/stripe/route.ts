@@ -62,9 +62,12 @@ export async function POST(req: NextRequest) {
 
       if (dbError) {
         console.error('[STRIPE WEBHOOK] Supabase Upsert Error:', dbError);
-      } else {
-        console.log(`[STRIPE WEBHOOK] Paid lead recorded/updated for ${maskEmail(cleanEmail)}`);
+        return NextResponse.json(
+          { error: `Database persistence failed: ${dbError.message}` },
+          { status: 500 }
+        );
       }
+      console.log(`[STRIPE WEBHOOK] Paid lead recorded/updated for ${maskEmail(cleanEmail)}`);
 
       // 2. Dispatch Welcome Email to student via Resend (Non-blocking)
       sendMasterclassWelcome(cleanEmail, customerName).catch((err) =>

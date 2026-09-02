@@ -5,20 +5,21 @@ import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, projectType, budgetRange, currency, message, company, sourcePlan } = body;
+    const { email, name, projectType, budgetRange, currency, message, company, website, sourcePlan } = body;
 
-    // Honeypot anti-spam: silent success if hidden company field is populated
-    if (company !== undefined && company !== null && String(company).trim() !== '') {
+    // Honeypot anti-spam: silent success if hidden company or website field is populated
+    const isSpam = (val: any) => val !== undefined && val !== null && String(val).trim() !== '';
+    if (isSpam(company) || isSpam(website)) {
       return NextResponse.json(
         { status: 'subscribed' },
         { status: 200 }
       );
     }
 
-    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim())) {
+    const RFC5322_EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || typeof email !== 'string' || !RFC5322_EMAIL_REGEX.test(email.trim())) {
       return NextResponse.json(
-        { error: 'Adresse e-mail invalide' },
+        { error: 'Adresse e-mail invalide (format RFC 5322 requis)' },
         { status: 400 }
       );
     }

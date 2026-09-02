@@ -20,17 +20,17 @@ export async function POST(req: NextRequest) {
     const rawCurrency = typeof body.currency === 'string' ? body.currency.toLowerCase() : 'cad';
 
     let selectedCurrency = 'cad';
-    let unitAmountCents = 68000; // Default 680.00 CAD in cents
+    let unitAmountCents = 67000; // Default 670.00 CAD in cents
 
     if (rawCurrency === 'usd') {
       selectedCurrency = 'usd';
-      unitAmountCents = 50000; // 500.00 USD
+      unitAmountCents = 49000; // 490.00 USD
     } else if (rawCurrency === 'eur') {
       selectedCurrency = 'eur';
-      unitAmountCents = 46000; // 460.00 EUR
+      unitAmountCents = 45000; // 450.00 EUR
     } else {
       selectedCurrency = 'cad';
-      unitAmountCents = 68000; // 680.00 CAD
+      unitAmountCents = 67000; // 670.00 CAD
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ovizai.com';

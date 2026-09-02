@@ -61,10 +61,13 @@ export default function CGVPage() {
 
             <section className="ovizai-card p-5 border border-white/[0.08] bg-[#0B0A08]">
               <h2 className="text-sm font-bold text-[#ECE4D3] mb-2 font-mono uppercase tracking-wider text-[#CAA243]">
-                4. Droit de Rétractation & Remboursements
+                4. Droit de Rétractation & Renoncement Exprès (Contenus Numériques)
               </h2>
               <p>
-                Conformément à la réglementation européenne sur les contenus numériques et les prestations sur-mesure, l’accès à la Masterclass ou le lancement d’une production personnalisée implique le renoncement au droit de rétractation dès le début de l’exécution du service.
+                Conformément à l’article L.221-28 13° du Code de la consommation (et règles internationales applicables), l’accès à la Masterclass Vidéo IA OVIZai constitue la fourniture d’un contenu numérique non fourni sur un support matériel dont l’exécution commence immédiatement après validation du paiement.
+              </p>
+              <p className="mt-2">
+                En validant votre commande via Stripe Checkout, vous acceptez expressément que l’accès au programme soit fourni immédiatement et vous <strong>renoncez expressément à votre droit de rétractation</strong>. Pour les prestations sur-mesure de production vidéo (Sprint Pilote, Standard, Premium), le droit de rétractation ne s’applique pas aux services personnalisés dont l’exécution a démarré avec l’accord préalable du client.
               </p>
             </section>
           </div>

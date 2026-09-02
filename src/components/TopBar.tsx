@@ -96,9 +96,10 @@ export default function TopBar({
             <button
               onClick={onToggleLang}
               type="button"
-              className="hidden sm:flex items-center gap-1 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-2.5 py-1 text-[11px] font-mono transition-all cursor-pointer"
+              aria-label={isFr ? 'Changer la langue (English)' : 'Switch language (Français)'}
+              className="hidden sm:flex items-center gap-1.5 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-3 py-2 text-[11px] font-mono transition-all cursor-pointer min-h-[48px]"
             >
-              <Globe className="w-3 h-3 text-[#CAA243]" />
+              <Globe className="w-3.5 h-3.5 text-[#CAA243]" />
               <span className="mono font-semibold">{lang === 'en' ? 'FR' : 'EN'}</span>
             </button>
 
@@ -107,8 +108,8 @@ export default function TopBar({
               type="button"
               onClick={() => setIsDrawerOpen(true)}
               aria-expanded={isDrawerOpen}
-              aria-label={isFr ? 'Ouvrir le menu' : 'Open menu'}
-              className="p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer"
+              aria-label={isFr ? 'Ouvrir le menu de navigation' : 'Open navigation menu'}
+              className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
             >
               <Menu className="w-5 h-5 text-[#ECE4D3]" />
             </button>
@@ -130,7 +131,7 @@ export default function TopBar({
             role="dialog"
             aria-modal="true"
             aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
-            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08]/98 border-l border-white/[0.08] backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300"
+            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08]/98 border-l border-white/[0.08] backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
           >
             {/* Drawer Top Header */}
             <div>
@@ -138,7 +139,7 @@ export default function TopBar({
                 <Link
                   href="/"
                   onClick={closeDrawer}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 min-h-[48px]"
                 >
                   <Image
                     src="/logo.png"
@@ -153,7 +154,7 @@ export default function TopBar({
                   type="button"
                   onClick={closeDrawer}
                   aria-label={isFr ? 'Fermer le menu' : 'Close menu'}
-                  className="p-1.5 rounded-lg bg-white/[0.04] border border-white/[0.1] text-[#ECE4D3] hover:text-[#CAA243] transition-colors cursor-pointer"
+                  className="p-3 rounded-lg bg-white/[0.04] border border-white/[0.1] text-[#ECE4D3] hover:text-[#CAA243] transition-colors cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -166,12 +167,12 @@ export default function TopBar({
                     key={link.href}
                     href={link.href}
                     onClick={closeDrawer}
-                    className="group flex items-center justify-between p-3 rounded-lg border border-white/[0.06] bg-black/40 hover:border-[#CAA243]/40 hover:bg-[#CAA243]/10 transition-all cursor-pointer"
+                    className="group flex items-center justify-between p-3.5 rounded-lg border border-white/[0.06] bg-black/40 hover:border-[#CAA243]/40 hover:bg-[#CAA243]/10 transition-all cursor-pointer min-h-[48px]"
                   >
                     <span className="mono text-xs font-bold text-[#ECE4D3] group-hover:text-[#f0c869]">
                       {link.label}
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#CAA243]" />
+                    <ArrowUpRight className="w-4 h-4 text-[#CAA243]" />
                   </Link>
                 ))}
               </nav>
@@ -180,7 +181,7 @@ export default function TopBar({
               <div className="space-y-3 pt-4 border-t border-white/[0.08]">
                 {/* Multi-Currency Segmented Switcher */}
                 <div>
-                  <label className="mono text-[10px] uppercase font-bold text-[#8C8375] block mb-1.5">
+                  <label className="mono text-[10px] uppercase font-bold text-[#A39B8F] block mb-1.5">
                     {isFr ? 'Devise de facturation :' : 'Billing Currency:'}
                   </label>
                   <div className="grid grid-cols-3 gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08]">
@@ -188,11 +189,12 @@ export default function TopBar({
                       <button
                         key={curr}
                         type="button"
+                        aria-label={isFr ? `Sélectionner la devise ${curr}` : `Select ${curr} currency`}
                         onClick={() => handleCurrencyChange(curr)}
-                        className={`py-1 text-center mono text-[11px] font-bold rounded transition-all cursor-pointer ${
+                        className={`py-2 text-center mono text-[11px] font-bold rounded transition-all cursor-pointer min-h-[44px] ${
                           currency === curr
                             ? 'bg-[#CAA243] text-black shadow'
-                            : 'text-[#8C8375] hover:text-[#ECE4D3]'
+                            : 'text-[#A39B8F] hover:text-[#ECE4D3]'
                         }`}
                       >
                         {curr}
@@ -203,16 +205,17 @@ export default function TopBar({
 
                 {/* Language Switcher */}
                 <div>
-                  <label className="mono text-[10px] uppercase font-bold text-[#8C8375] block mb-1.5">
+                  <label className="mono text-[10px] uppercase font-bold text-[#A39B8F] block mb-1.5">
                     {isFr ? 'Langue d\'affichage :' : 'Display Language:'}
                   </label>
                   <button
                     onClick={onToggleLang}
                     type="button"
-                    className="w-full flex items-center justify-between p-2 rounded-lg bg-black/60 border border-white/[0.08] text-xs text-[#ECE4D3] hover:border-[#CAA243]/40 mono cursor-pointer"
+                    aria-label={isFr ? 'Basculer la langue en Anglais' : 'Switch language to French'}
+                    className="w-full flex items-center justify-between p-3 rounded-lg bg-black/60 border border-white/[0.08] text-xs text-[#ECE4D3] hover:border-[#CAA243]/40 mono cursor-pointer min-h-[48px]"
                   >
                     <div className="flex items-center gap-2">
-                      <Globe className="w-3.5 h-3.5 text-[#CAA243]" />
+                      <Globe className="w-4 h-4 text-[#CAA243]" />
                       <span>{lang === 'fr' ? 'Français (FR)' : 'English (EN)'}</span>
                     </div>
                     <span className="text-[10px] text-[#CAA243] font-bold">
@@ -230,7 +233,8 @@ export default function TopBar({
                   href="https://instagram.com/ovizai.co"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[#8C8375] hover:text-[#f0c869] transition-colors"
+                  aria-label="Instagram OVIZai"
+                  className="flex items-center gap-1.5 text-[#A39B8F] hover:text-[#f0c869] transition-colors min-h-[44px] px-2"
                 >
                   <Instagram className="w-4 h-4 text-[#CAA243]" />
                   <span>Instagram</span>
@@ -239,7 +243,8 @@ export default function TopBar({
                   href="https://youtube.com/@ovizaidotcom"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[#8C8375] hover:text-[#f0c869] transition-colors"
+                  aria-label="YouTube OVIZai"
+                  className="flex items-center gap-1.5 text-[#A39B8F] hover:text-[#f0c869] transition-colors min-h-[44px] px-2"
                 >
                   <Youtube className="w-4 h-4 text-[#CAA243]" />
                   <span>YouTube</span>

@@ -73,6 +73,15 @@ export default function ConfidentialitePage() {
                 Pour exercer vos droits, contactez-nous à : <a href="mailto:cinemaaistudio.contact@gmail.com" className="text-[#CAA243] underline">cinemaaistudio.contact@gmail.com</a>.
               </p>
             </section>
+
+            <section className="ovizai-card p-5 border border-white/[0.08] bg-[#0B0A08]">
+              <h2 className="text-sm font-bold text-[#ECE4D3] mb-2 font-mono uppercase tracking-wider text-[#CAA243]">
+                4. Cookies & Stockage Local
+              </h2>
+              <p>
+                Le site OVIZai utilise uniquement le stockage local strictement nécessaire au fonctionnement de l’application (mémorisation de votre choix de langue FR/EN et de votre devise de facturation USD/EUR/CAD). Aucun cookie tiers à des fins publicitaires n’est déposé.
+              </p>
+            </section>
           </div>
         </div>
       </main>
