@@ -44,15 +44,42 @@ export default function TopBar({
     burgerRef.current?.focus();
   };
 
-  // Lock body scroll when drawer is open
+  // 100% Reliable iOS Safari + Desktop body scroll lock using position: fixed technique
   useEffect(() => {
-    if (isDrawerOpen) {
-      const originalStyle = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = originalStyle || '';
-      };
-    }
+    if (!isDrawerOpen) return;
+
+    // 1. Save current scroll position
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+
+    // Store original styles to restore seamlessly on cleanup/close
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalLeft = document.body.style.left;
+    const originalRight = document.body.style.right;
+    const originalWidth = document.body.style.width;
+    const originalOverflow = document.body.style.overflow;
+
+    // 2. Lock body in place at current scroll Y position (prevents iOS rubber-banding)
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0px';
+    document.body.style.right = '0px';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+
+    // 3. Cleanup function on close or unmount
+    return () => {
+      // Restore original body styles
+      document.body.style.position = originalPosition || '';
+      document.body.style.top = originalTop || '';
+      document.body.style.left = originalLeft || '';
+      document.body.style.right = originalRight || '';
+      document.body.style.width = originalWidth || '';
+      document.body.style.overflow = originalOverflow || '';
+
+      // Immediately restore exact scroll position without visual jump
+      window.scrollTo(0, scrollY);
+    };
   }, [isDrawerOpen]);
 
   // Close drawer on Escape key
@@ -125,13 +152,14 @@ export default function TopBar({
       {/* Right Side Flyout Drawer & Backdrop */}
       {isDrawerOpen && (
         <>
-          {/* Dimmed Backdrop */}
+          {/* Dimmed Backdrop - Prevents iOS Safari touch rubber-banding */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity overscroll-none touch-none"
             onClick={closeDrawer}
+            onTouchMove={(e) => e.preventDefault()}
           />
 
-          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background */}
+          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background, viewport anchored */}
           <aside
             role="dialog"
             aria-modal="true"
