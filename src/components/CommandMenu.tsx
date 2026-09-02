@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Film, GraduationCap, Cpu, Mail } from 'lucide-react';
+import { Film, GraduationCap, Cpu, Mail, ChevronRight } from 'lucide-react';
 import { Language } from '@/types';
+import { DICTIONARY } from '@/lib/i18n';
 
 interface CommandMenuProps {
   lang: Language;
@@ -15,6 +16,7 @@ interface CommandMenuProps {
  */
 export default function CommandMenu({ lang }: CommandMenuProps) {
   const isFr = lang === 'fr';
+  const t = DICTIONARY[lang];
 
   const NAV_ITEMS = [
     {
@@ -60,37 +62,42 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
   ];
 
   return (
-    <div className="ovizai-card max-w-xl mx-auto mb-4">
-      {/* Navigation List */}
-      <div className="flex flex-col divide-y divide-white/[0.06]">
-        {NAV_ITEMS.map(item => {
-          const IconComp = item.icon;
-          return (
-            <Link
-              key={item.id}
-              href={item.href}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
-            >
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center gap-3 min-w-0">
-                  <IconComp className="w-4 h-4 text-[#CAA243] group-hover:text-[#f0c869] flex-shrink-0 transition-colors" />
-                  <div className="flex flex-col min-w-0">
-                    <span className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors truncate">
-                      {item.title}
-                    </span>
-                    <span className="text-[11px] sm:text-xs text-[#8c8375] mt-0.5 truncate">
-                      {item.sub}
-                    </span>
-                  </div>
-                </div>
+    <div className="max-w-xl mx-auto mb-6 px-4">
+      {/* Section label — secondary nav, low visual weight */}
+      <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#8C8375] font-mono mb-2 font-bold text-center">
+        {t.navSectionTitle || (isFr ? 'Explorer OVIZai' : 'Explore OVIZai')}
+      </p>
 
-                <span className="mono text-[10.5px] text-[#CAA243] group-hover:text-[#f0c869] hidden sm:inline transition-colors font-medium flex-shrink-0">
-                  [{item.action}]
-                </span>
-              </div>
-            </Link>
-          );
-        })}
+      {/* Navigation List */}
+      <div className="ovizai-card">
+        <div className="flex flex-col divide-y divide-white/[0.06]">
+          {NAV_ITEMS.map(item => {
+            const IconComp = item.icon;
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              >
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <IconComp className="w-3.5 h-3.5 text-[#CAA243] group-hover:text-[#f0c869] flex-shrink-0 transition-colors" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="mono text-[12px] font-semibold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors truncate">
+                        {item.title}
+                      </span>
+                      <span className="text-[10.5px] text-[#8c8375] mt-0.5 truncate hidden sm:block">
+                        {item.sub}
+                      </span>
+                    </div>
+                  </div>
+
+                  <ChevronRight className="w-3.5 h-3.5 text-[#8C8375] group-hover:text-[#CAA243] transition-colors flex-shrink-0" />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
