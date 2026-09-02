@@ -44,19 +44,26 @@ html, body {
   color: var(--gold-bright);
 }
 
-/* Custom Scrollbar */
+/* 100% Completely Invisible Scrollbar Across All Browsers & Containers (Scroll remains 100% functional) */
+html, body, *, *::before, *::after {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE / Edge */
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0px !important;
+  height: 0px !important;
+  display: none !important;
+  background: transparent !important;
 }
+
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: transparent !important;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #26221c;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dim);
+  background: transparent !important;
+  border: none !important;
 }
 
 .mono {
