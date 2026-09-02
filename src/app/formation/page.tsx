@@ -12,6 +12,31 @@ import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
 
+const COURSE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Masterclass Vidéo IA OVIZai",
+  "description": "Formation complète et pratique à la création de films et publicités cinématographiques avec IA (Midjourney v6, Runway Gen-3, Kling AI, Topaz Video AI, DaVinci Resolve Studio).",
+  "provider": {
+    "@type": "Organization",
+    "name": "OVIZai",
+    "sameAs": "https://ovizai.com"
+  },
+  "educationalCredentialAwarded": "Certificat de Compétences Vidéo IA",
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": "PT10H"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": 290,
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://ovizai.com/formation"
+  }
+};
+
 function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
   const [isOpen, setIsOpen] = useState(false);
   const isFr = lang === 'fr';
@@ -69,6 +94,10 @@ export default function FormationPage() {
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(COURSE_JSON_LD) }}
+      />
       <FilmGrain />
       <TopBar
         lang={lang}

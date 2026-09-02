@@ -26,9 +26,10 @@ export default function TopBar({
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
     { href: '/services', label: isFr ? '01. Prestations & Services' : '01. Services & Production' },
-    { href: '/formation', label: isFr ? '02. Formation & Masterclass' : '02. Video Masterclass' },
-    { href: '/stack', label: isFr ? '03. Stack Technique & Pipeline' : '03. Tech Stack & Pipeline' },
-    { href: '/contact', label: isFr ? '04. Devis & Contact' : '04. Contact & Quote' },
+    { href: '/tarifs', label: isFr ? '02. Tarifs & Offre de lancement' : '02. Pricing & Launch Offer' },
+    { href: '/formation', label: isFr ? '03. Formation & Masterclass' : '03. Video Masterclass' },
+    { href: '/stack', label: isFr ? '04. Stack Technique & Pipeline' : '04. Tech Stack & Pipeline' },
+    { href: '/contact', label: isFr ? '05. Devis & Contact' : '05. Contact & Quote' },
   ];
 
   const handleCurrencyChange = (curr: Currency) => {

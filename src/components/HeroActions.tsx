@@ -43,6 +43,15 @@ export default function HeroActions({ lang }: HeroActionsProps) {
           </p>
         </div>
       </div>
+
+      <div className="text-center mt-3">
+        <Link
+          href="/tarifs"
+          className="text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1 min-h-[48px] px-3 py-2"
+        >
+          <span>{isFr ? 'Voir la grille tarifaire & offre de lancement →' : 'See pricing grid & launch offer →'}</span>
+        </Link>
+      </div>
     </div>
   );
 }

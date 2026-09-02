@@ -33,10 +33,10 @@ const SERVICE_ID_MAP: Record<string, string> = {
 };
 
 const BUDGET_TIERS = [
+  { id: 'tier-0', minUsd: 400, maxUsd: 1000 },
   { id: 'tier-1', minUsd: 1000, maxUsd: 3000 },
   { id: 'tier-2', minUsd: 3000, maxUsd: 8000 },
   { id: 'tier-3', minUsd: 8000, maxUsd: 15000 },
-  { id: 'tier-4', minUsd: 15000, maxUsd: null },
 ];
 
 export default function QualifiedContact({

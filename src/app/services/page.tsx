@@ -33,15 +33,21 @@ export default function ServicesPage() {
       />
 
       <main className="flex-grow relative z-10 pt-20 pb-12">
-        <div className="max-w-3xl mx-auto px-4">
-       <Link
-  href="/"
-  className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors mb-6"
->
-  <ArrowLeft className="w-3.5 h-3.5" />
-  <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
-</Link>
+        <div className="max-w-3xl mx-auto px-4 flex items-center justify-between mb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
+          </Link>
 
+          <Link
+            href="/tarifs"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#CAA243] hover:text-[#f0c869] transition-colors font-semibold"
+          >
+            <span>{lang === 'fr' ? 'Grille Tarifaire & Offres →' : 'Pricing Grid & Offers →'}</span>
+          </Link>
         </div>
 
         <ServicesGrid

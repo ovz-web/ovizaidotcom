@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Youtube, Instagram, ShieldCheck, FileText } from 'lucide-react';
+import Link from 'next/link';
+import { Youtube, Instagram, ShieldCheck, FileText, Tag } from 'lucide-react';
 import { DICTIONARY } from '@/lib/i18n';
 import { Language } from '@/types';
 
@@ -53,6 +53,13 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3 pt-3">
         <span>{t.rights}</span>
         <div className="flex items-center gap-4 text-fg-muted">
+          <Link
+            href="/tarifs"
+            className="hover:text-fg transition-colors flex items-center gap-1 cursor-pointer text-[#CAA243]"
+          >
+            <Tag className="w-3 h-3 text-[#CAA243]" />
+            <span>{lang === 'fr' ? 'Tarifs' : 'Pricing'}</span>
+          </Link>
           <button
             type="button"
             onClick={() => onShowToast(t.privacy)}
