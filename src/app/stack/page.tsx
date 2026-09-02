@@ -42,26 +42,26 @@ export default function StackPage() {
             <span>{isFr ? 'Retour Accueil' : 'Back Home'}</span>
           </Link>
 
-          {/* Client-Centric Intro Paragraph explaining toolset synergy */}
+          {/* Client-Centric Intro Paragraph */}
           <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-5 rounded-2xl mb-4">
             <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
-              {isFr ? 'POURQUOI CETTE SYNERGIE D’OUTILS ?' : 'WHY THIS TOOLSET SYNERGY?'}
+              {isFr ? 'DE VOTRE IDÉE À LA VIDÉO FINALE' : 'FROM YOUR IDEA TO FINAL VIDEO'}
             </span>
             <h1 className="text-base sm:text-lg font-bold text-[#ECE4D3] mb-2">
-              {isFr ? 'Une architecture pensée pour le résultat visuel' : 'An architecture built for visual excellence'}
+              {isFr ? 'Une méthode de production pensée pour votre résultat' : 'A production workflow engineered for your result'}
             </h1>
             <p className="text-xs text-[#9C9384] leading-relaxed">
               {isFr
-                ? 'Aucun modèle IA unique ne maîtrise l’ensemble du processus. Nous combinons Midjourney v6.1 pour la cohérence stylistique des personnages, Flux.1 Pro pour le photoréalisme des matières et du texte, Kling 1.5 pour la physique naturelle des mouvements, Runway Gen-3 pour le contrôle 3D de la caméra virtuelle, et DaVinci Resolve Studio pour l’étalonnage cinématique. Cette synergie garantit un rendu professionnel 4K sans les défauts visuels habituels.'
-                : 'No single AI model excels at everything. We combine Midjourney v6.1 for character consistency, Flux.1 Pro for photorealistic textures and text, Kling 1.5 for natural physical motion, Runway Gen-3 for 3D virtual camera control, and DaVinci Resolve Studio for final cinematic color grading. This synergy delivers a pro 4K output free from common AI flaws.'}
+                ? 'Nous combinons les meilleures technologies pour transformer vos intentions créatives en films haute définition, sans les contraintes de coût ou d’organisation d’un tournage traditionnel.'
+                : 'We combine top generative technologies to turn your creative vision into high-definition films, free from the cost and logistics of traditional shoots.'}
             </p>
           </div>
         </div>
 
         <AIPipeline
           lang={lang}
-          customEyebrow={isFr ? '03 // STACK TECHNIQUE & PIPELINE' : '03 // TECH STACK & PIPELINE'}
-          customTitle={isFr ? 'Moteurs Génératifs & Post-Production 4K' : 'Generative Engines & 4K Post-Production'}
+          customEyebrow={isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD'}
+          customTitle={isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master'}
         />
       </main>
 
