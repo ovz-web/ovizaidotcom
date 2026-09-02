@@ -3,6 +3,7 @@ import { Inter, IBM_Plex_Mono, Syne, Archivo_Black } from 'next/font/google';
 import './globals.css';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { LanguageProvider } from '@/context/LanguageContext';
+import PromoBar from '@/components/PromoBar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -84,6 +85,7 @@ export default function RootLayout({
       <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright">
         <CurrencyProvider>
           <LanguageProvider>
+            <PromoBar />
             {children}
           </LanguageProvider>
         </CurrencyProvider>

@@ -31,7 +31,7 @@ export default function FormationCancelPage() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-20 pb-16 px-4">
+      <main className="flex-grow relative z-10 pt-[92px] sm:pt-[96px] pb-16 px-4">
         <div className="max-w-xl mx-auto">
           {/* Back Link */}
           <Link

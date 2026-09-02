@@ -244,7 +244,7 @@ export default function TarifsClient() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-20 pb-16">
+      <main className="flex-grow relative z-10 pt-[92px] sm:pt-[96px] pb-16">
         <div className="max-w-4xl mx-auto px-4">
 
           {/* Back link */}

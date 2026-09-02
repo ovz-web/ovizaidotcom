@@ -68,8 +68,8 @@ export default function TopBar({
 
   return (
     <>
-      {/* 100% Fixed TopBar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-4 flex items-center justify-between">
+      {/* 100% Fixed TopBar offset by PromoBar height (top-9) */}
+      <header className="fixed top-9 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-4 flex items-center justify-between">
         <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-3">
           {/* Top-Left: Imposing Clean Logo Image Link */}
           <Link className="flex items-center py-0.5" href="/">
@@ -125,12 +125,12 @@ export default function TopBar({
             onClick={closeDrawer}
           />
 
-          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background */}
+          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background, offset by top-9 */}
           <aside
             role="dialog"
             aria-modal="true"
             aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
-            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
+            className="w-72 sm:w-80 fixed top-9 bottom-0 right-0 z-50 bg-[#0B0A08] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
           >
             {/* Drawer Top Header */}
             <div>

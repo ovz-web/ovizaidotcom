@@ -37,7 +37,7 @@ function ContactPageContent() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-20 pb-12">
+      <main className="flex-grow relative z-10 pt-[92px] sm:pt-[96px] pb-12">
         <div className="max-w-3xl mx-auto px-4">
 <Link
   href="/"

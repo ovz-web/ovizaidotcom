@@ -45,7 +45,7 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow relative z-10 pt-14 sm:pt-16">
+      <main className="flex-grow relative z-10 pt-[92px] sm:pt-[96px]">
         {/* ABOVE THE FOLD (1er ÉCRAN VISIBLE) */}
 
         {/* 1. Minimalist Hero Section */}
