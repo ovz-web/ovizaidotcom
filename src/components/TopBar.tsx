@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Globe, DollarSign, Youtube, Instagram, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Globe, Youtube, Instagram, ArrowUpRight } from 'lucide-react';
 import { Language, Currency } from '@/types';
 
 interface TopBarProps {
@@ -25,10 +25,10 @@ export default function TopBar({
 
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
-    { href: '/tarifs', label: isFr ? '01. Tarifs & Offre de lancement' : '01. Pricing & Launch Offer' },
-    { href: '/services', label: isFr ? '02. Prestations & Services' : '02. Services & Production' },
-    { href: '/formation', label: isFr ? '03. Formation & Masterclass' : '03. Video Masterclass' },
-    { href: '/stack', label: isFr ? '04. Stack Technique & Pipeline' : '04. Tech Stack & Pipeline' },
+    { href: '/services', label: isFr ? '01. Prestations & Services' : '01. Services & Production' },
+    { href: '/formation', label: isFr ? '02. Formation & Masterclass' : '02. Video Masterclass' },
+    { href: '/stack', label: isFr ? '03. Stack Technique & Pipeline' : '03. Tech Stack & Pipeline' },
+    { href: '/tarifs', label: isFr ? '04. Tarifs & Formules' : '04. Pricing & Packages' },
     { href: '/contact', label: isFr ? '05. Devis & Contact' : '05. Contact & Quote' },
   ];
 
@@ -42,6 +42,17 @@ export default function TopBar({
     setIsDrawerOpen(false);
     burgerRef.current?.focus();
   };
+
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    if (isDrawerOpen) {
+      const originalStyle = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalStyle || '';
+      };
+    }
+  }, [isDrawerOpen]);
 
   // Close drawer on Escape key
   useEffect(() => {
@@ -114,12 +125,12 @@ export default function TopBar({
             onClick={closeDrawer}
           />
 
-          {/* Compact Right Side Flyout Drawer */}
+          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background */}
           <aside
             role="dialog"
             aria-modal="true"
             aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
-            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08]/98 border-l border-white/[0.08] backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
+            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
           >
             {/* Drawer Top Header */}
             <div>
