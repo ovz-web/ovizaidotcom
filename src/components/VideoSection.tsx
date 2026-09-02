@@ -7,7 +7,7 @@ import { SOCIAL_LINKS } from '@/lib/videos';
 
 interface VideoItem {
   id: string;
-  youtubeId?: string; // YouTube Video ID (ex: "dQw4w9WgXcQ")
+  youtubeId?: string;
   title: { fr: string; en: string };
   category: { fr: string; en: string };
   description: { fr: string; en: string };
@@ -18,6 +18,9 @@ interface VideoSectionProps {
   lang: Language;
   video1YoutubeId?: string;
   video2YoutubeId?: string;
+  customEyebrow?: string;
+  customTitle?: string;
+  customSubtitle?: string;
 }
 
 const DEFAULT_VIDEOS: VideoItem[] = [
@@ -57,7 +60,14 @@ const DEFAULT_VIDEOS: VideoItem[] = [
   },
 ];
 
-export default function VideoSection({ lang, video1YoutubeId, video2YoutubeId }: VideoSectionProps) {
+export default function VideoSection({
+  lang,
+  video1YoutubeId,
+  video2YoutubeId,
+  customEyebrow,
+  customTitle,
+  customSubtitle,
+}: VideoSectionProps) {
   const isFr = lang === 'fr';
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
@@ -67,20 +77,20 @@ export default function VideoSection({ lang, video1YoutubeId, video2YoutubeId }:
   }));
 
   return (
-    <section className="max-w-3xl mx-auto mb-10 px-4 relative z-10">
+    <section className="max-w-xl mx-auto mb-10 px-4 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
         <p className="mono text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1 flex items-center justify-center gap-1.5">
           <Sparkles className="w-3 h-3 text-[#CAA243]" />
-          <span>{isFr ? 'RÉALISATIONS & DÉMONSTRATIONS' : 'SHOWCASE & DEMO REELS'}</span>
+          <span>{customEyebrow || (isFr ? 'RÉALISATIONS & DÉMONSTRATIONS' : 'SHOWCASE & DEMO REELS')}</span>
         </p>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-1">
-          {isFr ? 'APERÇU DE NOS RENDUS' : 'VISUAL PROOF & SHOWREEL'}
+          {customTitle || (isFr ? 'APERÇU DE NOS RENDUS' : 'VISUAL PROOF & SHOWREEL')}
         </h2>
-        <p className="text-xs text-[#9C9384] max-w-md mx-auto">
-          {isFr
+        <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
+          {customSubtitle || (isFr
             ? 'Découvrez nos productions vidéo et la qualité de nos workflows en vidéo 4K.'
-            : 'Discover our video productions and the quality of our 4K workflows.'}
+            : 'Discover our video productions and the quality of our 4K workflows.')}
         </p>
       </div>
 

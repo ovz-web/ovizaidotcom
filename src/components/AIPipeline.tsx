@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Cpu, Zap, Layers, Sliders, ArrowRight } from 'lucide-react';
+import { Cpu, Zap, Layers, Sliders } from 'lucide-react';
 import { Language } from '@/types';
 
 interface AIPipelineProps {
   lang: Language;
   customEyebrow?: string;
   customTitle?: string;
+  showConversionCard?: boolean;
 }
 
 const PIPELINE_STEPS = [
@@ -82,7 +83,12 @@ const PIPELINE_STEPS = [
   },
 ];
 
-export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipelineProps) {
+export default function AIPipeline({
+  lang,
+  customEyebrow,
+  customTitle,
+  showConversionCard = true,
+}: AIPipelineProps) {
   const isFr = lang === 'fr';
 
   return (
@@ -135,33 +141,35 @@ export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipel
       </div>
 
       {/* Bottom Conversion Card */}
-      <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-5 rounded-2xl text-center mt-8">
-        <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
-          {isFr ? 'UN PROCESSUS CLAIR, DES RÉSULTATS GARANTIS' : 'CLEAR PROCESS, GUARANTEED RESULTS'}
-        </span>
-        <h3 className="text-sm sm:text-base font-bold text-[#ECE4D3] mb-2">
-          {isFr ? 'Prêt à donner vie à votre projet visuel ?' : 'Ready to bring your visual project to life?'}
-        </h3>
-        <p className="text-xs text-[#9C9384] max-w-md mx-auto mb-4 leading-relaxed">
-          {isFr
-            ? 'Profitez de la liberté de création du cinéma IA avec des délais garantis et des révisions incluses.'
-            : 'Enjoy the creative freedom of AI cinema with guaranteed delivery times and included revisions.'}
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
-            href="/tarifs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-          >
-            <span>{isFr ? 'Voir nos tarifs & formules →' : 'View pricing & packages →'}</span>
-          </Link>
-          <Link
-            href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-black/50 border border-white/[0.12] hover:border-[#CAA243] text-[#ECE4D3] hover:text-[#CAA243] px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-          >
-            <span>{isFr ? 'Demander un devis 24h →' : 'Request 24h quote →'}</span>
-          </Link>
+      {showConversionCard && (
+        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-5 rounded-2xl text-center mt-8">
+          <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
+            {isFr ? 'UN PROCESSUS CLAIR, DES RÉSULTATS GARANTIS' : 'CLEAR PROCESS, GUARANTEED RESULTS'}
+          </span>
+          <h3 className="text-sm sm:text-base font-bold text-[#ECE4D3] mb-2">
+            {isFr ? 'Prêt à donner vie à votre projet visuel ?' : 'Ready to bring your visual project to life?'}
+          </h3>
+          <p className="text-xs text-[#9C9384] max-w-md mx-auto mb-4 leading-relaxed">
+            {isFr
+              ? 'Profitez de la liberté de création du cinéma IA avec des délais garantis et des révisions incluses.'
+              : 'Enjoy the creative freedom of AI cinema with guaranteed delivery times and included revisions.'}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/tarifs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
+            >
+              <span>{isFr ? 'Voir nos tarifs & formules →' : 'View pricing & packages →'}</span>
+            </Link>
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-black/50 border border-white/[0.12] hover:border-[#CAA243] text-[#ECE4D3] hover:text-[#CAA243] px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
+            >
+              <span>{isFr ? 'Demander un devis 24h →' : 'Request 24h quote →'}</span>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
