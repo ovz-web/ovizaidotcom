@@ -5,6 +5,7 @@ import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
 import CommandMenu from '@/components/CommandMenu';
+import HeroActions from '@/components/HeroActions';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
@@ -48,6 +49,9 @@ export default function Home() {
 
         {/* 3. Central Bento Command Card Hub */}
         <CommandMenu lang={lang} onShowToast={showToast} />
+
+        {/* 4. Action Buttons (Services + & Masterclass +) */}
+        <HeroActions lang={lang} />
 
         {/* 4. Newsletter & Free Prompts Capture */}
         <NewsletterForm lang={lang} onShowToast={showToast} />

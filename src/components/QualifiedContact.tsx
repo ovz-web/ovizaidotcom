@@ -136,11 +136,20 @@ export default function QualifiedContact({
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
             {isFr ? 'DÉMARRER UN PROJET' : 'START A PROJECT'}
           </h2>
-          <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-4">
+          <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-3">
             {isFr
-              ? 'Décrivez votre besoin. Notre équipe étudie votre projet sous 24h à 48h ouvrées.'
-              : 'Describe your vision. Our core team evaluates your brief within 24 to 48 business hours.'}
+              ? 'Formulaire simple en 3 étapes. Réponse et devis gratuit sous 24h à 48h ouvrées.'
+              : 'Simple 3-step form. Free quote and response within 24 to 48 business hours.'}
           </p>
+
+          {/* 3-Step Indicator Bar */}
+          <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
+            <span>{isFr ? '1. Projet' : '1. Project'}</span>
+            <span className="text-[#8c8375]">•</span>
+            <span>{isFr ? '2. Budget' : '2. Budget'}</span>
+            <span className="text-[#8c8375]">•</span>
+            <span>{isFr ? '3. Coordonnées' : '3. Contact'}</span>
+          </div>
 
           {/* Currency Switcher Bar */}
           <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
@@ -212,7 +221,7 @@ export default function QualifiedContact({
             {/* Step 1: Project Type Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
-                {isFr ? '1. Type de prestation concernée :' : '1. Select Service Type:'}
+                {isFr ? '1. Quel type de projet souhaitez-vous réaliser ?' : '1. What type of project do you want to create?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {PROJECT_TYPES.map(pt => {
@@ -242,7 +251,7 @@ export default function QualifiedContact({
             {/* Step 2: Dynamic Budget Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
-                {isFr ? '2. Enveloppe budgétaire estimée :' : '2. Estimated Budget Range:'}
+                {isFr ? '2. Quelle est votre enveloppe budgétaire estimée ?' : '2. What is your estimated budget range?'}
               </legend>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {BUDGET_TIERS.map(tier => {
@@ -270,6 +279,9 @@ export default function QualifiedContact({
 
             {/* Step 3: Contact Inputs */}
             <div className="space-y-3 pt-2">
+              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-1">
+                {isFr ? '3. Vos coordonnées pour recevoir notre proposition :' : '3. Your details to receive our proposal:'}
+              </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="contact-name" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">

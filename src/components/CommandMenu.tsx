@@ -60,7 +60,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
   ];
 
   return (
-    <div className="ovizai-card max-w-xl mx-auto mb-8">
+    <div className="ovizai-card max-w-xl mx-auto mb-4">
       {/* Navigation List */}
       <div className="flex flex-col divide-y divide-white/[0.06]">
         {NAV_ITEMS.map(item => {

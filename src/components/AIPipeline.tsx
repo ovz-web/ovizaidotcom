@@ -88,9 +88,14 @@ export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipel
         <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
           {customEyebrow || (isFr ? '03 // STACK TECHNIQUE & PIPELINE' : '03 // TECH STACK & PIPELINE')}
         </p>
-        <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3]">
+        <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-2">
           {customTitle || (isFr ? 'Moteurs Génératifs & Post-Production' : 'Generative Engines & Post-Production')}
         </h2>
+        <p className="text-xs text-[#8c8375] max-w-md mx-auto leading-relaxed">
+          {isFr
+            ? 'Une combinaison des meilleures technologies génératives et logiciels de post-production pour garantir une qualité 8K cinématique et un étalonnage cinéma.'
+            : 'A combination of top generative technologies and pro post-production tools delivering 8K cinematic quality and color grading.'}
+        </p>
       </div>
 
       {/* Grid of Badges */}
