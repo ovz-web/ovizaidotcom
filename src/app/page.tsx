@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
-import VideoSection from '@/components/VideoSection';
 import CommandMenu from '@/components/CommandMenu';
-import HeroActions from '@/components/HeroActions';
-import TrustSection from '@/components/TrustSection';
 import NewsletterForm from '@/components/NewsletterForm';
+import VideoSection from '@/components/VideoSection';
+import TrustSection from '@/components/TrustSection';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -46,31 +45,32 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow relative z-10 pt-16 sm:pt-20">
-        {/* 2. Minimalist Hero Section */}
+      <main className="flex-grow relative z-10 pt-14 sm:pt-16">
+        {/* ABOVE THE FOLD (1er ÉCRAN VISIBLE) */}
+
+        {/* 1. Minimalist Hero Section */}
         <HeroBrutalist lang={lang} />
 
-        {/* 3. Showreel & Visual Proof Video Section */}
+        {/* 2. Central Bento Command Card Hub (4 Navigation Links) */}
+        <CommandMenu lang={lang} onShowToast={showToast} />
+
+        {/* 3. Newsletter & Free Prompts Capture */}
+        <NewsletterForm lang={lang} onShowToast={showToast} />
+
+        {/* BELOW THE FOLD (AU SCROLL SEULEMENT) */}
+
+        {/* 4. Showreel & Visual Proof Video Section */}
         <VideoSection
           lang={lang}
           video1YoutubeId={YOUTUBE_VIDEOS.homeShowreel1}
           video2YoutubeId={YOUTUBE_VIDEOS.homeShowreel2}
         />
 
-        {/* 4. Central Bento Command Card Hub */}
-        <CommandMenu lang={lang} onShowToast={showToast} />
-
-        {/* 5. Primary CTA Action Button */}
-        <HeroActions lang={lang} />
-
-        {/* 6. Factual Trust & Method Section */}
+        {/* 5. Factual Trust & Method Section */}
         <TrustSection lang={lang} />
-
-        {/* 7. Newsletter & Free Prompts Capture */}
-        <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
-      {/* 8. Footer with social links & legal */}
+      {/* 6. Footer with social links & legal */}
       <Footer lang={lang} onShowToast={showToast} />
 
       {/* Gold Toast Notification Bar */}

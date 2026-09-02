@@ -60,7 +60,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
   ];
 
   return (
-    <div className="ovizai-card max-w-xl mx-auto mb-4">
+    <div className="ovizai-card max-w-xl mx-auto mb-3">
       {/* Navigation List */}
       <div className="flex flex-col divide-y divide-white/[0.06]">
         {NAV_ITEMS.map(item => {
@@ -69,7 +69,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
             <Link
               key={item.id}
               href={item.href}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
             >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3 min-w-0">
