@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { GraduationCap, ArrowUpRight, ShieldCheck, Sparkles, Loader2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
+import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE } from '@/lib/pricing';
 
 interface MasterclassSectionProps {
   lang: Language;
@@ -46,7 +47,20 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const formattedPrice = formatPrice(490, activeCurrency);
+  const currentPrice = MASTERCLASS_PRICE[activeCurrency] || 500;
+  const originalPrice = MASTERCLASS_ORIGINAL_PRICE[activeCurrency] || 990;
+
+  const formattedCurrentPrice = activeCurrency === 'EUR'
+    ? `${currentPrice} €`
+    : activeCurrency === 'CAD'
+    ? `${currentPrice} $ CAD`
+    : `${currentPrice} $ USD`;
+
+  const formattedOriginalPrice = activeCurrency === 'EUR'
+    ? `${originalPrice} €`
+    : activeCurrency === 'CAD'
+    ? `${originalPrice} $ CAD`
+    : `${originalPrice} $ USD`;
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -110,7 +124,7 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
           )}
         </h2>
 
-        <p className="text-xs sm:text-sm text-[#8c8375] leading-relaxed max-w-xl mb-6">
+        <p className="text-xs sm:text-sm text-[#9C9384] leading-relaxed max-w-xl mb-6">
           {isFr
             ? 'Une formation ultra-pratique conçue pour les créateurs, réalisateurs et directeurs artistiques souhaitant intégrer l’IA générative dans leurs productions.'
             : 'An ultra-practical masterclass built for creators, directors, and art directors looking to integrate generative AI into high-end film pipelines.'}
@@ -134,7 +148,7 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
                 <h4 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
                   {mod.title[lang]}
                 </h4>
-                <p className="text-[11.5px] text-[#8c8375] mt-0.5 leading-normal">
+                <p className="text-[11.5px] text-[#9C9384] mt-0.5 leading-normal">
                   {mod.desc[lang]}
                 </p>
               </div>
@@ -147,13 +161,13 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
           <div>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl sm:text-3xl font-extrabold text-[#CAA243] font-mono">
-                {formattedPrice}
+                {formattedCurrentPrice}
               </span>
-              <span className="text-xs text-[#8c8375] line-through font-mono">
-                {activeCurrency === 'EUR' ? '900 €' : activeCurrency === 'CAD' ? '1 300 $ CAD' : '990 $ USD'}
+              <span className="text-xs text-[#9C9384] line-through font-mono">
+                {formattedOriginalPrice}
               </span>
             </div>
-            <p className="text-[11px] text-[#8c8375] mt-0.5 flex items-center gap-1">
+            <p className="text-[11px] text-[#9C9384] mt-0.5 flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-[#CAA243]" />
               {isFr ? 'Accès à vie + Mises à jour des modèles incluses' : 'Lifetime Access + Model Updates Included'}
             </p>

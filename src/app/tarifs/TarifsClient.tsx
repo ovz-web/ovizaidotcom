@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
+import VideoShowcase from '@/components/VideoShowcase';
 
 // Offre de lancement — nombre de places restantes modifiable manuellement
 const PLACES_RESTANTES: number = 5;
@@ -67,7 +68,7 @@ const PLANS_DATA = [
     badge: { fr: '03', en: '03' },
     name: { fr: 'Premium', en: 'Premium' },
     minUsd: 2600,
-    budgetTierId: 'tier-2',
+    budgetTierId: 'tier-1',
     includes: {
       fr: [
         '3 vidéos finalisées (campagne déclinée)',
@@ -323,6 +324,35 @@ export default function TarifsClient() {
                 </div>
               );
             })}
+          </div>
+
+          {/* ── Sample Production Showcase Video ────────────────────── */}
+          <div className="mb-8">
+            <div className="mb-3">
+              <p className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold">
+                {lang === 'fr' ? 'DÉMONSTRATION DE RENDU' : 'PRODUCTION SAMPLE'}
+              </p>
+              <h3 className="text-sm font-bold text-[#ECE4D3]">
+                {lang === 'fr' ? 'Voir un exemple de vidéo avant de réserver' : 'See a sample video before booking'}
+              </h3>
+            </div>
+            <VideoShowcase
+              lang={lang}
+              compact
+              video={{
+                youtubeId: '', // À remplir avec l'ID YouTube
+                title: {
+                  fr: 'Exemple de Production & Film de Marque OVIZai',
+                  en: 'OVIZai Brand Film & Production Sample',
+                },
+                description: {
+                  fr: 'Aperçu du rendu cinématographique 4K obtenu avec nos formules de production.',
+                  en: '4K cinematic visual sample achieved with our production packages.',
+                },
+                uploadDate: '2026-09-01',
+                badge: { fr: '01 // REEL PROD', en: '01 // PROD REEL' },
+              }}
+            />
           </div>
 
           {/* ── Offre de Lancement ───────────────────────────────────── */}

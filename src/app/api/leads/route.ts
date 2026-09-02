@@ -5,7 +5,7 @@ import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, projectType, budgetRange, currency, message, company } = body;
+    const { email, name, projectType, budgetRange, currency, message, company, sourcePlan } = body;
 
     // Honeypot anti-spam: silent success if hidden company field is populated
     if (company !== undefined && company !== null && String(company).trim() !== '') {
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         budget_range: typeof budgetRange === 'string' ? budgetRange : null,
         currency: typeof currency === 'string' ? currency : null,
         message: typeof message === 'string' ? message.trim() : null,
+        source_plan: typeof sourcePlan === 'string' ? sourcePlan : null,
       }])
       .select();
 

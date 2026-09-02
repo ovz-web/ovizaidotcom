@@ -53,6 +53,7 @@ export default function QualifiedContact({
 
   const [selectedProject, setSelectedProject] = useState<string>('pub-brand');
   const [selectedBudget, setSelectedBudget] = useState<string>('tier-2');
+  const [originPlan, setOriginPlan] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [brief, setBrief] = useState('');
@@ -61,6 +62,10 @@ export default function QualifiedContact({
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
+    if (initialServiceId) {
+      setOriginPlan(initialServiceId);
+    }
+
     if (initialType && PROJECT_TYPES.some(p => p.id === initialType)) {
       setSelectedProject(initialType);
     } else if (initialServiceId && SERVICE_ID_MAP[initialServiceId]) {
@@ -103,7 +108,8 @@ export default function QualifiedContact({
           budgetRange: formattedBudget,
           currency: activeCurrency,
           message: brief,
-          company
+          company,
+          sourcePlan: originPlan || initialServiceId || null,
         }),
       });
 

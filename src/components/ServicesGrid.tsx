@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
+import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
 
 interface ServicesGridProps {
   lang: Language;
@@ -138,6 +139,37 @@ const FIVE_SERVICES = [
   }
 ];
 
+const SHOWCASE_VIDEOS: VideoItem[] = [
+  {
+    youtubeId: '', // À remplir avec l'ID YouTube 1
+    title: {
+      fr: 'Showreel Production & Films de Marque',
+      en: 'Brand Films & Commercial Showreel',
+    },
+    description: {
+      fr: 'Aperçu de nos réalisations visuelles, spots publicitaires et univers générés par IA.',
+      en: 'Overview of our visual productions, commercial spots, and AI-generated universes.',
+    },
+    uploadDate: '2026-09-01',
+    relatedServiceId: 'pub-brand-content',
+    badge: { fr: '01 // COMMERCIAL SHOWREEL', en: '01 // COMMERCIAL SHOWREEL' },
+  },
+  {
+    youtubeId: '', // À remplir avec l'ID YouTube 2
+    title: {
+      fr: 'Clips Vidéos & Scénographies VJing',
+      en: 'Music Videos & Stage Visualisers',
+    },
+    description: {
+      fr: 'Démonstrations de nos créations pour artistes, clips musicaux et scénographies scéniques.',
+      en: 'Showcase of our creations for musical artists, music videos, and stage visualisers.',
+    },
+    uploadDate: '2026-09-01',
+    relatedServiceId: 'clips-visualisers',
+    badge: { fr: '02 // MUSIC & VISUALISERS', en: '02 // MUSIC & VISUALISERS' },
+  },
+];
+
 export default function ServicesGrid({ lang, currency: propCurrency, onSelectCurrency }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>(null);
@@ -163,7 +195,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
         <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
           {isFr ? 'CE QUE NOUS FAISONS' : 'WHAT WE DO'}
         </h2>
-        <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-4">
+        <p className="text-xs sm:text-sm text-[#9C9384] max-w-md mx-auto mb-4">
           {isFr
             ? 'De la conception à la livraison finale, nous mettons l’intelligence artificielle au service de votre vision.'
             : 'From concept to final delivery, we put generative AI at the service of your creative vision.'}
@@ -171,7 +203,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
 
         {/* Currency Switcher */}
         <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
-          <span className="text-[10px] text-[#8C8375] px-2 font-mono">
+          <span className="text-[10px] text-[#9C9384] px-2 font-mono">
             {isFr ? 'Devise :' : 'Currency:'}
           </span>
           {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
@@ -182,7 +214,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
               className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
                 activeCurrency === curr
                   ? 'bg-[#CAA243] text-black'
-                  : 'text-[#8C8375] hover:text-[#ECE4D3]'
+                  : 'text-[#9C9384] hover:text-[#ECE4D3]'
               }`}
             >
               {curr}
@@ -192,7 +224,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
       </div>
 
       {/* Accordion / Details Grid */}
-      <div className="space-y-4">
+      <div className="space-y-4 mb-12">
         {FIVE_SERVICES.map(service => {
           const isOpen = openService === service.id;
           const currentPriceRange = formatRange(service.minUsd, service.maxUsd, activeCurrency);
@@ -207,14 +239,14 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   : 'border-white/[0.08] hover:border-[#CAA243]/30'
               }`}
             >
-              {/* Header Toggle Row (CHANTIER 4: Stack title & price on mobile flex-col sm:flex-row) */}
+              {/* Header Toggle Row */}
               <button
                 id={`btn-${service.id}`}
                 type="button"
                 onClick={() => toggleService(service.id)}
                 aria-expanded={isOpen}
                 aria-controls={`panel-${service.id}`}
-                className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer transition-colors gap-2.5 sm:gap-4"
+                className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer transition-colors gap-2.5 sm:gap-4 min-h-[48px]"
               >
                 <div className="flex items-center gap-3.5 min-w-0 pr-2">
                   <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2 py-1 rounded flex-shrink-0">
@@ -224,7 +256,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     <h3 className="mono text-sm sm:text-base font-bold text-[#ECE4D3] group-hover:text-[#f0c869] truncate">
                       {service.title[lang]}
                     </h3>
-                    <p className="text-xs text-[#8c8375] mt-0.5 truncate hidden sm:block">
+                    <p className="text-xs text-[#9C9384] mt-0.5 truncate hidden sm:block">
                       {service.tagline[lang]}
                     </p>
                   </div>
@@ -251,7 +283,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   aria-labelledby={`btn-${service.id}`}
                   className="px-4 pb-5 sm:px-5 sm:pb-6 pt-2 border-t border-white/[0.06] bg-black/40"
                 >
-                  <p className="text-xs sm:text-sm text-[#8c8375] leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-[#9C9384] leading-relaxed mb-4">
                     {service.description[lang]}
                   </p>
 
@@ -273,16 +305,16 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </div>
                   </div>
 
-                  {/* Action CTA with CHANTIER 3 ?type=...&budget=... forwarding */}
+                  {/* Action CTA */}
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
-                    <span className="mono text-xs text-[#8c8375]">
+                    <span className="mono text-xs text-[#9C9384]">
                       {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
                       <strong className="text-[#CAA243]">{currentPriceRange}</strong>
                     </span>
 
                     <Link
                       href={`/contact?service=${service.id}&type=${mappedTarget.type}&budget=${mappedTarget.budget}`}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
                     >
                       <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 text-black" />
@@ -293,6 +325,24 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
             </div>
           );
         })}
+      </div>
+
+      {/* Production Showcase Section */}
+      <div className="pt-6 border-t border-white/[0.08]">
+        <div className="text-center mb-6">
+          <p className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold mb-1">
+            {isFr ? 'EXEMPLES DE PRODUCTION & SHOWCASE' : 'PRODUCTION EXAMPLES & SHOWCASE'}
+          </p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#ECE4D3]">
+            {isFr ? 'Démonstrations visuelles de nos projets' : 'Visual showcase of our projects'}
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {SHOWCASE_VIDEOS.map((vid, i) => (
+            <VideoShowcase key={i} video={vid} lang={lang} />
+          ))}
+        </div>
       </div>
     </section>
   );

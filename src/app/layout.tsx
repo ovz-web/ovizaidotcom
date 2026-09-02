@@ -77,6 +77,10 @@ export default function RootLayout({
       lang="fr"
       className={`dark ${inter.variable} ${plexMono.variable} ${syne.variable} ${archivoBlack.variable}`}
     >
+      <head>
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+      </head>
       <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright">
         <CurrencyProvider>
           <LanguageProvider>

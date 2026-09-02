@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
+import { MASTERCLASS_PRICE } from '@/lib/pricing';
 
 const COURSE_JSON_LD = {
   "@context": "https://schema.org",
@@ -30,7 +31,7 @@ const COURSE_JSON_LD = {
   },
   "offers": {
     "@type": "Offer",
-    "price": 290,
+    "price": MASTERCLASS_PRICE.EUR,
     "priceCurrency": "EUR",
     "availability": "https://schema.org/InStock",
     "url": "https://ovizai.com/formation"
