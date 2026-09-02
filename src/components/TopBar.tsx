@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Globe, Youtube, Instagram, ArrowUpRight } from 'lucide-react';
 import { Language, Currency } from '@/types';
+import PromoBar from '@/components/PromoBar';
 
 interface TopBarProps {
   lang: Language;
@@ -68,11 +69,11 @@ export default function TopBar({
 
   return (
     <>
-      {/* 100% Fixed TopBar offset by PromoBar height (top-9) */}
-      <header className="fixed top-9 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-4 flex items-center justify-between">
-        <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-3">
+      {/* Single 100% Fixed TopBar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] h-14 px-3 sm:px-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-2 sm:gap-4">
           {/* Top-Left: Imposing Clean Logo Image Link */}
-          <Link className="flex items-center py-0.5" href="/">
+          <Link className="flex items-center py-0.5 flex-shrink-0" href="/">
             <Image
               src="/logo.png"
               alt="OVIZai"
@@ -83,11 +84,16 @@ export default function TopBar({
             />
           </Link>
 
+          {/* Center: Integrated Discreet Launch Offer Micro-Pill */}
+          <div className="flex-1 flex justify-center items-center">
+            <PromoBar lang={lang} />
+          </div>
+
           {/* Top-Right Controls: Desktop Tarifs link + Language + Compact Burger Trigger */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
             <Link
               href="/tarifs"
-              className="hidden sm:flex items-center text-xs font-mono text-[#ECE4D3] hover:text-[#CAA243] transition-colors font-medium"
+              className="hidden md:flex items-center text-xs font-mono text-[#ECE4D3] hover:text-[#CAA243] transition-colors font-medium"
             >
               <span>{isFr ? 'Tarifs' : 'Pricing'}</span>
             </Link>
@@ -96,7 +102,7 @@ export default function TopBar({
               onClick={onToggleLang}
               type="button"
               aria-label={isFr ? 'Changer la langue (English)' : 'Switch language (Français)'}
-              className="hidden sm:flex items-center gap-1.5 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-3 py-2 text-[11px] font-mono transition-all cursor-pointer min-h-[48px]"
+              className="hidden sm:flex items-center gap-1.5 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-3 py-2 text-[11px] font-mono transition-all cursor-pointer min-h-[44px]"
             >
               <Globe className="w-3.5 h-3.5 text-[#CAA243]" />
               <span className="mono font-semibold">{lang === 'en' ? 'FR' : 'EN'}</span>
@@ -108,7 +114,7 @@ export default function TopBar({
               onClick={() => setIsDrawerOpen(true)}
               aria-expanded={isDrawerOpen}
               aria-label={isFr ? 'Ouvrir le menu de navigation' : 'Open navigation menu'}
-              className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
+              className="p-2.5 sm:p-3 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <Menu className="w-5 h-5 text-[#ECE4D3]" />
             </button>
@@ -125,12 +131,12 @@ export default function TopBar({
             onClick={closeDrawer}
           />
 
-          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background, offset by top-9 */}
+          {/* Compact Right Side Flyout Drawer - 100% Opaque Solid Background */}
           <aside
             role="dialog"
             aria-modal="true"
             aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
-            className="w-72 sm:w-80 fixed top-9 bottom-0 right-0 z-50 bg-[#0B0A08] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
+            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08] border-l border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300 overflow-y-auto"
           >
             {/* Drawer Top Header */}
             <div>

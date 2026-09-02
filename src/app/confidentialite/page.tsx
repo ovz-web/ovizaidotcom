@@ -15,7 +15,7 @@ export default function ConfidentialitePage() {
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-[#080808] text-[#ECE4D3]">
       <FilmGrain />
 
-      <main className="flex-grow relative z-10 pt-[92px] sm:pt-[96px] pb-16">
+      <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-16">
         <div className="max-w-3xl mx-auto px-4">
           <Link
             href="/"
