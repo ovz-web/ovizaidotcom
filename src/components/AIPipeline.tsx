@@ -14,67 +14,67 @@ const PIPELINE_DATA = [
   {
     id: 'mj-v6',
     name: 'Midjourney v6.1',
-    category: 'Keyframes & Concept Art',
-    version: 'RAW 8K Engine',
+    category: 'Images-clés & Concept Art',
+    version: 'Génération ultra haute définition',
     desc: {
-      fr: 'Génération de keyframes cinématiques 8K, maîtrise des éclairages volumétriques et consistance parfaite des personnages.',
-      en: '8K cinematic keyframe generation, master volumetric lighting, and character stylistic consistency.'
+      fr: 'Création des images maîtresses du projet en ultra haute définition — éclairages cinématiques, cohérence parfaite des personnages d\'un plan à l\'autre.',
+      en: 'Creation of the project\'s master images in ultra high definition — cinematic lighting, perfect character consistency across every shot.'
     },
-    badge: 'Core Visual Engine',
+    badge: 'Moteur visuel principal',
     icon: Cpu,
-    tags: ['RAW Prompting', '2.39:1 Anamorphic', 'Character Weights']
+    tags: ['Ultra haute définition', 'Format grand écran cinéma', 'Cohérence des personnages']
   },
   {
     id: 'flux-1',
     name: 'Flux.1 Pro',
-    category: 'Photorealism & Typography',
-    version: 'Dev / Pro Model',
+    category: 'Photoréalisme & Textures',
+    version: 'Modèle professionnel',
     desc: {
-      fr: 'Rendu ultra-réaliste des détails de peau, textures métalliques et intégration typographique générative directe.',
-      en: 'Ultra-realistic rendering of skin details, metallic textures, and direct generative typographic integration.'
+      fr: 'Rendu ultra-réaliste des détails : peau, matières métalliques, bois, tissus — et intégration parfaite du texte dans l\'image.',
+      en: 'Ultra-realistic rendering of fine details: skin, metallic materials, wood, fabric — and seamless text integration within the image.'
     },
-    badge: 'Realism Benchmark',
+    badge: 'Référence photoréalisme',
     icon: Sparkles,
-    tags: ['High Fidelity Text', 'Skin Micro-Textures', 'Anatomy Precision']
+    tags: ['Texte intégré à l\'image', 'Micro-détails de texture', 'Précision anatomique']
   },
   {
     id: 'kling-pro',
     name: 'Kling AI 1.5',
-    category: 'Physics & High Dynamics',
-    version: 'v1.5 Pro 60FPS',
+    category: 'Physique & Mouvements naturels',
+    version: 'Haute fluidité 60 images/sec',
     desc: {
-      fr: 'Simulation physique complexe, mouvements fluides de vêtements, explosions et scènes d’action naturelles.',
-      en: 'Complex physical simulation, fluid clothing movement, explosions, and natural high-action scenes.'
+      fr: 'Simulation des lois physiques : vêtements qui bougent naturellement, eau, feu, explosions — des scènes d\'action qui semblent réelles.',
+      en: 'Physical world simulation: naturally moving clothing, water, fire, explosions — action scenes that feel genuinely real.'
     },
-    badge: 'Physics Engine',
+    badge: 'Moteur physique',
     icon: Zap,
-    tags: ['Physical World Model', 'Long Clips 10s+', 'HDR Dynamic Range']
+    tags: ['Simulation physique réaliste', 'Séquences longues', 'Plage dynamique étendue']
   },
   {
     id: 'runway-g3',
     name: 'Runway Gen-3 Alpha',
-    category: 'Camera Motion & Control',
+    category: 'Mouvements de caméra',
     version: 'Gen-3 Turbo',
     desc: {
-      fr: 'Contrôle millimétré de la caméra virtuelle (crane, orbit, dolly, zoom) et interpolation de mouvement haute vitesse.',
-      en: 'Millimetric virtual camera control (crane, orbit, dolly, zoom) and high-speed motion interpolation.'
+      fr: 'Contrôle précis de la caméra virtuelle : panoramique, travelling, zoom lent — chaque plan pensé comme un vrai tournage.',
+      en: 'Precise virtual camera control: panning, tracking shots, slow zoom — every shot crafted like a real film production.'
     },
-    badge: 'Cinematography Engine',
+    badge: 'Moteur cinématographique',
     icon: Layers,
-    tags: ['Motion Brush Multi-Layer', '3D Camera Controls', 'Camera Roll']
+    tags: ['Masque de mouvement multicouche', 'Contrôles 3D de caméra', 'Rotation d\'axe']
   },
   {
     id: 'davinci-studio',
     name: 'DaVinci Resolve Studio',
-    category: 'ACES Grading & Mastering',
+    category: 'Étalonnage & Finition',
     version: 'v19 Studio',
     desc: {
-      fr: 'Étalonnage couleur ACES cinématographique, émulation de pellicule 35mm, sound design spatialisé et exports ProRes 4444 XQ.',
-      en: 'Cinematic ACES color grading, 35mm film emulation, spatial sound design, and ProRes 4444 XQ master delivery.'
+      fr: 'Calibrage colorimétrique de qualité cinéma, émulation de la pellicule 35mm, son spatialisé et livraison dans tous les formats professionnels.',
+      en: 'Cinema-grade color calibration, 35mm film emulation, spatial audio design, and delivery in all professional formats.'
     },
-    badge: 'Post-Production Core',
+    badge: 'Cœur de post-production',
     icon: Sliders,
-    tags: ['35mm Film LUTs', 'Fairlight Spatial Audio', 'DCP Delivery']
+    tags: ['Étalonnage couleur cinéma', 'Son spatialisé Fairlight', 'Tous formats de livraison']
   }
 ];
 
