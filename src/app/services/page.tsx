@@ -49,20 +49,6 @@ export default function ServicesPage() {
           currency={currency}
           onSelectCurrency={setCurrency}
         />
-
-        {/* Secondary link — masterclass teaser */}
-        <div className="max-w-3xl mx-auto px-4 mb-10 text-center">
-          <p className="text-[11px] text-[#8C8375] font-mono">
-            {isFr ? 'Vous êtes créateur indépendant ?' : 'Are you an independent creator?'}
-            {' '}
-            <a
-              href="/formation"
-              className="text-[#CAA243] hover:text-[#f0c869] underline underline-offset-2 transition-colors"
-            >
-              {isFr ? 'Découvrez la Masterclass IA →' : 'Discover the AI Masterclass →'}
-            </a>
-          </p>
-        </div>
       </main>
 
       <Footer lang={lang} onShowToast={showToast} />
