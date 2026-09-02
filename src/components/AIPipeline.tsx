@@ -127,21 +127,9 @@ export default function AIPipeline({ lang, customEyebrow, customTitle }: AIPipel
                 </span>
               </div>
 
-              <p className="text-xs text-[#8c8375] leading-relaxed mb-3">
+              <p className="text-xs text-[#8c8375] leading-relaxed">
                 {tool.desc[lang]}
               </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/[0.04]">
-                {tool.tags.map((tag, tIdx) => (
-                  <span
-                    key={`${tool.id}-tag-${tIdx}`}
-                    className="mono text-[9.5px] text-[#8c8375] bg-black/40 border border-white/[0.06] px-2 py-0.5 rounded-sm"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
             </div>
           );
         })}

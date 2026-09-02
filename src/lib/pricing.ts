@@ -3,7 +3,7 @@ export const MASTERCLASS_ORIGINAL_PRICE = { USD: 990, EUR: 900, CAD: 1300 } as c
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
 
 export interface PricingPlan {
-  id: 'sprint' | 'standard' | 'premium';
+  id: 'sprint' | 'premium';
   name: { fr: string; en: string };
   badge: { fr: string; en: string };
   minUsd: number;
@@ -44,34 +44,9 @@ export const PRICING_PLANS: PricingPlan[] = [
     starterHighlight: true,
   },
   {
-    id: 'standard',
-    name: { fr: 'Standard', en: 'Standard' },
-    badge: { fr: '02 // PROD COMPLETE', en: '02 // FULL PROD' },
-    minUsd: 1030,
-    budgetTierId: 'tier-1',
-    period: { fr: '/ film cinématographique', en: '/ cinematic film' },
-    includes: {
-      fr: [
-        '1 vidéo cinématographique finalisée (45-60s)',
-        '2 rounds de révision inclus',
-        'Livraison sous 3 à 5 jours ouvrés',
-        'Export 4K multi-formats + sound design spatialisé',
-        'Direction artistique dédiée & storyboarding 8K',
-      ],
-      en: [
-        '1 finalised cinematic video (45-60s)',
-        '2 revision rounds included',
-        'Delivery within 3 to 5 business days',
-        '4K multi-format export + spatial sound design',
-        'Dedicated art direction & 8K storyboarding',
-      ],
-    },
-    primary: false,
-  },
-  {
     id: 'premium',
-    name: { fr: 'Premium', en: 'Premium' },
-    badge: { fr: '03 // CAMPAGNE DE MARQUE', en: '03 // BRAND CAMPAIGN' },
+    name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
+    badge: { fr: '02 // CAMPAGNE DE MARQUE', en: '02 // BRAND CAMPAIGN' },
     minUsd: 2600,
     budgetTierId: 'tier-1',
     period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },

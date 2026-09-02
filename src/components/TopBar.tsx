@@ -25,8 +25,8 @@ export default function TopBar({
 
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
-    { href: '/services', label: isFr ? '01. Prestations & Services' : '01. Services & Production' },
-    { href: '/tarifs', label: isFr ? '02. Tarifs & Offre de lancement' : '02. Pricing & Launch Offer' },
+    { href: '/tarifs', label: isFr ? '01. Tarifs & Offre de lancement' : '01. Pricing & Launch Offer' },
+    { href: '/services', label: isFr ? '02. Prestations & Services' : '02. Services & Production' },
     { href: '/formation', label: isFr ? '03. Formation & Masterclass' : '03. Video Masterclass' },
     { href: '/stack', label: isFr ? '04. Stack Technique & Pipeline' : '04. Tech Stack & Pipeline' },
     { href: '/contact', label: isFr ? '05. Devis & Contact' : '05. Contact & Quote' },
@@ -72,27 +72,15 @@ export default function TopBar({
             />
           </Link>
 
-          {/* Center: Integrated Permanent Masterclass Micro-Pill Announcement */}
-          <Link
-            href="/formation"
-            className="flex items-center gap-2 group hover:opacity-90 transition-opacity bg-white/[0.03] border border-white/[0.08] px-3 py-1 rounded-full"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] animate-pulse inline-block flex-shrink-0" />
-            <span className="mono text-[10.5px] sm:text-xs tracking-wider uppercase text-[#ECE4D3] font-medium group-hover:text-[#f0c869]">
-              {isFr ? (
-                <>
-                  <strong className="text-[#CAA243]">FORMATION & MASTERCLASS</strong> — ACCÉDER +
-                </>
-              ) : (
-                <>
-                  <strong className="text-[#CAA243]">VIDEO MASTERCLASS</strong> — ACCESS +
-                </>
-              )}
-            </span>
-          </Link>
+          {/* Top-Right Controls: Desktop Tarifs link + Language + Compact Burger Trigger */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link
+              href="/tarifs"
+              className="hidden sm:flex items-center text-xs font-mono text-[#ECE4D3] hover:text-[#CAA243] transition-colors font-medium"
+            >
+              <span>{isFr ? 'Tarifs' : 'Pricing'}</span>
+            </Link>
 
-          {/* Top-Right Controls: Language & Compact Burger Trigger */}
-          <div className="flex items-center gap-2">
             <button
               onClick={onToggleLang}
               type="button"

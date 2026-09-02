@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, Film, Sparkles } from 'lucide-react';
+import { Play, Sparkles, Youtube, Instagram } from 'lucide-react';
 import { Language } from '@/types';
+import { SOCIAL_LINKS } from '@/lib/videos';
 
 interface VideoItem {
   id: string;
@@ -22,7 +23,7 @@ interface VideoSectionProps {
 const DEFAULT_VIDEOS: VideoItem[] = [
   {
     id: 'showreel-main',
-    youtubeId: '', // À remplir avec l'ID de la vidéo 1 (ex: "ID_YOUTUBE_1")
+    youtubeId: '',
     title: {
       fr: 'Showreel Production & Films IA',
       en: 'AI Production & Film Showreel',
@@ -39,7 +40,7 @@ const DEFAULT_VIDEOS: VideoItem[] = [
   },
   {
     id: 'masterclass-teaser',
-    youtubeId: '', // À remplir avec l'ID de la vidéo 2 (ex: "ID_YOUTUBE_2")
+    youtubeId: '',
     title: {
       fr: 'Teaser & Workflows Masterclass',
       en: 'Masterclass Teaser & Workflows',
@@ -66,7 +67,7 @@ export default function VideoSection({ lang, video1YoutubeId, video2YoutubeId }:
   }));
 
   return (
-    <section className="max-w-3xl mx-auto mb-12 px-4 relative z-10">
+    <section className="max-w-3xl mx-auto mb-10 px-4 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
         <p className="mono text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1 flex items-center justify-center gap-1.5">
@@ -86,7 +87,7 @@ export default function VideoSection({ lang, video1YoutubeId, video2YoutubeId }:
       {/* 2 Video Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {videos.map((video) => {
-          const hasYoutube = Boolean(video.youtubeId);
+          const hasYoutube = Boolean(video.youtubeId && video.youtubeId.trim().length > 0);
           const isPlaying = activeVideoId === video.id;
 
           return (
@@ -151,6 +152,29 @@ export default function VideoSection({ lang, video1YoutubeId, video2YoutubeId }:
             </div>
           );
         })}
+      </div>
+
+      {/* Social Links under Video Grid */}
+      <div className="mt-4 text-center flex items-center justify-center gap-4 flex-wrap text-xs font-mono">
+        <a
+          href={SOCIAL_LINKS.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
+        >
+          <Youtube className="w-3.5 h-3.5 text-[#CAA243]" />
+          <span>{isFr ? 'Voir plus sur YouTube →' : 'See more on YouTube →'}</span>
+        </a>
+        <span className="text-[#9C9384] font-mono text-xs">•</span>
+        <a
+          href={SOCIAL_LINKS.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
+        >
+          <Instagram className="w-3.5 h-3.5 text-[#CAA243]" />
+          <span>{isFr ? 'Voir plus sur Instagram →' : 'See more on Instagram →'}</span>
+        </a>
       </div>
     </section>
   );

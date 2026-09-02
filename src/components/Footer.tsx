@@ -15,12 +15,6 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
 
   return (
     <footer className="relative z-10 max-w-xl mx-auto pt-6 pb-12 px-4 border-t border-border flex flex-col gap-5 items-center text-center font-mono text-[11px] text-fg-muted">
-      {/* Helper Keyboard Bar */}
-      <div className="flex items-center justify-between w-full pb-4 border-b border-border/40 text-[10.5px]">
-        <span>{t.pressCmd}</span>
-        <span>{t.pressEsc}</span>
-      </div>
-
       {/* Social Links Row */}
       <div className="w-full">
         <p className="mono text-[10.5px] uppercase text-fg-muted mb-3 tracking-wider">

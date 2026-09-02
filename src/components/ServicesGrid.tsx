@@ -6,6 +6,7 @@ import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight,
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
 import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
+import { YOUTUBE_VIDEOS } from '@/lib/videos';
 
 interface ServicesGridProps {
   lang: Language;
@@ -141,7 +142,7 @@ const FIVE_SERVICES = [
 
 const SHOWCASE_VIDEOS: VideoItem[] = [
   {
-    youtubeId: '', // À remplir avec l'ID YouTube 1
+    youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
     title: {
       fr: 'Showreel Production & Films de Marque',
       en: 'Brand Films & Commercial Showreel',
@@ -155,7 +156,7 @@ const SHOWCASE_VIDEOS: VideoItem[] = [
     badge: { fr: '01 // COMMERCIAL SHOWREEL', en: '01 // COMMERCIAL SHOWREEL' },
   },
   {
-    youtubeId: '', // À remplir avec l'ID YouTube 2
+    youtubeId: YOUTUBE_VIDEOS.servicesShowcase2,
     title: {
       fr: 'Clips Vidéos & Scénographies VJing',
       en: 'Music Videos & Stage Visualisers',
@@ -305,7 +306,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </div>
                   </div>
 
-                  {/* Action CTA */}
+                  {/* Action CTA link */}
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
                     <span className="mono text-xs text-[#9C9384]">
                       {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
@@ -314,10 +315,9 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
 
                     <Link
                       href={`/contact?service=${service.id}&type=${mappedTarget.type}&budget=${mappedTarget.budget}`}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-lg mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
+                      className="inline-flex items-center gap-1 mono text-xs text-[#CAA243] hover:text-[#f0c869] transition-colors font-semibold py-1"
                     >
-                      <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                      <span>{isFr ? 'Formulaire de devis qualifié →' : 'Qualified quote form →'}</span>
                     </Link>
                   </div>
                 </div>
@@ -325,6 +325,17 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
             </div>
           );
         })}
+
+        {/* Single Main CTA for Custom Quotes */}
+        <div className="text-center mt-6">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
+          >
+            <span>{isFr ? 'Demander un devis sur-mesure (24h)' : 'Request custom quote (24h)'}</span>
+            <ArrowUpRight className="w-4 h-4 text-black" />
+          </Link>
+        </div>
       </div>
 
       {/* Production Showcase Section */}

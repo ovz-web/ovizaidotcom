@@ -33,21 +33,30 @@ export default function ServicesPage() {
       />
 
       <main className="flex-grow relative z-10 pt-20 pb-12">
-        <div className="max-w-3xl mx-auto px-4 flex items-center justify-between mb-6">
+        <div className="max-w-3xl mx-auto px-4 mb-6 space-y-4">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
+            <span>{isFr ? 'Retour Accueil' : 'Back Home'}</span>
           </Link>
 
-          <Link
-            href="/tarifs"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#CAA243] hover:text-[#f0c869] transition-colors font-semibold"
-          >
-            <span>{lang === 'fr' ? 'Grille Tarifaire & Offres →' : 'Pricing Grid & Offers →'}</span>
-          </Link>
+          {/* Segmented 2-option tab: Prestations & Services | Tarifs & Formules */}
+          <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-white/[0.08] mono text-xs w-full">
+            <Link
+              href="/services"
+              className="py-2.5 text-center font-bold rounded-lg transition-all bg-[#CAA243] text-black shadow cursor-default"
+            >
+              {isFr ? 'Prestations & Services' : 'Services & Production'}
+            </Link>
+            <Link
+              href="/tarifs"
+              className="py-2.5 text-center font-bold rounded-lg transition-all text-[#8C8375] hover:text-[#ECE4D3] cursor-pointer"
+            >
+              {isFr ? 'Tarifs & Formules' : 'Pricing & Packages'}
+            </Link>
+          </div>
         </div>
 
         <ServicesGrid

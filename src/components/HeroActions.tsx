@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, GraduationCap } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Language } from '@/types';
 
 interface HeroActionsProps {
@@ -13,67 +13,23 @@ export default function HeroActions({ lang }: HeroActionsProps) {
   const isFr = lang === 'fr';
 
   return (
-    <div className="max-w-xl mx-auto mb-8 px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-        {/* Primary CTA: Devis & Brief */}
-        <div className="flex flex-col items-center">
-          <Link
-            href="/contact"
-            className="w-full bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
-          >
-            <span>{isFr ? 'Demander un Devis +' : 'Request Quote +'}</span>
-            <ArrowUpRight className="w-4 h-4 text-black" />
-          </Link>
-          <p className="text-[10.5px] text-[#9C9384] font-mono mt-1.5 leading-tight text-center">
-            {isFr ? 'Réponse sous 24h-48h ouvrées' : 'Quote reply in 24-48h'}
-          </p>
-        </div>
+    <div className="max-w-xl mx-auto mb-8 px-4 flex flex-col items-center text-center gap-2">
+      {/* Primary CTA: Démarrer un projet */}
+      <Link
+        href="/contact"
+        className="w-full sm:max-w-md bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-3.5 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
+      >
+        <span>{isFr ? 'Démarrer un projet +' : 'Start a project +'}</span>
+        <ArrowUpRight className="w-4 h-4 text-black" />
+      </Link>
 
-        {/* Secondary CTA: Tarifs & Formules */}
-        <div className="flex flex-col items-center">
-          <Link
-            href="/tarifs"
-            className="w-full bg-black/40 hover:bg-[#CAA243]/10 text-[#ECE4D3] hover:text-[#f0c869] border border-[#CAA243]/70 hover:border-[#CAA243] font-semibold px-4 py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer min-h-[48px]"
-          >
-            <span>{isFr ? 'Tarifs & Formules +' : 'Pricing & Packages +'}</span>
-            <ArrowUpRight className="w-4 h-4 text-[#CAA243]" />
-          </Link>
-          <p className="text-[10.5px] text-[#9C9384] font-mono mt-1.5 leading-tight text-center">
-            {isFr ? 'Transparence totale — 3 paliers' : 'Full transparency — 3 tiers'}
-          </p>
-        </div>
-      </div>
-
-      {/* Sprint Pilote Callout — P1 conversion lift */}
-      <div className="mt-4 flex items-center justify-center">
-        <Link
-          href="/tarifs"
-          className="inline-flex items-center gap-2 bg-[#CAA243]/10 border border-[#CAA243]/30 hover:border-[#CAA243]/60 hover:bg-[#CAA243]/15 rounded-full px-4 py-2 transition-all group"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] animate-pulse flex-shrink-0" />
-          <span className="mono text-[10.5px] font-bold text-[#CAA243] tracking-wide uppercase">
-            {isFr ? 'Sprint Pilote 48h — dès 530 $ USD' : '48h Pilot Sprint — from $530 USD'}
-          </span>
-          <ArrowUpRight className="w-3 h-3 text-[#CAA243] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </Link>
-      </div>
-
-      <div className="text-center mt-3 flex items-center justify-center gap-4 flex-wrap">
-        <Link
-          href="/services"
-          className="text-xs font-mono text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1 min-h-[48px] px-2 py-1"
-        >
-          <span>{isFr ? 'Découvrir nos 5 prestations →' : 'Explore 5 services →'}</span>
-        </Link>
-        <span className="text-[#9C9384] font-mono text-xs">•</span>
-        <Link
-          href="/formation"
-          className="text-xs font-mono text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1 min-h-[48px] px-2 py-1"
-        >
-          <GraduationCap className="w-3.5 h-3.5 text-[#CAA243]" />
-          <span>{isFr ? 'Masterclass Cinéma IA →' : 'AI Cinema Masterclass →'}</span>
-        </Link>
-      </div>
+      {/* Discrete Secondary Link: Voir les tarifs */}
+      <Link
+        href="/tarifs"
+        className="text-xs font-mono text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1 min-h-[44px] px-2 py-1"
+      >
+        <span>{isFr ? 'Voir les tarifs →' : 'View pricing →'}</span>
+      </Link>
     </div>
   );
 }

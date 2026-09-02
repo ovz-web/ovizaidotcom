@@ -4,13 +4,16 @@ import React, { useState, useEffect } from 'react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
+import VideoSection from '@/components/VideoSection';
 import CommandMenu from '@/components/CommandMenu';
 import HeroActions from '@/components/HeroActions';
+import TrustSection from '@/components/TrustSection';
 import NewsletterForm from '@/components/NewsletterForm';
 import Toast from '@/components/Toast';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
+import { YOUTUBE_VIDEOS } from '@/lib/videos';
 
 export default function Home() {
   const { lang, toggleLanguage } = useLanguage();
@@ -42,22 +45,32 @@ export default function Home() {
         onSelectCurrency={setCurrency}
       />
 
-      {/* Main Content Area with Compensatory Padding Top */}
+      {/* Main Content Area */}
       <main className="flex-grow relative z-10 pt-16 sm:pt-20">
         {/* 2. Minimalist Hero Section */}
         <HeroBrutalist lang={lang} />
 
-        {/* 3. Central Bento Command Card Hub */}
+        {/* 3. Showreel & Visual Proof Video Section */}
+        <VideoSection
+          lang={lang}
+          video1YoutubeId={YOUTUBE_VIDEOS.homeShowreel1}
+          video2YoutubeId={YOUTUBE_VIDEOS.homeShowreel2}
+        />
+
+        {/* 4. Central Bento Command Card Hub */}
         <CommandMenu lang={lang} onShowToast={showToast} />
 
-        {/* 4. Action Buttons (Services + & Masterclass +) */}
+        {/* 5. Primary CTA Action Button */}
         <HeroActions lang={lang} />
 
-        {/* 4. Newsletter & Free Prompts Capture */}
+        {/* 6. Factual Trust & Method Section */}
+        <TrustSection lang={lang} />
+
+        {/* 7. Newsletter & Free Prompts Capture */}
         <NewsletterForm lang={lang} onShowToast={showToast} />
       </main>
 
-      {/* 5. Footer with social links & legal */}
+      {/* 8. Footer with social links & legal */}
       <Footer lang={lang} onShowToast={showToast} />
 
       {/* Gold Toast Notification Bar */}

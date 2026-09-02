@@ -66,7 +66,7 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
           </div>
 
           <span className="mono text-xs text-[#CAA243] font-bold">
-            {isOpen ? (isFr ? '[Masquer -]' : '[Hide -]') : (isFr ? '[Afficher +]' : '[Show +]')}
+            {isOpen ? (isFr ? 'Masquer -' : 'Hide -') : (isFr ? 'Afficher +' : 'Show +')}
           </span>
         </button>
 
