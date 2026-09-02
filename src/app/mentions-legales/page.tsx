@@ -38,7 +38,7 @@ export default function MentionsLegalesPage() {
                 Le site <strong>OVIZai</strong> (accessible à l’adresse <a href="https://ovizai.com" className="text-[#CAA243] underline">https://ovizai.com</a>) est édité par l’équipe OVIZai Studio.
               </p>
               <p className="mt-2">
-                <strong>Contact E-mail :</strong> <a href="mailto:cinemaaistudio.contact@gmail.com" className="text-[#CAA243] underline">cinemaaistudio.contact@gmail.com</a>
+                <strong>Contact E-mail :</strong> <a href="mailto:contact@ovizai.com" className="text-[#CAA243] underline">contact@ovizai.com</a>
               </p>
             </section>
 

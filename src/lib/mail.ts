@@ -20,7 +20,7 @@ export interface MasterclassSalePayload {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TEAM_NOTIFICATION_EMAIL = process.env.TEAM_NOTIFICATION_EMAIL || 'cinemaaistudio.contact@gmail.com';
+const TEAM_NOTIFICATION_EMAIL = process.env.TEAM_NOTIFICATION_EMAIL || 'contact@ovizai.com';
 const SENDER_EMAIL = process.env.RESEND_SENDER_EMAIL || 'OVIZai <contact@ovizai.com>';
 
 /**
@@ -210,7 +210,7 @@ export async function sendMasterclassWelcome(email: string, name?: string) {
         </div>
       </div>
 
-      <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">Pour toute question, contactez notre équipe support : <a href="mailto:cinemaaistudio.contact@gmail.com" style="color: #CAA243; text-decoration: underline;">cinemaaistudio.contact@gmail.com</a></p>
+      <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">Pour toute question, contactez notre équipe support : <a href="mailto:contact@ovizai.com" style="color: #CAA243; text-decoration: underline;">contact@ovizai.com</a></p>
 
       <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">À très bientôt,<br/><strong style="color: #ECE4D3;">L'équipe OVIZai Studio</strong></p>
     </div>

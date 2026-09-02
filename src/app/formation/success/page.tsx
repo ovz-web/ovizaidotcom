@@ -76,10 +76,10 @@ export default function FormationSuccessPage() {
               <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#8c8375] font-mono">
                 <span>{isFr ? 'Support direct :' : 'Direct Support:'}</span>
                 <a
-                  href="mailto:cinemaaistudio.contact@gmail.com"
+                  href="mailto:contact@ovizai.com"
                   className="text-[#CAA243] hover:underline"
                 >
-                  cinemaaistudio.contact@gmail.com
+                  contact@ovizai.com
                 </a>
               </div>
             </div>

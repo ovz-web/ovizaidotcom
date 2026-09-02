@@ -70,7 +70,7 @@ export default function ConfidentialitePage() {
                 Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d’un droit d’accès, de rectification, de suppression et de portabilité de vos données.
               </p>
               <p className="mt-2">
-                Pour exercer vos droits, contactez-nous à : <a href="mailto:cinemaaistudio.contact@gmail.com" className="text-[#CAA243] underline">cinemaaistudio.contact@gmail.com</a>.
+                Pour exercer vos droits, contactez-nous à : <a href="mailto:contact@ovizai.com" className="text-[#CAA243] underline">contact@ovizai.com</a>.
               </p>
             </section>
 
