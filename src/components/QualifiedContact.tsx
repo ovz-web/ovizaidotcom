@@ -136,20 +136,7 @@ export default function QualifiedContact({
     <section id="contact" className="max-w-2xl mx-auto mb-14 px-4">
       {/* Card Wrapper */}
       <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl">
-        {/* Header */}
         <div className="text-center mb-6">
-          <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-            {isFr ? '04 // DEVIS & BRIEF QUALIFIÉ' : '04 // QUALIFIED QUOTE & BRIEF'}
-          </p>
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
-            {isFr ? 'DÉMARRER UN PROJET' : 'START A PROJECT'}
-          </h2>
-          <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto mb-3">
-            {isFr
-              ? 'Formulaire simple en 3 étapes. Réponse et devis gratuit sous 24h à 48h ouvrées.'
-              : 'Simple 3-step form. Free quote and response within 24 to 48 business hours.'}
-          </p>
-
           {/* 3-Step Indicator Bar */}
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
             <span>{isFr ? '1. Projet' : '1. Project'}</span>

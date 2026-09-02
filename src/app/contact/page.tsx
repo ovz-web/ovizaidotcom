@@ -1,11 +1,10 @@
 'use client';
 
 import React, { Suspense, useState } from 'react';
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
+import PageHeader from '@/components/PageHeader';
 import QualifiedContact from '@/components/QualifiedContact';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
@@ -38,16 +37,17 @@ function ContactPageContent() {
       />
 
       <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-12">
-        <div className="max-w-3xl mx-auto px-4">
-<Link
-  href="/"
-  className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors mb-6"
->
-  <ArrowLeft className="w-3.5 h-3.5" />
-  <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
-</Link>
-
-        </div>
+        {/* Standardized Unified Page Header */}
+        <PageHeader
+          lang={lang}
+          eyebrow={isFr ? '05 // DEVIS & CONTACT DIRECT' : '05 // DIRECT QUOTE & CONTACT'}
+          title={isFr ? 'Démarrer un Projet Vidéo IA' : 'Start an AI Video Project'}
+          subtitle={
+            isFr
+              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h.'
+              : 'Submit your brief in 3 simple steps and get a proposal within 24h.'
+          }
+        />
 
         <QualifiedContact
           lang={lang}

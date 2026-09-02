@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
+import PageHeader from '@/components/PageHeader';
 import ServicesGrid from '@/components/ServicesGrid';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
@@ -33,16 +33,20 @@ export default function ServicesPage() {
       />
 
       <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-12">
-        <div className="max-w-3xl mx-auto px-4 mb-6 space-y-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{isFr ? 'Retour Accueil' : 'Back Home'}</span>
-          </Link>
+        {/* 1. Standardized Unified Page Header */}
+        <PageHeader
+          lang={lang}
+          eyebrow={isFr ? '01 // PRESTATIONS & PRODUCTION' : '01 // SERVICES & PRODUCTION'}
+          title={isFr ? 'Prestations & Direction Artistique IA' : 'Services & AI Art Direction'}
+          subtitle={
+            isFr
+              ? 'De la conception au master final, des films conçus pour votre marque.'
+              : 'From concept to final master, films crafted for your brand.'
+          }
+        />
 
-          {/* Segmented 2-option tab: Prestations & Services | Tarifs & Formules */}
+        {/* 2. Segmented 2-option tab AFTER PageHeader */}
+        <div className="max-w-3xl mx-auto px-4 mb-6">
           <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-white/[0.08] mono text-xs w-full">
             <Link
               href="/services"
@@ -59,6 +63,7 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        {/* 3. Main Services Content */}
         <ServicesGrid
           lang={lang}
           currency={currency}
@@ -69,7 +74,7 @@ export default function ServicesPage() {
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />
 
-      {/* Sticky Mobile CTA — visible only on small screens */}
+      {/* Sticky Mobile CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none">
         <Link
           href="/contact?service=sprint&type=pub-brand&budget=tier-0"

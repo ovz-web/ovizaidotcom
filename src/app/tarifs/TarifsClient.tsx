@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Clock, Check, HelpCircle, Zap, ShieldCheck } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
+import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
@@ -245,28 +246,21 @@ export default function TarifsClient() {
       />
 
       <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-16">
+        {/* Standardized Unified Page Header */}
+        <PageHeader
+          lang={lang}
+          eyebrow={isFr ? '04 // TARIFS & FORMULES DE LANCEMENT' : '04 // PRICING & LAUNCH PACKAGES'}
+          title={isFr ? 'Tarifs & Formules de Production' : 'Production Pricing & Packages'}
+          subtitle={
+            isFr
+              ? 'Deux parcours clairs pour vos projets, avec révisions et délais garantis.'
+              : 'Two clear pathways for your projects, with guaranteed revisions and delivery.'
+          }
+        />
+
         <div className="max-w-4xl mx-auto px-4">
-
-          {/* Back link */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-[#9C9384] hover:text-[#CAA243] transition-colors mb-8 min-h-[48px] py-2"
-          >
-            <ArrowLeft className="w-3 h-3" />
-            <span>{t.back}</span>
-          </Link>
-
-          {/* ── Eyebrow + Title ──────────────────────────────────────── */}
-          <p className="text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] mb-3 font-mono font-bold">
-            {t.eyebrow}
-          </p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#ECE4D3] leading-snug mb-3">
-            {t.title}{' '}
-            <span className="text-gold-gradient text-gold-glow">{t.titleHighlight}</span>
-          </h1>
-
-          {/* Market reference */}
-          <p className="text-xs text-[#9C9384] leading-relaxed mb-10 border-l-2 border-[#CAA243]/40 pl-3.5">
+          {/* Market reference note */}
+          <p className="text-xs text-[#9C9384] leading-relaxed mb-8 border-l-2 border-[#CAA243]/40 pl-3.5 max-w-2xl mx-auto">
             {t.marketRef}
           </p>
 

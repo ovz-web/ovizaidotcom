@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
+import PageHeader from '@/components/PageHeader';
 import MasterclassSection from '@/components/MasterclassSection';
 import AIPipeline from '@/components/AIPipeline';
 import Footer from '@/components/Footer';
@@ -108,15 +109,17 @@ export default function FormationPage() {
       />
 
       <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-12">
-        <div className="max-w-3xl mx-auto px-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors mb-6"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{lang === 'fr' ? 'Retour Accueil' : 'Back Home'}</span>
-          </Link>
-        </div>
+        {/* Standardized Unified Page Header */}
+        <PageHeader
+          lang={lang}
+          eyebrow={lang === 'fr' ? '02 // FORMATION & MASTERCLASS VIDÉO' : '02 // VIDEO MASTERCLASS & PROGRAM'}
+          title={lang === 'fr' ? 'Masterclass Cinéma & Vidéo IA' : 'AI Cinema & Video Masterclass'}
+          subtitle={
+            lang === 'fr'
+              ? '5 modules pratiques pour maîtriser le pipeline de production vidéo 4K.'
+              : '5 practical modules to master the 4K video production pipeline.'
+          }
+        />
 
         {/* The 5 Masterclass Modules */}
         <MasterclassSection
