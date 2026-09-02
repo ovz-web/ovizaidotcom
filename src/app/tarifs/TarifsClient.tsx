@@ -120,15 +120,15 @@ const CUSTOM_SERVICES_SUMMARY = [
 const copy = {
   fr: {
     back: 'Retour Accueil',
-    eyebrow: 'GRILLE TARIFAIRE & FORMULES DE PRODUCTION',
-    title: "Le même niveau de rendu qu'une production traditionnelle",
-    titleHighlight: "sans le tournage, sans l'attente.",
+    eyebrow: '04 // TARIFS & FORMULES DE LANCEMENT',
+    title: 'Tarifs & Formules de Production',
+    titleHighlight: '',
     marketRef:
-      "Une vidéo de marque professionnelle classique (crew, tournage, montage) coûte entre 5 000 € et 30 000 € en agence traditionnelle — jusqu'à 75 000 € pour un film haut de gamme — avec un délai habituel de 2 à 6 semaines entre le brief et la livraison.",
+      'Une vidéo de marque traditionnelle coûte de 5 000 € à 30 000 € et exige 2 à 6 semaines de tournage.',
     sectionA: 'Chemin A — Commande immédiate',
-    sectionASub: 'Formules clés en main pour un besoin rapide ou une première collaboration.',
+    sectionASub: 'Formules clés en main pour un besoin rapide ou un premier projet.',
     sectionB: 'Chemin B — Sur-mesure, devis sous 24h',
-    sectionBSub: 'Projets complexes et productions d’envergure sur devis personnalisé.',
+    sectionBSub: 'Projets complexes et productions d’envergure sur devis.',
     comparison:
       "À titre de référence de marché : la production vidéo IA réduit le coût par vidéo de 70 à 90 % par rapport à la production traditionnelle en éliminant les coûts d'équipe, de matériel et de studio — une fourchette documentée dans les études sectorielles sur l'adoption de l'IA en production audiovisuelle.",
     faqTitle: 'Questions fréquentes',

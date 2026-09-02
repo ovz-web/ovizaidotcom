@@ -21,12 +21,12 @@ const PIPELINE_STEPS = [
       en: '01. Art Direction & Character Design',
     },
     benefit: {
-      fr: 'Définition de l’univers visuel, des éclairages et création de personnages uniques à la cohérence parfaite d’un plan à l’autre.',
-      en: 'Definition of the visual universe, lighting, and creation of unique characters with perfect consistency across every shot.',
+      fr: 'Création de l’univers visuel et de personnages uniques, constants d’un plan à l’autre.',
+      en: 'Creation of custom visual universes and characters with shot-to-shot consistency.',
     },
     techBadge: {
-      fr: 'Moteurs visuels : Midjourney & Flux.1',
-      en: 'Visual engines: Midjourney & Flux.1',
+      fr: 'Midjourney & Flux.1',
+      en: 'Midjourney & Flux.1',
     },
     icon: Cpu,
   },
@@ -34,16 +34,16 @@ const PIPELINE_STEPS = [
     stepNum: '02',
     id: 'step-motion',
     title: {
-      fr: '02. Animation & Physique des Mouvements',
+      fr: '02. Animation & Mouvements',
       en: '02. Animation & Natural Motion',
     },
     benefit: {
-      fr: 'Simulation réaliste des mouvements : tissus qui bougent naturellement, fluides, éclairages dynamiques et scènes d’action fluides.',
-      en: 'Realistic motion simulation: naturally moving fabrics, fluids, dynamic lighting, and fluid action sequences.',
+      fr: 'Animation réaliste des mouvements, des fluides et des éclairages dynamiques.',
+      en: 'Realistic animation of motion, fluids, and dynamic lighting.',
     },
     techBadge: {
-      fr: 'Moteur physique : Kling AI',
-      en: 'Physics engine: Kling AI',
+      fr: 'Kling AI',
+      en: 'Kling AI',
     },
     icon: Zap,
   },
@@ -55,12 +55,12 @@ const PIPELINE_STEPS = [
       en: '03. Camera & Scene Direction',
     },
     benefit: {
-      fr: 'Mouvements de caméra cinématographiques (panoramiques, travellings, zooms) pour cadrer et rythmer chaque scène comme un vrai film.',
-      en: 'Cinematic camera movements (panning, tracking shots, zooms) framing and pacing every scene like a feature film.',
+      fr: 'Mouvements de caméra cinématographiques (panoramiques, travellings) pour rythmer le récit.',
+      en: 'Cinematic camera motion (panning, tracking shots) pacing the story.',
     },
     techBadge: {
-      fr: 'Contrôle 3D : Runway Gen-3',
-      en: '3D control: Runway Gen-3',
+      fr: 'Runway Gen-3',
+      en: 'Runway Gen-3',
     },
     icon: Layers,
   },
@@ -68,16 +68,16 @@ const PIPELINE_STEPS = [
     stepNum: '04',
     id: 'step-grading',
     title: {
-      fr: '04. Étalonnage Couleur & Master 4K',
+      fr: '04. Étalonnage & Master 4K',
       en: '04. Color Grading & 4K Master',
     },
     benefit: {
-      fr: 'Calibrage colorimétrique de qualité cinéma, émulation du grain 35mm, sound design spatialisé et livraison du Master final 4K.',
-      en: 'Cinema-grade color calibration, 35mm film grain emulation, spatial audio design, and final 4K Master delivery.',
+      fr: 'Étalonnage cinéma, émulation du grain 35mm, sound design et master final 4K.',
+      en: 'Cinema color grading, 35mm film grain, spatial audio design, and 4K master.',
     },
     techBadge: {
-      fr: 'Post-production : DaVinci Resolve Studio',
-      en: 'Post-production: DaVinci Resolve Studio',
+      fr: 'DaVinci Resolve Studio',
+      en: 'DaVinci Resolve Studio',
     },
     icon: Sliders,
   },
@@ -96,15 +96,15 @@ export default function AIPipeline({
       {/* Section Title */}
       <div className="mb-6 text-center">
         <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-          {customEyebrow || (isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD')}
+          {customEyebrow || (isFr ? '03 // NOTRE PIPELINE DE PRODUCTION' : '03 // OUR PRODUCTION PIPELINE')}
         </p>
         <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-2">
           {customTitle || (isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master')}
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
           {isFr
-            ? '4 étapes claires combinant les meilleures technologies génératives et logiciels de post-production cinéma.'
-            : '4 clear steps combining top generative technologies and cinema post-production tools.'}
+            ? '4 étapes combinant les meilleures technologies IA et la post-production cinéma.'
+            : '4 steps combining top generative AI and cinema post-production.'}
         </p>
       </div>
 
@@ -163,7 +163,7 @@ export default function AIPipeline({
             </Link>
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-black/50 border border-white/[0.12] hover:border-[#CAA243] text-[#ECE4D3] hover:text-[#CAA243] px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
             >
               <span>{isFr ? 'Demander un devis 24h →' : 'Request 24h quote →'}</span>
             </Link>

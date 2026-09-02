@@ -18,31 +18,31 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       num: '01',
       title: { fr: 'Brief & Storyboard', en: 'Brief & Storyboard' },
       desc: {
-        fr: 'Définition de votre vision, intention créative, style visuel et découpage plan par plan.',
-        en: 'Definition of creative vision, visual style, moodboards, and shot-by-shot outline.'
+        fr: 'Définition de la vision créative, du style visuel et découpage plan par plan.',
+        en: 'Definition of creative vision, visual style, and shot outline.'
       }
     },
     {
       num: '02',
       title: { fr: 'Génération Moteurs IA', en: 'AI Generation Pipeline' },
       desc: {
-        fr: 'Création des images clés et animation (Midjourney v6.1, Flux.1, Kling AI, Runway Gen-3).',
-        en: 'Master keyframe creation and motion synthesis (Midjourney v6.1, Flux.1, Kling, Runway).'
+        fr: 'Création des visuels clés et animation (Midjourney, Flux, Kling, Runway).',
+        en: 'Master keyframe creation and motion synthesis (Midjourney, Flux, Kling, Runway).'
       }
     },
     {
       num: '03',
       title: { fr: 'Post-Production Cinéma', en: 'Pro Post-Production' },
       desc: {
-        fr: 'Étalonnage colorimétrique DaVinci Resolve Studio, sound design et upscale 4K/8K.',
-        en: 'DaVinci Resolve Studio ACES color grading, spatial sound design, and 4K/8K upscale.'
+        fr: 'Étalonnage DaVinci Resolve Studio, sound design et upscale master 4K.',
+        en: 'DaVinci Resolve Studio color grading, sound design, and 4K master.'
       }
     },
     {
       num: '04',
       title: { fr: 'Livraison & Révisions', en: 'Delivery & Revisions' },
       desc: {
-        fr: 'Livraison du Master et ajustements selon les rounds de révision inclus par contrat.',
+        fr: 'Livraison du Master et ajustements selon les rounds de révision inclus.',
         en: 'Master export delivery and adjustments covered by included revision rounds.'
       }
     }
@@ -61,8 +61,8 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
           {isFr
-            ? 'Transparence totale : nous privilégions des garanties réelles et un workflow rigoureux plutôt que des avis artificiels.'
-            : 'Total transparency: we focus on real guarantees and a documented workflow over artificial social proof.'}
+            ? 'Transparence totale : des garanties réelles et un workflow rigoureux.'
+            : 'Total transparency: real guarantees and a documented workflow.'}
         </p>
       </div>
 
@@ -82,8 +82,8 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
             </h3>
             <p className="text-xs text-[#9C9384] leading-relaxed">
               {isFr
-                ? 'OVIZai est un studio indépendant en phase de lancement. Nous appliquons une méthodologie de production vidéo IA documentée et un contrôle qualité rigoureux sur chaque projet.'
-                : 'OVIZai is an independent studio currently launching. We apply a documented AI video production methodology and strict quality control on every project.'}
+                ? 'Studio indépendant spécialisé en cinéma IA, avec contrôle qualité sur chaque projet.'
+                : 'Independent AI cinema studio with quality control on every project.'}
             </p>
           </div>
           <div className="mt-4 pt-3 border-t border-white/[0.06] text-[10.5px] font-mono text-[#8C8375]">
@@ -167,7 +167,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
               {isFr ? 'Interlocuteur Direct & Réponse 24h' : 'Direct Contact & 24h Response'}
             </h4>
             <p className="text-[11px] text-[#8C8375] mt-0.5 leading-relaxed">
-              {isFr ? 'Pas d’intermédiaire ni d’assistant automatisé — échange direct sur votre projet.' : 'No middleman or automated assistant — direct conversation about your project.'}
+              {isFr ? 'Échange direct avec la direction artistique sur votre projet.' : 'Direct exchange with art direction on your project.'}
             </p>
           </div>
         </div>

@@ -31,16 +31,16 @@ const FIVE_SERVICES = [
       en: 'Film & Series Direction'
     },
     tagline: {
-      fr: 'Des films et séries à forte valeur visuelle, de l\'écriture au master final.',
-      en: 'Films and series with high visual production value, from writing to final master.'
+      fr: 'Films et séries cinématographiques, du script au master final.',
+      en: 'Cinematic films and series, from script to final master.'
     },
     description: {
-      fr: 'Nous prenons en charge l\'ensemble de la chaîne de production : développement du concept, écriture, storyboard, génération des plans 8K, montage rythmé et étalonnage cinématographique.',
-      en: 'We manage the entire production pipeline: concept development, scriptwriting, storyboarding, 8K shot generation, editing, and cinematic color grading.'
+      fr: 'Prise en charge complète : écriture, storyboard, génération 8K, montage et étalonnage.',
+      en: 'Full production management: script, storyboard, 8K generation, editing, and color grading.'
     },
     deliverables: {
-      fr: ['Concept & écriture', 'Storyboard numérique', 'Génération des plans', 'Montage & étalonnage ACES (calibrage couleur de qualité cinéma)', 'Sound design spatialisé', 'Livraison multi-formats'],
-      en: ['Concept & Script', 'Digital Storyboard', 'Shot Generation', 'ACES Editing & Grading (cinema-grade color calibration)', 'Spatial Sound Design', 'Multi-Format Delivery']
+      fr: ['Concept & écriture', 'Storyboard numérique', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
+      en: ['Concept & Script', 'Digital Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
     minUsd: 8000,
     maxUsd: 15000,
@@ -54,12 +54,12 @@ const FIVE_SERVICES = [
       en: 'Music Videos & Stage Visualisers'
     },
     tagline: {
-      fr: 'Des clips musicaux et scénographies à l\'esthétique unique, pensés pour marquer les esprits.',
-      en: 'Unique aesthetic music videos and stage visualisers engineered to make an impact.'
+      fr: 'Clips musicaux et scénographies à l\'esthétique sur-mesure.',
+      en: 'Custom music videos and stage visualisers.'
     },
     description: {
-      fr: 'De la direction artistique à la livraison finale, nous créons des clips vidéo qui subliment l\'univers de l\'artiste. Moodboards, séquences animées et scénographies de scène.',
-      en: 'From art direction to final delivery, we create music videos that elevate the artist\'s universe. Moodboards, animated sequences, and stage visualisers.'
+      fr: 'Création de clips et visuels de scène qui subliment l\'univers visuel des artistes.',
+      en: 'Creation of music videos and stage visuals elevating the artist\'s identity.'
     },
     deliverables: {
       fr: ['Direction artistique', 'Moodboard & références', 'Séquences animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
@@ -77,12 +77,12 @@ const FIVE_SERVICES = [
       en: 'Commercials & Brand Content'
     },
     tagline: {
-      fr: 'Des campagnes publicitaires percutantes, produites plus vite et avec une créativité sans limite.',
-      en: 'High-impact advertising campaigns produced faster with unlimited creative freedom.'
+      fr: 'Spots publicitaires et contenus de marque produits plus vite.',
+      en: 'Commercial spots and brand content produced faster.'
     },
     description: {
-      fr: 'Spots publicitaires, contenus de marque et formats courts réseaux sociaux. Nous concevons des publicités sur-mesure intégrant votre charte de marque.',
-      en: 'Commercial spots, brand content, and short social formats. We design custom ads integrating your brand guidelines.'
+      fr: 'Publicités et spots sur-mesure intégrés à votre charte de marque.',
+      en: 'Tailored commercial spots aligned with your brand identity.'
     },
     deliverables: {
       fr: ['Concept publicitaire', 'Script & storyboard', 'Production visuelle rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
@@ -100,12 +100,12 @@ const FIVE_SERVICES = [
       en: 'Art Direction & Brand Universes'
     },
     tagline: {
-      fr: 'Nous façonnons l\'identité visuelle complète de votre marque, du concept à l\'univers visuel.',
-      en: 'We shape your brand\'s complete visual identity from concept to visual universe.'
+      fr: 'Façonnez l\'identité visuelle complète de votre marque.',
+      en: 'Shape your brand\'s complete visual identity.'
     },
     description: {
-      fr: 'Direction artistique globale, création d\'univers visuels, chartes graphiques et visuels clés pour marques et artistes.',
-      en: 'Global art direction, visual universe creation, brandbooks, and key visuals for brands and artists.'
+      fr: 'Direction artistique globale, univers visuels et visuels clés 8K.',
+      en: 'Global art direction, custom visual universes, and 8K key visuals.'
     },
     deliverables: {
       fr: ['Direction artistique globale', 'Univers visuel sur-mesure', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
@@ -123,12 +123,12 @@ const FIVE_SERVICES = [
       en: 'Custom Web & Digital Platforms'
     },
     tagline: {
-      fr: 'Des sites web sur-mesure (Next.js / React), à l\'image de votre univers et optimisés pour convertir.',
-      en: 'Custom Next.js/React websites aligned with your aesthetic and engineered for conversion.'
+      fr: 'Sites web sur-mesure (Next.js / React) optimisés pour la conversion.',
+      en: 'Custom Next.js/React websites engineered for conversion.'
     },
     description: {
-      fr: 'Conception et développement de sites vitrines et landing pages. Design sur-mesure dark luxury, intégration responsive mobile-first, animations fluides et SEO.',
-      en: 'Design and development of immersive portfolios and high-performance landing pages. Dark luxury design, mobile-first responsive integration, smooth animations, and SEO.'
+      fr: 'Design dark luxury, animations fluides et intégration responsive haute performance.',
+      en: 'Dark luxury design, fluid animations, and high-performance responsive web engineering.'
     },
     deliverables: {
       fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
@@ -140,16 +140,16 @@ const FIVE_SERVICES = [
   }
 ];
 
-const SHOWCASE_VIDEOS: VideoItem[] = [
+const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   {
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
     title: {
-      fr: 'Showreel Production & Films de Marque',
-      en: 'Brand Films & Commercial Showreel',
+      fr: 'Films Publicitaires & Direction Artistique IA',
+      en: 'Commercial Films & AI Art Direction',
     },
     description: {
-      fr: 'Aperçu de nos réalisations visuelles, spots publicitaires et univers générés par IA.',
-      en: 'Overview of our visual productions, commercial spots, and AI-generated universes.',
+      fr: 'Aperçu de nos réalisations visuelles et univers générés par IA.',
+      en: 'Overview of our visual productions and AI-generated universes.',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'pub-brand-content',
@@ -162,8 +162,8 @@ const SHOWCASE_VIDEOS: VideoItem[] = [
       en: 'Music Videos & Stage Visualisers',
     },
     description: {
-      fr: 'Démonstrations de nos créations pour artistes, clips musicaux et scénographies scéniques.',
-      en: 'Showcase of our creations for musical artists, music videos, and stage visualisers.',
+      fr: 'Démonstrations de nos créations pour artistes et scénographies scéniques.',
+      en: 'Showcase of our creations for artists and stage visualisers.',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'clips-visualisers',
@@ -188,21 +188,8 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
 
   return (
     <section id="services" className="max-w-3xl mx-auto mb-14 px-4">
-      {/* Section Header */}
+      {/* Section Header: Currency Switcher Bar */}
       <div className="mb-6 text-center">
-        <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-          {isFr ? '01 // PÔLES D’EXPERTISE & PRESTATIONS' : '01 // SERVICES & CORE PILLARS'}
-        </p>
-        <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-2">
-          {isFr ? 'CE QUE NOUS FAISONS' : 'WHAT WE DO'}
-        </h2>
-        <p className="text-xs sm:text-sm text-[#9C9384] max-w-md mx-auto mb-4">
-          {isFr
-            ? 'De la conception à la livraison finale, nous mettons l’intelligence artificielle au service de votre vision.'
-            : 'From concept to final delivery, we put generative AI at the service of your creative vision.'}
-        </p>
-
-        {/* Currency Switcher */}
         <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
           <span className="text-[10px] text-[#9C9384] px-2 font-mono">
             {isFr ? 'Devise :' : 'Currency:'}
@@ -224,81 +211,82 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
         </div>
       </div>
 
-      {/* Accordion / Details Grid */}
+      {/* Grid of 5 Services */}
       <div className="space-y-4 mb-12">
         {FIVE_SERVICES.map(service => {
+          const IconComp = service.icon;
           const isOpen = openService === service.id;
-          const currentPriceRange = formatRange(service.minUsd, service.maxUsd, activeCurrency);
-          const mappedTarget = SERVICE_TYPE_MAP[service.id] || { type: 'pub-brand', budget: 'tier-2' };
+          const mapInfo = SERVICE_TYPE_MAP[service.id];
+          const quoteHref = mapInfo
+            ? `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`
+            : '/contact';
+
+          const priceFormatted = formatRange(service.minUsd, service.maxUsd, activeCurrency);
 
           return (
             <div
               key={service.id}
-              className={`border transition-all duration-300 rounded-xl overflow-hidden bg-[#0B0A08]/90 backdrop-blur-md ${
-                isOpen
-                  ? 'border-[#CAA243]/50 shadow-[0_0_25px_rgba(202,162,67,0.12)]'
-                  : 'border-white/[0.08] hover:border-[#CAA243]/30'
+              className={`ovizai-card transition-all duration-300 ${
+                isOpen ? 'border-[#CAA243]/50 bg-black/80' : 'hover:border-[#CAA243]/30'
               }`}
             >
-              {/* Header Toggle Row */}
+              {/* Header Button (Click to Expand) */}
               <button
-                id={`btn-${service.id}`}
                 type="button"
                 onClick={() => toggleService(service.id)}
-                aria-expanded={isOpen}
-                aria-controls={`panel-${service.id}`}
-                className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer transition-colors gap-2.5 sm:gap-4 min-h-[48px]"
+                className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
               >
-                <div className="flex items-center gap-3.5 min-w-0 pr-2">
-                  <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2 py-1 rounded flex-shrink-0">
-                    {service.number}
-                  </span>
+                <div className="flex items-start gap-4 min-w-0">
+                  <div className="p-3 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
+                    <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
                   <div className="min-w-0">
-                    <h3 className="mono text-sm sm:text-base font-bold text-[#ECE4D3] group-hover:text-[#f0c869] truncate">
-                      {service.title[lang]}
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="mono text-[10px] text-[#CAA243] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
+                        {service.number} // PÔLE
+                      </span>
+                      <span className="mono text-[10px] text-[#9C9384]">
+                        {priceFormatted}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-base sm:text-lg font-bold text-[#ECE4D3] leading-snug">
+                      {isFr ? service.title.fr : service.title.en}
                     </h3>
-                    <p className="text-xs text-[#9C9384] mt-0.5 truncate hidden sm:block">
-                      {service.tagline[lang]}
+                    <p className="text-xs text-[#9C9384] mt-1 leading-relaxed">
+                      {isFr ? service.tagline.fr : service.tagline.en}
                     </p>
                   </div>
                 </div>
 
-                {/* Price & Toggle Icon Container */}
-                <div className="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
-                  <span className="mono text-[10.5px] px-2.5 py-1 rounded bg-black/60 border border-white/[0.08] text-[#CAA243] font-semibold">
-                    {currentPriceRange}
+                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
+                  <span className="mono text-[10px] uppercase text-[#CAA243] hidden sm:inline font-semibold">
+                    {isOpen ? (isFr ? 'Fermer' : 'Close') : (isFr ? 'Détails' : 'Details')}
                   </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#CAA243] transition-transform duration-300 ${
-                      isOpen ? 'rotate-180' : 'rotate-0'
-                    }`}
-                  />
+                  <div className={`p-1.5 rounded-lg border border-white/[0.08] bg-black/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#CAA243]' : 'text-[#8C8375]'}`}>
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </div>
               </button>
 
-              {/* Expandable Content Body */}
+              {/* Collapsible Details */}
               {isOpen && (
-                <div
-                  id={`panel-${service.id}`}
-                  role="region"
-                  aria-labelledby={`btn-${service.id}`}
-                  className="px-4 pb-5 sm:px-5 sm:pb-6 pt-2 border-t border-white/[0.06] bg-black/40"
-                >
-                  <p className="text-xs sm:text-sm text-[#9C9384] leading-relaxed mb-4">
-                    {service.description[lang]}
-                  </p>
+                <div className="px-5 pb-6 sm:px-6 pt-2 border-t border-white/[0.06] space-y-5 animate-fadeIn">
+                  <div>
+                    <h4 className="mono text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2">
+                      {isFr ? 'Description du pôle :' : 'Scope of service:'}
+                    </h4>
+                    <p className="text-xs text-[#ECE4D3] leading-relaxed">
+                      {isFr ? service.description.fr : service.description.en}
+                    </p>
+                  </div>
 
-                  {/* Deliverables Grid */}
-                  <div className="mb-5">
-                    <h4 className="mono text-[11px] uppercase tracking-wider text-[#CAA243] font-bold mb-2.5 flex items-center gap-1.5">
-                      <span>◆</span> {isFr ? 'CE QUE COMPREND LA PRESTATION :' : 'INCLUDED DELIVERABLES:'}
+                  <div>
+                    <h4 className="mono text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2.5">
+                      {isFr ? 'Livrables inclus :' : 'Deliverables included:'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {service.deliverables[lang].map((item, idx) => (
-                        <div
-                          key={`${service.id}-deliv-${idx}`}
-                          className="flex items-center gap-2 text-xs text-[#ECE4D3]/90 bg-white/[0.02] border border-white/[0.06] p-2 rounded-lg"
-                        >
+                      {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-[#9C9384] bg-black/40 p-2 rounded-lg border border-white/[0.04]">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
                           <span>{item}</span>
                         </div>
@@ -306,18 +294,19 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                     </div>
                   </div>
 
-                  {/* Action CTA link */}
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/[0.06]">
-                    <span className="mono text-xs text-[#9C9384]">
-                      {isFr ? 'Budget indicatif :' : 'Estimated Budget:'}{' '}
-                      <strong className="text-[#CAA243]">{currentPriceRange}</strong>
-                    </span>
+                  {/* Footer CTAs inside card */}
+                  <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.06]">
+                    <div className="mono text-xs text-[#ECE4D3]">
+                      <span className="text-[#9C9384] mr-1.5">{isFr ? 'Budget estimé :' : 'Estimated budget:'}</span>
+                      <strong className="text-[#CAA243] font-bold">{priceFormatted}</strong>
+                    </div>
 
                     <Link
-                      href={`/contact?service=${service.id}&type=${mappedTarget.type}&budget=${mappedTarget.budget}`}
-                      className="inline-flex items-center gap-1 mono text-xs text-[#CAA243] hover:text-[#f0c869] transition-colors font-semibold py-1"
+                      href={quoteHref}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
                     >
-                      <span>{isFr ? 'Formulaire de devis qualifié →' : 'Qualified quote form →'}</span>
+                      <span>{isFr ? 'Configurer ce projet' : 'Configure project'}</span>
+                      <ArrowUpRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>
@@ -325,36 +314,15 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
             </div>
           );
         })}
-
-        {/* Single Main CTA for Custom Quotes */}
-        <div className="text-center mt-6">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
-          >
-            <span>{isFr ? 'Demander un devis sur-mesure (24h)' : 'Request custom quote (24h)'}</span>
-            <ArrowUpRight className="w-4 h-4 text-black" />
-          </Link>
-        </div>
       </div>
 
-      {/* Production Showcase Section */}
-      <div className="pt-6 border-t border-white/[0.08]">
-        <div className="text-center mb-6">
-          <p className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold mb-1">
-            {isFr ? 'EXEMPLES DE PRODUCTION & SHOWCASE' : 'PRODUCTION EXAMPLES & SHOWCASE'}
-          </p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#ECE4D3]">
-            {isFr ? 'Démonstrations visuelles de nos projets' : 'Visual showcase of our projects'}
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {SHOWCASE_VIDEOS.map((vid, i) => (
-            <VideoShowcase key={i} video={vid} lang={lang} />
-          ))}
-        </div>
-      </div>
+      {/* Video Showcase Section embedded at bottom of Services page */}
+      <VideoShowcase
+        lang={lang}
+        videos={SERVICES_SHOWCASE_VIDEOS}
+        eyebrow={isFr ? '02 // DÉMONSTRATIONS EN ACTION' : '02 // DEMONSTRATIONS IN ACTION'}
+        title={isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
+      />
     </section>
   );
 }

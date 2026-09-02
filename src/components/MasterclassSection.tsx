@@ -16,33 +16,33 @@ const MODULES = [
   {
     num: '01',
     title: { fr: 'Ingénierie de Prompts & Direction Visuelle 8K', en: 'Prompt Engineering & 8K Visual Direction' },
-    desc: { fr: 'Maîtriser Midjourney v6.1 et Flux.1 Dev pour générer des images cinématiques ultradétaillées.', en: 'Master Midjourney v6.1 and Flux.1 Dev to generate ultra-detailed cinematic imagery.' }
+    desc: { fr: 'Midjourney v6.1 et Flux.1 Dev pour générer des images cinématiques ultradétaillées.', en: 'Midjourney v6.1 and Flux.1 Dev for detailed cinematic imagery.' }
   },
   {
     num: '02',
     title: { fr: 'Cinéma Génératif & Caméra Virtuelle', en: 'Generative Cinema & Virtual Camera' },
-    desc: { fr: 'Contrôler Runway Gen-3 Alpha, Kling AI et Luma Dream Machine pour animer vos plans avec une fluidité 60fps.', en: 'Control Runway Gen-3 Alpha, Kling AI, and Luma Dream Machine for 60fps camera movements.' }
+    desc: { fr: 'Runway Gen-3 Alpha, Kling AI et Luma pour animer vos plans avec fluidité.', en: 'Runway Gen-3 Alpha, Kling AI, and Luma for smooth camera motion.' }
   },
   {
     num: '03',
     title: { fr: 'Post-Production & Upscaling 4K/8K', en: 'Post-Production & 4K/8K Upscaling' },
-    desc: { fr: 'Utiliser Topaz Video AI, DaVinci Resolve Studio et l’étalonnage colorimétrique ACES pour un rendu pro.', en: 'Leverage Topaz Video AI, DaVinci Resolve Studio, and ACES color grading for pro finish.' }
+    desc: { fr: 'Topaz Video AI, DaVinci Resolve Studio et étalonnage colorimétrique ACES.', en: 'Topaz Video AI, DaVinci Resolve Studio, and ACES color grading.' }
   },
   {
     num: '04',
     title: { fr: 'Sound Design & Doublage Voix IA', en: 'Sound Design & AI Voice Synchronization' },
-    desc: { fr: 'Créer des bandes-son immersives avec ElevenLabs, Suno v4 et Adobe Audition.', en: 'Build immersive soundtracks with ElevenLabs, Suno v4, and spatial audio editing.' }
+    desc: { fr: 'Bandes-son immersives et doublage vocal avec ElevenLabs et Suno v4.', en: 'Immersive soundtracks and voice dubbing with ElevenLabs and Suno v4.' }
   },
   {
     num: '05',
     title: { fr: 'Monétisation & Workflow Client Pro', en: 'Monetization & Professional Client Pipeline' },
-    desc: { fr: 'Structures de devis, gestion des droits d’auteur IA et méthodes pour signer vos premiers contrats.', en: 'Quote structures, AI copyright frameworks, and methods to land your first commercial contracts.' }
+    desc: { fr: 'Devis, gestion des droits d’auteur IA et méthodes pour signer vos contrats.', en: 'Quotes, AI copyright frameworks, and landing commercial contracts.' }
   }
 ];
 
 export default function MasterclassSection({ lang, currency: propCurrency }: MasterclassSectionProps) {
   const isFr = lang === 'fr';
-  const { currency: ctxCurrency, formatPrice } = useCurrency();
+  const { currency: ctxCurrency } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -126,8 +126,8 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
 
         <p className="text-xs sm:text-sm text-[#9C9384] leading-relaxed max-w-xl mb-6">
           {isFr
-            ? 'Une formation ultra-pratique conçue pour les créateurs, réalisateurs et directeurs artistiques souhaitant intégrer l’IA générative dans leurs productions.'
-            : 'An ultra-practical masterclass built for creators, directors, and art directors looking to integrate generative AI into high-end film pipelines.'}
+            ? 'Formation pratique pour intégrer l’IA générative dans vos productions vidéo.'
+            : 'Practical training to integrate generative AI into your video productions.'}
         </p>
 
         {/* Modules List */}

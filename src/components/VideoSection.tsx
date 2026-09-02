@@ -36,8 +36,8 @@ const DEFAULT_VIDEOS: VideoItem[] = [
       en: 'ART DIRECTION & CINEMATOGRAPHY',
     },
     description: {
-      fr: 'Aperçu de nos réalisations visuelles, publicités narratives et univers de marque générés par IA.',
-      en: 'Overview of our visual productions, narrative ads, and AI-generated brand visual universes.',
+      fr: 'Aperçu de nos publicités et univers de marque.',
+      en: 'Overview of our commercials and brand visual universes.',
     },
     badge: 'SHOWREEL 4K',
   },
@@ -53,8 +53,8 @@ const DEFAULT_VIDEOS: VideoItem[] = [
       en: 'MASTERCLASS & AI PIPELINE',
     },
     description: {
-      fr: 'Extrait de nos méthodes de génération Midjourney v6, Runway Gen-3, Kling et post-production 4K.',
-      en: 'Preview of our generation workflows in Midjourney v6, Runway Gen-3, Kling, and 4K post-production.',
+      fr: 'Extrait de nos méthodes de génération et post-production 4K.',
+      en: 'Preview of our generation and 4K post-production workflows.',
     },
     badge: 'MASTERCLASS DEMO',
   },
@@ -89,8 +89,8 @@ export default function VideoSection({
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
           {customSubtitle || (isFr
-            ? 'Découvrez nos productions vidéo et la qualité de nos workflows en vidéo 4K.'
-            : 'Discover our video productions and the quality of our 4K workflows.')}
+            ? 'Découvrez nos productions vidéo en 4K.'
+            : 'Discover our 4K video productions.')}
         </p>
       </div>
 
