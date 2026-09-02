@@ -77,7 +77,7 @@ export default function MentionsLegalesPage() {
         </div>
       </main>
 
-      <Footer lang="fr" onShowToast={() => {}} />
+      <Footer lang="fr" />
     </div>
   );
 }

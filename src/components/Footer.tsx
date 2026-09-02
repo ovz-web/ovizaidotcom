@@ -7,7 +7,7 @@ import { Language } from '@/types';
 
 interface FooterProps {
   lang: Language;
-  onShowToast: (msg: string) => void;
+  onShowToast?: (msg: string) => void;
 }
 
 export default function Footer({ lang, onShowToast }: FooterProps) {

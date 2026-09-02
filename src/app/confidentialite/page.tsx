@@ -77,7 +77,7 @@ export default function ConfidentialitePage() {
         </div>
       </main>
 
-      <Footer lang="fr" onShowToast={() => {}} />
+      <Footer lang="fr" />
     </div>
   );
 }

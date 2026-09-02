@@ -71,7 +71,7 @@ export default function CGVPage() {
         </div>
       </main>
 
-      <Footer lang="fr" onShowToast={() => {}} />
+      <Footer lang="fr" />
     </div>
   );
 }
