@@ -163,7 +163,11 @@ export default function QualifiedContact({
 
         {/* Persistent Visual Confirmation State Post-Submission (CHANTIER 3) */}
         {status === 'success' ? (
-          <div className="p-6 sm:p-8 rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]">
+          <div
+            role="status"
+            aria-live="polite"
+            className="p-6 sm:p-8 rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]"
+          >
             <CheckCircle2 className="w-12 h-12 text-[#CAA243] mx-auto animate-pulse" />
             <h3 className="mono text-lg font-extrabold text-[#ECE4D3] tracking-wide">
               {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
@@ -192,10 +196,10 @@ export default function QualifiedContact({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Step 1: Project Type Cards */}
-            <div>
-              <label className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
+            <fieldset>
+              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
                 {isFr ? '1. Type de prestation concernée :' : '1. Select Service Type:'}
-              </label>
+              </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {PROJECT_TYPES.map(pt => {
                   const Icon = pt.icon;
@@ -205,6 +209,7 @@ export default function QualifiedContact({
                     <button
                       key={pt.id}
                       type="button"
+                      aria-pressed={isSelected}
                       onClick={() => setSelectedProject(pt.id)}
                       className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
@@ -218,13 +223,13 @@ export default function QualifiedContact({
                   );
                 })}
               </div>
-            </div>
+            </fieldset>
 
             {/* Step 2: Dynamic Budget Cards */}
-            <div>
-              <label className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
+            <fieldset>
+              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
                 {isFr ? '2. Enveloppe budgétaire estimée :' : '2. Estimated Budget Range:'}
-              </label>
+              </legend>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {BUDGET_TIERS.map(tier => {
                   const isSelected = selectedBudget === tier.id;
@@ -234,6 +239,7 @@ export default function QualifiedContact({
                     <button
                       key={tier.id}
                       type="button"
+                      aria-pressed={isSelected}
                       onClick={() => setSelectedBudget(tier.id)}
                       className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
                         isSelected
@@ -246,16 +252,17 @@ export default function QualifiedContact({
                   );
                 })}
               </div>
-            </div>
+            </fieldset>
 
             {/* Step 3: Contact Inputs */}
             <div className="space-y-3 pt-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                  <label htmlFor="contact-name" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
                     {isFr ? 'Nom / Organisation :' : 'Name / Company:'}
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
@@ -265,10 +272,11 @@ export default function QualifiedContact({
                 </div>
 
                 <div>
-                  <label className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                  <label htmlFor="contact-email" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
                     {isFr ? 'Adresse E-mail * :' : 'Email Address *:'}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={email}
@@ -280,10 +288,11 @@ export default function QualifiedContact({
               </div>
 
               <div>
-                <label className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                <label htmlFor="contact-message" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
                   {isFr ? 'Détails du projet / Message :' : 'Project Brief / Message:'}
                 </label>
                 <textarea
+                  id="contact-message"
                   rows={3}
                   value={brief}
                   onChange={e => setBrief(e.target.value)}
@@ -294,7 +303,13 @@ export default function QualifiedContact({
             </div>
 
             {errorMsg && (
-              <p className="text-xs text-red-400 font-mono text-center">{errorMsg}</p>
+              <p
+                role="alert"
+                aria-live="polite"
+                className="text-xs text-red-400 font-mono text-center"
+              >
+                {errorMsg}
+              </p>
             )}
 
             {/* Submit Button */}

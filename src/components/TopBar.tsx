@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Globe, DollarSign, Youtube, Instagram, ArrowUpRight } from 'lucide-react';
 import { Language, Currency } from '@/types';
 
@@ -20,6 +21,7 @@ export default function TopBar({
 }: TopBarProps) {
   const isFr = lang === 'fr';
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
 
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
@@ -34,6 +36,23 @@ export default function TopBar({
     }
   };
 
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
+    burgerRef.current?.focus();
+  };
+
+  // Close drawer on Escape key
+  useEffect(() => {
+    if (!isDrawerOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDrawerOpen]);
+
   return (
     <>
       {/* 100% Fixed TopBar */}
@@ -41,10 +60,13 @@ export default function TopBar({
         <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-3">
           {/* Top-Left: Imposing Clean Logo Image Link */}
           <Link className="flex items-center py-0.5" href="/">
-            <img
+            <Image
               src="/logo.png"
               alt="OVIZai"
-              className="h-10 sm:h-12 w-auto object-contain mix-blend-screen drop-shadow-[0_0_12px_rgba(202,162,67,0.3)]"
+              width={120}
+              height={48}
+              className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_12px_rgba(202,162,67,0.3)]"
+              priority
             />
           </Link>
 
@@ -79,10 +101,12 @@ export default function TopBar({
             </button>
 
             <button
+              ref={burgerRef}
               type="button"
               onClick={() => setIsDrawerOpen(true)}
+              aria-expanded={isDrawerOpen}
+              aria-label={isFr ? 'Ouvrir le menu' : 'Open menu'}
               className="p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer"
-              aria-label="Ouvrir le menu"
             >
               <Menu className="w-5 h-5 text-[#ECE4D3]" />
             </button>
@@ -96,29 +120,37 @@ export default function TopBar({
           {/* Dimmed Backdrop */}
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
-            onClick={() => setIsDrawerOpen(false)}
+            onClick={closeDrawer}
           />
 
           {/* Compact Right Side Flyout Drawer */}
-          <aside className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08]/98 border-l border-white/[0.08] backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300">
+          <aside
+            role="dialog"
+            aria-modal="true"
+            aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
+            className="w-72 sm:w-80 fixed top-0 bottom-0 right-0 z-50 bg-[#0B0A08]/98 border-l border-white/[0.08] backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between transition-transform duration-300"
+          >
             {/* Drawer Top Header */}
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
                 <Link
                   href="/"
-                  onClick={() => setIsDrawerOpen(false)}
+                  onClick={closeDrawer}
                   className="flex items-center gap-2"
                 >
-                  <img
+                  <Image
                     src="/logo.png"
                     alt="OVIZai"
-                    className="h-7 w-auto object-contain mix-blend-screen"
+                    width={70}
+                    height={28}
+                    className="h-7 w-auto object-contain"
                   />
                 </Link>
 
                 <button
                   type="button"
-                  onClick={() => setIsDrawerOpen(false)}
+                  onClick={closeDrawer}
+                  aria-label={isFr ? 'Fermer le menu' : 'Close menu'}
                   className="p-1.5 rounded-lg bg-white/[0.04] border border-white/[0.1] text-[#ECE4D3] hover:text-[#CAA243] transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
@@ -131,7 +163,7 @@ export default function TopBar({
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsDrawerOpen(false)}
+                    onClick={closeDrawer}
                     className="group flex items-center justify-between p-3 rounded-lg border border-white/[0.06] bg-black/40 hover:border-[#CAA243]/40 hover:bg-[#CAA243]/10 transition-all cursor-pointer"
                   >
                     <span className="mono text-xs font-bold text-[#ECE4D3] group-hover:text-[#f0c869]">
@@ -170,7 +202,7 @@ export default function TopBar({
                 {/* Language Switcher */}
                 <div>
                   <label className="mono text-[10px] uppercase font-bold text-[#8C8375] block mb-1.5">
-                    {isFr ? 'Langue d’affichage :' : 'Display Language:'}
+                    {isFr ? 'Langue d\'affichage :' : 'Display Language:'}
                   </label>
                   <button
                     onClick={onToggleLang}

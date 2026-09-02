@@ -71,7 +71,11 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
         </p>
 
         {status === 'success' || status === 'already' ? (
-          <div className="flex items-center gap-2.5 bg-gold/10 border border-gold/30 rounded-lg p-3 text-gold-bright mono text-xs">
+          <div
+            role="status"
+            aria-live="polite"
+            className="flex items-center gap-2.5 bg-gold/10 border border-gold/30 rounded-lg p-3 text-gold-bright mono text-xs"
+          >
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-gold-bright" />
             <span>
               {status === 'already' ? t.alreadySubscribedMsg : t.subscribedMsg}
@@ -79,7 +83,11 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+            <label htmlFor="newsletter-email" className="sr-only">
+              {t.emailPlaceholder}
+            </label>
             <input
+              id="newsletter-email"
               type="email"
               required
               value={email}
@@ -106,7 +114,11 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
         )}
 
         {status === 'error' && (
-          <div className="mt-2.5 flex items-center gap-2 text-red-400 mono text-[11px]">
+          <div
+            role="alert"
+            aria-live="polite"
+            className="mt-2.5 flex items-center gap-2 text-red-400 mono text-[11px]"
+          >
             <AlertCircle className="w-3.5 h-3.5" />
             <span>{t.errorMsg}</span>
           </div>

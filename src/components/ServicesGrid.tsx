@@ -37,8 +37,8 @@ const FIVE_SERVICES = [
       en: 'We manage the entire production pipeline: concept development, scriptwriting, AI storyboarding, 8K shot generation, editing, and cinematic color grading.'
     },
     deliverables: {
-      fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
-      en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
+      fr: ['Concept & écriture', 'Storyboard IA', 'Génération des plans', 'Montage & étalonnage ACES (calibrage couleur de qualité cinéma)', 'Sound design spatialisé', 'Livraison multi-formats'],
+      en: ['Concept & Script', 'AI Storyboard', 'Shot Generation', 'ACES Editing & Grading (cinema-grade color calibration)', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
     minUsd: 8000,
     maxUsd: 15000,
@@ -106,8 +106,8 @@ const FIVE_SERVICES = [
       en: 'Global art direction, visual universe creation, generative brandbooks, and key visuals for brands and artists.'
     },
     deliverables: {
-      fr: ['Direction artistique globale', 'Univers visuel génératif', 'Charte graphique & Brandbook', 'Visuels clés 8K', 'Guidelines de marque'],
-      en: ['Global Art Direction', 'Generative Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals', 'Brand Guidelines']
+      fr: ['Direction artistique globale', 'Univers visuel génératif', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
+      en: ['Global Art Direction', 'Generative Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals (ultra high definition)', 'Brand Guidelines']
     },
     minUsd: 1000,
     maxUsd: 3000,
@@ -209,8 +209,11 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
             >
               {/* Header Toggle Row (CHANTIER 4: Stack title & price on mobile flex-col sm:flex-row) */}
               <button
+                id={`btn-${service.id}`}
                 type="button"
                 onClick={() => toggleService(service.id)}
+                aria-expanded={isOpen}
+                aria-controls={`panel-${service.id}`}
                 className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-left cursor-pointer transition-colors gap-2.5 sm:gap-4"
               >
                 <div className="flex items-center gap-3.5 min-w-0 pr-2">
@@ -242,7 +245,12 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
 
               {/* Expandable Content Body */}
               {isOpen && (
-                <div className="px-4 pb-5 sm:px-5 sm:pb-6 pt-2 border-t border-white/[0.06] bg-black/40">
+                <div
+                  id={`panel-${service.id}`}
+                  role="region"
+                  aria-labelledby={`btn-${service.id}`}
+                  className="px-4 pb-5 sm:px-5 sm:pb-6 pt-2 border-t border-white/[0.06] bg-black/40"
+                >
                   <p className="text-xs sm:text-sm text-[#8c8375] leading-relaxed mb-4">
                     {service.description[lang]}
                   </p>

@@ -12,7 +12,6 @@
   --bg-inset: #000000;
   --fg: #ece4d3;
   --muted: #8c8375;
-  --muted-2: #5c564c;
   --gold: #caa243;
   --gold-bright: #f0c869;
   --gold-dim: #7a5f21;
@@ -146,4 +145,17 @@ kbd {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Screen-reader only utility (visually hidden, accessible) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

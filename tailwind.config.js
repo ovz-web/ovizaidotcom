@@ -16,8 +16,7 @@ module.exports = {
         },
         fg: {
           DEFAULT: '#ece4d3',
-          muted: '#8c8375',
-          muted2: '#5c564c'
+          muted: '#8c8375'
         },
         gold: {
           DEFAULT: '#caa243',

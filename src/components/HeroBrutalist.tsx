@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, GraduationCap } from 'lucide-react';
 import { Language } from '@/types';
 
@@ -21,14 +22,17 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
 
       {/* Hero Logo */}
       <div className="relative flex items-center justify-center my-1 overflow-visible">
-        <img
+        <Image
           src="/logo.png"
           alt="OVIZai"
+          width={192}
+          height={192}
           style={{
             WebkitMaskImage: 'radial-gradient(ellipse 65% 65% at 50% 50%, black 55%, transparent 92%)',
             maskImage: 'radial-gradient(ellipse 65% 65% at 50% 50%, black 55%, transparent 92%)',
           }}
-          className="h-36 sm:h-48 w-auto object-contain mix-blend-screen scale-[1.15] sm:scale-[1.25]"
+          className="h-36 sm:h-48 w-auto object-contain scale-[1.15] sm:scale-[1.25]"
+          priority
         />
       </div>
 

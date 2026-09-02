@@ -20,8 +20,8 @@ export interface MasterclassSalePayload {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TEAM_NOTIFICATION_EMAIL = 'cinemaaistudio.contact@gmail.com';
-const SENDER_EMAIL = 'OVIZai <contact@ovizai.com>';
+const TEAM_NOTIFICATION_EMAIL = process.env.TEAM_NOTIFICATION_EMAIL || 'cinemaaistudio.contact@gmail.com';
+const SENDER_EMAIL = process.env.RESEND_SENDER_EMAIL || 'OVIZai <contact@ovizai.com>';
 
 /**
  * Escapes unsafe HTML characters to prevent XSS / content injection when
