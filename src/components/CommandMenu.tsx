@@ -21,7 +21,8 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
       id: 'nav-services',
       number: '01',
       title: isFr ? '01. Prestations & Services' : '01. Services & Production',
-      sub: isFr ? 'Films, visualisers, pubs & DA générative' : 'Films, visualisers, ads & art direction',
+      sub: isFr ? 'Films, visualisers, publicités & direction artistique' : 'Films, visualisers, ads & art direction',
+
       href: '/services',
       action: isFr ? 'Explorer' : 'Explore',
       icon: Film,
@@ -31,7 +32,8 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
       id: 'nav-formation',
       number: '02',
       title: isFr ? '02. Formation & Masterclass Vidéo' : '02. Video Masterclass',
-      sub: isFr ? '5 modules pratiques, prompts secrets & accès 4K' : '5 practical modules, secret prompts & 4K access',
+      sub: isFr ? '5 modules pratiques, prompts exclusifs & accès aux ressources' : '5 practical modules, exclusive prompts & resource access',
+
       href: '/formation',
       action: isFr ? 'Accéder' : 'Access',
       icon: GraduationCap,
@@ -41,7 +43,8 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
       id: 'nav-pipeline',
       number: '03',
       title: isFr ? '03. Stack Technique & Pipeline' : '03. Tech Stack & Pipeline',
-      sub: isFr ? 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3' : 'Midjourney v6.1, Flux.1, Kling, Runway Gen-3',
+      sub: isFr ? 'Midjourney, Kling, Runway, DaVinci Resolve' : 'Midjourney, Kling, Runway, DaVinci Resolve',
+
       href: '/stack',
       action: isFr ? 'Voir Stack' : 'View Stack',
       icon: Cpu,
@@ -51,7 +54,8 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
       id: 'nav-contact',
       number: '04',
       title: isFr ? '04. Devis & Contact' : '04. Quote & Contact',
-      sub: isFr ? 'Brief intelligent & réponse garantie sous 24/48h' : 'Smart brief form & guaranteed 24/48h SLA',
+      sub: isFr ? 'Formulaire simple — réponse sous 24/48h' : 'Simple form — reply within 24/48h',
+
       href: '/contact',
       action: isFr ? 'Contacter' : 'Contact',
       icon: Mail,

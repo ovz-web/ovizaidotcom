@@ -15,7 +15,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
     <section className="relative z-10 max-w-2xl mx-auto pt-1 pb-3 px-4 flex flex-col items-center justify-center text-center">
       {/* Eyebrow */}
       <p className="text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] mb-1.5 font-mono font-bold">
-        {isFr ? 'DIRECTEURS ARTISTIQUES & CINÉASTES AUGMENTÉS' : 'ART DIRECTORS & AUGMENTED CINEMATOGRAPHERS'}
+        {isFr ? 'FILMS IA POUR MARQUES ET ARTISTES' : 'AI FILMS FOR BRANDS AND ARTISTS'}
       </p>
 
       {/* Hero Logo */}
@@ -38,13 +38,11 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-2 leading-snug">
         {isFr ? (
           <>
-            L’ART CINÉMATOGRAPHIQUE <br className="hidden sm:inline" />
-            <span className="text-gold-gradient text-gold-glow">AUGMENTÉ</span>
+            FILMS IA <span className="text-gold-gradient text-gold-glow">CINÉMATOGRAPHIQUES</span>
           </>
         ) : (
           <>
-            CINEMATIC ARTISTRY <br className="hidden sm:inline" />
-            <span className="text-gold-gradient text-gold-glow">AUGMENTED</span>
+            CINEMATIC <span className="text-gold-gradient text-gold-glow">AI FILMS</span>
           </>
         )}
       </h1>
@@ -52,8 +50,9 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       {/* Short Subtitle */}
       <p className="text-xs sm:text-sm text-[#8C8375] max-w-sm sm:max-w-md text-center mx-auto mb-2 leading-snug">
         {isFr
-          ? 'Studio de direction artistique et cinéma génératif.'
-          : 'Art direction and generative cinema studio.'}
+          ? 'Production vidéo haut de gamme avec les meilleurs outils IA actuels.'
+          : 'High-end video production using the best AI tools available today.'}
+
       </p>
     </section>
   );
