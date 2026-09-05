@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Clock, ShieldCheck, CheckCircle2, HelpCircle, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Clock, ShieldCheck, CheckCircle2, ArrowUpRight, Sparkles } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -16,32 +16,12 @@ export default function StackPage() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
   };
 
   const isFr = lang === 'fr';
-
-  const PROCESS_FAQS = [
-    {
-      q: isFr
-        ? 'Comment se déroulent les validations et les rounds de révision inclus ?'
-        : 'How do project previews and included revision rounds work?',
-      a: isFr
-        ? 'Chaque formule et projet sur-mesure comprend des rounds de révision intégrés (1 round pour le Sprint 48h, 3 rounds pour les Campagnes). Vous validez d’abord une prévisualisation de l’asset pour ajuster le rythme, les cadrages ou la colorimétrie avant l’export final 4K.'
-        : 'Each turnkey package and custom production includes built-in revision rounds (1 round for 48h Sprint, 3 rounds for Campaigns). You first review a watermarked preview to fine-tune pacing, camera framing, or color grading prior to final 4K master delivery.',
-    },
-    {
-      q: isFr
-        ? 'Pourquoi le pipeline génératif 4K réduit-il les coûts de 70 à 90 % sans compromis sur la qualité ?'
-        : 'Why does the 4K generative pipeline cut costs by 70 to 90% without compromising cinematic quality?',
-      a: isFr
-        ? 'En remplaçant les tournages physiques (équipes de 10 personnes, location de studios, matériel caméra lourd, déplacements) par notre pipeline génératif combinant Midjourney, Flux, Kling et Runway avec un étalonnage DaVinci Resolve Studio, nous éliminons 80 % de la logistique conventionnelle tout en conservant une direction artistique de niveau cinéma.'
-        : 'By replacing physical shoots (10-person crews, studio rentals, heavy camera gear, travel) with our generative pipeline combining Midjourney, Flux, Kling, and Runway with pro DaVinci Resolve Studio grading, we eliminate 80% of conventional friction while retaining cinema-grade visual identity.',
-    },
-  ];
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
@@ -55,7 +35,7 @@ export default function StackPage() {
 
       <main
         className="flex-grow relative z-10 pb-16"
-        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* 1. Standardized Unified Page Header */}
         <PageHeader
@@ -79,7 +59,7 @@ export default function StackPage() {
           }
         />
 
-        {/* 2. Comparative Method Efficiency (Transféré depuis Tarifs) */}
+        {/* 2. Comparative Method Efficiency */}
         <div className="max-w-xl mx-auto px-4 mb-8">
           <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5">
             <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold flex items-center gap-1.5">
@@ -127,7 +107,7 @@ export default function StackPage() {
           hideTechBadge={false}
         />
 
-        {/* 4. Process Guarantees (Transféré depuis Tarifs) */}
+        {/* 4. Process Guarantees */}
         <div className="max-w-xl mx-auto px-4 mb-8">
           <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5">
             <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
@@ -140,63 +120,48 @@ export default function StackPage() {
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
                 <span className="text-[#ECE4D3]">
-                  {isFr ? 'Délais garantis : 48-72h ouvrées pour les formats Sprint, planning dédié pour les campagnes.' : 'Guaranteed delivery: 48-72 business hours for Sprints, dedicated schedule for campaigns.'}
+                  {isFr
+                    ? 'Délais garantis : 48-72h ouvrées pour les formats Sprint, planning dédié pour les campagnes.'
+                    : 'Guaranteed delivery: 48-72 business hours for Sprints, dedicated schedule for campaigns.'}
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
                 <span className="text-[#ECE4D3]">
-                  {isFr ? 'Rounds de révision inclus : validation sur prévisualisation (rythme, cadrages, colorimétrie).' : 'Included revision rounds: approval on preview cut (pacing, framing, color grading).'}
+                  {isFr
+                    ? 'Rounds de révision inclus : validation sur prévisualisation (rythme, cadrages, colorimétrie).'
+                    : 'Included revision rounds: approval on preview cut (pacing, framing, color grading).'}
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
                 <span className="text-[#ECE4D3]">
-                  {isFr ? 'Master final 4K : calibré sur DaVinci Resolve Studio avec livrables multi-formats (16:9 et vertical 9:16).' : '4K Final Master: DaVinci Resolve Studio color grading with multi-format delivery (16:9 & 9:16).'}
+                  {isFr
+                    ? 'Master final 4K : calibré sur DaVinci Resolve Studio avec livrables multi-formats (16:9 et vertical 9:16).'
+                    : '4K Final Master: DaVinci Resolve Studio color grading with multi-format delivery (16:9 & 9:16).'}
                 </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* 5. Process FAQ (Transféré depuis Tarifs) */}
-        <div className="max-w-xl mx-auto px-4 mb-8">
-          <div className="mb-4">
-            <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-              {isFr ? 'FAQ // MÉTHODE & PROCESS' : 'FAQ // METHOD & PROCESS'}
-            </span>
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
-              {isFr ? 'Questions sur Notre Méthode' : 'Questions on Our Process'}
-            </h2>
-          </div>
-
-          <div className="flex flex-col divide-y divide-white/[0.06] ovizai-card border border-white/[0.08] bg-[#0B0A08]">
-            {PROCESS_FAQS.map((faq, i) => (
-              <div key={i}>
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
-                >
-                  <span className="text-xs text-[#ECE4D3] font-medium leading-snug">{faq.q}</span>
-                  <HelpCircle
-                    className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                      openFaq === i ? 'text-[#CAA243]' : 'text-[#9C9384]'
-                    }`}
-                  />
-                </button>
-                {openFaq === i && (
-                  <p className="px-4 sm:px-5 pb-4 text-xs text-[#9C9384] leading-relaxed border-t border-white/[0.04] pt-2">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* 5. Referral to central site-wide FAQ on /tarifs#faq */}
+        <div className="max-w-xl mx-auto px-4 mb-6 text-center">
+          <p className="text-xs text-[#9C9384]">
+            {isFr
+              ? 'Une question sur nos méthodes de travail ou notre politique de révision ?'
+              : 'Have questions about our production workflow or revision policy?'}
+          </p>
+          <Link
+            href="/tarifs#faq"
+            className="inline-flex items-center gap-1 mono text-xs text-[#CAA243] hover:underline mt-1 font-semibold"
+          >
+            <span>{isFr ? 'Consulter notre FAQ complète →' : 'View our full FAQ →'}</span>
+          </Link>
         </div>
 
         {/* 6. Dual Action CTA Footer */}
-        <div className="max-w-xl mx-auto px-4 mt-8 mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="max-w-xl mx-auto px-4 mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/tarifs"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"

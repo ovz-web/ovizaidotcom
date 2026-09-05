@@ -2,84 +2,72 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
 import MasterclassSection from '@/components/MasterclassSection';
-import AIPipeline from '@/components/AIPipeline';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
-import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE } from '@/lib/pricing';
 
 const COURSE_JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "Course",
-  "name": "Masterclass Vidéo IA OVIZai",
-  "description": "Formation complète et pratique à la création de films et publicités cinématographiques avec IA (Midjourney v6, Runway Gen-3, Kling AI, Topaz Video AI, DaVinci Resolve Studio).",
-  "provider": {
-    "@type": "Organization",
-    "name": "OVIZai",
-    "sameAs": "https://ovizai.com"
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Masterclass Vidéo IA OVIZai',
+  description:
+    'Formation complète et pratique à la création de films et publicités cinématographiques avec IA (Midjourney v6, Runway Gen-3, Kling AI, Topaz Video AI, DaVinci Resolve Studio).',
+  provider: {
+    '@type': 'Organization',
+    name: 'OVIZai',
+    sameAs: 'https://ovizai.com',
   },
-  "educationalCredentialAwarded": "Certificat de Compétences Vidéo IA",
-  "hasCourseInstance": {
-    "@type": "CourseInstance",
-    "courseMode": "online",
-    "courseWorkload": "PT10H"
+  educationalCredentialAwarded: 'Certificat de Compétences Vidéo IA',
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'online',
+    courseWorkload: 'PT10H',
   },
-  "offers": {
-    "@type": "Offer",
-    "price": MASTERCLASS_PRICE.EUR,
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://ovizai.com/formation"
-  }
+  offers: {
+    '@type': 'Offer',
+    price: 490,
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    url: 'https://ovizai.com/tarifs#masterclass',
+  },
 };
 
-function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
-  const [isOpen, setIsOpen] = useState(false);
+function FormationToolsetRow({ lang }: { lang: 'fr' | 'en' }) {
   const isFr = lang === 'fr';
+  const tools = [
+    'Midjourney v6',
+    'Flux.1',
+    'Runway Gen-3',
+    'Kling AI',
+    'Topaz Video AI',
+    'DaVinci Resolve Studio',
+  ];
 
   return (
-    <div id="stack" className="max-w-xl mx-auto mb-8 px-4">
-      <div className="border border-white/[0.08] bg-[#0B0A08]/90 rounded-2xl overflow-hidden transition-all">
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          className="w-full p-4 sm:p-5 flex items-center justify-between text-left cursor-pointer hover:bg-white/[0.02] transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <span className="mono text-xs font-bold text-[#CAA243] bg-black/60 border border-[#CAA243]/30 px-2 py-1 rounded">
-              TOOLSET
+    <div className="max-w-xl mx-auto mb-8 px-4">
+      <div className="border border-white/[0.08] bg-[#0B0A08]/90 rounded-xl p-4 sm:p-5">
+        <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
+          {isFr ? 'STACK DU PROGRAMME' : 'CURRICULUM STACK'}
+        </span>
+        <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-3">
+          {isFr ? 'Moteurs Génératifs & Logiciels Étudiés' : 'Generative Engines & Software Covered'}
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {tools.map((tool) => (
+            <span
+              key={tool}
+              className="mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-black/60 border border-white/[0.1] text-[#ECE4D3]"
+            >
+              {tool}
             </span>
-            <div>
-              <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
-                {isFr ? 'DÉTAIL DES OUTILS & LOGICIELS DU PROGRAMME' : 'PROGRAM TOOLSET & SOFTWARE DETAILS'}
-              </h3>
-              <p className="text-[11px] text-[#8c8375] mt-0.5">
-                {isFr ? 'Cliquez pour afficher les moteurs génératifs étudiés (Midjourney, Runway, Kling, DaVinci)' : 'Click to view generative engines (Midjourney, Runway, Kling, DaVinci)'}
-              </p>
-            </div>
-          </div>
-
-          <span className="mono text-xs text-[#CAA243] font-semibold">
-            {isOpen ? (isFr ? 'Masquer -' : 'Hide -') : (isFr ? 'Afficher +' : 'Show +')}
-          </span>
-        </button>
-
-        {isOpen && (
-          <div className="p-4 sm:p-5 border-t border-white/[0.06] bg-black/30">
-            <AIPipeline
-              lang={lang}
-              hideHeader={true}
-              showConversionCard={false}
-            />
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -89,80 +77,12 @@ export default function FormationPage() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [mcLoading, setMcLoading] = useState(false);
-  const [mcError, setMcError] = useState<string | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
   };
 
   const isFr = lang === 'fr';
-
-  const masterclassCurrent = MASTERCLASS_PRICE[currency] || 450;
-  const masterclassOriginal = MASTERCLASS_ORIGINAL_PRICE[currency] || 900;
-
-  const formattedCurrent = currency === 'EUR'
-    ? `${masterclassCurrent} €`
-    : currency === 'CAD'
-    ? `${masterclassCurrent} $ CAD`
-    : `${masterclassCurrent} $ USD`;
-
-  const formattedOriginal = currency === 'EUR'
-    ? `${masterclassOriginal} €`
-    : currency === 'CAD'
-    ? `${masterclassOriginal} $ CAD`
-    : `${masterclassOriginal} $ USD`;
-
-  const handleMasterclassCheckout = async () => {
-    setMcLoading(true);
-    setMcError(null);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currency: currency.toLowerCase() }),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.url) {
-        window.location.href = data.url;
-      } else {
-        setMcError(data.error || (isFr ? 'Erreur lors de l’initialisation Stripe.' : 'Failed to create checkout session.'));
-        setMcLoading(false);
-      }
-    } catch (err: any) {
-      setMcError(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
-      setMcLoading(false);
-    }
-  };
-
-  const FORMATION_FAQS = [
-    {
-      q: isFr
-        ? 'L’accès à vie inclut-il les futures versions des modèles IA ?'
-        : 'Does lifetime access include future AI model updates?',
-      a: isFr
-        ? 'Oui. Votre accès inclut toutes les futures mises à jour vidéo du curriculum sans surcoût (nouveaux modèles Runway Gen-4, Kling 2.0, Midjourney v7 et workflows d’upscale 4K).'
-        : 'Yes. Your enrollment includes all future curriculum video updates at no extra charge (new models from Runway, Kling, Midjourney, and 4K upscale workflows).',
-    },
-    {
-      q: isFr
-        ? 'Faut-il des compétences préalables en montage ou en prompt engineering ?'
-        : 'Are prior editing or prompt engineering skills required?',
-      a: isFr
-        ? 'Aucune compétence préalable n’est exigée. Le programme est conçu pour guider pas à pas depuis les bases de la génération jusqu’au montage et à l’étalonnage de niveau professionnel sur DaVinci Resolve Studio.'
-        : 'No prior background required. The curriculum is structured step-by-step from foundational generative principles to pro-level editing and color grading in DaVinci Resolve Studio.',
-    },
-    {
-      q: isFr
-        ? 'Comment reçois-je mes accès après le règlement sécurisé ?'
-        : 'How do I receive access after secure payment?',
-      a: isFr
-        ? 'Immédiatement après validation du règlement sur Stripe, un e-mail de confirmation contenant vos identifiants d’accès et les liens des 5 modules 4K vous est transmis automatiquement.'
-        : 'Immediately following Stripe payment confirmation, an automated email containing your personal access link and credentials to all 5 4K modules is dispatched to your inbox.',
-    },
-  ];
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
@@ -180,7 +100,7 @@ export default function FormationPage() {
 
       <main
         className="flex-grow relative z-10 pb-16"
-        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -204,116 +124,97 @@ export default function FormationPage() {
           }
         />
 
-        {/* 5 Masterclass Modules */}
+        {/* 1. 5 Masterclass Modules */}
         <MasterclassSection lang={lang} />
 
-        {/* Masterclass Toolset (Collapsible) */}
-        <FormationToolsetCollapse lang={lang} />
+        {/* 2. Masterclass Toolset Badges */}
+        <FormationToolsetRow lang={lang} />
 
-        {/* Masterclass Direct Enrollment & Stripe Checkout Card (Transféré depuis Tarifs) */}
+        {/* 3. Masterclass Inscription & Referral Card (ZÉRO prix, renvoi vers /tarifs#masterclass) */}
         <div id="inscription" className="max-w-xl mx-auto px-4 mb-8">
           <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
-              <div>
-                <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-1">
-                  {isFr ? 'TARIF & ACCÈS IMMÉDIAT' : 'PRICING & INSTANT ACCESS'}
-                </span>
-                <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
-                  {isFr ? 'Masterclass Cinéma & Vidéo IA' : 'AI Cinema & Video Masterclass'}
-                </h3>
-              </div>
-
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl sm:text-3xl font-semibold text-[#CAA243] font-mono">
-                  {formattedCurrent}
-                </span>
-                <span className="text-xs text-[#9C9384] line-through font-mono">
-                  {formattedOriginal}
-                </span>
-              </div>
+            <div className="pb-3 border-b border-white/[0.06]">
+              <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-1">
+                {isFr ? 'INSCRIPTION // ACCÈS ILLIMITÉ' : 'ENROLLMENT // LIFETIME ACCESS'}
+              </span>
+              <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
+                {isFr ? 'Masterclass Complète Cinéma & Vidéo IA 4K' : 'Complete 4K AI Cinema & Video Masterclass'}
+              </h3>
             </div>
 
             <div className="py-4 space-y-2.5 text-xs text-[#9C9384]">
               <p className="flex items-center gap-2 text-[#ECE4D3]">
                 <span className="text-[#CAA243] font-bold">✓</span>
-                <span>{isFr ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci' : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}</span>
+                <span>
+                  {isFr
+                    ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'
+                    : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}
+                </span>
               </p>
               <p className="flex items-center gap-2 text-[#ECE4D3]">
                 <span className="text-[#CAA243] font-bold">✓</span>
-                <span>{isFr ? 'Accès illimité et à vie + toutes les mises à jour des futurs modèles incluses' : 'Unlimited lifetime access + all future model updates included'}</span>
+                <span>
+                  {isFr
+                    ? 'Accès illimité et à vie + toutes les mises à jour des futurs modèles d’IA incluses'
+                    : 'Unlimited lifetime access + all future AI model updates included'}
+                </span>
               </p>
               <p className="flex items-center gap-2 text-[#ECE4D3]">
                 <span className="text-[#CAA243] font-bold">✓</span>
-                <span>{isFr ? 'Accès immédiat par e-mail après validation sécurisée via Stripe' : 'Instant email access upon secure Stripe checkout'}</span>
+                <span>
+                  {isFr
+                    ? 'Fichiers projets DaVinci Resolve Studio & bibliothèque de prompts certifiés'
+                    : 'DaVinci Resolve Studio project files & verified prompt library'}
+                </span>
+              </p>
+              <p className="flex items-center gap-2 text-[#ECE4D3]">
+                <span className="text-[#CAA243] font-bold">✓</span>
+                <span>
+                  {isFr
+                    ? 'Délivrance immédiate des identifiants et vidéos par e-mail après règlement'
+                    : 'Instant credentials and video access delivered via email upon payment'}
+                </span>
               </p>
             </div>
 
             <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="mono text-[10px] text-[#8C8375] font-mono">
-                {isFr ? 'Paiement sécurisé Stripe • Facture avec TVA' : 'Secure Stripe checkout • VAT invoice'}
+              <span className="mono text-[10.5px] text-[#8C8375]">
+                {isFr ? 'Tarif de lancement disponible sur la grille' : 'Launch tier available on pricing page'}
               </span>
 
-              <button
-                type="button"
-                disabled={mcLoading}
-                onClick={handleMasterclassCheckout}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] cursor-pointer min-h-[44px]"
+              <Link
+                href="/tarifs#masterclass"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[44px]"
               >
-                {mcLoading ? (
-                  <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
-                ) : (
-                  <span>{isFr ? `S’inscrire à la Masterclass (${formattedCurrent}) →` : `Enroll in Masterclass (${formattedCurrent}) →`}</span>
-                )}
-              </button>
+                <span>{isFr ? 'Consulter le tarif & S’inscrire →' : 'View pricing & Enroll →'}</span>
+                <ArrowUpRight className="w-4 h-4 text-black" />
+              </Link>
             </div>
-
-            {mcError && (
-              <p className="text-xs text-red-400 font-mono mt-3 text-center">{mcError}</p>
-            )}
           </div>
         </div>
 
-        {/* Masterclass FAQ */}
-        <div className="max-w-xl mx-auto px-4 mb-8">
-          <div className="mb-4">
-            <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-              {isFr ? 'FAQ // FORMATION' : 'FAQ // COURSE'}
-            </span>
-            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
-              {isFr ? 'Questions sur la Formation' : 'Course FAQ'}
-            </h2>
-          </div>
-
-          <div className="flex flex-col divide-y divide-white/[0.06] ovizai-card border border-white/[0.08] bg-[#0B0A08]">
-            {FORMATION_FAQS.map((faq, i) => (
-              <div key={i}>
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
-                >
-                  <span className="text-xs text-[#ECE4D3] font-medium leading-snug">{faq.q}</span>
-                  <span className="mono text-xs text-[#CAA243] font-bold">
-                    {openFaq === i ? '−' : '+'}
-                  </span>
-                </button>
-                {openFaq === i && (
-                  <p className="px-4 sm:px-5 pb-4 text-xs text-[#9C9384] leading-relaxed border-t border-white/[0.04] pt-2">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* 4. Referral to central site-wide FAQ on /tarifs#faq */}
+        <div className="max-w-xl mx-auto px-4 mb-8 text-center">
+          <p className="text-xs text-[#9C9384]">
+            {isFr
+              ? 'Une question sur le programme ou les modalités d’accès ?'
+              : 'Have a question about the curriculum or enrollment?'}
+          </p>
+          <Link
+            href="/tarifs#faq"
+            className="inline-flex items-center gap-1 mono text-xs text-[#CAA243] hover:underline mt-1 font-semibold"
+          >
+            <span>{isFr ? 'Consulter notre FAQ complète →' : 'View our full FAQ →'}</span>
+          </Link>
         </div>
 
-        {/* Final Outgoing Link to Pricing */}
+        {/* 5. Final Outgoing Link to Pricing */}
         <div className="max-w-xl mx-auto px-4 mt-8 mb-4 text-center">
           <Link
             href="/tarifs"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/60 border border-white/[0.12] hover:border-[#CAA243]/50 text-[#ECE4D3] hover:text-[#f0c869] font-bold px-8 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
           >
-            <span>{isFr ? 'Consulter nos tarifs de production vidéo →' : 'View video production pricing →'}</span>
+            <span>{isFr ? 'Consulter nos formules de production vidéo →' : 'View video production packages →'}</span>
           </Link>
         </div>
       </main>

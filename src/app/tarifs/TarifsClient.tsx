@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check, HelpCircle, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Check, HelpCircle, Zap, ShieldCheck, Loader2 } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -132,19 +132,54 @@ const copy = {
     sectionC: 'F. Formation & Masterclass Pro',
     sectionCSub: 'Programme complet de production vidéo IA 4K pour créateurs et studios.',
     faqTitle: 'G. Questions Fréquentes',
-    faqSub: 'Modalités de règlement, acomptes et facturation d’entreprise.',
-    faqs: [
+    faqSub: 'Toutes les réponses sur nos tarifs, nos modalités de règlement, nos délais et la formation.',
+    faqCategories: [
       {
-        q: 'Comment fonctionne le paiement du Sprint Pilote 48-72h ?',
-        a: "Le Sprint Pilote est sans engagement : le règlement s'effectue après validation de l'aperçu visuel de votre asset.",
+        category: 'Facturation & Règlements',
+        items: [
+          {
+            q: 'Comment fonctionne le paiement du Sprint Pilote 48-72h ?',
+            a: "Le Sprint Pilote est sans engagement : le règlement s'effectue après validation de l'aperçu visuel de votre asset.",
+          },
+          {
+            q: 'Quelles sont les modalités de paiement pour les projets sur-mesure ?',
+            a: "Pour les campagnes et projets sur-mesure (E01 à E05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
+          },
+          {
+            q: 'Le paiement est-il sécurisé et émettez-vous des factures professionnelles ?',
+            a: "Oui, tous les règlements sont sécurisés par Stripe et vous recevez automatiquement une facture pro conforme avec mentions légales de TVA.",
+          },
+        ],
       },
       {
-        q: 'Quelles sont les modalités de paiement pour les projets sur-mesure ?',
-        a: "Pour les campagnes et projets sur-mesure (E01 à E05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
+        category: 'Production, Délais & Process',
+        items: [
+          {
+            q: 'Comment se déroulent les validations et les rounds de révision inclus ?',
+            a: "Chaque formule et projet sur-mesure comprend des rounds de révision intégrés (1 pour le Sprint 48h, 3 pour les Campagnes). Vous validez d’abord une prévisualisation de l’asset pour ajuster le rythme, les cadrages ou la colorimétrie avant l’export final 4K.",
+          },
+          {
+            q: 'Pourquoi les tarifs sont-ils 70 à 90 % inférieurs à une agence classique ?',
+            a: "En remplaçant les tournages physiques (équipes de 10 personnes, location de studios, matériel lourd, déplacements) par notre pipeline génératif combinant Midjourney, Flux, Kling et Runway avec un étalonnage DaVinci Resolve Studio, nous éliminons 80 % de la logistique conventionnelle tout en conservant une direction artistique de niveau cinéma.",
+          },
+        ],
       },
       {
-        q: 'Le paiement est-il sécurisé et émettez-vous des factures professionnelles ?',
-        a: "Oui, tous les règlements sont sécurisés par Stripe et vous recevez automatiquement une facture pro conforme avec mentions légales de TVA.",
+        category: 'Formation & Masterclass',
+        items: [
+          {
+            q: 'L’accès à la Masterclass inclut-il les futures versions des modèles IA ?',
+            a: "Oui. Votre accès est illimité et à vie. Il inclut toutes les futures mises à jour vidéo du curriculum sans surcoût (nouveaux modèles Runway Gen-4, Kling 2.0, Midjourney v7 et workflows d’upscale 4K).",
+          },
+          {
+            q: 'Faut-il du matériel lourd ou des compétences préalables en montage ?',
+            a: "Aucune compétence préalable ni matériel puissant n'est exigé. Les calculs IA s'effectuent sur le cloud, un ordinateur standard suffit. Le programme vous guide pas à pas depuis les bases de la génération jusqu’à l’étalonnage pro.",
+          },
+          {
+            q: 'Comment reçois-je mes accès après le règlement sécurisé ?',
+            a: "Immédiatement après validation du règlement sur Stripe, un e-mail de confirmation contenant vos identifiants d’accès et les liens des 5 modules 4K vous est transmis automatiquement.",
+          },
+        ],
       },
     ],
     ctaLabel: 'Demander un devis sur-mesure (24h)',
@@ -161,19 +196,54 @@ const copy = {
     sectionC: 'F. Pro Training & Masterclass',
     sectionCSub: 'Complete 4K AI video production training for creators and studios.',
     faqTitle: 'G. FAQ',
-    faqSub: 'Payment terms, deposits, and corporate invoicing.',
-    faqs: [
+    faqSub: 'All answers regarding pricing, payment terms, production turnaround, and training access.',
+    faqCategories: [
       {
-        q: 'How does payment work for the 48-72h Pilot Sprint?',
-        a: 'The Pilot Sprint is zero-risk: payment is settled upon preview approval of your initial video cut.',
+        category: 'Billing & Payments',
+        items: [
+          {
+            q: 'How does payment work for the 48-72h Pilot Sprint?',
+            a: 'The Pilot Sprint is zero-risk: payment is settled upon preview approval of your initial video cut.',
+          },
+          {
+            q: 'What are the payment terms for custom projects?',
+            a: 'For custom campaigns and productions (E01 to E05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
+          },
+          {
+            q: 'Are payments secure and do you issue corporate invoices?',
+            a: 'Yes, all payments are processed securely via Stripe and VAT-compliant corporate invoices are generated automatically.',
+          },
+        ],
       },
       {
-        q: 'What are the payment terms for custom projects?',
-        a: 'For custom campaigns and productions (E01 to E05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
+        category: 'Production, Turnaround & Process',
+        items: [
+          {
+            q: 'How do project previews and included revision rounds work?',
+            a: 'Each turnkey package and custom production includes built-in revision rounds (1 for 48h Sprint, 3 for Campaigns). You first review a watermarked preview to fine-tune pacing, camera framing, or color grading prior to final 4K master delivery.',
+          },
+          {
+            q: 'Why are prices 70 to 90% lower than traditional agency productions?',
+            a: 'By replacing physical shoots (10-person crews, studio rentals, heavy camera gear, travel) with our generative pipeline combining Midjourney, Flux, Kling, and Runway with pro DaVinci Resolve Studio grading, we eliminate 80% of conventional friction while retaining cinema-grade visual identity.',
+          },
+        ],
       },
       {
-        q: 'Are payments secure and do you issue corporate invoices?',
-        a: 'Yes, all payments are processed securely via Stripe and VAT-compliant corporate invoices are generated automatically.',
+        category: 'Masterclass & Training',
+        items: [
+          {
+            q: 'Does Masterclass enrollment include future AI model updates?',
+            a: 'Yes. Your access is unlimited and lifetime. It includes all future curriculum video updates at no extra charge (new models from Runway, Kling, Midjourney, and 4K upscale workflows).',
+          },
+          {
+            q: 'Is heavy hardware or prior editing experience required?',
+            a: 'No prior experience or powerful hardware is required. AI processing runs in the cloud, so a standard laptop suffices. The curriculum guides you step-by-step from generative basics to pro grading.',
+          },
+          {
+            q: 'How do I receive access after secure payment?',
+            a: 'Immediately following Stripe payment confirmation, an automated email containing your personal access link and credentials to all 5 4K modules is dispatched to your inbox.',
+          },
+        ],
       },
     ],
     ctaLabel: 'Request a custom quote (24h)',
@@ -185,8 +255,10 @@ export default function TarifsClient() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [showLaunchDiscount, setShowLaunchDiscount] = useState<boolean>(true);
+  const [mcLoading, setMcLoading] = useState(false);
+  const [mcError, setMcError] = useState<string | null>(null);
 
   const isFr = lang === 'fr';
   const t = copy[lang];
@@ -208,6 +280,34 @@ export default function TarifsClient() {
       : currency === 'CAD'
       ? `${masterclassOriginal} $ CAD`
       : `${masterclassOriginal} $ USD`;
+
+  const handleMasterclassCheckout = async () => {
+    setMcLoading(true);
+    setMcError(null);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currency: currency.toLowerCase() }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+      } else {
+        setMcError(
+          data.error ||
+            (isFr
+              ? 'Erreur lors de l’initialisation Stripe.'
+              : 'Failed to create checkout session.')
+        );
+        setMcLoading(false);
+      }
+    } catch (err: any) {
+      setMcError(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
+      setMcLoading(false);
+    }
+  };
 
   const professionalServiceJsonLd = {
     '@context': 'https://schema.org',
@@ -256,7 +356,7 @@ export default function TarifsClient() {
 
       <main
         className="flex-grow relative z-10 pb-16"
-        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -586,8 +686,16 @@ export default function TarifsClient() {
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
                   <span>
                     {isFr
-                      ? 'Accès immédiat par e-mail après règlement sécurisé Stripe'
-                      : 'Instant email access upon secure Stripe checkout'}
+                      ? 'Fichiers projets DaVinci Resolve Studio & prompts certifiés fournis'
+                      : 'DaVinci Resolve Studio project files & certified prompts provided'}
+                  </span>
+                </p>
+                <p className="flex items-center gap-2 text-[#ECE4D3]">
+                  <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                  <span>
+                    {isFr
+                      ? 'Délivrance immédiate par e-mail après règlement sécurisé Stripe'
+                      : 'Instant access delivered via email upon secure Stripe checkout'}
                   </span>
                 </p>
               </div>
@@ -595,20 +703,46 @@ export default function TarifsClient() {
               <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
                 <Link
                   href="/formation"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[44px]"
+                  className="mono text-xs text-[#CAA243] hover:underline"
                 >
-                  <span>{isFr ? 'Découvrir le programme & S’inscrire →' : 'View curriculum & Enroll →'}</span>
-                  <ArrowUpRight className="w-4 h-4 text-black" />
+                  {isFr ? 'Consulter le détail des 5 modules →' : 'View the 5-module curriculum →'}
                 </Link>
+
+                <button
+                  type="button"
+                  disabled={mcLoading}
+                  onClick={handleMasterclassCheckout}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] cursor-pointer min-h-[44px]"
+                >
+                  {mcLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 text-black animate-spin" />
+                      <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>
+                        {isFr
+                          ? `S’inscrire à la Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`
+                          : `Enroll in Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`}
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 text-black" />
+                    </>
+                  )}
+                </button>
               </div>
+
+              {mcError && (
+                <p className="text-xs text-red-400 font-mono mt-3 text-center">{mcError}</p>
+              )}
             </div>
           </section>
 
-          {/* ── SECTION G — QUESTIONS FRÉQUENTES ─────────────────────── */}
-          <section className="mb-12 scroll-mt-24">
+          {/* ── SECTION G — LA FAQ UNIQUE ET CENTRALE DU SITE ─────────── */}
+          <section id="faq" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-                SECTION G // FAQ
+                SECTION G // FAQ GLOBALE
               </span>
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.faqTitle}
@@ -618,26 +752,45 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            <div className="flex flex-col divide-y divide-white/[0.06] ovizai-card border border-white/[0.08] bg-[#0B0A08]">
-              {t.faqs.map((faq, i) => (
-                <div key={i}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
-                  >
-                    <span className="text-xs text-[#ECE4D3] font-medium leading-snug">{faq.q}</span>
-                    <HelpCircle
-                      className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                        openFaq === i ? 'text-[#CAA243]' : 'text-[#9C9384]'
-                      }`}
-                    />
-                  </button>
-                  {openFaq === i && (
-                    <p className="px-4 sm:px-5 pb-4 text-xs text-[#9C9384] leading-relaxed border-t border-white/[0.04] pt-2">
-                      {faq.a}
-                    </p>
-                  )}
+            <div className="space-y-4">
+              {t.faqCategories.map((cat, catIdx) => (
+                <div key={cat.category} className="ovizai-card border border-white/[0.08] bg-[#0B0A08] overflow-hidden">
+                  <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-between">
+                    <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold">
+                      {cat.category}
+                    </span>
+                    <span className="mono text-[10px] text-[#8C8375]">
+                      {cat.items.length} {isFr ? 'questions' : 'questions'}
+                    </span>
+                  </div>
+
+                  <div className="divide-y divide-white/[0.06]">
+                    {cat.items.map((faq, itemIdx) => {
+                      const faqKey = `${catIdx}-${itemIdx}`;
+                      const isOpen = openFaq === faqKey;
+                      return (
+                        <div key={faq.q}>
+                          <button
+                            type="button"
+                            onClick={() => setOpenFaq(isOpen ? null : faqKey)}
+                            className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
+                          >
+                            <span className="text-xs text-[#ECE4D3] font-medium leading-snug">{faq.q}</span>
+                            <HelpCircle
+                              className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                isOpen ? 'text-[#CAA243]' : 'text-[#9C9384]'
+                              }`}
+                            />
+                          </button>
+                          {isOpen && (
+                            <p className="px-4 sm:px-5 pb-4 text-xs text-[#9C9384] leading-relaxed border-t border-white/[0.04] pt-2">
+                              {faq.a}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
