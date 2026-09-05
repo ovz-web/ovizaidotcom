@@ -28,6 +28,18 @@ export const metadata: Metadata = {
   },
 };
 
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+
 export default function TarifsPage() {
-  return <TarifsClient />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Accueil', url: 'https://ovizai.com' },
+          { name: 'Tarifs & Formules', url: 'https://ovizai.com/tarifs' },
+        ]}
+      />
+      <TarifsClient />
+    </>
+  );
 }

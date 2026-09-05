@@ -17,11 +17,13 @@ export const YOUTUBE_VIDEOS = {
 export const LOCAL_VIDEOS = {
   spec01: {
     src: '/videos/spec-01.mp4',
-    poster: '/videos/spec-01-poster.png',
+    webmSrc: '/videos/spec-01.webm',
+    poster: '/videos/spec-01-poster.webp',
   },
   spec02: {
     src: '/videos/spec-02.mp4',
-    poster: '/videos/spec-02-poster.png',
+    webmSrc: '/videos/spec-02.webm',
+    poster: '/videos/spec-02-poster.webp',
   },
 } as const;
 

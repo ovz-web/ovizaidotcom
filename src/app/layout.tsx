@@ -77,6 +77,24 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'OVIZai',
+  url: 'https://ovizai.com',
+  logo: 'https://ovizai.com/logo.png',
+  description: 'Studio de production vidéo et direction artistique IA cinématographique.',
+  sameAs: [
+    'https://youtube.com/@ovizaidotcom',
+    'https://instagram.com/ovizai.co',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    url: 'https://ovizai.com/contact',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -93,6 +111,10 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="x-default" href="https://ovizai.com" />
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
       </head>
       <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright">
         <CurrencyProvider>

@@ -3,8 +3,17 @@ import Stripe from 'stripe';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { sendMasterclassWelcome, sendMasterclassSaleNotification, maskEmail } from '@/lib/mail';
 import { MASTERCLASS_PRICE } from '@/lib/pricing';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
+  const rateLimit = await checkRateLimit(req, 'stripe-webhook', { limit: 120, windowMs: 60_000 });
+  if (!rateLimit.success) {
+    return NextResponse.json(
+      { error: 'Too many requests' },
+      { status: 429 }
+    );
+  }
+
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   const apiKey = process.env.STRIPE_SECRET_KEY;
 
@@ -69,7 +78,6 @@ export async function POST(req: NextRequest) {
           { status: 500 }
         );
       }
-      console.log(`[STRIPE WEBHOOK] Paid lead recorded/updated for ${maskEmail(cleanEmail)}`);
 
       // 2. Dispatch Welcome Email to student via Resend (Non-blocking)
       sendMasterclassWelcome(cleanEmail, customerName).catch((err) =>

@@ -175,6 +175,7 @@ const FIVE_SERVICES = [
 const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   {
     src: LOCAL_VIDEOS.spec01.src,
+    webmSrc: LOCAL_VIDEOS.spec01.webmSrc,
     poster: LOCAL_VIDEOS.spec01.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
     title: {
@@ -191,6 +192,7 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   },
   {
     src: LOCAL_VIDEOS.spec02.src,
+    webmSrc: LOCAL_VIDEOS.spec02.webmSrc,
     poster: LOCAL_VIDEOS.spec02.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase2,
     title: {

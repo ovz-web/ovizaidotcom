@@ -27,6 +27,18 @@ export const metadata: Metadata = {
   },
 };
 
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Accueil', url: 'https://ovizai.com' },
+          { name: 'Contact & Devis', url: 'https://ovizai.com/contact' },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

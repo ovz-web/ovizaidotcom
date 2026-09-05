@@ -27,6 +27,34 @@ export const metadata: Metadata = {
   },
 };
 
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Masterclass Vidéo IA — Formation Cinéma & Post-Production 4K',
+  description: 'Formation pratique à la création de films cinématographiques avec IA. 5 modules complets : concept art, animation, caméra virtuelle, sound design et mastering 4K.',
+  provider: {
+    '@type': 'Organization',
+    name: 'OVIZai',
+    sameAs: 'https://ovizai.com',
+  },
+};
+
 export default function FormationLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Accueil', url: 'https://ovizai.com' },
+          { name: 'Formation & Masterclass', url: 'https://ovizai.com/formation' },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

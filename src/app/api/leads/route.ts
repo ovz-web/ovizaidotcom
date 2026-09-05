@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib/mail';
 import { checkRateLimit } from '@/lib/rateLimit';
+import { sanitizeString, sanitizeEmail } from '@/lib/sanitize';
 
 export async function POST(req: NextRequest) {
   try {
-    const rateLimit = checkRateLimit(req, 'leads', { limit: 5, windowMs: 60_000 });
+    const rateLimit = await checkRateLimit(req, 'leads', { limit: 5, windowMs: 60_000 });
     if (!rateLimit.success) {
       return NextResponse.json(
         { error: 'Trop de requêtes. Veuillez patienter avant de réessayer' },
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const body = await req.json().catch(() => ({}));
     const { email, name, projectType, budgetRange, currency, message, company, website } = body;
     const sourcePlan = body.sourcePlan || body.originPlan;
 
@@ -31,23 +32,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const RFC5322_EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!email || typeof email !== 'string' || !RFC5322_EMAIL_REGEX.test(email.trim())) {
+    const cleanEmail = sanitizeEmail(email);
+    if (!cleanEmail) {
       return NextResponse.json(
         { error: 'Adresse e-mail invalide (format RFC 5322 requis)' },
         { status: 400 }
       );
     }
 
-    const cleanEmail = email.trim().toLowerCase();
-    const cleanName = typeof name === 'string' ? name.trim().slice(0, 100) : null;
-    const cleanMessage = typeof message === 'string' ? message.trim().slice(0, 3000) : null;
+    const cleanName = name ? sanitizeString(name, 100) : null;
+    const cleanMessage = message ? sanitizeString(message, 3000) : null;
     const cleanCurrency = typeof currency === 'string' && ['USD', 'EUR', 'CAD'].includes(currency.toUpperCase())
       ? currency.toUpperCase()
       : 'USD';
-    const cleanProjectType = typeof projectType === 'string' ? projectType.slice(0, 150) : null;
-    const cleanBudgetRange = typeof budgetRange === 'string' ? budgetRange.slice(0, 100) : null;
-    const cleanSourcePlan = typeof sourcePlan === 'string' ? sourcePlan.slice(0, 50) : null;
+    const cleanProjectType = projectType ? sanitizeString(projectType, 150) : null;
+    const cleanBudgetRange = budgetRange ? sanitizeString(budgetRange, 100) : null;
+    const cleanSourcePlan = sourcePlan ? sanitizeString(sourcePlan, 50) : null;
 
     // Insert into Supabase leads table — persist the FULL qualified brief.
     const { data, error } = await supabaseAdmin

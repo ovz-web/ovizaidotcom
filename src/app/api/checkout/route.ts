@@ -5,7 +5,7 @@ import { checkRateLimit } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
   try {
-    const rateLimit = checkRateLimit(req, 'checkout', { limit: 5, windowMs: 60_000 });
+    const rateLimit = await checkRateLimit(req, 'checkout', { limit: 5, windowMs: 60_000 });
     if (!rateLimit.success) {
       return NextResponse.json(
         { error: 'Trop de requêtes. Veuillez patienter avant de réessayer' },
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     if (!apiKey) {
       console.error('[STRIPE CHECKOUT] Missing STRIPE_SECRET_KEY environment variable.');
       return NextResponse.json(
-        { error: 'Stripe configuration missing. Please set STRIPE_SECRET_KEY.' },
+        { error: 'Configuration Stripe manquante. Veuillez contacter le support.' },
         { status: 500 }
       );
     }
@@ -67,9 +67,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (error: any) {
-    console.error('[STRIPE CHECKOUT ERROR]', error);
+    console.error('[STRIPE CHECKOUT ERROR]', error?.message || error);
     return NextResponse.json(
-      { error: error?.message || 'Failed to create Stripe Checkout session' },
+      { error: 'Impossible d’initialiser le paiement sécurisé. Veuillez réessayer.' },
       { status: 500 }
     );
   }

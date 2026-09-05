@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Play, Film } from 'lucide-react';
 import { Language } from '@/types';
 
 export interface VideoItem {
   youtubeId?: string;
   src?: string;
+  webmSrc?: string;
   poster?: string;
   title: { fr: string; en: string };
   description: { fr: string; en: string };
@@ -41,6 +43,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
         embedUrl: hasYoutubeId
           ? `https://www.youtube-nocookie.com/embed/${video.youtubeId}`
           : `https://ovizai.com${video.src}`,
+        contentUrl: hasLocalVideo ? `https://ovizai.com${video.src}` : undefined,
         publisher: { '@type': 'Organization', name: 'OVIZai', logo: 'https://ovizai.com/logo.png' },
       }
     : null;
@@ -60,12 +63,19 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
           hasLocalVideo ? (
             <video
               className="absolute inset-0 w-full h-full object-cover"
-              src={video.src}
               poster={thumbnailUrl}
               controls
               autoPlay
+              muted
               playsInline
-            />
+              preload="metadata"
+            >
+              {video.webmSrc && <source src={video.webmSrc} type="video/webm" />}
+              {video.src && <source src={video.src} type="video/mp4" />}
+              <p className="sr-only">
+                {video.title[lang]} — {video.description[lang]}
+              </p>
+            </video>
           ) : (
             <iframe
               className="absolute inset-0 w-full h-full border-0"
@@ -81,15 +91,20 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
             type="button"
             onClick={() => hasVideo && setIsPlaying(true)}
             aria-label={isFr ? `Lire la vidéo : ${video.title.fr}` : `Play video: ${video.title.en}`}
-            className={`absolute inset-0 w-full h-full min-h-[48px] group cursor-pointer flex flex-col items-center justify-center p-4 text-center transition-all ${
+            className={`absolute inset-0 w-full h-full min-h-[48px] group cursor-pointer flex flex-col items-center justify-center p-4 text-center transition-all overflow-hidden ${
               hasVideo ? 'hover:bg-black/20' : 'opacity-90'
             }`}
-            style={
-              hasVideo && thumbnailUrl
-                ? { backgroundImage: `url(${thumbnailUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                : undefined
-            }
           >
+            {hasVideo && thumbnailUrl && (
+              <Image
+                src={thumbnailUrl}
+                alt={video.title[lang]}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                priority={false}
+              />
+            )}
             {/* Ambient Dark Overlay */}
             <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 group-hover:bg-black/20 transition-colors" />
 
@@ -129,7 +144,23 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
             ))}
           </div>
         )}
+
+        {/* Accessible Text Description / Transcript Toggle */}
+        <div className="mt-3 pt-2 border-t border-white/[0.06]">
+          <details className="text-[11px] font-mono group/details cursor-pointer">
+            <summary className="hover:text-fg text-muted/70 transition-colors select-none focus:outline-none list-none flex items-center gap-1.5">
+              <span className="text-gold text-[10px]">▸</span>
+              <span>{isFr ? 'Transcription & Description audio' : 'Transcript & Audio description'}</span>
+            </summary>
+            <p className="mt-2 p-2.5 bg-black/40 rounded-lg border border-border text-[11px] text-muted leading-relaxed font-sans">
+              {isFr
+                ? `Extrait de réalisation cinématique OVIZai : « ${video.title.fr} ». Direction artistique générative haute définition, esthétique Paris 1990, textures 35mm grainées, contrastes profonds et lumières dorées. ${video.description.fr.replace(/\n/g, ' ')}`
+                : `OVIZai cinematic showcase excerpt: "${video.title.en}". High-definition generative art direction, Paris 1990 aesthetic, 35mm silver film grain, deep contrast and amber highlights. ${video.description.en.replace(/\n/g, ' ')}`}
+            </p>
+          </details>
+        </div>
       </div>
     </div>
   );
 }
+

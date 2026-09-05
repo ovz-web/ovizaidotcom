@@ -27,6 +27,18 @@ export const metadata: Metadata = {
   },
 };
 
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+
 export default function StackLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Accueil', url: 'https://ovizai.com' },
+          { name: 'Méthode de Production', url: 'https://ovizai.com/stack' },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

@@ -72,6 +72,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
                 <button
                   type="button"
                   onClick={item.onClick}
+                  aria-expanded={item.expanded !== undefined ? item.expanded : undefined}
                   className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
                 >
                   {innerContent}

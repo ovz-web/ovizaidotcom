@@ -139,7 +139,11 @@ export default function TopBar({
         <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-1.5 sm:gap-4">
           {/* Left Column: Logo */}
           <div className="flex items-center flex-shrink-0">
-            <Link className="flex items-center py-0.5" href="/">
+            <Link
+              className="flex items-center py-0.5"
+              href="/"
+              aria-label={isFr ? 'OVIZai — Accueil du studio de production vidéo IA' : 'OVIZai — AI Video Studio Home'}
+            >
               <Image
                 src="/logo.png"
                 alt={isFr ? 'OVIZai — Studio de production vidéo et direction artistique IA' : 'OVIZai — AI Art Direction & Video Production Studio'}
