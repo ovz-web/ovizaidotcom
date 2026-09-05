@@ -207,6 +207,8 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   },
 ];
 
+import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
+
 export default function ServicesGrid({ lang }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>(null);
@@ -215,104 +217,67 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
     setOpenService(prev => (prev === id ? null : id));
   };
 
+  const serviceItems: ListMenuItem[] = FIVE_SERVICES.map(service => {
+    const isOpen = openService === service.id;
+    const mapInfo = SERVICE_TYPE_MAP[service.id];
+    const quoteHref = mapInfo
+      ? `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`
+      : `/contact?service=${service.id}`;
+
+    return {
+      id: service.id,
+      icon: service.icon,
+      title: `${service.number} // ${isFr ? service.title.fr : service.title.en}`,
+      subtitle: isFr ? service.tagline.fr : service.tagline.en,
+      trailing: isOpen ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Détails ↓' : 'Details ↓'),
+      onClick: () => toggleService(service.id),
+      expanded: isOpen,
+      expandedContent: (
+        <div className="space-y-4 animate-fadeIn">
+          <div>
+            <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2">
+              {isFr ? 'Présentation' : 'Overview'}
+            </h4>
+            <div className="text-xs text-[#ECE4D3] leading-relaxed space-y-1">
+              {(isFr ? service.descriptionLines.fr : service.descriptionLines.en).map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2.5">
+              {isFr ? 'Livrables inclus' : 'Deliverables'}
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-xs text-[#8c8375] bg-black/40 p-2 rounded-lg border border-white/[0.04]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer CTAs inside card */}
+          <div className="pt-3 flex justify-end border-t border-white/[0.06]">
+            <Link
+              href={quoteHref}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
+            >
+              <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      ),
+    };
+  });
+
   return (
     <section id="services" className="max-w-xl mx-auto mb-8 px-4">
-      {/* Grid of 5 Services */}
-      <div className="space-y-4 mb-12">
-        {FIVE_SERVICES.map(service => {
-          const IconComp = service.icon;
-          const isOpen = openService === service.id;
-          const mapInfo = SERVICE_TYPE_MAP[service.id];
-          const quoteHref = mapInfo
-            ? `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`
-            : `/contact?service=${service.id}`;
-
-          return (
-            <div
-              key={service.id}
-              className={`ovizai-card transition-all duration-300 ${
-                isOpen ? 'border-border-gold bg-black/80' : 'hover:border-border-gold'
-              }`}
-            >
-              {/* Header Button (Click to Expand) */}
-              <button
-                type="button"
-                onClick={() => toggleService(service.id)}
-                className="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
-              >
-                <div className="flex items-start gap-3 sm:gap-3.5 min-w-0">
-                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/60 border border-border text-gold flex-shrink-0 mt-0.5">
-                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <span className="mono text-[10px] text-gold font-bold tracking-[0.2em] uppercase px-2 py-0.5 rounded bg-gold/10 border border-gold/20">
-                        {service.number}
-                      </span>
-                    </div>
-                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg leading-snug">
-                      {isFr ? service.title.fr : service.title.en}
-                    </h3>
-                    <p className="text-xs text-muted mt-1 leading-relaxed">
-                      {isFr ? service.tagline.fr : service.tagline.en}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
-                  <span className="mono text-[10px] uppercase text-gold hidden sm:inline font-semibold">
-                    {isOpen ? (isFr ? 'Fermer' : 'Close') : (isFr ? 'Détails' : 'Details')}
-                  </span>
-                  <div className={`p-1.5 rounded-lg border border-border bg-black/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-muted'}`}>
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </div>
-              </button>
-
-              {/* Collapsible Details */}
-              {isOpen && (
-                <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-border space-y-4 animate-fadeIn">
-                  <div>
-                    <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
-                      {isFr ? 'Présentation' : 'Overview'}
-                    </h4>
-                    <div className="text-xs text-fg leading-relaxed space-y-1">
-                      {(isFr ? service.descriptionLines.fr : service.descriptionLines.en).map((line, idx) => (
-                        <p key={idx}>{line}</p>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2.5">
-                      {isFr ? 'Livrables inclus' : 'Deliverables'}
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-muted bg-black/40 p-2 rounded-lg border border-white/[0.04]">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Footer CTAs inside card */}
-                  <div className="pt-3 flex justify-end border-t border-border">
-                    <Link
-                      href={quoteHref}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
-                    >
-                      <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+      {/* 5 Services List in Unified ListMenuCard */}
+      <ListMenuCard items={serviceItems} className="mb-12" />
 
       {/* Video Showcase Section embedded at bottom of Services page */}
       <div className="mt-10 pt-8 border-t border-border">

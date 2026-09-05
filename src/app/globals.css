@@ -129,8 +129,8 @@ html, body, *, *::before, *::after {
 }
 
 .ovizai-card:hover {
-  border-color: rgba(202, 162, 67, 0.35);
-  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.9), 0 0 20px rgba(202, 162, 67, 0.08);
+  border-color: rgba(236, 228, 211, 0.22);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.9);
 }
 
 /* Focus styles */

@@ -142,7 +142,7 @@ export default function FormationPage() {
 
         {/* 3. Short Hook Card redirecting to /tarifs#masterclass (no price, no redundant bullet list) */}
         <div id="inscription" className="max-w-xl mx-auto px-4 mb-8">
-          <div className="ovizai-card border border-border-gold bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-gold">
+          <div className="ovizai-card border border-border-strong bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-6">
             <div className="pb-3 border-b border-border flex items-center justify-between gap-2">
               <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.25em]">
                 {isFr ? 'ACCÈS AU PROGRAMME' : 'PROGRAM ACCESS'}

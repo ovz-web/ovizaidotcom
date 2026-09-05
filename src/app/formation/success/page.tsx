@@ -46,8 +46,8 @@ export default function FormationSuccessPage() {
           </Link>
 
           {/* Success Card */}
-          <div className="ovizai-card border border-border-gold bg-card/95 backdrop-blur-md rounded-2xl p-6 sm:p-10 shadow-gold text-center space-y-6">
-            <div className="w-16 h-16 bg-gold/10 border border-gold rounded-full flex items-center justify-center mx-auto shadow-gold">
+          <div className="ovizai-card border border-border-strong bg-card/95 backdrop-blur-md rounded-2xl p-6 sm:p-10 text-center space-y-6">
+            <div className="w-16 h-16 bg-gold/10 border border-border-gold rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8 text-gold" />
             </div>
 

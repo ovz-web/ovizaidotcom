@@ -57,12 +57,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
   return (
     <section id="masterclass" className="max-w-xl mx-auto mb-8 px-4">
       {/* Container Card */}
-      <div className="relative border border-border-gold bg-card/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-gold overflow-hidden">
-        {/* Ambient Radial Aura */}
-        <div
-          className="absolute top-0 right-0 w-80 h-80 blur-3xl pointer-events-none -z-10"
-          style={{ background: 'radial-gradient(circle, rgba(202,162,67,0.15) 0%, transparent 70%)' }}
-        />
+      <div className="ovizai-card relative p-4 sm:p-6 md:p-8">
 
         {/* Section Eyebrow */}
         <div className="flex items-center justify-between gap-2 mb-4">

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { sendMasterclassWelcome, sendMasterclassSaleNotification, maskEmail } from '@/lib/mail';
+import { MASTERCLASS_PRICE } from '@/lib/pricing';
 
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -39,8 +40,9 @@ export async function POST(req: NextRequest) {
 
     const customerEmail = session.customer_details?.email || session.customer_email;
     const customerName = session.customer_details?.name || 'Étudiant Masterclass';
-    const amountTotal = session.amount_total ? session.amount_total / 100 : 680;
     const currencyUpper = (session.currency || 'cad').toUpperCase();
+    const fallbackAmount = MASTERCLASS_PRICE[currencyUpper as keyof typeof MASTERCLASS_PRICE] || MASTERCLASS_PRICE.CAD;
+    const amountTotal = session.amount_total ? session.amount_total / 100 : fallbackAmount;
 
     if (customerEmail) {
       const cleanEmail = customerEmail.trim().toLowerCase();

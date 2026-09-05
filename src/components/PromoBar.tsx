@@ -14,7 +14,7 @@ export default function PromoBar({ lang }: PromoBarProps) {
   return (
     <Link
       href="/tarifs"
-      className="group inline-flex items-center gap-1.5 sm:gap-2 bg-black/80 hover:bg-gold/15 border border-border-gold hover:border-gold/70 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer shadow-gold flex-shrink-0"
+      className="group inline-flex items-center gap-1.5 sm:gap-2 bg-black/80 hover:bg-gold/15 border border-border-gold hover:border-gold/70 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer flex-shrink-0"
     >
       {/* Pulsating Gold Dot */}
       <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
@@ -24,8 +24,8 @@ export default function PromoBar({ lang }: PromoBarProps) {
 
       {/* Main Promo Text - strictly whitespace-nowrap, ultra-compact on mobile */}
       <span className="text-fg group-hover:text-gold-bright font-medium tracking-wide text-[10px] sm:text-xs whitespace-nowrap">
-        <span className="sm:hidden">{isFr ? 'Tarifs →' : 'Pricing →'}</span>
-        <span className="hidden sm:inline">{isFr ? 'Tarifs & Formules →' : 'Pricing & Packages →'}</span>
+        <span className="sm:hidden">{isFr ? 'Offre -30% →' : 'Offer -30% →'}</span>
+        <span className="hidden sm:inline">{isFr ? 'Offre de lancement -30% →' : 'Launch offer -30% →'}</span>
       </span>
     </Link>
   );

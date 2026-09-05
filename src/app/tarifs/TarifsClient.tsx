@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check, HelpCircle, Zap, Loader2 } from 'lucide-react';
+import { ArrowUpRight, Check, HelpCircle, Zap, Loader2, ShieldCheck } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -10,7 +10,10 @@ import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
-import { MASTERCLASS_PRICE, PRICING_PLANS } from '@/lib/pricing';
+import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE, PRICING_PLANS } from '@/lib/pricing';
+
+// Offre de lancement — places restantes modifiables
+const PLACES_RESTANTES: number = 3;
 
 const CUSTOM_SERVICES_SUMMARY = [
   {
@@ -186,6 +189,7 @@ export default function TarifsClient() {
   const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
+  const [showLaunchDiscount, setShowLaunchDiscount] = useState<boolean>(true);
   const [mcLoading, setMcLoading] = useState(false);
   const [mcError, setMcError] = useState<string | null>(null);
 
@@ -194,6 +198,7 @@ export default function TarifsClient() {
   const showToast = (msg: string) => setToastMessage(msg);
 
   const masterclassCurrent = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
+  const masterclassOriginal = MASTERCLASS_ORIGINAL_PRICE[currency] || MASTERCLASS_ORIGINAL_PRICE.USD;
 
   const formattedMasterclassCurrent =
     currency === 'EUR'
@@ -201,6 +206,13 @@ export default function TarifsClient() {
       : currency === 'CAD'
       ? `${masterclassCurrent} $ CAD`
       : `${masterclassCurrent} $ USD`;
+
+  const formattedMasterclassOriginal =
+    currency === 'EUR'
+      ? `${masterclassOriginal} €`
+      : currency === 'CAD'
+      ? `${masterclassOriginal} $ CAD`
+      : `${masterclassOriginal} $ USD`;
 
   const handleMasterclassCheckout = async () => {
     setMcLoading(true);
@@ -316,6 +328,82 @@ export default function TarifsClient() {
               </p>
             </div>
 
+            {/* Toggle: Normal Price vs Launch Discount (-30%) */}
+            <div className="mb-5 p-3 sm:p-4 rounded-xl bg-card border border-border flex items-center justify-between gap-4 flex-wrap">
+              <span className="mono text-xs text-fg font-semibold">
+                {isFr ? 'TARIFICATION APPLIQUÉE' : 'PRICING MODE'}
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchDiscount(false)}
+                  className={`mono text-xs transition-colors cursor-pointer ${
+                    !showLaunchDiscount ? 'text-gold font-semibold' : 'text-muted hover:text-fg'
+                  }`}
+                >
+                  {isFr ? 'Tarif standard' : 'Standard rate'}
+                </button>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={showLaunchDiscount}
+                  onClick={() => setShowLaunchDiscount(!showLaunchDiscount)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer border focus:outline-none ${
+                    showLaunchDiscount
+                      ? 'bg-gold border-gold'
+                      : 'bg-black/60 border-white/20'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-black transition-transform ${
+                      showLaunchDiscount ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchDiscount(true)}
+                  className={`mono text-xs transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    showLaunchDiscount ? 'text-gold-bright font-semibold' : 'text-muted hover:text-fg'
+                  }`}
+                >
+                  <span>{isFr ? 'Offre de lancement (-30%)' : 'Launch offer (-30%)'}</span>
+                  {showLaunchDiscount && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Embedded Launch Offer Callout (only if showLaunchDiscount) */}
+            {showLaunchDiscount && (
+              <div className="mb-6 rounded-xl border border-border-gold bg-gold/5 p-3.5 sm:p-4 flex items-start gap-3">
+                <ShieldCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                <div className="text-xs text-fg leading-relaxed">
+                  <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-0.5">
+                    {isFr ? 'OFFRE DE LANCEMENT — LIMITÉE (−30%)' : 'LAUNCH OFFER — LIMITED (−30%)'}
+                  </span>
+                  <div className="text-xs text-fg space-y-1">
+                    {isFr ? (
+                      <>
+                        <p>Offre de lancement : −30 % sur nos 2 formules pour les 5 premiers clients</p>
+                        <p>
+                          <span className="text-gold font-semibold">{PLACES_RESTANTES} places restantes</span> — retour au tarif normal ensuite
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p>Launch offer: −30% on both plans for the first 5 clients</p>
+                        <p>
+                          <span className="text-gold font-semibold">{PLACES_RESTANTES} spots remaining</span> — standard rate applies after
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Vertical Packaged Cards Stack (matching unified max-w-xl design system) */}
             <div className="flex flex-col gap-5">
               {PRICING_PLANS.map((plan) => {
@@ -324,8 +412,8 @@ export default function TarifsClient() {
                     key={plan.id}
                     className={`ovizai-card flex flex-col justify-between gap-4 p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all ${
                       plan.primary
-                        ? 'border border-gold/70 bg-card/95 shadow-gold'
-                        : 'border border-border-gold bg-card/80'
+                        ? 'border border-border-strong bg-card/95'
+                        : 'border border-border bg-card/80'
                     }`}
                   >
                     <div>
@@ -354,8 +442,15 @@ export default function TarifsClient() {
                       <div className="my-3 pb-3 border-b border-border">
                         <div className="flex items-baseline gap-2.5 flex-wrap">
                           <p className="text-2xl sm:text-3xl font-semibold font-mono text-fg leading-none tracking-tight">
-                            {formatPrice(plan.minUsd, currency)}
+                            {showLaunchDiscount
+                              ? formatPrice(plan.minUsd, currency)
+                              : formatPrice(plan.originalMinUsd || plan.minUsd, currency)}
                           </p>
+                          {showLaunchDiscount && plan.originalMinUsd && (
+                            <p className="text-sm sm:text-base text-muted line-through font-mono font-medium">
+                              {formatPrice(plan.originalMinUsd, currency)}
+                            </p>
+                          )}
                         </div>
                         <p className="text-[11px] text-muted mt-1.5 font-mono">
                           {plan.period[lang]}
@@ -482,7 +577,7 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            <div className="ovizai-card border border-border-gold bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-gold">
+            <div className="ovizai-card border border-border-strong bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-5">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-border">
                 <div>
                   <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.25em] block mb-0.5">
@@ -495,8 +590,13 @@ export default function TarifsClient() {
 
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-semibold text-gold font-mono">
-                    {formattedMasterclassCurrent}
+                    {showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}
                   </span>
+                  {showLaunchDiscount && (
+                    <span className="text-xs text-muted line-through font-mono">
+                      {formattedMasterclassOriginal}
+                    </span>
+                  )}
                   <span className="mono text-[11px] text-muted">
                     {isFr ? 'paiement unique' : 'one-time'}
                   </span>
@@ -561,8 +661,8 @@ export default function TarifsClient() {
                     <>
                       <span>
                         {isFr
-                          ? `S’inscrire à la Masterclass (${formattedMasterclassCurrent}) →`
-                          : `Enroll in Masterclass (${formattedMasterclassCurrent}) →`}
+                          ? `S’inscrire à la Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`
+                          : `Enroll in Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-black" />
                     </>

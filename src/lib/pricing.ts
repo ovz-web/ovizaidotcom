@@ -1,4 +1,5 @@
 export const MASTERCLASS_PRICE = { USD: 490, EUR: 450, CAD: 670 } as const;
+export const MASTERCLASS_ORIGINAL_PRICE = { USD: 990, EUR: 900, CAD: 1300 } as const;
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
 
 export interface PricingPlan {
@@ -6,6 +7,8 @@ export interface PricingPlan {
   name: { fr: string; en: string };
   badge: { fr: string; en: string };
   minUsd: number;
+  originalMinUsd?: number;
+  launchOffer?: boolean;
   budgetTierId: string;
   tag?: { fr: string; en: string };
   period: { fr: string; en: string };
@@ -20,6 +23,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
     badge: { fr: 'ASSET COURT 48-72H', en: '48-72H SHORT ASSET' },
     minUsd: 1150,
+    originalMinUsd: 1650,
+    launchOffer: true,
     budgetTierId: 'tier-0',
     tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
     period: { fr: '/ asset 15-30s', en: '/ 15-30s asset' },
@@ -47,6 +52,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
     badge: { fr: 'CAMPAGNE COMPLÈTE', en: 'COMPLETE CAMPAIGN' },
     minUsd: 3200,
+    originalMinUsd: 4600,
+    launchOffer: true,
     budgetTierId: 'tier-1',
     period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },
     includes: {

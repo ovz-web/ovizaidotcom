@@ -148,7 +148,7 @@ export default function QualifiedContact({
           <div
             role="status"
             aria-live="polite"
-            className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-border-gold bg-gold/10 text-center space-y-4 shadow-gold"
+            className="ovizai-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-center space-y-4"
           >
             <CheckCircle2 className="w-12 h-12 text-gold mx-auto animate-pulse" />
             <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg tracking-wide">
