@@ -44,33 +44,33 @@ export default function Footer({ lang, onShowToast }: FooterProps) {
       </div>
 
       {/* Bottom Rights & Legal */}
-      <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-3 pt-3">
+      <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 pt-3 border-t border-white/[0.04]">
         <span className="text-[#9C9384]">{t.rights}</span>
-        <div className="flex flex-wrap items-center justify-center gap-4 text-[#9C9384]">
+        <div className="grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2 sm:gap-4 text-[#9C9384] w-full sm:w-auto">
           <Link
             href="/tarifs"
-            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer text-[#CAA243] font-bold min-h-[44px] px-1"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center justify-center gap-1 cursor-pointer text-[#CAA243] font-bold min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-white/[0.04] sm:border-0"
           >
             <Tag className="w-3 h-3 text-[#CAA243]" />
             <span>{lang === 'fr' ? 'Tarifs' : 'Pricing'}</span>
           </Link>
           <Link
             href="/mentions-legales"
-            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-white/[0.04] sm:border-0"
           >
             <FileText className="w-3 h-3 text-[#CAA243]" />
             <span>{lang === 'fr' ? 'Mentions Légales' : 'Legal Notice'}</span>
           </Link>
           <Link
             href="/confidentialite"
-            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-white/[0.04] sm:border-0"
           >
             <ShieldCheck className="w-3 h-3 text-[#CAA243]" />
             <span>{lang === 'fr' ? 'Confidentialité' : 'Privacy Policy'}</span>
           </Link>
           <Link
             href="/cgv"
-            className="hover:text-[#ECE4D3] transition-colors flex items-center gap-1 cursor-pointer min-h-[44px] px-1"
+            className="hover:text-[#ECE4D3] transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-white/[0.04] sm:border-0"
           >
             <FileText className="w-3 h-3 text-[#CAA243]" />
             <span>{lang === 'fr' ? 'CGV' : 'Terms'}</span>

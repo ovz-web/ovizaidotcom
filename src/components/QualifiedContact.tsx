@@ -33,10 +33,10 @@ const SERVICE_ID_MAP: Record<string, string> = {
 };
 
 const BUDGET_TIERS = [
-  { id: 'tier-0', minUsd: 400, maxUsd: 1000 },
-  { id: 'tier-1', minUsd: 1000, maxUsd: 3000 },
-  { id: 'tier-2', minUsd: 3000, maxUsd: 8000 },
-  { id: 'tier-3', minUsd: 8000, maxUsd: 15000 },
+  { id: 'tier-0', title: { fr: 'Sprint Pilote (Asset court 15-30s)', en: 'Pilot Sprint (Short asset 15-30s)' } },
+  { id: 'tier-1', title: { fr: 'Direction Artistique & Pack Visuels', en: 'Art Direction & Key Visuals' } },
+  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / Site Web', en: 'Brand Campaign / Music Video / Web' } },
+  { id: 'tier-3', title: { fr: 'Production Majeure (Film / Série)', en: 'Scale Production (Film / Series)' } },
 ];
 
 export default function QualifiedContact({
@@ -48,7 +48,7 @@ export default function QualifiedContact({
   initialBudget,
 }: QualifiedContactProps) {
   const isFr = lang === 'fr';
-  const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
+  const { currency: ctxCurrency } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
 
   const [selectedProject, setSelectedProject] = useState<string>('pub-brand');
@@ -78,11 +78,6 @@ export default function QualifiedContact({
     }
   }, [initialServiceId, initialType, initialBudget]);
 
-  const handleCurrencySwitch = (curr: Currency) => {
-    if (onSelectCurrency) onSelectCurrency(curr);
-    setCtxCurrency(curr);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
@@ -96,7 +91,7 @@ export default function QualifiedContact({
 
     const projectObj = PROJECT_TYPES.find(p => p.id === selectedProject);
     const budgetObj = BUDGET_TIERS.find(b => b.id === selectedBudget);
-    const formattedBudget = budgetObj ? formatRange(budgetObj.minUsd, budgetObj.maxUsd, activeCurrency) : selectedBudget;
+    const formattedBudget = budgetObj ? budgetObj.title[lang] : selectedBudget;
 
     try {
       const res = await fetch('/api/leads', {
@@ -141,30 +136,9 @@ export default function QualifiedContact({
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
             <span>{isFr ? '1. Projet' : '1. Project'}</span>
             <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? '2. Budget' : '2. Budget'}</span>
+            <span>{isFr ? '2. Enveloppe' : '2. Tier'}</span>
             <span className="text-[#8c8375]">•</span>
             <span>{isFr ? '3. Coordonnées' : '3. Contact'}</span>
-          </div>
-
-          {/* Currency Switcher Bar */}
-          <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
-            <span className="text-[10px] text-[#8C8375] px-2 font-mono">
-              {isFr ? 'Devise de facturation :' : 'Billing Currency:'}
-            </span>
-            {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
-              <button
-                key={curr}
-                type="button"
-                onClick={() => handleCurrencySwitch(curr)}
-                className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                  activeCurrency === curr
-                    ? 'bg-[#CAA243] text-black'
-                    : 'text-[#8C8375] hover:text-[#ECE4D3]'
-                }`}
-              >
-                {curr}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -246,12 +220,11 @@ export default function QualifiedContact({
             {/* Step 2: Dynamic Budget Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
-                {isFr ? '2. Quelle est votre enveloppe budgétaire estimée ?' : '2. What is your estimated budget range?'}
+                {isFr ? '2. Quelle est votre enveloppe budgétaire estimée ?' : '2. What is your estimated budget tier?'}
               </legend>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {BUDGET_TIERS.map(tier => {
                   const isSelected = selectedBudget === tier.id;
-                  const labelStr = formatRange(tier.minUsd, tier.maxUsd, activeCurrency);
 
                   return (
                     <button
@@ -259,13 +232,13 @@ export default function QualifiedContact({
                       type="button"
                       aria-pressed={isSelected}
                       onClick={() => setSelectedBudget(tier.id)}
-                      className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
                           ? 'border-[#CAA243] bg-[#CAA243]/10 text-[#ECE4D3]'
                           : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
                       }`}
                     >
-                      <span className="mono text-xs font-bold block">{labelStr}</span>
+                      <span className="mono text-xs font-bold block">{tier.title[lang]}</span>
                     </button>
                   );
                 })}

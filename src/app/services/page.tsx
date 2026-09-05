@@ -36,8 +36,8 @@ export default function ServicesPage() {
         {/* 1. Standardized Unified Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '01 // PRESTATIONS & PRODUCTION' : '01 // SERVICES & PRODUCTION'}
-          title={isFr ? 'Prestations & Direction Artistique IA' : 'Services & AI Art Direction'}
+          eyebrow={isFr ? '01 // NOS SERVICES' : '01 // OUR SERVICES'}
+          title={isFr ? 'Nos Services & Direction Artistique' : 'Our Services & Art Direction'}
           subtitle={
             isFr
               ? 'De la conception au master final, des films conçus pour votre marque.'
@@ -52,7 +52,7 @@ export default function ServicesPage() {
               href="/services"
               className="py-2.5 text-center font-bold rounded-lg transition-all bg-[#CAA243] text-black shadow cursor-default"
             >
-              {isFr ? 'Prestations & Services' : 'Services & Production'}
+              {isFr ? 'Nos Services' : 'Our Services'}
             </Link>
             <Link
               href="/tarifs"
@@ -73,16 +73,6 @@ export default function ServicesPage() {
 
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />
-
-      {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden p-3 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none">
-        <Link
-          href="/contact?service=sprint&type=pub-brand&budget=tier-0"
-          className="pointer-events-auto w-full min-h-[52px] flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold rounded-xl mono text-xs uppercase tracking-wider shadow-[0_4px_24px_rgba(202,162,67,0.4)] transition-all"
-        >
-          <span>{lang === 'fr' ? 'Demander un devis (24h)' : 'Request a Quote (24h)'}</span>
-        </Link>
-      </div>
     </div>
   );
 }

@@ -44,7 +44,7 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
   const isFr = lang === 'fr';
 
   return (
-    <div id="stack" className="max-w-2xl mx-auto mb-10 px-4">
+    <div id="stack" className="max-w-3xl mx-auto mb-8 px-4">
       <div className="border border-white/[0.08] bg-[#0B0A08]/90 rounded-2xl overflow-hidden transition-all">
         <button
           type="button"
@@ -58,10 +58,10 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
             </span>
             <div>
               <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
-                {isFr ? 'STACK TECHNIQUE & OUTILS DE LA MASTERCLASS' : 'MASTERCLASS TOOLSET & STACK'}
+                {isFr ? 'DÉTAIL DES OUTILS & LOGICIELS DU PROGRAMME' : 'PROGRAM TOOLSET & SOFTWARE DETAILS'}
               </h3>
               <p className="text-[11px] text-[#8c8375] mt-0.5">
-                {isFr ? 'Cliquez pour afficher les moteurs génératifs et logiciels étudiés' : 'Click to show generative engines and software included'}
+                {isFr ? 'Cliquez pour afficher les moteurs génératifs étudiés (Midjourney, Runway, Kling, DaVinci)' : 'Click to view generative engines (Midjourney, Runway, Kling, DaVinci)'}
               </p>
             </div>
           </div>
@@ -72,11 +72,11 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
         </button>
 
         {isOpen && (
-          <div className="pt-4 border-t border-white/[0.06]">
+          <div className="p-4 sm:p-5 border-t border-white/[0.06] bg-black/30">
             <AIPipeline
               lang={lang}
-              customEyebrow={isFr ? 'OUTILS & LOGICIELS DU PROGRAMME' : 'PROGRAM TOOLSET & SOFTWARE'}
-              customTitle={isFr ? 'Moteurs Génératifs, Lip-Sync & Post-Production 4K' : 'Generative Engines, Lip-Sync & 4K Post-Production'}
+              hideHeader={true}
+              showConversionCard={false}
             />
           </div>
         )}
@@ -93,6 +93,8 @@ export default function FormationPage() {
   const showToast = (msg: string) => {
     setToastMessage(msg);
   };
+
+  const isFr = lang === 'fr';
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
@@ -112,24 +114,30 @@ export default function FormationPage() {
         {/* Standardized Unified Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={lang === 'fr' ? '02 // FORMATION & MASTERCLASS VIDÉO' : '02 // VIDEO MASTERCLASS & PROGRAM'}
-          title={lang === 'fr' ? 'Masterclass Cinéma & Vidéo IA' : 'AI Cinema & Video Masterclass'}
+          eyebrow={isFr ? '02 // FORMATION VIDÉO IA' : '02 // AI VIDEO COURSE'}
+          title={isFr ? 'Formation Vidéo IA & Masterclass' : 'AI Video Course & Masterclass'}
           subtitle={
-            lang === 'fr'
-              ? '5 modules pratiques pour maîtriser le pipeline de production vidéo 4K.'
-              : '5 practical modules to master the 4K video production pipeline.'
+            isFr
+              ? 'Un programme pratique en 5 modules pour maîtriser la création de films cinématographiques 4K.'
+              : 'A practical 5-module program to master 4K cinematic film creation.'
           }
         />
 
-        {/* The 5 Masterclass Modules */}
-        <MasterclassSection
-          lang={lang}
-          currency={currency}
-          onSelectCurrency={setCurrency}
-        />
+        {/* 5 Masterclass Modules */}
+        <MasterclassSection lang={lang} />
 
         {/* Masterclass Toolset (Collapsible) */}
         <FormationToolsetCollapse lang={lang} />
+
+        {/* Final Permanent Action CTA Button */}
+        <div className="max-w-xl mx-auto px-4 mt-8 mb-4 text-center">
+          <Link
+            href="/tarifs#masterclass"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-8 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
+          >
+            <span>{isFr ? 'Voir tarifs & formules →' : 'View pricing & packages →'}</span>
+          </Link>
+        </div>
       </main>
 
       <Footer lang={lang} onShowToast={showToast} />

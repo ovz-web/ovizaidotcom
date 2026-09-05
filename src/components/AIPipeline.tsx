@@ -10,6 +10,7 @@ interface AIPipelineProps {
   customEyebrow?: string;
   customTitle?: string;
   showConversionCard?: boolean;
+  hideHeader?: boolean;
 }
 
 const PIPELINE_STEPS = [
@@ -38,8 +39,8 @@ const PIPELINE_STEPS = [
       en: '02. Animation & Natural Motion',
     },
     benefit: {
-      fr: 'Animation réaliste des mouvements, des fluides et des éclairages dynamiques.',
-      en: 'Realistic animation of motion, fluids, and dynamic lighting.',
+      fr: 'Animation réaliste des expressions, des fluides et des éclairages dynamiques.',
+      en: 'Realistic animation of expressions, fluids, and dynamic lighting.',
     },
     techBadge: {
       fr: 'Kling AI',
@@ -88,25 +89,28 @@ export default function AIPipeline({
   customEyebrow,
   customTitle,
   showConversionCard = true,
+  hideHeader = false,
 }: AIPipelineProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section className="max-w-xl mx-auto mb-10 px-4">
-      {/* Section Title */}
-      <div className="mb-6 text-center">
-        <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
-          {customEyebrow || (isFr ? '03 // NOTRE PIPELINE DE PRODUCTION' : '03 // OUR PRODUCTION PIPELINE')}
-        </p>
-        <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-2">
-          {customTitle || (isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master')}
-        </h2>
-        <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
-          {isFr
-            ? '4 étapes combinant les meilleures technologies IA et la post-production cinéma.'
-            : '4 steps combining top generative AI and cinema post-production.'}
-        </p>
-      </div>
+    <section className="max-w-xl mx-auto mb-6 px-4">
+      {/* Section Title (rendered only if hideHeader is false) */}
+      {!hideHeader && (
+        <div className="mb-6 text-center">
+          <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
+            {customEyebrow || (isFr ? '03 // NOTRE PIPELINE DE PRODUCTION' : '03 // OUR PRODUCTION PIPELINE')}
+          </p>
+          <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-2">
+            {customTitle || (isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master')}
+          </h2>
+          <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
+            {isFr
+              ? '4 étapes combinant les meilleures technologies IA et la post-production cinéma.'
+              : '4 steps combining top generative AI and cinema post-production.'}
+          </p>
+        </div>
+      )}
 
       {/* 4 Numbered Steps */}
       <div className="space-y-3">
@@ -115,24 +119,26 @@ export default function AIPipeline({
           return (
             <div
               key={step.id}
-              className="border border-white/[0.08] bg-[#141210] hover:border-[#CAA243]/40 rounded-xl p-4 transition-all duration-300 group"
+              className="border border-white/[0.08] bg-[#0B0A08] hover:border-[#CAA243]/50 rounded-xl p-4 sm:p-5 transition-all duration-300 group shadow-lg"
             >
-              <div className="flex items-center justify-between gap-3 mb-2">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg bg-black/40 border border-white/[0.08] text-[#CAA243] group-hover:border-[#CAA243]/40 transition-colors">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-black/60 border border-white/[0.1] text-[#CAA243] group-hover:border-[#CAA243]/50 transition-colors mt-0.5">
                     <IconComp className="w-4 h-4" />
                   </div>
-                  <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors">
-                    {step.title[lang]}
-                  </h3>
+                  <div>
+                    <h3 className="font-display text-sm sm:text-base font-extrabold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors leading-snug">
+                      {step.title[lang]}
+                    </h3>
+                  </div>
                 </div>
 
-                <span className="mono text-[9px] px-2 py-0.5 rounded bg-black/60 border border-white/[0.08] text-[#8c8375] font-medium whitespace-nowrap">
+                <span className="mono text-[9.5px] px-2.5 py-1 rounded bg-[#CAA243]/10 border border-[#CAA243]/25 text-[#CAA243] font-bold whitespace-nowrap">
                   {step.techBadge[lang]}
                 </span>
               </div>
 
-              <p className="text-xs text-[#8c8375] leading-relaxed">
+              <p className="text-xs text-[#9C9384] leading-relaxed pl-11">
                 {step.benefit[lang]}
               </p>
             </div>

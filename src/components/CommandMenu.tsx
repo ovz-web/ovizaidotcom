@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Film, GraduationCap, Cpu, Tag } from 'lucide-react';
+import { Film, GraduationCap, Cpu, Tag, Mail } from 'lucide-react';
 import { Language } from '@/types';
 
 interface CommandMenuProps {
@@ -11,7 +11,7 @@ interface CommandMenuProps {
 }
 
 /**
- * Navigation card — presents 4 key destinations clearly.
+ * Navigation card — presents 5 key destinations clearly.
  */
 export default function CommandMenu({ lang }: CommandMenuProps) {
   const isFr = lang === 'fr';
@@ -20,7 +20,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
     {
       id: 'nav-services',
       number: '01',
-      title: isFr ? '01. Prestations & Services' : '01. Services & Production',
+      title: isFr ? '01. Nos Services' : '01. Our Services',
       sub: isFr ? 'Films, pubs, clips & direction artistique' : 'Films, ads, music videos & art direction',
       href: '/services',
       action: isFr ? 'Explorer' : 'Explore',
@@ -30,7 +30,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
     {
       id: 'nav-formation',
       number: '02',
-      title: isFr ? '02. Formation & Masterclass Vidéo' : '02. Video Masterclass',
+      title: isFr ? '02. Formation Vidéo IA' : '02. AI Video Course',
       sub: isFr ? '5 modules pratiques & méthode 4K' : '5 practical modules & 4K workflow',
       href: '/formation',
       action: isFr ? 'Accéder' : 'Access',
@@ -40,10 +40,10 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
     {
       id: 'nav-pipeline',
       number: '03',
-      title: isFr ? '03. Stack Technique & Pipeline' : '03. Tech Stack & Pipeline',
-      sub: isFr ? 'Midjourney, Kling, Runway, DaVinci Resolve' : 'Midjourney, Kling, Runway, DaVinci Resolve',
+      title: isFr ? '03. Notre Méthode de Production' : '03. Our Production Method',
+      sub: isFr ? 'Création générative 4K & étalonnage pro' : '4K generative workflow & pro grading',
       href: '/stack',
-      action: isFr ? 'Voir Stack' : 'View Stack',
+      action: isFr ? 'Découvrir' : 'Discover',
       icon: Cpu,
       isExternalRoute: true
     },
@@ -55,6 +55,16 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
       href: '/tarifs',
       action: isFr ? 'Voir Tarifs' : 'View Pricing',
       icon: Tag,
+      isExternalRoute: true
+    },
+    {
+      id: 'nav-contact',
+      number: '05',
+      title: isFr ? '05. Devis & Contact' : '05. Contact & Quote',
+      sub: isFr ? 'Formulaire de demande de devis & contact sous 24h' : 'Quote request & 24h direct response form',
+      href: '/contact',
+      action: isFr ? 'Contacter' : 'Contact',
+      icon: Mail,
       isExternalRoute: true
     }
   ];

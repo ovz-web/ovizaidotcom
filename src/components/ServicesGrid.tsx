@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
-import { useCurrency } from '@/context/CurrencyContext';
 import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
+import TrustSection from '@/components/TrustSection';
 import { YOUTUBE_VIDEOS } from '@/lib/videos';
 
 interface ServicesGridProps {
@@ -31,8 +31,8 @@ const FIVE_SERVICES = [
       en: 'Film & Series Direction'
     },
     tagline: {
-      fr: 'Films et séries cinématographiques, du script au master final.',
-      en: 'Cinematic films and series, from script to final master.'
+      fr: 'Productions cinématographiques d’envergure, de la première idée au rendu 4K.',
+      en: 'Major cinematic productions, from initial vision to 4K master.'
     },
     description: {
       fr: 'Prise en charge complète : écriture, storyboard, génération 8K, montage et étalonnage.',
@@ -42,8 +42,6 @@ const FIVE_SERVICES = [
       fr: ['Concept & écriture', 'Storyboard numérique', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
       en: ['Concept & Script', 'Digital Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
     },
-    minUsd: 8000,
-    maxUsd: 15000,
     icon: Film
   },
   {
@@ -54,19 +52,17 @@ const FIVE_SERVICES = [
       en: 'Music Videos & Stage Visualisers'
     },
     tagline: {
-      fr: 'Clips musicaux et scénographies à l\'esthétique sur-mesure.',
-      en: 'Custom music videos and stage visualisers.'
+      fr: 'Créations musicales et scénographies VJing à l\'esthétique sur-mesure.',
+      en: 'Music creations and stage visualisers with custom aesthetics.'
     },
     description: {
-      fr: 'Création de clips et visuels de scène qui subliment l\'univers visuel des artistes.',
-      en: 'Creation of music videos and stage visuals elevating the artist\'s identity.'
+      fr: 'Création de visuels de scène qui subliment la signature artistique.',
+      en: 'Creation of stage visuals elevating the artist\'s identity.'
     },
     deliverables: {
       fr: ['Direction artistique', 'Moodboard & références', 'Séquences animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
       en: ['Art Direction', 'Moodboards & References', 'Animated Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
     },
-    minUsd: 3000,
-    maxUsd: 8000,
     icon: Music2
   },
   {
@@ -88,8 +84,6 @@ const FIVE_SERVICES = [
       fr: ['Concept publicitaire', 'Script & storyboard', 'Production visuelle rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
       en: ['Ad Concept', 'Script & Storyboard', 'Fast Visual Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
     },
-    minUsd: 3000,
-    maxUsd: 8000,
     icon: Clapperboard
   },
   {
@@ -104,15 +98,13 @@ const FIVE_SERVICES = [
       en: 'Shape your brand\'s complete visual identity.'
     },
     description: {
-      fr: 'Direction artistique globale, univers visuels et visuels clés 8K.',
-      en: 'Global art direction, custom visual universes, and 8K key visuals.'
+      fr: 'Conception visuelle globale, charte graphique et visuels clés 8K.',
+      en: 'Complete visual design, brand guidelines, and 8K key visuals.'
     },
     deliverables: {
       fr: ['Direction artistique globale', 'Univers visuel sur-mesure', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
       en: ['Global Art Direction', 'Custom Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals (ultra high definition)', 'Brand Guidelines']
     },
-    minUsd: 1000,
-    maxUsd: 3000,
     icon: Palette
   },
   {
@@ -134,8 +126,6 @@ const FIVE_SERVICES = [
       fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
       en: ['UI/UX Design Mockup', 'Custom Next.js Development', 'Animations & Micro-Interactions', 'Semantic SEO', 'Deployment & Hosting']
     },
-    minUsd: 3000,
-    maxUsd: 8000,
     icon: Globe2
   }
 ];
@@ -171,16 +161,9 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   },
 ];
 
-export default function ServicesGrid({ lang, currency: propCurrency, onSelectCurrency }: ServicesGridProps) {
+export default function ServicesGrid({ lang }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>(null);
-  const { currency: ctxCurrency, setCurrency: setCtxCurrency, formatRange } = useCurrency();
-
-  const activeCurrency = propCurrency || ctxCurrency;
-  const handleSelectCurrency = (curr: Currency) => {
-    if (onSelectCurrency) onSelectCurrency(curr);
-    setCtxCurrency(curr);
-  };
 
   const toggleService = (id: string) => {
     setOpenService(prev => (prev === id ? null : id));
@@ -188,29 +171,6 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
 
   return (
     <section id="services" className="max-w-3xl mx-auto mb-14 px-4">
-      {/* Section Header: Currency Switcher Bar */}
-      <div className="mb-6 text-center">
-        <div className="inline-flex items-center gap-1 bg-black/60 p-1 rounded-lg border border-white/[0.08] mono text-xs">
-          <span className="text-[10px] text-[#9C9384] px-2 font-mono">
-            {isFr ? 'Devise :' : 'Currency:'}
-          </span>
-          {(['USD', 'EUR', 'CAD'] as Currency[]).map(curr => (
-            <button
-              key={curr}
-              type="button"
-              onClick={() => handleSelectCurrency(curr)}
-              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
-                activeCurrency === curr
-                  ? 'bg-[#CAA243] text-black'
-                  : 'text-[#9C9384] hover:text-[#ECE4D3]'
-              }`}
-            >
-              {curr}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Grid of 5 Services */}
       <div className="space-y-4 mb-12">
         {FIVE_SERVICES.map(service => {
@@ -219,9 +179,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
           const mapInfo = SERVICE_TYPE_MAP[service.id];
           const quoteHref = mapInfo
             ? `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`
-            : '/contact';
-
-          const priceFormatted = formatRange(service.minUsd, service.maxUsd, activeCurrency);
+            : `/contact?service=${service.id}`;
 
           return (
             <div
@@ -243,10 +201,7 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="mono text-[10px] text-[#CAA243] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
-                        {service.number} // PÔLE
-                      </span>
-                      <span className="mono text-[10px] text-[#9C9384]">
-                        {priceFormatted}
+                        {`${service.number} // PÔLE`}
                       </span>
                     </div>
                     <h3 className="font-display text-base sm:text-lg font-bold text-[#ECE4D3] leading-snug">
@@ -295,17 +250,12 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
                   </div>
 
                   {/* Footer CTAs inside card */}
-                  <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.06]">
-                    <div className="mono text-xs text-[#ECE4D3]">
-                      <span className="text-[#9C9384] mr-1.5">{isFr ? 'Budget estimé :' : 'Estimated budget:'}</span>
-                      <strong className="text-[#CAA243] font-bold">{priceFormatted}</strong>
-                    </div>
-
+                  <div className="pt-3 flex justify-end border-t border-white/[0.06]">
                     <Link
                       href={quoteHref}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
                     >
-                      <span>{isFr ? 'Configurer ce projet' : 'Configure project'}</span>
+                      <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </Link>
                   </div>
@@ -317,12 +267,24 @@ export default function ServicesGrid({ lang, currency: propCurrency, onSelectCur
       </div>
 
       {/* Video Showcase Section embedded at bottom of Services page */}
-      <VideoShowcase
-        lang={lang}
-        videos={SERVICES_SHOWCASE_VIDEOS}
-        eyebrow={isFr ? '02 // DÉMONSTRATIONS EN ACTION' : '02 // DEMONSTRATIONS IN ACTION'}
-        title={isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
-      />
+      <div className="mt-12 pt-8 border-t border-white/[0.08]">
+        <div className="text-center mb-6">
+          <p className="mono text-xs uppercase tracking-widest text-[#CAA243] font-bold mb-1">
+            {isFr ? '02 // DÉMONSTRATIONS EN ACTION' : '02 // DEMONSTRATIONS IN ACTION'}
+          </p>
+          <h2 className="text-xl font-bold text-[#ECE4D3]">
+            {isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
+            <VideoShowcase key={video.youtubeId || idx} video={video} lang={lang} />
+          ))}
+        </div>
+
+        {/* Social Proof & Guarantees accompanying demonstrations */}
+        <TrustSection lang={lang} hideProcessStep={true} />
+      </div>
     </section>
   );
 }

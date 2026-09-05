@@ -5,13 +5,10 @@ import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
 import AIPipeline from '@/components/AIPipeline';
-import VideoSection from '@/components/VideoSection';
-import TrustSection from '@/components/TrustSection';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
-import { YOUTUBE_VIDEOS } from '@/lib/videos';
 
 export default function StackPage() {
   const { lang, toggleLanguage } = useLanguage();
@@ -39,66 +36,29 @@ export default function StackPage() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD'}
-          title={isFr ? 'Pipeline & Synergie des Technologies IA' : 'AI Tech Stack & Production Pipeline'}
+          title={isFr ? 'Notre Méthode de Production' : 'Our Production Method'}
           subtitle={
             isFr
-              ? 'Une méthode de production vidéo pensée pour votre résultat visuel.'
-              : 'A video production workflow engineered for your visual result.'
+              ? '4 étapes claires pour transformer vos idées en films de qualité cinéma.'
+              : '4 clear steps turning your ideas into cinema-grade films.'
           }
         />
 
-        {/* 2. 4-Step Production Method */}
+        {/* 2. 4-Step Production Process */}
         <AIPipeline
           lang={lang}
-          customEyebrow={isFr ? '03 // NOTRE PIPELINE DE PRODUCTION' : '03 // OUR PRODUCTION PIPELINE'}
-          customTitle={isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master'}
+          hideHeader={true}
           showConversionCard={false}
         />
 
-        {/* 3. Video Showcase Section - Visual proof linking method to output */}
-        <VideoSection
-          lang={lang}
-          video1YoutubeId={YOUTUBE_VIDEOS.homeShowreel1}
-          video2YoutubeId={YOUTUBE_VIDEOS.homeShowreel2}
-          customEyebrow={isFr ? 'PREUVE VISUELLE // WORKFLOWS 4K' : 'VISUAL PROOF // 4K WORKFLOWS'}
-          customTitle={isFr ? 'Le résultat de cette méthode, en vidéo' : "This method's result, in video"}
-          customSubtitle={isFr
-            ? 'Découvrez des exemples de rendus créés grâce à ce pipeline en 4 étapes.'
-            : 'Discover sample outputs created using this 4-step pipeline.'}
-        />
-
-        {/* 4. Trust & Commitments Section */}
-        <TrustSection lang={lang} hideProcessStep={true} />
-
-        {/* 5. Final Conversion Card */}
-        <div className="max-w-xl mx-auto px-4 mt-2 mb-8">
-          <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-5 rounded-2xl text-center">
-            <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
-              {isFr ? 'UN PROCESSUS CLAIR, DES RÉSULTATS GARANTIS' : 'CLEAR PROCESS, GUARANTEED RESULTS'}
-            </span>
-            <h3 className="text-sm sm:text-base font-bold text-[#ECE4D3] mb-2">
-              {isFr ? 'Prêt à donner vie à votre projet visuel ?' : 'Ready to bring your visual project to life?'}
-            </h3>
-            <p className="text-xs text-[#9C9384] max-w-md mx-auto mb-4 leading-relaxed">
-              {isFr
-                ? 'Profitez de la liberté de création du cinéma IA avec des délais garantis et des révisions incluses.'
-                : 'Enjoy the creative freedom of AI cinema with guaranteed delivery times and included revisions.'}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="/tarifs"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-              >
-                <span>{isFr ? 'Voir nos tarifs & formules →' : 'View pricing & packages →'}</span>
-              </a>
-              <a
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-black/50 border border-white/[0.12] hover:border-[#CAA243] text-[#ECE4D3] hover:text-[#CAA243] px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-              >
-                <span>{isFr ? 'Demander un devis 24h →' : 'Request 24h quote →'}</span>
-              </a>
-            </div>
-          </div>
+        {/* 3. Single Unique Action Button */}
+        <div className="max-w-xl mx-auto px-4 mt-8 mb-4 text-center">
+          <a
+            href="/tarifs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-8 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
+          >
+            <span>{isFr ? 'Voir nos tarifs →' : 'View pricing & packages →'}</span>
+          </a>
         </div>
       </main>
 

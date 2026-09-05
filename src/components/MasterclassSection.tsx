@@ -1,15 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import { GraduationCap, ArrowUpRight, ShieldCheck, Sparkles, Loader2 } from 'lucide-react';
-import { Language, Currency } from '@/types';
-import { useCurrency } from '@/context/CurrencyContext';
-import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE } from '@/lib/pricing';
+import React from 'react';
+import Link from 'next/link';
+import { GraduationCap, ArrowUpRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Language } from '@/types';
 
 interface MasterclassSectionProps {
   lang: Language;
-  currency?: Currency;
-  onSelectCurrency?: (curr: Currency) => void;
 }
 
 const MODULES = [
@@ -40,52 +37,8 @@ const MODULES = [
   }
 ];
 
-export default function MasterclassSection({ lang, currency: propCurrency }: MasterclassSectionProps) {
+export default function MasterclassSection({ lang }: MasterclassSectionProps) {
   const isFr = lang === 'fr';
-  const { currency: ctxCurrency } = useCurrency();
-  const activeCurrency = propCurrency || ctxCurrency;
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
-
-  const currentPrice = MASTERCLASS_PRICE[activeCurrency] || 500;
-  const originalPrice = MASTERCLASS_ORIGINAL_PRICE[activeCurrency] || 990;
-
-  const formattedCurrentPrice = activeCurrency === 'EUR'
-    ? `${currentPrice} €`
-    : activeCurrency === 'CAD'
-    ? `${currentPrice} $ CAD`
-    : `${currentPrice} $ USD`;
-
-  const formattedOriginalPrice = activeCurrency === 'EUR'
-    ? `${originalPrice} €`
-    : activeCurrency === 'CAD'
-    ? `${originalPrice} $ CAD`
-    : `${originalPrice} $ USD`;
-
-  const handleCheckout = async () => {
-    setLoading(true);
-    setErrorMsg(null);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currency: activeCurrency.toLowerCase() }),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error('[CHECKOUT ERROR]', data);
-        setErrorMsg(data.error || (isFr ? 'Erreur lors de l’initialisation de la session Stripe.' : 'Failed to create checkout session.'));
-        setLoading(false);
-      }
-    } catch (err: any) {
-      console.error('[CHECKOUT FETCH ERROR]', err);
-      setErrorMsg(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
-      setLoading(false);
-    }
-  };
 
   return (
     <section id="masterclass" className="max-w-3xl mx-auto mb-14 px-4">
@@ -105,7 +58,7 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
           </span>
           <span className="mono text-[10px] uppercase font-bold text-black bg-[#CAA243] px-2.5 py-0.5 rounded-full flex items-center gap-1">
             <Sparkles className="w-3.5 h-3.5 text-black" />
-            {isFr ? 'PROGRAMME PRO' : 'PRO CURRICULUM'}
+            {isFr ? 'PARCOURS PRO' : 'PRO CURRICULUM'}
           </span>
         </div>
 
@@ -156,46 +109,13 @@ export default function MasterclassSection({ lang, currency: propCurrency }: Mas
           ))}
         </div>
 
-        {/* Pricing & Guarantee Box */}
-        <div className="pt-5 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl sm:text-3xl font-extrabold text-[#CAA243] font-mono">
-                {formattedCurrentPrice}
-              </span>
-              <span className="text-xs text-[#9C9384] line-through font-mono">
-                {formattedOriginalPrice}
-              </span>
-            </div>
-            <p className="text-[11px] text-[#9C9384] mt-0.5 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#CAA243]" />
-              {isFr ? 'Accès à vie + Mises à jour des modèles incluses' : 'Lifetime Access + Model Updates Included'}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            disabled={loading}
-            onClick={handleCheckout}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.3)] hover:scale-[1.02] cursor-pointer"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-4 h-4 text-black animate-spin" />
-                <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
-              </>
-            ) : (
-              <>
-                <span>{isFr ? 'S’inscrire à la Masterclass +' : 'Enroll in Masterclass +'}</span>
-                <ArrowUpRight className="w-4 h-4 text-black" />
-              </>
-            )}
-          </button>
+        {/* Guarantee Badge */}
+        <div className="pt-4 border-t border-white/[0.08] text-center">
+          <p className="text-xs text-[#CAA243] inline-flex items-center gap-1.5 font-mono">
+            <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0" />
+            <span>{isFr ? 'Accès illimité et à vie + toutes les mises à jour futures des modèles incluses.' : 'Lifetime access + all future model updates included.'}</span>
+          </p>
         </div>
-
-        {errorMsg && (
-          <p className="text-xs text-red-400 font-mono mt-3 text-center">{errorMsg}</p>
-        )}
       </div>
     </section>
   );

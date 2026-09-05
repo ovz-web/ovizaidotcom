@@ -40,7 +40,7 @@ function ContactPageContent() {
         {/* Standardized Unified Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '05 // DEVIS & CONTACT DIRECT' : '05 // DIRECT QUOTE & CONTACT'}
+          eyebrow={isFr ? '05 // DEVIS & CONTACT' : '05 // CONTACT & QUOTE'}
           title={isFr ? 'Démarrer un Projet Vidéo IA' : 'Start an AI Video Project'}
           subtitle={
             isFr
