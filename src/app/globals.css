@@ -111,10 +111,6 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 
-.text-gold-glow {
-  text-shadow: 0 0 15px rgba(202, 162, 67, 0.4);
-}
-
 /* Fine Gold Border Accent */
 .border-gold-fine {
   border: 1px solid rgba(202, 162, 67, 0.22);

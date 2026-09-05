@@ -120,11 +120,11 @@ export default function FormationPage() {
           title={
             isFr ? (
               <>
-                Formation Vidéo IA & <span className="text-gold-gradient text-gold-glow">Masterclass</span>
+                Formation Vidéo IA & <span className="text-gold-gradient">Masterclass</span>
               </>
             ) : (
               <>
-                AI Video Course & <span className="text-gold-gradient text-gold-glow">Masterclass</span>
+                AI Video Course & <span className="text-gold-gradient">Masterclass</span>
               </>
             )
           }

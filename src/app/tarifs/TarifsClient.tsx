@@ -183,11 +183,11 @@ export default function TarifsClient() {
           title={
             isFr ? (
               <>
-                Tarifs & <span className="text-gold-gradient text-gold-glow">Formules de Production</span>
+                Tarifs & <span className="text-gold-gradient">Formules de Production</span>
               </>
             ) : (
               <>
-                Production <span className="text-gold-gradient text-gold-glow">Pricing & Packages</span>
+                Production <span className="text-gold-gradient">Pricing & Packages</span>
               </>
             )
           }

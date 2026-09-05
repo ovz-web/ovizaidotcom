@@ -49,11 +49,11 @@ function ContactPageContent() {
           title={
             isFr ? (
               <>
-                Démarrer un <span className="text-gold-gradient text-gold-glow">Projet Vidéo IA</span>
+                Démarrer un <span className="text-gold-gradient">Projet Vidéo IA</span>
               </>
             ) : (
               <>
-                Start an <span className="text-gold-gradient text-gold-glow">AI Video Project</span>
+                Start an <span className="text-gold-gradient">AI Video Project</span>
               </>
             )
           }

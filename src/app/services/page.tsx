@@ -43,11 +43,11 @@ export default function ServicesPage() {
           title={
             isFr ? (
               <>
-                Nos Services & <span className="text-gold-gradient text-gold-glow">Direction Artistique</span>
+                Nos Services & <span className="text-gold-gradient">Direction Artistique</span>
               </>
             ) : (
               <>
-                Our Services & <span className="text-gold-gradient text-gold-glow">Art Direction</span>
+                Our Services & <span className="text-gold-gradient">Art Direction</span>
               </>
             )
           }

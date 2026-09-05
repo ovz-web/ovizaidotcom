@@ -34,11 +34,11 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-fg text-center mb-1.5 leading-snug">
         {isFr ? (
           <>
-            PRODUCTIONS IA <span className="text-gold-gradient text-gold-glow">CINÉMATOGRAPHIQUES</span>
+            PRODUCTIONS IA <span className="text-gold-gradient">CINÉMATOGRAPHIQUES</span>
           </>
         ) : (
           <>
-            CINEMATIC <span className="text-gold-gradient text-gold-glow">AI PRODUCTIONS</span>
+            CINEMATIC <span className="text-gold-gradient">AI PRODUCTIONS</span>
           </>
         )}
       </h1>

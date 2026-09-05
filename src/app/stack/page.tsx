@@ -77,11 +77,11 @@ export default function StackPage() {
           title={
             isFr ? (
               <>
-                Notre Méthode de <span className="text-gold-gradient text-gold-glow">Production</span>
+                Notre Méthode de <span className="text-gold-gradient">Production</span>
               </>
             ) : (
               <>
-                Our <span className="text-gold-gradient text-gold-glow">Production</span> Method
+                Our <span className="text-gold-gradient">Production</span> Method
               </>
             )
           }

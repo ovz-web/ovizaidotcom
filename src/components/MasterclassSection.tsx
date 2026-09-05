@@ -76,12 +76,12 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
           {isFr ? (
             <>
               Maîtrisez le Cinéma IA <br />
-              du Prompt au <span className="text-gold-gradient text-gold-glow">Master Final</span>
+              du Prompt au <span className="text-gold-gradient">Master Final</span>
             </>
           ) : (
             <>
               Master AI Cinematography <br />
-              from Prompt to <span className="text-gold-gradient text-gold-glow">Final Master</span>
+              from Prompt to <span className="text-gold-gradient">Final Master</span>
             </>
           )}
         </h2>
