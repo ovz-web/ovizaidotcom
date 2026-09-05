@@ -4,6 +4,14 @@ export const metadata: Metadata = {
   title: 'Méthode de Production & Pipeline IA Cinématographique | OVIZai',
   description: 'Pipeline de production vidéo IA complet : direction artistique, animation de caméra virtuelle, upscaling et étalonnage cinématographique. Workflow 4K garanti.',
   keywords: ['Méthode Vidéo IA', 'Pipeline Production IA', 'Animation Caméra Virtuelle', 'Étalonnage 4K', 'OVIZai Production'],
+  alternates: {
+    canonical: 'https://ovizai.com/stack',
+    languages: {
+      fr: 'https://ovizai.com/stack',
+      en: 'https://ovizai.com/stack',
+      'x-default': 'https://ovizai.com/stack',
+    },
+  },
   openGraph: {
     title: 'Méthode de Production & Pipeline IA — OVIZai',
     description: 'Direction artistique + animation + caméra virtuelle + upscaling + étalonnage professionnel. Le pipeline complet de production vidéo IA cinématographique.',

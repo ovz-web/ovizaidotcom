@@ -4,6 +4,14 @@ export const metadata: Metadata = {
   title: 'Prestations & Services — Production Vidéo IA Cinématographique | OVIZai',
   description: 'Films publicitaires IA, clips musicaux, direction artistique et univers visuels cinématographiques haute fidélité. Livraison 48h à 5 jours.',
   keywords: ['Production Vidéo IA', 'Films Publicitaires IA', 'Direction Artistique IA', 'Clips Musicaux IA', 'OVIZai Services'],
+  alternates: {
+    canonical: 'https://ovizai.com/services',
+    languages: {
+      fr: 'https://ovizai.com/services',
+      en: 'https://ovizai.com/services',
+      'x-default': 'https://ovizai.com/services',
+    },
+  },
   openGraph: {
     title: 'Prestations & Services — OVIZai AI Video Studio',
     description: 'Films IA cinématographiques 4K pour marques et artistes. Direction artistique, clips, publicités et univers visuels.',

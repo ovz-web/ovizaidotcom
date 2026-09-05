@@ -4,6 +4,14 @@ export const metadata: Metadata = {
   title: 'Masterclass Vidéo IA — Formation Cinéma & Post-Production 4K | OVIZai',
   description: 'Formation pratique à la création de films cinématographiques avec IA. 5 modules complets : concept art, animation, caméra virtuelle, sound design et mastering 4K. Accès à vie.',
   keywords: ['Masterclass Vidéo IA', 'Formation Cinéma IA', 'Cours Animation Virtuelle', 'Mastering 4K IA', 'OVIZai Masterclass'],
+  alternates: {
+    canonical: 'https://ovizai.com/formation',
+    languages: {
+      fr: 'https://ovizai.com/formation',
+      en: 'https://ovizai.com/formation',
+      'x-default': 'https://ovizai.com/formation',
+    },
+  },
   openGraph: {
     title: 'Masterclass Vidéo IA — OVIZai Studio',
     description: '5 modules pratiques pour créer des films cinématographiques avec IA : concept art, animation, caméra virtuelle, sound design et mastering 4K. Accès à vie.',

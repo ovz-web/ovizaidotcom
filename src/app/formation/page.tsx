@@ -193,10 +193,10 @@ export default function FormationPage() {
               : 'Have a question about the curriculum or enrollment?'}
           </p>
           <Link
-            href="/tarifs#faq"
+            href="/tarifs#masterclass"
             className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1 font-semibold"
           >
-            <span>{isFr ? 'Consulter notre FAQ complète →' : 'View our full FAQ →'}</span>
+            <span>{isFr ? 'Consulter la FAQ de la formation →' : 'View training FAQ →'}</span>
           </Link>
         </div>
 
