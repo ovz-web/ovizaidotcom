@@ -9,6 +9,11 @@ interface AIPipelineProps {
   lang: Language;
 }
 
+interface ToolCategory {
+  name: { fr: string; en: string };
+  tools: string[];
+}
+
 interface PipelineStep {
   id: string;
   num: string;
@@ -16,7 +21,7 @@ interface PipelineStep {
   title: { fr: string; en: string };
   subtitle: { fr: string; en: string };
   specs: { fr: string[]; en: string[] };
-  tools: string[];
+  categories: ToolCategory[];
   deliverables: { fr: string[]; en: string[] };
 }
 
@@ -45,7 +50,20 @@ const PIPELINE_STEPS: PipelineStep[] = [
         'Character, setting and lighting consistency locking across all planned sequences',
       ],
     },
-    tools: ['Midjourney v6.1', 'Flux.1 Dev', 'Magnific AI'],
+    categories: [
+      {
+        name: { fr: 'Image Models', en: 'Image Models' },
+        tools: ['Flux 2', 'Seedream 5', 'Nano Banana', 'GPT Image 2', 'Midjourney v6.1'],
+      },
+      {
+        name: { fr: 'Create (Édition & Graphisme)', en: 'Create (Design & Editing)' },
+        tools: ['AI Image', 'Edit Image', 'Inpaint', 'Mixed Media'],
+      },
+      {
+        name: { fr: 'Studios (Conception Visuelle)', en: 'Studios (Visual Design)' },
+        tools: ['Photodump Studio', 'Higgsfield Canvas'],
+      },
+    ],
     deliverables: {
       fr: ['Bible de style & moodboard validé', 'Storyboard complet séquence par séquence'],
       en: ['Approved visual style bible & moodboard', 'Complete shot-by-shot sequence storyboard'],
@@ -75,7 +93,30 @@ const PIPELINE_STEPS: PipelineStep[] = [
         'Accurate fluid dynamics, volumetric lighting, and organic physical motion',
       ],
     },
-    tools: ['Runway Gen-3 Alpha', 'Kling AI 1.5', 'Luma Dream Machine'],
+    categories: [
+      {
+        name: { fr: 'Video Models', en: 'Video Models' },
+        tools: [
+          'Seedance 2.5',
+          'Seedance 2.0',
+          'Kling 3.0',
+          'Sora 2 Introduction',
+          'Veo 3.1 Introduction',
+          'WAN 2.6',
+          'Grok Imagine 1.5',
+          'Gemini Omni Flash',
+          'Runway Gen-3 Alpha',
+        ],
+      },
+      {
+        name: { fr: 'Create (Moteur Vidéo)', en: 'Create (Video Engine)' },
+        tools: ['AI Video'],
+      },
+      {
+        name: { fr: 'Studios (Cinéma & Scénographie)', en: 'Studios (Cinema & Scenography)' },
+        tools: ['Cinema Studio', 'Luma Dream Machine'],
+      },
+    ],
     deliverables: {
       fr: ['Rushes cinématiques bruts haute fidélité', 'Prévisualisation de montage rythmée'],
       en: ['High-fidelity raw cinematic rushes', 'Paced preview rough-cut for review'],
@@ -105,7 +146,26 @@ const PIPELINE_STEPS: PipelineStep[] = [
         'Spatial sound design, bespoke foley, cinematic impacts, and studio-grade voiceover',
       ],
     },
-    tools: ['DaVinci Resolve Studio', 'ElevenLabs Voice', 'Banque SFX OVIZai'],
+    categories: [
+      {
+        name: { fr: 'Studios & Usines de Production', en: 'Studios & Production Factories' },
+        tools: [
+          'Marketing Studio',
+          'Lipsync Studio',
+          'Fashion Factory',
+          'UGC Factory',
+          'Higgsfield Popcorn',
+        ],
+      },
+      {
+        name: { fr: 'Create (Identités & Avatars)', en: 'Create (Identities & Avatars)' },
+        tools: ['AI Face Swap', 'AI Influencer'],
+      },
+      {
+        name: { fr: 'Audio & Post-Production', en: 'Audio & Post-Production' },
+        tools: ['ElevenLabs Voice', 'DaVinci Resolve Studio', 'Banque SFX OVIZai'],
+      },
+    ],
     deliverables: {
       fr: ['Étalonnage cinéma finalisé', 'Mixage audio stéréo & spatialisé master'],
       en: ['Finalized cinema color grading', 'Master stereo & spatial sound mix'],
@@ -135,7 +195,20 @@ const PIPELINE_STEPS: PipelineStep[] = [
         'Broadcast-ready exports: Apple ProRes 422 HQ, high-bitrate MP4, and 9:16 vertical cuts',
       ],
     },
-    tools: ['Topaz Video AI v5', 'ProRes 422 HQ', 'DCP Cinéma'],
+    categories: [
+      {
+        name: { fr: 'Create (Upscaling & Suite)', en: 'Create (Upscaling & Suite)' },
+        tools: ['Sora 2 Upscale', 'Upscale', 'Apps'],
+      },
+      {
+        name: { fr: 'Restauration & Suréchantillonnage', en: 'Restoration & Upscaling' },
+        tools: ['Topaz Video AI v5', 'Magnific AI'],
+      },
+      {
+        name: { fr: 'Normes Broadcast & Masters', en: 'Broadcast Standards & Masters' },
+        tools: ['Apple ProRes 422 HQ', 'DCP Cinéma'],
+      },
+    ],
     deliverables: {
       fr: ['Master 4K sans compression', 'Déclinaisons 16:9 & 9:16 prêtes à diffuser'],
       en: ['Uncompressed 4K master file', 'Multi-format 16:9 & 9:16 ready-to-air exports'],
@@ -179,17 +252,27 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
           </div>
 
           <div>
-            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
+            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2.5">
               {isFr ? 'Moteurs & Outils Déployés' : 'Deployed Engines & Tools'}
             </h4>
-            <div className="flex flex-wrap gap-1.5">
-              {step.tools.map((tool) => (
-                <span
-                  key={tool}
-                  className="mono text-[10.5px] font-semibold px-2.5 py-1 rounded-md bg-black/60 border border-white/[0.08] text-fg"
-                >
-                  {tool}
-                </span>
+            <div className="space-y-2.5">
+              {step.categories.map((cat, catIdx) => (
+                <div key={catIdx} className="space-y-1.5">
+                  <span className="mono text-[10px] uppercase tracking-[0.15em] text-muted/90 font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
+                    {isFr ? cat.name.fr : cat.name.en}
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cat.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="mono text-[10.5px] font-semibold px-2.5 py-1 rounded-md bg-black/60 border border-white/[0.08] text-fg hover:border-gold/40 hover:text-gold-bright transition-colors"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
