@@ -87,6 +87,7 @@ export default function TarifsClient() {
   const [showPromo, setShowPromo] = useState(true);
   const [openCard, setOpenCard] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isFaqSectionOpen, setIsFaqSectionOpen] = useState(false);
   const [mcLoading, setMcLoading] = useState(false);
   const [mcError, setMcError] = useState<string | null>(null);
 
@@ -135,15 +136,18 @@ export default function TarifsClient() {
     setOpenCard((prev) => (prev === id ? null : id));
   };
 
-  // 4 Offers arranged in STRICT ASCENDING PRICE ORDER
   const pricingItems: ListMenuItem[] = [
-    // 01 // Masterclass (lowest price, launch offer highlight)
     {
       id: 'offer-masterclass',
       icon: GraduationCap,
       title: isFr ? '01 // Formation & Masterclass Vidéo IA 4K' : '01 // AI Video & Cinema Masterclass 4K',
       subtitle: isFr ? '5 modules pratiques & bibles de prompts cinéma' : '5 practical modules & cinema prompt bibles',
-      trailing: formattedMcCurrent,
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{formattedMcCurrent}</span>
+          <span className="text-gold">{openCard === 'offer-masterclass' ? '↑' : '↓'}</span>
+        </span>
+      ),
       onClick: () => toggleCard('offer-masterclass'),
       expanded: openCard === 'offer-masterclass',
       expandedContent: (
@@ -214,13 +218,17 @@ export default function TarifsClient() {
       ),
     },
 
-    // 02 // Sprint Pilote 48-72h
     {
       id: 'offer-sprint',
       icon: Zap,
       title: isFr ? '02 // Formule Sprint Pilote (48-72h)' : '02 // Pilot Sprint Package (48-72h)',
       subtitle: isFr ? '1 asset publicitaire court (Reel/TikTok 15-30s)' : '1 short ad asset (Reel/TikTok 15-30s)',
-      trailing: formatPrice(sprintPlan.minUsd, currency),
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{formatPrice(sprintPlan.minUsd, currency)}</span>
+          <span className="text-gold">{openCard === 'offer-sprint' ? '↑' : '↓'}</span>
+        </span>
+      ),
       onClick: () => toggleCard('offer-sprint'),
       expanded: openCard === 'offer-sprint',
       expandedContent: (
@@ -270,13 +278,17 @@ export default function TarifsClient() {
       ),
     },
 
-    // 03 // Campagne de Marque (3 Films)
     {
       id: 'offer-campaign',
       icon: Film,
       title: isFr ? '03 // Formule Campagne de Marque (3 Films)' : '03 // Brand Campaign Package (3 Films)',
       subtitle: isFr ? '3 vidéos cinématographiques déclinées & DA dédiée' : '3 cinematic campaign videos & dedicated art direction',
-      trailing: formatPrice(campaignPlan.minUsd, currency),
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{formatPrice(campaignPlan.minUsd, currency)}</span>
+          <span className="text-gold">{openCard === 'offer-campaign' ? '↑' : '↓'}</span>
+        </span>
+      ),
       onClick: () => toggleCard('offer-campaign'),
       expanded: openCard === 'offer-campaign',
       expandedContent: (
@@ -326,13 +338,17 @@ export default function TarifsClient() {
       ),
     },
 
-    // 04 // Prestations Sur-Mesure
     {
       id: 'offer-custom',
       icon: Palette,
       title: isFr ? '04 // Prestations Sur-Mesure (5 Services)' : '04 // Custom Services (5 Disciplines)',
       subtitle: isFr ? 'Films, clips, pubs, univers visuels & web digital' : 'Films, music videos, ads, brand worlds & digital',
-      trailing: isFr ? 'Sur devis (24h) →' : 'Quote (24h) →',
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{isFr ? 'Sur devis (24h)' : 'Custom quote (24h)'}</span>
+          <span className="text-gold">{openCard === 'offer-custom' ? '↑' : '↓'}</span>
+        </span>
+      ),
       onClick: () => toggleCard('offer-custom'),
       expanded: openCard === 'offer-custom',
       expandedContent: (
@@ -391,7 +407,7 @@ export default function TarifsClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-16"
+        className="flex-grow relative z-10 pb-3 sm:pb-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* Page Header */}
@@ -416,19 +432,14 @@ export default function TarifsClient() {
           }
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-8">
+        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
           {/* iOS Style Promo Switch Toggle */}
-          <div className="flex items-center justify-between gap-3 mb-4 px-4 py-3 rounded-xl bg-card border border-border">
-            <div className="flex items-center gap-2.5">
-              <Sparkles className="w-4 h-4 text-gold flex-shrink-0" />
+          <div className="flex items-center justify-between gap-3 mb-2.5 px-3.5 py-2 rounded-xl bg-card border border-border">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
               <div>
-                <span className="mono text-xs text-fg font-semibold block">
+                <span className="mono text-[11.5px] sm:text-xs text-fg font-semibold block leading-tight">
                   {isFr ? 'Offre de Lancement (−30%)' : 'Launch Offer (−30%)'}
-                </span>
-                <span className="text-[10.5px] text-muted font-mono block mt-0.5">
-                  {showPromo
-                    ? (isFr ? 'Tarif réduit appliqué' : 'Discount active')
-                    : (isFr ? 'Plein tarif standard' : 'Regular pricing')}
                 </span>
               </div>
             </div>
@@ -443,14 +454,14 @@ export default function TarifsClient() {
                 aria-checked={showPromo}
                 aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
                 onClick={() => setShowPromo((prev) => !prev)}
-                className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
+                className={`relative inline-flex h-5 w-9 sm:h-5 sm:w-10 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
                   showPromo ? 'bg-gold' : 'bg-white/[0.15]'
                 }`}
               >
                 <span
-                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full transition duration-200 ease-in-out ${
+                  className={`pointer-events-none inline-block h-4 w-4 transform rounded-full transition duration-200 ease-in-out ${
                     showPromo
-                      ? 'translate-x-5 bg-black shadow-sm'
+                      ? 'translate-x-4 sm:translate-x-5 bg-black shadow-sm'
                       : 'translate-x-0 bg-white/80 shadow-sm'
                   }`}
                 />
@@ -459,68 +470,78 @@ export default function TarifsClient() {
           </div>
 
           {/* Unified Pricing Box (Ascending Order, Expandable Accordion) */}
-          <div className="mb-8">
+          <div className="mb-2.5 sm:mb-3">
             <ListMenuCard items={pricingItems} />
           </div>
 
-          {/* Centralized Clean FAQ (4 Questions without noise or scattering) */}
-          <div className="mb-8">
-            <div className="mb-3">
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
-                {isFr ? 'QUESTIONS FRÉQUENTES' : 'FREQUENTLY ASKED QUESTIONS'}
-              </span>
-              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg leading-snug">
-                {isFr ? 'Facturation, Production & Délais' : 'Billing, Turnaround & Process'}
-              </h2>
-            </div>
-
-            <div className="ovizai-card border border-border bg-card divide-y divide-white/[0.06] rounded-xl overflow-hidden">
-              {FAQ_ITEMS.map((faq, idx) => {
-                const isOpen = openFaq === idx;
-                return (
-                  <div key={idx}>
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
-                    >
-                      <span className="text-xs text-fg font-medium leading-snug">
-                        {faq.q[lang]}
-                      </span>
-                      <HelpCircle
-                        className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                          isOpen ? 'text-gold' : 'text-muted'
-                        }`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="px-4 sm:px-5 pb-4 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
-                        {faq.a[lang].split('\n').map((line, lIdx) => (
-                          <p key={lIdx}>{line}</p>
-                        ))}
-                      </div>
-                    )}
+          {/* Centralized Clean FAQ (Collapsible accordion card) */}
+          <div className="mb-2.5 sm:mb-3">
+            <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
+              <button
+                type="button"
+                onClick={() => setIsFaqSectionOpen((prev) => !prev)}
+                aria-expanded={isFaqSectionOpen}
+                className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <HelpCircle className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
+                  <div className="flex flex-col min-w-0">
+                    <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                      {isFr ? 'Questions Fréquentes (4)' : 'Frequently Asked Questions (4)'}
+                    </span>
+                    <span className="text-[11px] text-muted truncate">
+                      {isFr ? 'Facturation, production & délais de livraison' : 'Billing, turnaround & production workflow'}
+                    </span>
                   </div>
-                );
-              })}
+                </div>
+
+                <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
+                  {isFaqSectionOpen ? '↑' : '↓'}
+                </span>
+              </button>
+
+              {isFaqSectionOpen && (
+                <div className="divide-y divide-white/[0.06] border-t border-border animate-fadeIn">
+                  {FAQ_ITEMS.map((faq, idx) => {
+                    const isOpen = openFaq === idx;
+                    return (
+                      <div key={idx}>
+                        <button
+                          type="button"
+                          onClick={() => setOpenFaq(isOpen ? null : idx)}
+                          className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+                        >
+                          <span className="text-xs text-fg font-medium leading-snug group-hover:text-gold-bright transition-colors">
+                            {faq.q[lang]}
+                          </span>
+                          <span className="mono text-xs text-gold font-medium flex-shrink-0 ml-2">
+                            {isOpen ? '↑' : '↓'}
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 sm:px-5 pb-3.5 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
+                            {faq.a[lang].split('\n').map((line, lIdx) => (
+                              <p key={lIdx}>{line}</p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
 
           {/* Bottom Custom Quote Direct Link */}
-          <div className="text-center pt-2">
+          <div className="text-center pt-1 mb-1">
             <Link
               href="/contact"
               onClick={() => trackEvent('cta_request_custom_quote', { source: 'tarifs_bottom' })}
-              className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[48px]"
+              className="inline-flex items-center gap-1.5 mono text-xs text-gold hover:underline"
             >
               <span>{isFr ? 'Demander un devis sur-mesure (24h) →' : 'Request custom quote (24h) →'}</span>
-              <ArrowUpRight className="w-4 h-4 text-black" />
             </Link>
-            <p className="text-[11px] text-muted font-mono mt-2.5">
-              {isFr
-                ? 'Réponse détaillée et cadrage budgétaire sous 24h ouvrées'
-                : 'Detailed response and budget scope within 24 business hours'}
-            </p>
           </div>
         </div>
       </main>

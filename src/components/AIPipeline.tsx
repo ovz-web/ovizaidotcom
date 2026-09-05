@@ -296,9 +296,9 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
   });
 
   return (
-    <div className="max-w-xl mx-auto px-4 mb-8">
-      <div className="mb-3">
-        <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
+    <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+      <div className="mb-2 sm:mb-2.5">
+        <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-0.5">
           {isFr ? 'NOTRE MÉTHODE DE STUDIO' : 'OUR STUDIO WORKFLOW'}
         </span>
         <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg leading-snug">

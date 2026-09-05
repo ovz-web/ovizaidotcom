@@ -32,7 +32,7 @@ export default function ConfidentialiteClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-16"
+        className="flex-grow relative z-10 pb-3 sm:pb-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         <PageHeader

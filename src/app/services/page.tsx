@@ -33,7 +33,7 @@ export default function ServicesPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-12"
+        className="flex-grow relative z-10 pb-3 sm:pb-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* 1. Standardized Unified Page Header */}
@@ -59,7 +59,7 @@ export default function ServicesPage() {
         />
 
         {/* 2. Segmented 2-option tab AFTER PageHeader */}
-        <div className="max-w-xl mx-auto px-4 mb-6">
+        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
           <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-border mono text-xs w-full">
             <Link
               href="/services"

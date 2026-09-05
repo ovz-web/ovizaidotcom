@@ -214,6 +214,7 @@ import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 export default function ServicesGrid({ lang }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>(null);
+  const [isDemosOpen, setIsDemosOpen] = useState(false);
 
   const toggleService = (id: string) => {
     setOpenService(prev => (prev === id ? null : id));
@@ -277,28 +278,46 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
   });
 
   return (
-    <section id="services" className="max-w-xl mx-auto mb-8 px-4">
+    <section id="services" className="max-w-xl mx-auto mb-3 sm:mb-4 px-4">
       {/* 5 Services List in Unified ListMenuCard */}
-      <ListMenuCard items={serviceItems} className="mb-12" />
+      <ListMenuCard items={serviceItems} className="mb-2.5 sm:mb-3" />
 
-      {/* Video Showcase Section embedded at bottom of Services page */}
-      <div className="mt-10 pt-8 border-t border-border">
-        <div className="text-center mb-6">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
-            {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
-          </p>
-          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
-            {isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-          {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
-            <VideoShowcase key={video.src || video.youtubeId || idx} video={video} lang={lang} />
-          ))}
-        </div>
+      {/* Video Showcase Section (Collapsible accordion, closed by default) */}
+      <div className="mt-2.5 sm:mt-3">
+        <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setIsDemosOpen((prev) => !prev)}
+            aria-expanded={isDemosOpen}
+            className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+          >
+            <div className="flex flex-col min-w-0">
+              <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold block mb-0.5">
+                {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
+              </span>
+              <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                {isFr ? 'Réalisations Vidéo & Direction Artistique (2)' : 'Video Output & Art Direction Showcase (2)'}
+              </h3>
+            </div>
 
-        {/* Social Proof & Guarantees accompanying demonstrations */}
-        <TrustSection lang={lang} hideProcessStep={true} />
+            <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
+              {isDemosOpen ? '↑' : '↓'}
+            </span>
+          </button>
+
+          {isDemosOpen && (
+            <div className="p-4 sm:p-5 border-t border-border animate-fadeIn space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
+                  <VideoShowcase key={video.src || video.youtubeId || idx} video={video} lang={lang} />
+                ))}
+              </div>
+
+              {/* Social Proof & Guarantees accompanying demonstrations */}
+              <TrustSection lang={lang} hideProcessStep={true} />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

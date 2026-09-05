@@ -18,7 +18,7 @@ export default function PageHeader({
   subtitle,
 }: PageHeaderProps) {
   return (
-    <div className="max-w-xl mx-auto px-4 mb-5 sm:mb-6 text-center">
+    <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4 text-center">
       {/* Eyebrow */}
       <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
         {eyebrow}

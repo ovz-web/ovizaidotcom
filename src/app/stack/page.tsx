@@ -34,7 +34,7 @@ export default function StackPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-16"
+        className="flex-grow relative z-10 pb-3 sm:pb-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* Unified Page Header */}
@@ -63,7 +63,7 @@ export default function StackPage() {
         <AIPipeline lang={lang} />
 
         {/* 2. Compact Studio Standards & Commitments Card */}
-        <div className="max-w-xl mx-auto px-4 mb-8">
+        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
           <div className="ovizai-card border border-border bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-5">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-gold" />
@@ -105,13 +105,13 @@ export default function StackPage() {
                 <div className="flex items-center gap-2 mb-1">
                   <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                   <span className="mono text-[11px] font-bold text-fg">
-                    {isFr ? 'Mastering 4K' : 'ProRes 4K Master'}
+                    {isFr ? 'Qualité 4K Native' : 'Native 4K Master'}
                   </span>
                 </div>
                 <p className="text-[11px] text-muted leading-snug">
                   {isFr
-                    ? 'Formats cinema, broadcast et déclinaisons 9:16'
-                    : 'Cinema, broadcast and ready 9:16 social vertical cuts'}
+                    ? 'Export ProRes ou H.265 étalonné aux normes cinéma'
+                    : 'ProRes / H.265 delivery calibrated to cinema specs'}
                 </p>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function StackPage() {
         </div>
 
         {/* 3. Action CTAs */}
-        <div className="max-w-xl mx-auto px-4 mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-3 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/tarifs"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[48px]"
