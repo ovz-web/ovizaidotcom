@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, IBM_Plex_Mono, Syne, Archivo_Black } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -87,6 +89,8 @@ export default function RootLayout({
             {children}
           </LanguageProvider>
         </CurrencyProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
