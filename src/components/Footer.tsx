@@ -22,7 +22,7 @@ export default function Footer({ lang }: FooterProps) {
 
   return (
     <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/60 backdrop-blur-md mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-[11.5px] text-muted/75">
+      <div className="w-full px-3 sm:px-6 md:px-8 py-3.5 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-[11.5px] text-muted/75">
         
         {/* Left: Copyright */}
         <div className="flex items-center gap-2 text-muted/85 select-none">

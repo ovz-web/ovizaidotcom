@@ -134,9 +134,9 @@ export default function TopBar({
       <header
         ref={headerRef}
         style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
-        className="fixed top-0 left-0 right-0 z-50 bg-bg/95 backdrop-blur-md border-b border-border px-2.5 sm:px-4 py-1.5 sm:py-0 sm:h-14 flex flex-col justify-center"
+        className="fixed top-0 left-0 right-0 z-50 bg-bg/95 backdrop-blur-md border-b border-border px-3 sm:px-6 md:px-8 py-1.5 sm:py-0 sm:h-14 flex flex-col justify-center"
       >
-        <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-1.5 sm:gap-4">
+        <div className="w-full flex items-center justify-between gap-1.5 sm:gap-4">
           {/* Left Column: Logo */}
           <div className="flex items-center flex-shrink-0">
             <Link
