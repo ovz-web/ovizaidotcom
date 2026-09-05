@@ -41,7 +41,7 @@
 > Je n'ai pas accès à ces données — elles sont indispensables pour choisir un prix juste.
 
 1. **Quel est ton coût de production réel par vidéo ?**
-   (abonnements outils : Midjourney, Runway, Kling, Topaz, DaVinci — + temps de travail estimé × ta valeur de ton temps)
+   (abonnements infrastructure générative & licences post-production — + temps de travail estimé × ta valeur de ton temps)
 
 2. **Combien de vidéos peux-tu produire par mois** (de façon réaliste, seul) ?
 

@@ -13,35 +13,50 @@ const MODULES = [
   {
     num: '01',
     title: { fr: 'Ingénierie de Prompts & Direction Visuelle 8K', en: 'Prompt Engineering & 8K Visual Direction' },
-    desc: { fr: 'Midjourney v6.1 et Flux.1 Dev pour générer des images cinématiques ultradétaillées.', en: 'Midjourney v6.1 and Flux.1 Dev for detailed cinematic imagery.' }
+    desc: {
+      fr: 'Moteurs de rendu génératif pour concevoir des images cinématiques ultradétaillées et cohérentes.',
+      en: 'Generative rendering engines to create detailed, coherent cinematic imagery.',
+    },
   },
   {
     num: '02',
     title: { fr: 'Cinéma Génératif & Caméra Virtuelle', en: 'Generative Cinema & Virtual Camera' },
-    desc: { fr: 'Runway Gen-3 Alpha, Kling AI et Luma pour animer vos plans avec fluidité.', en: 'Runway Gen-3 Alpha, Kling AI, and Luma for smooth camera motion.' }
+    desc: {
+      fr: 'Moteurs d’animation physique et caméra virtuelle 3D pour animer vos plans avec fluidité.',
+      en: 'Physics motion engines and 3D virtual camera systems for smooth cinematic sequences.',
+    },
   },
   {
     num: '03',
     title: { fr: 'Post-Production & Upscaling 4K/8K', en: 'Post-Production & 4K/8K Upscaling' },
-    desc: { fr: 'Topaz Video AI, DaVinci Resolve Studio et étalonnage colorimétrique ACES.', en: 'Topaz Video AI, DaVinci Resolve Studio, and ACES color grading.' }
+    desc: {
+      fr: 'Upscaling neuronal 4K/8K, conformation temporelle et étalonnage colorimétrique ACES.',
+      en: 'Neural 4K/8K upscaling, temporal consistency, and ACES color grading.',
+    },
   },
   {
     num: '04',
     title: { fr: 'Sound Design & Doublage Voix IA', en: 'Sound Design & AI Voice Synchronization' },
-    desc: { fr: 'Bandes-son immersives et doublage vocal avec ElevenLabs et Suno v4.', en: 'Immersive soundtracks and voice dubbing with ElevenLabs and Suno v4.' }
+    desc: {
+      fr: 'Bandes-son spatialisées, synthèse vocale multilingue et sound design synchronisé.',
+      en: 'Spatialized soundtracks, multilingual voice synthesis, and synchronized sound design.',
+    },
   },
   {
     num: '05',
     title: { fr: 'Monétisation & Workflow Client Pro', en: 'Monetization & Professional Client Pipeline' },
-    desc: { fr: 'Devis, gestion des droits d’auteur IA et méthodes pour signer vos contrats.', en: 'Quotes, AI copyright frameworks, and landing commercial contracts.' }
-  }
+    desc: {
+      fr: 'Devis, gestion des droits d’auteur IA et méthodes pour signer vos contrats commerciaux.',
+      en: 'Quotes, AI copyright frameworks, and landing commercial contracts.',
+    },
+  },
 ];
 
 export default function MasterclassSection({ lang }: MasterclassSectionProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section id="masterclass" className="max-w-xl mx-auto mb-14 px-4">
+    <section id="masterclass" className="max-w-xl mx-auto mb-8 px-4">
       {/* Container Card */}
       <div className="relative border border-[#CAA243]/40 bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_35px_rgba(202,162,67,0.1)] overflow-hidden">
         {/* Ambient Radial Aura */}
@@ -54,11 +69,11 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
         <div className="flex items-center justify-between gap-2 mb-4">
           <span className="mono text-[10px] tracking-[0.25em] uppercase text-[#CAA243] font-bold flex items-center gap-1.5">
             <GraduationCap className="w-4 h-4 text-[#CAA243]" />
-            {isFr ? '02 // FORMATION & MASTERCLASS IA' : '02 // AI MASTERCLASS & TRAINING'}
+            {isFr ? 'CURRICULUM DE FORMATION' : 'TRAINING CURRICULUM'}
           </span>
-          <span className="mono text-[10px] uppercase font-bold text-black bg-[#CAA243] px-2.5 py-0.5 rounded-full flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-black" />
-            {isFr ? 'PARCOURS PRO' : 'PRO CURRICULUM'}
+          <span className="mono text-[10px] uppercase font-bold text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/25 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <Sparkles className="w-3.5 h-3.5 text-[#CAA243]" />
+            {isFr ? 'Parcours Pro' : 'Pro Curriculum'}
           </span>
         </div>
 
@@ -66,13 +81,13 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
         <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
           {isFr ? (
             <>
-              MAÎTRISEZ LE CINÉMA IA <br />
-              DU PROMPT AU <span className="text-gold-gradient text-gold-glow">MASTER FINAL</span>
+              Maîtrisez le Cinéma IA <br />
+              du Prompt au <span className="text-gold-gradient text-gold-glow">Master Final</span>
             </>
           ) : (
             <>
-              MASTER AI CINEMATOGRAPHY <br />
-              FROM PROMPT TO <span className="text-gold-gradient text-gold-glow">FINAL MASTER</span>
+              Master AI Cinematography <br />
+              from Prompt to <span className="text-gold-gradient text-gold-glow">Final Master</span>
             </>
           )}
         </h2>
@@ -86,10 +101,10 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
         {/* Modules List */}
         <div className="space-y-3 mb-8">
           <h3 className="mono text-xs font-semibold uppercase text-[#ECE4D3] tracking-[0.2em] mb-2">
-            {isFr ? 'LES 5 MODULES DU PROGRAMME :' : 'CURRICULUM 5 MODULES:'}
+            {isFr ? 'Programme de la Masterclass' : 'Masterclass Curriculum'}
           </h3>
 
-          {MODULES.map(mod => (
+          {MODULES.map((mod) => (
             <div
               key={mod.num}
               className="flex items-start gap-3 p-3.5 rounded-xl border border-white/[0.06] bg-black/40 hover:border-[#CAA243]/30 transition-all"
@@ -113,7 +128,11 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
         <div className="pt-4 border-t border-white/[0.08] text-center">
           <p className="text-xs text-[#CAA243] inline-flex items-center gap-1.5 font-mono">
             <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0" />
-            <span>{isFr ? 'Accès illimité et à vie + toutes les mises à jour futures des modèles incluses.' : 'Lifetime access + all future model updates included.'}</span>
+            <span>
+              {isFr
+                ? 'Accès illimité et à vie + toutes les mises à jour futures des modèles incluses.'
+                : 'Lifetime access + all future model updates included.'}
+            </span>
           </p>
         </div>
       </div>

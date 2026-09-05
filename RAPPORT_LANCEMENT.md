@@ -37,7 +37,7 @@
 | **TopBar Navigation** | `src/components/TopBar.tsx` | Liens de navigation, logo réactif, menu mobile responsive. | ✅ Fonctionnel |
 | **CommandMenu (⌘K)** | `src/components/CommandMenu.tsx` | Ouverture via raccourci clavier `⌘K` / `Ctrl+K` ou bouton. Navigation instantanée. | ✅ Fonctionnel |
 | **Sélecteur de Langue (FR/EN)** | `src/context/LanguageContext.tsx` | Bascule dynamique des textes et dictionnaires avec persistance `localStorage`. | ✅ Fonctionnel |
-| **Sélecteur de Devise (USD/EUR/CAD)** | `src/context/CurrencyContext.tsx` | Conversion dynamique des tarifs (Sprint 530$, Standard 1030$, Premium 2600$, Masterclass 490$) avec règles d'arrondi psycologiques. | ✅ Fonctionnel |
+| **Sélecteur de Devise (USD/EUR/CAD)** | `src/context/CurrencyContext.tsx` | Conversion dynamique des tarifs (Sprint 1 150$, Campagne 3 200$, Masterclass 490$) avec règles d'arrondi psycologiques. | ✅ Fonctionnel |
 | **Formulaire Newsletter** | `src/components/NewsletterForm.tsx` | Inscription rapide avec validation email, retour visuel et stockage Supabase. | ✅ Fonctionnel |
 | **Formulaire Brief Qualifié** | `src/components/QualifiedContact.tsx` | Formulaire 3 étapes avec sélection de type de projet, tranche de budget et devises, avec état de confirmation SLA 24-48h post-soumission. | ✅ Fonctionnel |
 | **Boutons CTA /tarifs → /contact** | `src/app/tarifs/TarifsClient.tsx` | Transmission dynamique des paramètres d'URL (`?service=...&type=...&budget=...`) pour pré-remplir le formulaire. | ✅ Fonctionnel |
@@ -56,13 +56,12 @@
 | Segment de Marché | Fourchette de Prix (2026) | Modèle OVIZai | Cohérence & Positionnement |
 | :--- | :--- | :--- | :--- |
 | **Outils SaaS / DIY** | 0 $ – 200 $ / mois | N/A | Non-concurrent direct (pas de service créatif inclus). |
-| **Sprint Publicitaire / Asset court** | 100 $ – 500 $ / ad | **Sprint Pilote : 530 $ USD** (~485 €) | **Parfaitement aligné** avec la fourchette basse du marché pour capter les premiers clients. |
-| **Vidéo de Marque Standard** | 1 000 $ – 5 000 $ / vidéo | **Standard : 1 030 $ USD** (~945 €) | **Positionnement très compétitif** (entrée de gamme pro avec direction artistique & ACES grading). |
-| **Campagne Multi-Vidéos Premium** | 5 000 $ – 30 000 $ / lot | **Premium : 2 600 $ USD** (~2 380 €) | **Offre d'appel agressive** pour séduire les PME et agences. |
-| **Formation / Masterclass IA Pro** | 300 $ – 1 200 $ | **Masterclass : 490 $ USD** (450 € / 670 $ CAD) | **Excellente valeur** pour 5 modules spécialisés avec mise à jour continue. |
+| **Sprint Publicitaire / Asset court** | 500 $ – 1 500 $ / ad | **Sprint Pilote : 1 150 $ USD** (1 050 € / 1 550 $ CAD) | **Excellente rentabilité** pour livraison garantie sous 48-72h avec révision incluse. |
+| **Campagne Multi-Vidéos Marque** | 4 000 $ – 15 000 $ / lot | **Campagne (3 Films) : 3 200 $ USD** (2 950 € / 4 350 $ CAD) | **Offre groupée attractive** avec économie directe vs sprints unitaires et DA dédiée. |
+| **Formation / Masterclass IA Pro** | 300 $ – 1 200 $ | **Masterclass : 490 $ USD** (450 € / 670 $ CAD) | **Excellente valeur** pour 5 modules spécialisés avec mises à jour continues. |
 
 **Recommandation Tarifaire :**  
-Conserver intégralement la grille de prix actuelle (**Sprint 530$ / Standard 1030$ / Premium 2600$ USD** et **Masterclass 490$ USD**). Ce positionnement accessible permet d'accélérer l'acquisition des premiers clients et d'accumuler des études de cas avant toute réévaluation à la hausse.
+Conserver intégralement la grille de prix harmonisée (**Sprint 1 150 $ / Campagne 3 200 $ USD** et **Masterclass 490 $ USD**). Ce positionnement défendable assure à la fois crédibilité de studio professionnel et marge saine.
 
 ### 2. Synthèse des Bonnes Pratiques 2026
 

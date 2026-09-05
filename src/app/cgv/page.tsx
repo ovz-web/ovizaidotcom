@@ -38,7 +38,7 @@ export default function CGVPage() {
                 1. Objet & Champ d’Application
               </h2>
               <p>
-                Les présentes Conditions Générales de Vente régissent les relations contractuelles entre OVIZai Studio et tout client souscrivant à une formule de production vidéo IA (Sprint Pilote, Standard, Premium) ou achetant l’accès à la Masterclass Vidéo IA.
+                Les présentes Conditions Générales de Vente régissent les relations contractuelles entre OVIZai Studio et tout client souscrivant à une formule de production vidéo IA (Sprint Pilote, Campagne de Marque, prestations sur-mesure) ou achetant l’accès à la Masterclass Vidéo IA.
               </p>
             </section>
 
@@ -48,8 +48,8 @@ export default function CGVPage() {
               </h2>
               <p>
                 - <strong>Sprint Pilote 48-72h</strong> : 1 asset publicitaire court (15-30s), livré sous 48 à 72h ouvrées après validation du brief.<br />
-                - <strong>Formule Standard</strong> : 1 vidéo cinématographique, livrée sous 3 à 5 jours ouvrés.<br />
-                - <strong>Formule Premium</strong> : 3 vidéos déclinées, livrées sous 48 à 72h ouvrées prioritaires.
+                - <strong>Campagne de Marque (3 Films)</strong> : 3 vidéos cinématographiques déclinées, livrées sous 48 à 72h ouvrées prioritaires.<br />
+                - <strong>Prestations Sur-Mesure</strong> : délais fixés contractuellement selon le cahier des charges validé.
               </p>
             </section>
 
@@ -70,7 +70,7 @@ export default function CGVPage() {
                 Conformément à l’article L.221-28 13° du Code de la consommation (et règles internationales applicables), l’accès à la Masterclass Vidéo IA OVIZai constitue la fourniture d’un contenu numérique non fourni sur un support matériel dont l’exécution commence immédiatement après validation du paiement.
               </p>
               <p className="mt-2">
-                En validant votre commande via Stripe Checkout, vous acceptez expressément que l’accès au programme soit fourni immédiatement et vous <strong>renoncez expressément à votre droit de rétractation</strong>. Pour les prestations sur-mesure de production vidéo (Sprint Pilote, Standard, Premium), le droit de rétractation ne s’applique pas aux services personnalisés dont l’exécution a démarré avec l’accord préalable du client.
+                En validant votre commande via Stripe Checkout, vous acceptez expressément que l’accès au programme soit fourni immédiatement et vous <strong>renoncez expressément à votre droit de rétractation</strong>. Pour les prestations de production vidéo (Sprint Pilote, Campagne de Marque, projets sur-mesure), le droit de rétractation ne s’applique pas aux services personnalisés dont l’exécution a démarré avec l’accord préalable du client.
               </p>
             </section>
           </div>

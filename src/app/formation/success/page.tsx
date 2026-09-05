@@ -50,10 +50,10 @@ export default function FormationSuccessPage() {
 
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
-                {isFr ? '02 // PAIEMENT CONFIRMÉ & ACCÈS VALIDÉ' : '02 // PAYMENT CONFIRMED & ACCESS GRANTED'}
+                {isFr ? 'PAIEMENT CONFIRMÉ & ACCÈS VALIDÉ' : 'PAYMENT CONFIRMED & ACCESS GRANTED'}
               </p>
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
-                {isFr ? 'BIENVENUE DANS LA MASTERCLASS' : 'WELCOME TO THE MASTERCLASS'}
+                {isFr ? 'Bienvenue dans la Masterclass' : 'Welcome to the Masterclass'}
               </h1>
               <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto leading-relaxed">
                 {isFr
@@ -87,11 +87,11 @@ export default function FormationSuccessPage() {
             {/* Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <Link
-                href="/formation#stack"
+                href="/formation"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(202,162,67,0.3)] cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-black" />
-                <span>{isFr ? 'Consulter la Stack & Outils' : 'View Masterclass Stack'}</span>
+                <span>{isFr ? 'Consulter le Programme & Outils' : 'View Masterclass Curriculum'}</span>
               </Link>
               <Link
                 href="/"

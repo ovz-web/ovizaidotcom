@@ -135,7 +135,7 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'pub-brand-content',
-    badge: { fr: '01 // SPEC FILM — PARIS 1990', en: '01 // SPEC FILM — PARIS 1990' },
+    badge: { fr: 'SPEC FILM — PARIS 1990', en: 'SPEC FILM — PARIS 1990' },
   },
   {
     src: LOCAL_VIDEOS.spec02.src,
@@ -151,7 +151,7 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'clips-visualisers',
-    badge: { fr: '02 // SPEC FILM — PARIS 1990', en: '02 // SPEC FILM — PARIS 1990' },
+    badge: { fr: 'SPEC FILM — PARIS 1990', en: 'SPEC FILM — PARIS 1990' },
   },
 ];
 
@@ -164,7 +164,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
   };
 
   return (
-    <section id="services" className="max-w-xl mx-auto mb-14 px-4">
+    <section id="services" className="max-w-xl mx-auto mb-8 px-4">
       {/* Grid of 5 Services */}
       <div className="space-y-4 mb-12">
         {FIVE_SERVICES.map(service => {
@@ -195,7 +195,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="mono text-[10px] text-[#CAA243] font-bold tracking-[0.2em] uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
-                        {isFr ? `${service.letterCode} // PÔLE` : `${service.letterCode} // UNIT`}
+                        {service.number}
                       </span>
                     </div>
                     <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] leading-snug">
@@ -222,7 +222,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                 <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-white/[0.06] space-y-4 animate-fadeIn">
                   <div>
                     <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2">
-                      {isFr ? 'Description du pôle :' : 'Scope of service:'}
+                      {isFr ? 'Présentation' : 'Overview'}
                     </h4>
                     <p className="text-xs text-[#ECE4D3] leading-relaxed">
                       {isFr ? service.description.fr : service.description.en}
@@ -231,7 +231,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
 
                   <div>
                     <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2.5">
-                      {isFr ? 'Livrables inclus :' : 'Deliverables included:'}
+                      {isFr ? 'Livrables inclus' : 'Deliverables'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (

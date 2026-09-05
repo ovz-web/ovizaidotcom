@@ -16,11 +16,11 @@ Cet audit analyse le projet **OVIZai** sur deux axes complémentaires : **la log
 - **Point Fort** : Flux transactionnel Stripe Checkout (`/api/checkout`) propre, réactif et automatisé avec gestion des événements Webhook (`/api/webhooks/stripe`).
 - **Axe d'Amélioration** :
   - **Preuve visuelle du contenu** : La page `/formation` décrit très bien le programme en 5 modules. Cependant, pour une formation à 290 €, le prospect a besoin de **voir** la qualité des projets qu'il saura réaliser à l'issue de la formation.
-  - **Recommandation** : Ajouter un bloc "Rendu des élèves / Projets réalisés" ou un extrait vidéo teaser (30s) du workflow Midjourney v6 + Runway Gen-3 + DaVinci Resolve.
+  - **Recommandation** : Ajouter un bloc "Rendu des élèves / Projets réalisés" ou un extrait vidéo teaser (30s) du workflow de génération visuelle 8K, d'animation et d'étalonnage cinéma.
 
 ### 3. Capture de Leads Froids (Newsletter & Workflows)
 - **Point Fort** : Formulaire de capture élégant avec feedback visuel Toast et persistance localStorage.
-- **Recommandation** : Offrir un *Lead Magnet* téléchargeable immédiatement (ex: *PDF "Les 10 Prompts Cinématographiques Secrets pour Midjourney v6 & Runway"* envoyé par mail via Resend) plutôt qu'une promesse générale de newsletter hebdomadaire.
+- **Recommandation** : Offrir un *Lead Magnet* téléchargeable immédiatement (ex: *PDF "Les 10 Formules de Prompts Cinématographiques Secrets"* envoyé par mail via Resend) plutôt qu'une promesse générale de newsletter hebdomadaire.
 
 ---
 

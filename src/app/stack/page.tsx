@@ -71,8 +71,8 @@ export default function StackPage() {
             </h2>
             <p className="text-xs text-[#9C9384] leading-relaxed mb-4">
               {isFr
-                ? 'Une vidéo de marque traditionnelle exige 5 000 € à 30 000 € et 2 à 6 semaines de tournage physique. Notre pipeline IA réduit le coût de 70 à 90 % et livre vos masters sous 48 à 72h ouvrées.'
-                : 'A traditional brand video requires $5,000 to $30,000 and 2 to 6 weeks of filming logistics. Our AI pipeline cuts production costs by 70 to 90% and delivers final masters within 48 to 72 business hours.'}
+                ? 'Une production vidéo conventionnelle mobilise une équipe sur plateau et 2 à 4 semaines de logistique pour un budget de 5 000 € à 20 000 €. Notre méthode de production IA divise les délais par 4 tout en réduisant significativement les coûts logistiques, avec un premier master 4K livrable dès 48 à 72h ouvrées.'
+                : 'A conventional video shoot requires a full crew, studio rentals, and 2 to 4 weeks of logistics, ranging from $5,000 to $20,000. Our AI production workflow cuts turnaround time by 75% and eliminates traditional overhead, delivering a cinema-grade 4K master within 48 to 72 business hours.'}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-white/[0.06] text-xs font-mono">
@@ -89,21 +89,21 @@ export default function StackPage() {
                   {isFr ? 'Pipeline OVIZai :' : 'OVIZai Pipeline:'}
                 </span>
                 <p className="text-[#ECE4D3] text-[11px] leading-relaxed font-sans">
-                  {isFr ? '48-72h • Export 4K DaVinci • -70 à -90% de coût' : '48-72h • 4K DaVinci master • -70 to -90% cost'}
+                  {isFr ? '48-72h ouvrées • Délais divisés par 4 • Budget optimisé' : '48-72h turnaround • 4x faster delivery • Zero crew overhead'}
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 3. 4-Step Production Process (Pipeline C1 to C4) */}
+        {/* 3. 4-Step Production Process (Pipeline 01 to 04) */}
         <AIPipeline
           lang={lang}
           hideHeader={false}
-          customEyebrow={isFr ? 'C // LE PIPELINE EN 4 ÉTAPES' : 'C // THE 4-STEP PIPELINE'}
+          customEyebrow={isFr ? 'LE PROCESSUS EN 4 ÉTAPES' : 'THE 4-STEP PROCESS'}
           customTitle={isFr ? 'Du Concept Initial au Rendu Final' : 'From Initial Concept to Final Cut'}
           showConversionCard={false}
-          stepPrefix="letterC"
+          stepPrefix="numeric"
           hideTechBadge={false}
         />
 
@@ -137,8 +137,8 @@ export default function StackPage() {
                 <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
                 <span className="text-[#ECE4D3]">
                   {isFr
-                    ? 'Master final 4K : calibré sur DaVinci Resolve Studio avec livrables multi-formats (16:9 et vertical 9:16).'
-                    : '4K Final Master: DaVinci Resolve Studio color grading with multi-format delivery (16:9 & 9:16).'}
+                    ? 'Master final 4K : étalonnage cinématographique calibré avec livrables multi-formats (16:9 et vertical 9:16).'
+                    : '4K Final Master: Calibrated cinema grading with multi-format delivery (16:9 & 9:16).'}
                 </span>
               </li>
             </ul>

@@ -26,16 +26,16 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       num: '02',
       title: { fr: 'Génération Moteurs IA', en: 'AI Generation Pipeline' },
       desc: {
-        fr: 'Création des visuels clés et animation (Midjourney, Flux, Kling, Runway).',
-        en: 'Master keyframe creation and motion synthesis (Midjourney, Flux, Kling, Runway).'
+        fr: 'Création des visuels clés, animation cinématique et caméra virtuelle.',
+        en: 'Master keyframe creation, motion synthesis, and 3D camera staging.'
       }
     },
     {
       num: '03',
       title: { fr: 'Post-Production Cinéma', en: 'Pro Post-Production' },
       desc: {
-        fr: 'Étalonnage DaVinci Resolve Studio, sound design et upscale master 4K.',
-        en: 'DaVinci Resolve Studio color grading, sound design, and 4K master.'
+        fr: 'Étalonnage cinéma ACES, spatialisation audio et upscale master 4K.',
+        en: 'ACES cinema color grading, spatial sound design, and 4K master.'
       }
     },
     {
@@ -57,7 +57,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
           <span>{isFr ? 'ENGAGEMENTS & TRANSPARENCE' : 'GUARANTEES & TRANSPARENCY'}</span>
         </p>
         <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
-          {isFr ? 'UNE MÉTHODE VÉRIFIABLE & SÉCURISÉE' : 'DOCUMENTED & SAFE PROCESS'}
+          {isFr ? 'Une Méthode Documentée & Sécurisée' : 'Documented & Safe Process'}
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
           {isFr
@@ -74,7 +74,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 px-2 py-0.5 rounded font-bold uppercase tracking-[0.2em]">
-                {isFr ? 'B1 // TRANSPARENCE' : 'B1 // TRANSPARENCY'}
+                {isFr ? 'TRANSPARENCE' : 'TRANSPARENCY'}
               </span>
             </div>
             <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-2">
@@ -96,7 +96,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/15 border border-[#CAA243]/30 px-2 py-0.5 rounded font-bold uppercase tracking-[0.2em]">
-                {isFr ? 'B2 // GARANTIES CONTRACTUELLES' : 'B2 // CONTRACTUAL GUARANTEES'}
+                {isFr ? 'GARANTIES CONTRACTUELLES' : 'CONTRACTUAL GUARANTEES'}
               </span>
             </div>
             <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-2">
@@ -113,7 +113,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-                <span className="text-[#ECE4D3]">{isFr ? 'Master 4K calibré DaVinci' : 'Cinematic 4K Master'}</span>
+                <span className="text-[#ECE4D3]">{isFr ? 'Master 4K calibré cinéma' : 'Cinematic 4K Master'}</span>
               </li>
             </ul>
           </div>
@@ -131,7 +131,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl mb-4">
           <div className="mb-4">
             <span className="mono text-[10px] text-[#CAA243] uppercase tracking-[0.25em] font-bold block mb-1">
-              03 // PROCESSUS DE PRODUCTION
+              {isFr ? 'PROCESSUS DE PRODUCTION' : 'PRODUCTION PROCESS'}
             </span>
             <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
               {isFr ? 'Les 4 Étapes de Production' : 'The 4 Production Steps'}

@@ -1,5 +1,4 @@
 export const MASTERCLASS_PRICE = { USD: 490, EUR: 450, CAD: 670 } as const;
-export const MASTERCLASS_ORIGINAL_PRICE = { USD: 990, EUR: 900, CAD: 1300 } as const;
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
 
 export interface PricingPlan {
@@ -19,8 +18,8 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'sprint',
     name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
-    badge: { fr: 'D01 // TARIF DE LANCEMENT', en: 'D01 // LAUNCH TIER' },
-    minUsd: 530,
+    badge: { fr: 'ASSET COURT 48-72H', en: '48-72H SHORT ASSET' },
+    minUsd: 1150,
     budgetTierId: 'tier-0',
     tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
     period: { fr: '/ asset 15-30s', en: '/ 15-30s asset' },
@@ -30,14 +29,14 @@ export const PRICING_PLANS: PricingPlan[] = [
         '1 round de révision inclus',
         'Livraison garantie sous 48-72h ouvrées',
         'Export 4K Master (16:9 & 9:16 vertical)',
-        'Direction artistique, concept & étalonnage DaVinci',
+        'Direction artistique, concept & étalonnage cinéma',
       ],
       en: [
         '1 short ad asset (Reel/TikTok 15-30s)',
         '1 revision round included',
         'Guaranteed 48-72h delivery',
         '4K Master export (16:9 & 9:16 vertical)',
-        'Art direction, concept & DaVinci Resolve grading',
+        'Art direction, concept & cinema color grading',
       ],
     },
     primary: false,
@@ -46,8 +45,8 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'premium',
     name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
-    badge: { fr: 'D02 // CAMPAGNE DE MARQUE', en: 'D02 // BRAND CAMPAIGN' },
-    minUsd: 2600,
+    badge: { fr: 'CAMPAGNE COMPLÈTE', en: 'COMPLETE CAMPAIGN' },
+    minUsd: 3200,
     budgetTierId: 'tier-1',
     period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },
     includes: {

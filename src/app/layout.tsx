@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ovizai.com'),
   title: 'OVIZai — AI Art Direction & Cinematography Studio',
   description: 'Direction artistique IA, films publicitaires narratifs, clips musicaux et pipelines vidéo haute fidélité.',
-  keywords: ['AI Video', 'Direction Artistique IA', 'Cinéma Génératif', 'Runway Gen-3', 'Midjourney v6', 'Kling AI', 'OVIZai'],
+  keywords: ['AI Video', 'Direction Artistique IA', 'Cinéma Génératif', 'Production Vidéo IA', 'Animation Virtuelle', 'Post-Production 4K', 'OVIZai'],
   authors: [{ name: 'OVIZai' }],
   icons: {
     icon: '/favicon.ico',

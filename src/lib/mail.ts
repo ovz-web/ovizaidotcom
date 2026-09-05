@@ -201,7 +201,7 @@ export async function sendMasterclassWelcome(email: string, name?: string) {
       <div style="margin: 24px 0; padding: 20px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
         <p style="margin: 0; font-size: 13px; color: #CAA243; font-weight: bold;">⚡ Votre accès direct au programme :</p>
         <p style="margin: 8px 0 12px 0; font-size: 12.5px; color: #ECE4D3; line-height: 1.5;">
-          Votre inscription vous donne un accès immédiat et à vie aux 5 modules de la Masterclass (Midjourney v6.1, Runway Gen-3 Alpha, Kling AI, Topaz Video AI, DaVinci Resolve Studio).
+          Votre inscription vous donne un accès immédiat et à vie aux 5 modules de la Masterclass (Génération d'images cinématiques, Animation de plans, Caméra virtuelle 3D, Restauration & upscaling, Étalonnage & mastering 4K).
         </p>
         <div style="text-align: center; margin: 16px 0 8px 0;">
           <a href="https://ovizai.com/formation" style="display: inline-block; background-color: #CAA243; color: #000000; font-weight: bold; font-size: 12px; text-transform: uppercase; tracking: 0.05em; text-decoration: none; padding: 12px 24px; border-radius: 8px;">

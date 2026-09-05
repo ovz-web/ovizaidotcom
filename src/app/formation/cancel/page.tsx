@@ -50,10 +50,10 @@ export default function FormationCancelPage() {
 
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-[#8C8375] mb-1 font-mono font-bold">
-                {isFr ? '02 // PAIEMENT NON FINALISÉ' : '02 // CHECKOUT CANCELLED'}
+                {isFr ? 'COMMANDE INTERROMPUE' : 'CHECKOUT CANCELLED'}
               </p>
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
-                {isFr ? 'INSCRIPTION INTERROMPUE' : 'ENROLLMENT CANCELLED'}
+                {isFr ? 'Inscription Interrompue' : 'Enrollment Cancelled'}
               </h1>
               <p className="text-xs sm:text-sm text-[#8c8375] max-w-sm mx-auto leading-relaxed">
                 {isFr

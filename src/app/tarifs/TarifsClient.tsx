@@ -10,72 +10,12 @@ import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
-import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE } from '@/lib/pricing';
-
-// Offre de lancement — nombre de places restantes modifiable manuellement
-const PLACES_RESTANTES: number = 5;
-
-const PLANS_DATA = [
-  {
-    id: 'sprint',
-    badge: { fr: 'D01 // TARIF DE LANCEMENT', en: 'D01 // LAUNCH TIER' },
-    name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
-    minUsd: 530,
-    originalMinUsd: 750,
-    launchOffer: true,
-    budgetTierId: 'tier-0',
-    tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
-    includes: {
-      fr: [
-        '1 asset publicitaire court (Reel/TikTok 15-30s)',
-        '1 round de révision inclus',
-        'Livraison garantie sous 48-72h ouvrées',
-        'Export 4K Master (16:9 & 9:16 vertical)',
-        'Direction artistique, concept & étalonnage DaVinci',
-      ],
-      en: [
-        '1 short ad asset (Reel/TikTok 15-30s)',
-        '1 revision round included',
-        'Guaranteed 48-72h delivery',
-        '4K Master export (16:9 & 9:16 vertical)',
-        'Art direction, concept & DaVinci Resolve grading',
-      ],
-    },
-    primary: false,
-    starterHighlight: true,
-  },
-  {
-    id: 'premium',
-    badge: { fr: 'D02 // CAMPAGNE DE MARQUE', en: 'D02 // BRAND CAMPAIGN' },
-    name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
-    minUsd: 2600,
-    originalMinUsd: 3700,
-    launchOffer: true,
-    budgetTierId: 'tier-1',
-    includes: {
-      fr: [
-        '3 vidéos cinématographiques (campagne déclinée)',
-        '3 rounds de révision inclus',
-        'Livraison prioritaire 48-72h',
-        'Export multi-formats 4K (Ciné, Reel, YouTube)',
-        'Direction artistique dédiée & accompagnement sur-mesure',
-      ],
-      en: [
-        '3 finalised cinematic videos (campaign package)',
-        '3 revision rounds included',
-        'Priority delivery 48-72h',
-        '4K multi-format export (Cinema, Reel, YouTube)',
-        'Dedicated art direction & tailored support',
-      ],
-    },
-    primary: true,
-  },
-];
+import { MASTERCLASS_PRICE, PRICING_PLANS } from '@/lib/pricing';
 
 const CUSTOM_SERVICES_SUMMARY = [
   {
     id: 'films-series',
-    number: 'E01',
+    number: '01',
     title: { fr: 'Réalisation de Films & Séries', en: 'Film & Series Direction' },
     minUsd: 8000,
     maxUsd: 15000,
@@ -84,7 +24,7 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'clips-visualisers',
-    number: 'E02',
+    number: '02',
     title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' },
     minUsd: 3000,
     maxUsd: 8000,
@@ -93,7 +33,7 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'pub-brand-content',
-    number: 'E03',
+    number: '03',
     title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' },
     minUsd: 3000,
     maxUsd: 8000,
@@ -102,7 +42,7 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'da-univers-visuels',
-    number: 'E04',
+    number: '04',
     title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' },
     minUsd: 1000,
     maxUsd: 3000,
@@ -111,7 +51,7 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'web-digital',
-    number: 'E05',
+    number: '05',
     title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' },
     minUsd: 3000,
     maxUsd: 8000,
@@ -125,13 +65,13 @@ const copy = {
     back: 'Retour Accueil',
     eyebrow: '04 // TARIFS & FORMULES',
     title: 'Tarifs & Formules de Production',
-    sectionA: 'D. Formules Clés en Main',
+    sectionA: 'Formules Clés en Main',
     sectionASub: 'Sprint Pilote et Campagne de Marque avec révisions et délais garantis.',
-    sectionB: 'E. Prestations Sur-Mesure',
+    sectionB: 'Prestations Sur-Mesure',
     sectionBSub: 'Projets complexes et productions d’envergure avec accompagnement dédié.',
-    sectionC: 'F. Formation & Masterclass Pro',
+    sectionC: 'Formation & Masterclass Pro',
     sectionCSub: 'Programme complet de production vidéo IA 4K pour créateurs et studios.',
-    faqTitle: 'G. Questions Fréquentes',
+    faqTitle: 'Questions Fréquentes',
     faqSub: 'Toutes les réponses sur nos tarifs, nos modalités de règlement, nos délais et la formation.',
     faqCategories: [
       {
@@ -143,7 +83,7 @@ const copy = {
           },
           {
             q: 'Quelles sont les modalités de paiement pour les projets sur-mesure ?',
-            a: "Pour les campagnes et projets sur-mesure (E01 à E05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
+            a: "Pour les campagnes et projets sur-mesure (01 à 05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
           },
           {
             q: 'Le paiement est-il sécurisé et émettez-vous des factures professionnelles ?',
@@ -159,8 +99,8 @@ const copy = {
             a: "Chaque formule et projet sur-mesure comprend des rounds de révision intégrés (1 pour le Sprint 48h, 3 pour les Campagnes). Vous validez d’abord une prévisualisation de l’asset pour ajuster le rythme, les cadrages ou la colorimétrie avant l’export final 4K.",
           },
           {
-            q: 'Pourquoi les tarifs sont-ils 70 à 90 % inférieurs à une agence classique ?',
-            a: "En remplaçant les tournages physiques (équipes de 10 personnes, location de studios, matériel lourd, déplacements) par notre pipeline génératif combinant Midjourney, Flux, Kling et Runway avec un étalonnage DaVinci Resolve Studio, nous éliminons 80 % de la logistique conventionnelle tout en conservant une direction artistique de niveau cinéma.",
+            q: 'Pourquoi vos tarifs sont-ils plus compétitifs qu’une production conventionnelle ?',
+            a: "En remplaçant les tournages physiques (équipes de 10 personnes, location de plateaux, matériel lourd, logistique complexe) par un pipeline génératif de pointe combiné à une post-production cinéma et un étalonnage 4K rigoureux, nous réduisons les coûts d'infrastructure de plus de 60 % tout en maintenant une direction artistique d'excellence.",
           },
         ],
       },
@@ -169,11 +109,11 @@ const copy = {
         items: [
           {
             q: 'L’accès à la Masterclass inclut-il les futures versions des modèles IA ?',
-            a: "Oui. Votre accès est illimité et à vie. Il inclut toutes les futures mises à jour vidéo du curriculum sans surcoût (nouveaux modèles Runway Gen-4, Kling 2.0, Midjourney v7 et workflows d’upscale 4K).",
+            a: "Oui. Votre accès est illimité et à vie. Il inclut toutes les futures mises à jour vidéo du curriculum sans surcoût (nouveaux modèles de génération, d'animation, de caméra 3D et workflows d’upscale 4K).",
           },
           {
             q: 'Faut-il du matériel lourd ou des compétences préalables en montage ?',
-            a: "Aucune compétence préalable ni matériel puissant n'est exigé. Les calculs IA s'effectuent sur le cloud, un ordinateur standard suffit. Le programme vous guide pas à pas depuis les bases de la génération jusqu’à l’étalonnage pro.",
+            a: "Aucune compétence préalable ni matériel puissant n'est exigé. Les calculs s'effectuent sur des serveurs cloud, un ordinateur standard suffit. Le programme vous guide pas à pas depuis les bases de la génération jusqu’à l’étalonnage pro.",
           },
           {
             q: 'Comment reçois-je mes accès après le règlement sécurisé ?',
@@ -189,13 +129,13 @@ const copy = {
     back: 'Back Home',
     eyebrow: '04 // PRICING & PACKAGES',
     title: 'Production Pricing & Packages',
-    sectionA: 'D. Turnkey Packages',
+    sectionA: 'Turnkey Packages',
     sectionASub: 'Pilot Sprint and Brand Campaign with guaranteed delivery & revisions.',
-    sectionB: 'E. Custom Services',
+    sectionB: 'Custom Services',
     sectionBSub: 'Complex productions and custom campaigns with dedicated art direction.',
-    sectionC: 'F. Pro Training & Masterclass',
+    sectionC: 'Pro Training & Masterclass',
     sectionCSub: 'Complete 4K AI video production training for creators and studios.',
-    faqTitle: 'G. FAQ',
+    faqTitle: 'Frequently Asked Questions',
     faqSub: 'All answers regarding pricing, payment terms, production turnaround, and training access.',
     faqCategories: [
       {
@@ -207,7 +147,7 @@ const copy = {
           },
           {
             q: 'What are the payment terms for custom projects?',
-            a: 'For custom campaigns and productions (E01 to E05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
+            a: 'For custom campaigns and productions (01 to 05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
           },
           {
             q: 'Are payments secure and do you issue corporate invoices?',
@@ -223,8 +163,8 @@ const copy = {
             a: 'Each turnkey package and custom production includes built-in revision rounds (1 for 48h Sprint, 3 for Campaigns). You first review a watermarked preview to fine-tune pacing, camera framing, or color grading prior to final 4K master delivery.',
           },
           {
-            q: 'Why are prices 70 to 90% lower than traditional agency productions?',
-            a: 'By replacing physical shoots (10-person crews, studio rentals, heavy camera gear, travel) with our generative pipeline combining Midjourney, Flux, Kling, and Runway with pro DaVinci Resolve Studio grading, we eliminate 80% of conventional friction while retaining cinema-grade visual identity.',
+            q: 'Why are prices significantly lower than traditional agency shoots?',
+            a: 'By replacing physical shoots (10-person crews, studio rentals, heavy camera gear, logistics) with our generative pipeline combining advanced generative systems and pro 4K color grading, we reduce infrastructure overhead by over 60% while retaining cinema-grade visual fidelity.',
           },
         ],
       },
@@ -233,11 +173,11 @@ const copy = {
         items: [
           {
             q: 'Does Masterclass enrollment include future AI model updates?',
-            a: 'Yes. Your access is unlimited and lifetime. It includes all future curriculum video updates at no extra charge (new models from Runway, Kling, Midjourney, and 4K upscale workflows).',
+            a: 'Yes. Your access is unlimited and lifetime. It includes all future curriculum video updates at no extra charge (new generation, animation, 3D camera models, and 4K upscale workflows).',
           },
           {
             q: 'Is heavy hardware or prior editing experience required?',
-            a: 'No prior experience or powerful hardware is required. AI processing runs in the cloud, so a standard laptop suffices. The curriculum guides you step-by-step from generative basics to pro grading.',
+            a: 'No prior experience or powerful hardware is required. Processing runs on cloud infrastructure, so a standard computer suffices. The curriculum guides you step-by-step from generative fundamentals to professional finishing.',
           },
           {
             q: 'How do I receive access after secure payment?',
@@ -256,7 +196,6 @@ export default function TarifsClient() {
   const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<string | null>(null);
-  const [showLaunchDiscount, setShowLaunchDiscount] = useState<boolean>(true);
   const [mcLoading, setMcLoading] = useState(false);
   const [mcError, setMcError] = useState<string | null>(null);
 
@@ -265,7 +204,6 @@ export default function TarifsClient() {
   const showToast = (msg: string) => setToastMessage(msg);
 
   const masterclassCurrent = MASTERCLASS_PRICE[currency] || 490;
-  const masterclassOriginal = MASTERCLASS_ORIGINAL_PRICE[currency] || 990;
 
   const formattedMasterclassCurrent =
     currency === 'EUR'
@@ -273,13 +211,6 @@ export default function TarifsClient() {
       : currency === 'CAD'
       ? `${masterclassCurrent} $ CAD`
       : `${masterclassCurrent} $ USD`;
-
-  const formattedMasterclassOriginal =
-    currency === 'EUR'
-      ? `${masterclassOriginal} €`
-      : currency === 'CAD'
-      ? `${masterclassOriginal} $ CAD`
-      : `${masterclassOriginal} $ USD`;
 
   const handleMasterclassCheckout = async () => {
     setMcLoading(true);
@@ -321,7 +252,7 @@ export default function TarifsClient() {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Formules de Production Vidéo IA',
-      itemListElement: PLANS_DATA.map((plan) => {
+      itemListElement: PRICING_PLANS.map((plan) => {
         return {
           '@type': 'Offer',
           itemOffered: {
@@ -381,11 +312,11 @@ export default function TarifsClient() {
         />
 
         <div className="max-w-xl mx-auto px-4">
-          {/* ── SECTION D — FORMULES CLÉS EN MAIN ─────────────────────── */}
+          {/* ── FORMULES CLÉS EN MAIN ─────────────────────── */}
           <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-                SECTION D
+                {isFr ? 'FORMULES CLÉS EN MAIN' : 'TURNKEY PACKAGES'}
               </span>
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionA}
@@ -395,83 +326,9 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            {/* Toggle: Normal Price vs Launch Discount (-30%) */}
-            <div className="mb-5 p-3 sm:p-4 rounded-xl bg-[#0B0A08] border border-white/[0.08] flex items-center justify-between gap-4 flex-wrap">
-              <span className="mono text-xs text-[#ECE4D3] font-semibold">
-                {isFr ? 'TARIFICATION APPLIQUÉE' : 'PRICING MODE'}
-              </span>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setShowLaunchDiscount(false)}
-                  className={`mono text-xs transition-colors cursor-pointer ${
-                    !showLaunchDiscount ? 'text-[#CAA243] font-semibold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
-                  }`}
-                >
-                  {isFr ? 'Tarif standard' : 'Standard rate'}
-                </button>
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={showLaunchDiscount}
-                  onClick={() => setShowLaunchDiscount(!showLaunchDiscount)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer border focus:outline-none ${
-                    showLaunchDiscount
-                      ? 'bg-[#CAA243] border-[#CAA243]'
-                      : 'bg-black/60 border-white/20'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-black transition-transform ${
-                      showLaunchDiscount ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowLaunchDiscount(true)}
-                  className={`mono text-xs transition-colors flex items-center gap-1.5 cursor-pointer ${
-                    showLaunchDiscount ? 'text-[#f0c869] font-semibold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
-                  }`}
-                >
-                  <span>{isFr ? 'Offre de lancement (-30%)' : 'Launch offer (-30%)'}</span>
-                  {showLaunchDiscount && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] animate-pulse" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Embedded Launch Offer Callout (only if showLaunchDiscount) */}
-            {showLaunchDiscount && (
-              <div className="mb-6 rounded-xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-3.5 sm:p-4 flex items-start gap-3">
-                <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
-                <div className="text-xs text-[#ECE4D3] leading-relaxed">
-                  <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-0.5">
-                    {isFr ? 'OFFRE DE LANCEMENT — LIMITÉE (−30%)' : 'LAUNCH OFFER — LIMITED (−30%)'}
-                  </span>
-                  <p className="text-xs text-[#ECE4D3]">
-                    {isFr ? (
-                      <>
-                        Offre de lancement : −30 % sur nos 2 formules pour les 5 premiers clients.
-                        <br className="hidden sm:inline" />
-                        <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} places restantes</span> — retour au tarif normal ensuite.
-                      </>
-                    ) : (
-                      <>
-                        Launch offer: −30% on both plans for the first 5 clients.
-                        <br className="hidden sm:inline" />
-                        <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} spots remaining</span> — full price applies after.
-                      </>
-                    )}
-                  </p>
-                </div>
-              </div>
-            )}
-
             {/* Vertical Packaged Cards Stack (matching unified max-w-xl design system) */}
             <div className="flex flex-col gap-5">
-              {PLANS_DATA.map((plan) => {
+              {PRICING_PLANS.map((plan) => {
                 return (
                   <div
                     key={plan.id}
@@ -491,11 +348,6 @@ export default function TarifsClient() {
                           <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">{plan.name[lang]}</h3>
                         </div>
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          {showLaunchDiscount && plan.launchOffer && (
-                            <span className="mono text-[9px] uppercase tracking-wider bg-[#CAA243]/20 text-[#f0c869] px-2 py-0.5 rounded-full border border-[#CAA243]/50 font-bold shadow-[0_0_8px_rgba(202,162,67,0.2)]">
-                              {isFr ? 'Offre de lancement -30%' : 'Launch offer -30%'}
-                            </span>
-                          )}
                           {plan.primary ? (
                             <span className="mono text-[9px] uppercase tracking-widest bg-white/[0.06] text-[#ECE4D3] px-2 py-0.5 rounded-full border border-white/[0.1] font-medium">
                               {isFr ? 'Recommandé' : 'Recommended'}
@@ -512,21 +364,19 @@ export default function TarifsClient() {
                       <div className="my-3 pb-3 border-b border-white/[0.06]">
                         <div className="flex items-baseline gap-2.5 flex-wrap">
                           <p className="text-2xl sm:text-3xl font-semibold font-mono text-[#ECE4D3] leading-none tracking-tight">
-                            {showLaunchDiscount
-                              ? formatPrice(plan.minUsd, currency)
-                              : formatPrice(plan.originalMinUsd || plan.minUsd, currency)}
+                            {formatPrice(plan.minUsd, currency)}
                           </p>
-                          {showLaunchDiscount && plan.originalMinUsd && (
-                            <p className="text-sm sm:text-base text-[#9C9384] line-through font-mono font-medium">
-                              {formatPrice(plan.originalMinUsd, currency)}
-                            </p>
-                          )}
                         </div>
                         <p className="text-[11px] text-[#9C9384] mt-1.5 font-mono">
-                          {plan.id === 'sprint'
-                            ? (isFr ? '/ asset 15-30s' : '/ 15-30s asset')
-                            : (isFr ? '/ campagne 3 films' : '/ 3-film campaign')}
+                          {plan.period[lang]}
                         </p>
+                        {plan.id === 'premium' && (
+                          <p className="text-[10px] text-[#CAA243] mt-1 font-mono">
+                            {isFr
+                              ? 'Pack 3 films : économie vs sprints unitaires avec direction artistique dédiée'
+                              : '3-film package: bundled savings vs single sprints with dedicated art direction'}
+                          </p>
+                        )}
                       </div>
 
                       {/* Tag if present */}
@@ -583,11 +433,11 @@ export default function TarifsClient() {
             </div>
           </section>
 
-          {/* ── SECTION E — PRESTATIONS SUR-MESURE ───────────────────── */}
+          {/* ── PRESTATIONS SUR-MESURE ───────────────────── */}
           <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-                SECTION E
+                {isFr ? 'PRESTATIONS SUR-MESURE' : 'CUSTOM SERVICES'}
               </span>
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionB}
@@ -628,11 +478,11 @@ export default function TarifsClient() {
             </div>
           </section>
 
-          {/* ── SECTION F — FORMATION & MASTERCLASS PRO ─────────────── */}
+          {/* ── FORMATION & MASTERCLASS PRO ─────────────── */}
           <section id="masterclass" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-                SECTION F
+                {isFr ? 'FORMATION & MASTERCLASS' : 'TRAINING & MASTERCLASS'}
               </span>
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionC}
@@ -646,7 +496,7 @@ export default function TarifsClient() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
                 <div>
                   <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-0.5">
-                    {isFr ? 'F // FORMATION VIDÉO IA' : 'F // AI VIDEO TRAINING'}
+                    {isFr ? 'FORMATION VIDÉO IA' : 'AI VIDEO TRAINING'}
                   </span>
                   <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
                     {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
@@ -655,13 +505,11 @@ export default function TarifsClient() {
 
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-semibold text-[#CAA243] font-mono">
-                    {showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}
+                    {formattedMasterclassCurrent}
                   </span>
-                  {showLaunchDiscount && (
-                    <span className="text-xs text-[#9C9384] line-through font-mono">
-                      {formattedMasterclassOriginal}
-                    </span>
-                  )}
+                  <span className="mono text-[11px] text-[#8C8375]">
+                    {isFr ? 'paiement unique' : 'one-time'}
+                  </span>
                 </div>
               </div>
 
@@ -670,8 +518,8 @@ export default function TarifsClient() {
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
                   <span>
                     {isFr
-                      ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'
-                      : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}
+                      ? '5 modules vidéo pratiques : concept art 8K, caméra virtuelle 3D, animation, sound design et étalonnage 4K'
+                      : '5 practical modules: 8K concept art, 3D virtual camera, motion, sound design and 4K color grading'}
                   </span>
                 </p>
                 <p className="flex items-center gap-2 text-[#ECE4D3]">
@@ -686,8 +534,8 @@ export default function TarifsClient() {
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
                   <span>
                     {isFr
-                      ? 'Fichiers projets DaVinci Resolve Studio & prompts certifiés fournis'
-                      : 'DaVinci Resolve Studio project files & certified prompts provided'}
+                      ? 'Fichiers projets de post-production cinéma & prompts certifiés fournis'
+                      : 'Cinema post-production project files & certified prompts provided'}
                   </span>
                 </p>
                 <p className="flex items-center gap-2 text-[#ECE4D3]">
@@ -723,8 +571,8 @@ export default function TarifsClient() {
                     <>
                       <span>
                         {isFr
-                          ? `S’inscrire à la Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`
-                          : `Enroll in Masterclass (${showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}) →`}
+                          ? `S’inscrire à la Masterclass (${formattedMasterclassCurrent}) →`
+                          : `Enroll in Masterclass (${formattedMasterclassCurrent}) →`}
                       </span>
                       <ArrowUpRight className="w-4 h-4 text-black" />
                     </>
@@ -738,11 +586,11 @@ export default function TarifsClient() {
             </div>
           </section>
 
-          {/* ── SECTION G — LA FAQ UNIQUE ET CENTRALE DU SITE ─────────── */}
+          {/* ── QUESTIONS FRÉQUENTES ─────────── */}
           <section id="faq" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
-                SECTION G // FAQ GLOBALE
+                {isFr ? 'QUESTIONS FRÉQUENTES' : 'FREQUENTLY ASKED QUESTIONS'}
               </span>
               <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.faqTitle}

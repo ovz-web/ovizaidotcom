@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { MASTERCLASS_PRICE, PricingCurrency } from '@/lib/pricing';
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,21 +18,15 @@ export async function POST(req: NextRequest) {
     });
 
     const body = await req.json().catch(() => ({}));
-    const rawCurrency = typeof body.currency === 'string' ? body.currency.toLowerCase() : 'cad';
+    const rawCurrency = typeof body.currency === 'string' ? body.currency.toUpperCase() : 'CAD';
 
-    let selectedCurrency = 'cad';
-    let unitAmountCents = 67000; // Default 670.00 CAD in cents
+    const validCurrency: PricingCurrency = (rawCurrency === 'USD' || rawCurrency === 'EUR' || rawCurrency === 'CAD')
+      ? (rawCurrency as PricingCurrency)
+      : 'CAD';
 
-    if (rawCurrency === 'usd') {
-      selectedCurrency = 'usd';
-      unitAmountCents = 49000; // 490.00 USD
-    } else if (rawCurrency === 'eur') {
-      selectedCurrency = 'eur';
-      unitAmountCents = 45000; // 450.00 EUR
-    } else {
-      selectedCurrency = 'cad';
-      unitAmountCents = 67000; // 670.00 CAD
-    }
+    const selectedCurrency = validCurrency.toLowerCase();
+    const priceAmount = MASTERCLASS_PRICE[validCurrency] || MASTERCLASS_PRICE.CAD;
+    const unitAmountCents = Math.round(priceAmount * 100);
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ovizai.com';
 

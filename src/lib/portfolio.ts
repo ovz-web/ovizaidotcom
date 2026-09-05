@@ -33,7 +33,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       fr: 'Esthétique sombre et dorée, reflets métalliques, mouvements de caméra fluides et macro-gros plans liquides.',
       en: 'Dark gold aesthetic, metallic reflections, smooth camera drifts, and liquid macro close-ups.',
     },
-    productionTools: ['Midjourney v6.1', 'Runway Gen-3 Alpha', 'Kling AI', 'Topaz Video AI 5', 'DaVinci Resolve Studio'],
+    productionTools: ['Génération visuelle 8K', 'Animation cinématique', 'Caméra virtuelle 3D', 'Upscaling & netteté', 'Étalonnage cinéma'],
     deliverables: {
       fr: ['Spot principal 30s', 'Déclinaison verticale Reel 15s', 'Visuels clés 8K'],
       en: ['Main 30s commercial', 'Vertical 15s Reel variant', '8K key visuals'],
@@ -60,7 +60,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       fr: 'Ambiance néo-noir, néons dorés, particules volumétriques et montage dynamique à 60fps.',
       en: 'Neo-noir atmosphere, golden neons, volumetric particles, and dynamic 60fps editing.',
     },
-    productionTools: ['Midjourney v6.1', 'Luma Dream Machine', 'Kling AI', 'DaVinci Resolve Studio'],
+    productionTools: ['Génération visuelle', 'Animation dynamique', 'Rendu cinématique', 'Étalonnage cinéma'],
     deliverables: {
       fr: ['Visualiser complet 3mn', 'Loops scéniques VJ 4K'],
       en: ['3mn full visualiser', '4K VJ stage loops'],

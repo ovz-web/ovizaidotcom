@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Prestations & Services — Production Vidéo IA Cinématographique | OVIZai',
-  description: 'Films publicitaires IA, clips musicaux, direction artistique et univers visuels générés avec Midjourney v6, Runway Gen-3 et Kling AI. Livraison 48h à 5 jours.',
+  description: 'Films publicitaires IA, clips musicaux, direction artistique et univers visuels cinématographiques haute fidélité. Livraison 48h à 5 jours.',
   keywords: ['Production Vidéo IA', 'Films Publicitaires IA', 'Direction Artistique IA', 'Clips Musicaux IA', 'OVIZai Services'],
   openGraph: {
     title: 'Prestations & Services — OVIZai AI Video Studio',

@@ -39,7 +39,7 @@ src/
 │   ├── ServicesGrid.tsx      # Interactive Services accordion & currency rates
 │   ├── MasterclassSection.tsx# 5-Module Masterclass curriculum & live tuition
 │   ├── QualifiedContact.tsx  # Dynamic budget selection cards & lead form
-│   ├── AIPipeline.tsx        # Generative AI Stack badges (Midjourney, Runway, Kling, Topaz)
+│   ├── AIPipeline.tsx        # Generative AI pipeline steps (Visuals, Motion, 3D Camera, 4K Color Grading)
 │   └── NewsletterForm.tsx    # Footer newsletter lead capture
 ├── context/
 │   └── CurrencyContext.tsx   # USD / EUR / CAD currency state & rounding logic

@@ -142,10 +142,10 @@ export const COMMANDS: CommandItem[] = [
 
 export const PIPELINE_TOOLS: PipelineTool[] = [
   {
-    id: 'midjourney',
-    name: 'Midjourney v6.1',
+    id: 'image-engine',
+    name: 'Moteur de Génération Visuelle',
     category: 'IMAGE GEN & CONCEPT ART',
-    version: 'v6.1 RAW',
+    version: 'Rendu 8K RAW',
     desc: {
       fr: 'Génération de keyframes cinématiques 8K, maîtrise absolue des éclairages volumétriques et cohérence stylistique des personnages.',
       en: '8K cinematic keyframe generation, master volumetric lighting, and character stylistic consistency.'
@@ -157,10 +157,10 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     }
   },
   {
-    id: 'runway',
-    name: 'Runway Gen-3 Alpha',
+    id: 'camera-motion',
+    name: 'Moteur de Caméra Virtuelle 3D',
     category: 'CAMERA MOTION & VIDEO SYNTHESIS',
-    version: 'Gen-3 Turbo',
+    version: 'Cinematics Engine',
     desc: {
       fr: 'Contrôle précis des mouvements de caméra virtuels (crane, orbit, dolly, zoom) et simulation fluide de la physique.',
       en: 'Precise virtual camera motion control (crane, orbit, dolly, zoom) and fluid physics simulation.'
@@ -172,10 +172,10 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     }
   },
   {
-    id: 'kling',
-    name: 'Kling AI 1.5',
+    id: 'physics-engine',
+    name: 'Moteur d\'Animation & Physique',
     category: 'PHYSICS & HIGH DYNAMICS',
-    version: 'v1.5 Pro',
+    version: 'High Dynamics',
     desc: {
       fr: 'Rendu hyper-réaliste des mouvements complexes, drapés de vêtements, explosions et physiques naturelles à 60 FPS.',
       en: 'Hyper-realistic rendering of complex movements, cloth physics, explosions, and natural dynamics at 60 FPS.'
@@ -187,25 +187,25 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     }
   },
   {
-    id: 'topaz',
-    name: 'Topaz Video AI 5',
+    id: 'mastering-upscale',
+    name: 'Pipeline d\'Upscaling & Restauration',
     category: 'UPSCALING & ENHANCEMENT',
-    version: 'v5.2 AI',
+    version: 'Master 4K/8K',
     desc: {
       fr: 'Upscale 4K / 8K Master, débruitage argentique sélectif, restauration de textures et interpolation de fréquence d’images.',
       en: '4K / 8K Master Upscaling, selective film noise restoration, texture recovery, and frame interpolation.'
     },
     badge: 'Mastering & Enhancement',
     features: {
-      fr: ['Artemis & Proteus Models', 'Motion Blur Compensation', 'Color Bitrate Expansion'],
-      en: ['Artemis & Proteus Models', 'Motion Blur Compensation', 'Color Bitrate Expansion']
+      fr: ['Algorithmes de Restauration', 'Motion Blur Compensation', 'Color Bitrate Expansion'],
+      en: ['Restoration Algorithms', 'Motion Blur Compensation', 'Color Bitrate Expansion']
     }
   },
   {
-    id: 'davinci',
-    name: 'DaVinci Resolve Studio',
+    id: 'post-production-core',
+    name: 'Suite d\'Étalonnage & Mastering',
     category: 'COLOR GRADING & AUDIO SOUNDSCAPE',
-    version: 'v19 Studio',
+    version: 'Color Grading Pro',
     desc: {
       fr: 'Étalonnage couleur ACES cinématographique, montage rythmé, sound design spatialisé et mastering final d’exportation.',
       en: 'Cinematic ACES color grading, rhythmic editing, spatial sound design, and master delivery exports.'

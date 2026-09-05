@@ -15,12 +15,12 @@ interface QualifiedContactProps {
 }
 
 const PROJECT_TYPES = [
-  { id: 'pub-brand', icon: Clapperboard, title: { fr: 'H1. Publicité & Brand Content', en: 'H1. Commercial & Brand Content' } },
-  { id: 'clip-visualiser', icon: Music2, title: { fr: 'H2. Clip Vidéo & Visualiser', en: 'H2. Music Video & Visualiser' } },
-  { id: 'film-series', icon: Film, title: { fr: 'H3. Film & Série', en: 'H3. Film & Series' } },
-  { id: 'da-univers', icon: Palette, title: { fr: 'H4. Direction Artistique', en: 'H4. Art Direction & Branding' } },
-  { id: 'web-digital', icon: Globe2, title: { fr: 'H5. Site Web sur-mesure', en: 'H5. Custom Website' } },
-  { id: 'formation-pro', icon: GraduationCap, title: { fr: 'H6. Formation & Masterclass', en: 'H6. Masterclass Training' } },
+  { id: 'pub-brand', icon: Clapperboard, title: { fr: 'Publicité & Brand Content', en: 'Commercial & Brand Content' } },
+  { id: 'clip-visualiser', icon: Music2, title: { fr: 'Clip Vidéo & Visualiser', en: 'Music Video & Visualiser' } },
+  { id: 'film-series', icon: Film, title: { fr: 'Film & Série', en: 'Film & Series' } },
+  { id: 'da-univers', icon: Palette, title: { fr: 'Direction Artistique', en: 'Art Direction & Branding' } },
+  { id: 'web-digital', icon: Globe2, title: { fr: 'Site Web sur-mesure', en: 'Custom Website' } },
+  { id: 'formation-pro', icon: GraduationCap, title: { fr: 'Formation & Masterclass', en: 'Masterclass Training' } },
 ];
 
 const SERVICE_ID_MAP: Record<string, string> = {
@@ -33,10 +33,10 @@ const SERVICE_ID_MAP: Record<string, string> = {
 };
 
 const BUDGET_TIERS = [
-  { id: 'tier-0', title: { fr: 'I1. Sprint Pilote (Asset court 15-30s)', en: 'I1. Pilot Sprint (Short asset 15-30s)' } },
-  { id: 'tier-1', title: { fr: 'I2. Direction Artistique & Pack Visuels', en: 'I2. Art Direction & Key Visuals' } },
-  { id: 'tier-2', title: { fr: 'I3. Campagne / Clip Vidéo / Site Web', en: 'I3. Brand Campaign / Music Video / Web' } },
-  { id: 'tier-3', title: { fr: 'I4. Production Majeure (Film / Série)', en: 'I4. Scale Production (Film / Series)' } },
+  { id: 'tier-0', title: { fr: 'Sprint Pilote (Asset court 15-30s)', en: 'Pilot Sprint (Short asset 15-30s)' } },
+  { id: 'tier-1', title: { fr: 'Direction Artistique & Pack Visuels', en: 'Art Direction & Key Visuals' } },
+  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / Site Web', en: 'Brand Campaign / Music Video / Web' } },
+  { id: 'tier-3', title: { fr: 'Production Majeure (Film / Série)', en: 'Scale Production (Film / Series)' } },
 ];
 
 export default function QualifiedContact({
@@ -128,17 +128,17 @@ export default function QualifiedContact({
   };
 
   return (
-    <section id="contact" className="max-w-xl mx-auto mb-14 px-4">
+    <section id="contact" className="max-w-xl mx-auto mb-8 px-4">
       {/* Card Wrapper */}
       <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl">
         <div className="text-center mb-6">
-          {/* 3-Step Indicator Bar: H, I, J */}
+          {/* 3-Step Indicator Bar */}
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
-            <span>{isFr ? 'H. Projet' : 'H. Project'}</span>
+            <span>{isFr ? '1. Projet' : '1. Project'}</span>
             <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? 'I. Enveloppe' : 'I. Tier'}</span>
+            <span>{isFr ? '2. Budget' : '2. Budget'}</span>
             <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? 'J. Coordonnées' : 'J. Contact'}</span>
+            <span>{isFr ? '3. Coordonnées' : '3. Contact'}</span>
           </div>
         </div>
 
@@ -187,10 +187,10 @@ export default function QualifiedContact({
               className="hidden"
               style={{ position: 'absolute', left: '-9999px', top: '-9999px', width: '1px', height: '1px', opacity: 0, pointerEvents: 'none' }}
             />
-            {/* Step H: Project Type Cards (H1 to H6) */}
+            {/* Step: Project Type Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
-                {isFr ? 'H. Quel type de projet souhaitez-vous réaliser ?' : 'H. What type of project do you want to create?'}
+                {isFr ? 'Quel type de projet souhaitez-vous réaliser ?' : 'What type of project do you want to create?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {PROJECT_TYPES.map(pt => {
@@ -217,10 +217,10 @@ export default function QualifiedContact({
               </div>
             </fieldset>
 
-            {/* Step I: Dynamic Budget Cards (I1 to I4) */}
+            {/* Step: Dynamic Budget Cards */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
-                {isFr ? 'I. Quelle est votre enveloppe budgétaire estimée ?' : 'I. What is your estimated budget tier?'}
+                {isFr ? 'Quelle est votre enveloppe budgétaire estimée ?' : 'What is your estimated budget tier?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {BUDGET_TIERS.map(tier => {
@@ -245,7 +245,7 @@ export default function QualifiedContact({
               </div>
             </fieldset>
 
-            {/* Step J: Contact Inputs */}
+            {/* Step: Contact Inputs */}
             <div className="space-y-3 pt-2">
               <input
                 type="text"
@@ -257,7 +257,7 @@ export default function QualifiedContact({
                 className="hidden absolute opacity-0 pointer-events-none"
               />
               <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-1">
-                {isFr ? 'J. Vos coordonnées pour recevoir notre proposition :' : 'J. Your details to receive our proposal:'}
+                {isFr ? 'Vos coordonnées pour recevoir notre proposition :' : 'Your details to receive our proposal:'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>

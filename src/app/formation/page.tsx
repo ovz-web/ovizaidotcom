@@ -17,7 +17,7 @@ const COURSE_JSON_LD = {
   '@type': 'Course',
   name: 'Masterclass Vidéo IA OVIZai',
   description:
-    'Formation complète et pratique à la création de films et publicités cinématographiques avec IA (Midjourney v6, Runway Gen-3, Kling AI, Topaz Video AI, DaVinci Resolve Studio).',
+    'Formation complète et pratique à la création de films et publicités cinématographiques avec intelligence artificielle générative et post-production 4K.',
   provider: {
     '@type': 'Organization',
     name: 'OVIZai',
@@ -40,14 +40,23 @@ const COURSE_JSON_LD = {
 
 function FormationToolsetRow({ lang }: { lang: 'fr' | 'en' }) {
   const isFr = lang === 'fr';
-  const tools = [
-    'Midjourney v6',
-    'Flux.1',
-    'Runway Gen-3',
-    'Kling AI',
-    'Topaz Video AI',
-    'DaVinci Resolve Studio',
-  ];
+  const tools = isFr
+    ? [
+        'Génération Visuelle 8K',
+        'Animation & Caméra 3D',
+        'Simulation Physique & Fluides',
+        'Upscaling Neuronal 4K/8K',
+        'Étalonnage & Mastering ACES',
+        'Sound Design & Voix IA',
+      ]
+    : [
+        '8K Visual Generation',
+        '3D Camera & Motion',
+        'Physics & Fluid Simulation',
+        'Neural 4K/8K Upscaling',
+        'ACES Grading & Mastering',
+        'Spatial Audio & AI Voice',
+      ];
 
   return (
     <div className="max-w-xl mx-auto mb-8 px-4">
@@ -56,7 +65,7 @@ function FormationToolsetRow({ lang }: { lang: 'fr' | 'en' }) {
           {isFr ? 'STACK DU PROGRAMME' : 'CURRICULUM STACK'}
         </span>
         <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-3">
-          {isFr ? 'Moteurs Génératifs & Logiciels Étudiés' : 'Generative Engines & Software Covered'}
+          {isFr ? 'Moteurs Génératifs & Pipeline Étudiés' : 'Generative Engines & Pipeline Covered'}
         </h3>
         <div className="flex flex-wrap gap-2">
           {tools.map((tool) => (
@@ -135,7 +144,7 @@ export default function FormationPage() {
           <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
             <div className="pb-3 border-b border-white/[0.06]">
               <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-1">
-                {isFr ? 'INSCRIPTION // ACCÈS ILLIMITÉ' : 'ENROLLMENT // LIFETIME ACCESS'}
+                {isFr ? 'ACCÈS ILLIMITÉ & TARIFICATION' : 'LIFETIME ACCESS & PRICING'}
               </span>
               <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
                 {isFr ? 'Masterclass Complète Cinéma & Vidéo IA 4K' : 'Complete 4K AI Cinema & Video Masterclass'}
@@ -147,8 +156,8 @@ export default function FormationPage() {
                 <span className="text-[#CAA243] font-bold">✓</span>
                 <span>
                   {isFr
-                    ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'
-                    : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}
+                    ? '5 modules vidéo pratiques : concept art 8K, caméra virtuelle 3D, animation, sound design et étalonnage 4K'
+                    : '5 practical modules: 8K concept art, 3D virtual camera, motion, sound design and 4K color grading'}
                 </span>
               </p>
               <p className="flex items-center gap-2 text-[#ECE4D3]">
@@ -163,8 +172,8 @@ export default function FormationPage() {
                 <span className="text-[#CAA243] font-bold">✓</span>
                 <span>
                   {isFr
-                    ? 'Fichiers projets DaVinci Resolve Studio & bibliothèque de prompts certifiés'
-                    : 'DaVinci Resolve Studio project files & verified prompt library'}
+                    ? 'Fichiers projets de post-production cinéma & bibliothèque de prompts certifiés'
+                    : 'Cinema post-production project files & verified prompt library'}
                 </span>
               </p>
               <p className="flex items-center gap-2 text-[#ECE4D3]">
@@ -179,7 +188,7 @@ export default function FormationPage() {
 
             <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
               <span className="mono text-[10.5px] text-[#8C8375]">
-                {isFr ? 'Tarif de lancement disponible sur la grille' : 'Launch tier available on pricing page'}
+                {isFr ? 'Tarif unique sans abonnement disponible sur la grille' : 'One-time pricing available on pricing page'}
               </span>
 
               <Link
