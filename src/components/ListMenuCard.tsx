@@ -47,7 +47,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
               </div>
 
               {item.trailing !== undefined && (
-                <span className="mono text-[10.5px] text-gold group-hover:text-gold-bright hidden sm:inline transition-colors font-medium flex-shrink-0">
+                <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
                   {item.trailing}
                 </span>
               )}

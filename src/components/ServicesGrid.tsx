@@ -231,7 +231,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
       icon: service.icon,
       title: `${service.number} // ${isFr ? service.title.fr : service.title.en}`,
       subtitle: isFr ? service.tagline.fr : service.tagline.en,
-      trailing: isOpen ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Détails ↓' : 'Details ↓'),
+      trailing: isOpen ? '↑' : '↓',
       onClick: () => toggleService(service.id),
       expanded: isOpen,
       expandedContent: (

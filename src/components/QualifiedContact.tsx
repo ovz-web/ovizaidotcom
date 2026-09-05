@@ -252,8 +252,8 @@ export default function QualifiedContact({
                 </div>
               </div>
 
-              <span className="mono text-[10.5px] text-gold group-hover:text-gold-bright hidden sm:inline transition-colors font-medium flex-shrink-0">
-                {isStep1Open ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Modifier ↓' : 'Edit ↓')}
+              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
+                {isStep1Open ? '↑' : '↓'}
               </span>
             </button>
 
@@ -312,8 +312,8 @@ export default function QualifiedContact({
                 </div>
               </div>
 
-              <span className="mono text-[10.5px] text-gold group-hover:text-gold-bright hidden sm:inline transition-colors font-medium flex-shrink-0">
-                {isStep2Open ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Modifier ↓' : 'Edit ↓')}
+              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
+                {isStep2Open ? '↑' : '↓'}
               </span>
             </button>
 
@@ -370,8 +370,8 @@ export default function QualifiedContact({
                 </div>
               </div>
 
-              <span className="mono text-[10.5px] text-gold group-hover:text-gold-bright hidden sm:inline transition-colors font-medium flex-shrink-0">
-                {isStep3Open ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Compléter ↓' : 'Fill out ↓')}
+              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
+                {isStep3Open ? '↑' : '↓'}
               </span>
             </button>
 

@@ -189,7 +189,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
       icon: mod.icon,
       title: `${mod.num} // ${isFr ? mod.title.fr : mod.title.en}`,
       subtitle: isFr ? mod.subtitle.fr : mod.subtitle.en,
-      trailing: isOpen ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Détails ↓' : 'Details ↓'),
+      trailing: isOpen ? '↑' : '↓',
       onClick: () => toggleModule(mod.id),
       expanded: isOpen,
       expandedContent: (

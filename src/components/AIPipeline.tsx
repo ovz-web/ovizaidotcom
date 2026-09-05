@@ -232,7 +232,7 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
       icon: step.icon,
       title: `${step.num} // ${isFr ? step.title.fr : step.title.en}`,
       subtitle: isFr ? step.subtitle.fr : step.subtitle.en,
-      trailing: isOpen ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Détails ↓' : 'Details ↓'),
+      trailing: isOpen ? '↑' : '↓',
       onClick: () => toggleStep(step.id),
       expanded: isOpen,
       expandedContent: (
