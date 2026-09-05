@@ -44,8 +44,8 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </h1>
 
       {/* Short Subtitle - Punchy Single Sentence */}
-      <p className="text-xs sm:text-sm text-[#9C9384] max-w-xs sm:max-w-md text-center mx-auto mb-2 leading-relaxed font-mono">
-        {isFr ? 'Vos projets visuels, sans contraintes de tournage.' : 'Your visual projects, without the constraints of filming.'}
+      <p className="text-xs sm:text-sm text-[#9C9384] max-w-xs sm:max-w-xl text-center mx-auto mb-2 leading-relaxed font-mono sm:whitespace-nowrap">
+        {isFr ? 'Vos projets visuels, sans contraintes de tournage' : 'Your visual projects, without the constraints of filming'}
       </p>
     </section>
   );
