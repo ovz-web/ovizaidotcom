@@ -107,6 +107,7 @@ export default function QualifiedContact({
           message: brief || undefined,
           company: company || undefined,
           website: website || undefined,
+          sourcePlan: originPlan || undefined,
           originPlan: originPlan || undefined,
         }),
       });

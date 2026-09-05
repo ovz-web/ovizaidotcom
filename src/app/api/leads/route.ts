@@ -19,7 +19,8 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { email, name, projectType, budgetRange, currency, message, company, website, sourcePlan } = body;
+    const { email, name, projectType, budgetRange, currency, message, company, website } = body;
+    const sourcePlan = body.sourcePlan || body.originPlan;
 
     // Honeypot anti-spam: silent success if hidden company or website field is populated
     const isSpam = (val: any) => val !== undefined && val !== null && String(val).trim() !== '';
