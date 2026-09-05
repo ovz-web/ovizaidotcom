@@ -320,7 +320,7 @@ export default function TarifsClient() {
                       }}
                       className={`w-full min-h-[48px] flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer ${
                         plan.primary
-                          ? 'bg-gold hover:bg-gold-bright text-black shadow-gold hover:scale-[1.01]'
+                          ? 'bg-gold hover:bg-gold-bright text-black hover:scale-[1.01]'
                           : 'bg-black/50 border border-border-gold hover:border-gold text-fg hover:text-gold-bright'
                       }`}
                     >
@@ -433,7 +433,7 @@ export default function TarifsClient() {
                   type="button"
                   disabled={mcLoading}
                   onClick={handleMasterclassCheckout}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold cursor-pointer min-h-[44px]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
                 >
                   {mcLoading ? (
                     <>
@@ -494,7 +494,7 @@ export default function TarifsClient() {
             <Link
               href="/contact"
               onClick={() => trackEvent('cta_request_custom_quote', { source: 'tarifs_bottom' })}
-              className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold hover:scale-[1.01] cursor-pointer min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[48px]"
             >
               <span>{t.ctaLabel}</span>
               <ArrowUpRight className="w-4 h-4 text-black" />

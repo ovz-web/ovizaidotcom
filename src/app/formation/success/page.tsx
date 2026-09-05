@@ -107,7 +107,7 @@ export default function FormationSuccessPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <Link
                 href="/formation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-black" />
                 <span>{isFr ? 'Consulter le Programme & Outils' : 'View Masterclass Curriculum'}</span>

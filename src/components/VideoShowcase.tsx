@@ -94,7 +94,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
             <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 group-hover:bg-black/20 transition-colors" />
 
             {/* Centered Play Button */}
-            <span className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gold flex items-center justify-center shadow-gold group-hover:scale-105 transition-transform mb-1">
+            <span className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gold flex items-center justify-center shadow-card group-hover:scale-105 transition-transform mb-1">
               <Play className="w-5 h-5 sm:w-6 sm:h-6 text-black ml-0.5" fill="black" />
             </span>
 

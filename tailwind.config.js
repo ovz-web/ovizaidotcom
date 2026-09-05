@@ -41,7 +41,6 @@ module.exports = {
         display: ['var(--font-syne)', 'var(--font-archivo-black)', 'sans-serif']
       },
       boxShadow: {
-        gold: '0 14px 26px rgba(202,162,67,0.16)',
         modal: '0 40px 80px -20px rgba(0,0,0,0.8)',
         card: '0 30px 60px -30px rgba(0,0,0,0.7)',
         toast: '0 20px 40px -10px rgba(0,0,0,0.6)'

@@ -176,7 +176,7 @@ export default function FormationPage() {
               <Link
                 href="/tarifs#masterclass"
                 onClick={() => trackEvent('cta_enroll_masterclass', { source: 'formation_page' })}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold hover:scale-[1.01] cursor-pointer min-h-[44px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
               >
                 <span>{isFr ? 'Consulter le tarif & S’inscrire →' : 'View pricing & Enroll →'}</span>
                 <ArrowUpRight className="w-4 h-4 text-black" />

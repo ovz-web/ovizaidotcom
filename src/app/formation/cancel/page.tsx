@@ -77,7 +77,7 @@ export default function FormationCancelPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
               <Link
                 href="/tarifs#masterclass"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-gold"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5 text-black" />
                 <span>{isFr ? 'Réessayer l’inscription' : 'Retry Enrollment'}</span>

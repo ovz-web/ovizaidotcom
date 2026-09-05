@@ -270,7 +270,7 @@ export default function StackPage() {
         <div className="max-w-xl mx-auto px-4 mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/tarifs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold hover:scale-[1.01] cursor-pointer min-h-[48px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[48px]"
           >
             <span>{isFr ? 'Consulter nos tarifs & formules →' : 'View pricing & packages →'}</span>
             <ArrowUpRight className="w-4 h-4" />

@@ -338,7 +338,7 @@ export default function QualifiedContact({
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full min-h-[48px] bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-gold cursor-pointer"
+              className="w-full min-h-[48px] bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
               <span>
                 {status === 'loading'
