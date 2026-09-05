@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Clock, ShieldCheck, CheckCircle2, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Clock, ShieldCheck, CheckCircle2, ArrowUpRight, Sparkles, HelpCircle } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -12,16 +12,49 @@ import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
 
+const PRODUCTION_FAQ = {
+  fr: {
+    title: 'Questions Fréquentes — Production & Délais',
+    category: 'Production, Délais & Process',
+    items: [
+      {
+        q: 'Comment se déroulent les validations et les rounds de révision inclus ?',
+        a: 'Rounds de révision inclus sur chaque formule\nValidation sur prévisualisation pour ajuster rythme et cadrages\nFinalisation et étalonnage avant l’export 4K',
+      },
+      {
+        q: 'Quels sont les délais garantis de livraison ?',
+        a: 'Livraison sous 48 à 72h ouvrées pour le Sprint Pilote\nLivraison prioritaire 48 à 72h pour la Campagne de Marque\nPlanning dédié validé au devis pour les projets sur-mesure',
+      },
+    ],
+  },
+  en: {
+    title: 'Frequently Asked Questions — Production & Turnaround',
+    category: 'Production, Turnaround & Process',
+    items: [
+      {
+        q: 'How do project previews and included revision rounds work?',
+        a: 'Included revision rounds across every package\nApproval on preview cut to fine-tune pacing and framing\nFinal grading and mastering before 4K delivery',
+      },
+      {
+        q: 'What are the guaranteed turnaround times?',
+        a: '48 to 72 business hours for the Pilot Sprint\n48 to 72 business hours priority for the Brand Campaign\nDedicated production schedule agreed upon for custom projects',
+      },
+    ],
+  },
+};
+
 export default function StackPage() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
   };
 
   const isFr = lang === 'fr';
+  const faqData = PRODUCTION_FAQ[lang];
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
@@ -161,20 +194,77 @@ export default function StackPage() {
           </div>
         </div>
 
-        {/* 5. Referral to central site-wide FAQ on /tarifs#faq */}
-        <div className="max-w-xl mx-auto px-4 mb-6 text-center">
-          <p className="text-xs text-muted">
-            {isFr
-              ? 'Une question sur nos méthodes de travail ou notre politique de révision ?'
-              : 'Have questions about our production workflow or revision policy?'}
-          </p>
-          <Link
-            href="/tarifs#faq"
-            className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1 font-semibold"
-          >
-            <span>{isFr ? 'Consulter notre FAQ complète →' : 'View our full FAQ →'}</span>
-          </Link>
-        </div>
+        {/* 5. Production & Process FAQ (relocated from /tarifs) */}
+        <section className="max-w-xl mx-auto px-4 mb-8">
+          <div className="mb-4">
+            <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
+              FAQ // PROCESS
+            </span>
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
+              {faqData.title}
+            </h2>
+          </div>
+
+          <div className="ovizai-card border border-border bg-card overflow-hidden">
+            <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-border flex items-center justify-between">
+              <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold">
+                {faqData.category}
+              </span>
+              <span className="mono text-[10px] text-muted">
+                {faqData.items.length} questions
+              </span>
+            </div>
+
+            <div className="divide-y divide-border">
+              {faqData.items.map((faq, itemIdx) => {
+                const isOpen = openFaq === itemIdx;
+                return (
+                  <div key={faq.q}>
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-label={
+                        isOpen
+                          ? (isFr ? `Fermer la réponse : ${faq.q}` : `Close answer: ${faq.q}`)
+                          : (isFr ? `Ouvrir la réponse : ${faq.q}` : `Open answer: ${faq.q}`)
+                      }
+                      onClick={() => setOpenFaq(isOpen ? null : itemIdx)}
+                      className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
+                    >
+                      <span className="text-xs text-fg font-medium leading-snug">{faq.q}</span>
+                      <HelpCircle
+                        className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                          isOpen ? 'text-gold' : 'text-muted'
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-4 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
+                        {faq.a.split('\n').map((line, lIdx) => (
+                          <p key={lIdx}>{line}</p>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-4 text-center">
+            <p className="text-xs text-muted">
+              {isFr
+                ? 'Une question sur nos tarifs ou nos modalités de facturation ?'
+                : 'Have questions about our pricing or billing terms?'}
+            </p>
+            <Link
+              href="/tarifs#faq"
+              className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1 font-semibold"
+            >
+              <span>{isFr ? 'Consulter la FAQ facturation & tarifs →' : 'View pricing & billing FAQ →'}</span>
+            </Link>
+          </div>
+        </section>
 
         {/* 6. Dual Action CTA Footer */}
         <div className="max-w-xl mx-auto px-4 mb-4 flex flex-col sm:flex-row items-center justify-center gap-3">
