@@ -5,7 +5,9 @@ import { Play, Film } from 'lucide-react';
 import { Language } from '@/types';
 
 export interface VideoItem {
-  youtubeId: string;
+  youtubeId?: string;
+  src?: string;
+  poster?: string;
   title: { fr: string; en: string };
   description: { fr: string; en: string };
   uploadDate: string; // ISO 8601, ex: "2026-09-01"
@@ -22,18 +24,23 @@ interface VideoShowcaseProps {
 export default function VideoShowcase({ video, lang, compact = false }: VideoShowcaseProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const isFr = lang === 'fr';
-  const hasId = Boolean(video.youtubeId && video.youtubeId.trim().length > 0);
-  const thumbnailUrl = hasId ? `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg` : '';
+  const hasLocalVideo = Boolean(video.src && video.src.trim().length > 0);
+  const hasYoutubeId = Boolean(video.youtubeId && video.youtubeId.trim().length > 0);
+  const hasVideo = hasLocalVideo || hasYoutubeId;
 
-  const jsonLd = hasId
+  const thumbnailUrl = video.poster || (hasYoutubeId ? `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg` : '');
+
+  const jsonLd = hasVideo
     ? {
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
         name: video.title[lang],
         description: video.description[lang],
-        thumbnailUrl,
+        thumbnailUrl: thumbnailUrl.startsWith('http') ? thumbnailUrl : `https://ovizai.com${thumbnailUrl}`,
         uploadDate: video.uploadDate,
-        embedUrl: `https://www.youtube-nocookie.com/embed/${video.youtubeId}`,
+        embedUrl: hasYoutubeId
+          ? `https://www.youtube-nocookie.com/embed/${video.youtubeId}`
+          : `https://ovizai.com${video.src}`,
         publisher: { '@type': 'Organization', name: 'OVIZai', logo: 'https://ovizai.com/logo.png' },
       }
     : null;
@@ -49,25 +56,36 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
 
       {/* Video Facade / Player Area */}
       <div className="relative aspect-video bg-black/90 overflow-hidden group">
-        {hasId && isPlaying ? (
-          <iframe
-            className="absolute inset-0 w-full h-full border-0"
-            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
-            title={video.title[lang]}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-          />
+        {hasVideo && isPlaying ? (
+          hasLocalVideo ? (
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src={video.src}
+              poster={thumbnailUrl}
+              controls
+              autoPlay
+              playsInline
+            />
+          ) : (
+            <iframe
+              className="absolute inset-0 w-full h-full border-0"
+              src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
+              title={video.title[lang]}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          )
         ) : (
           <button
             type="button"
-            onClick={() => hasId && setIsPlaying(true)}
+            onClick={() => hasVideo && setIsPlaying(true)}
             aria-label={isFr ? `Lire la vidéo : ${video.title.fr}` : `Play video: ${video.title.en}`}
             className={`absolute inset-0 w-full h-full min-h-[48px] group cursor-pointer flex flex-col items-center justify-center p-4 text-center transition-all ${
-              hasId ? 'hover:bg-black/20' : 'opacity-90'
+              hasVideo ? 'hover:bg-black/20' : 'opacity-90'
             }`}
             style={
-              hasId && thumbnailUrl
+              hasVideo && thumbnailUrl
                 ? { backgroundImage: `url(${thumbnailUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
                 : undefined
             }
@@ -87,7 +105,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
               </span>
             )}
 
-            {!hasId && (
+            {!hasVideo && (
               <span className="relative z-10 mono text-[10px] text-[#9C9384] mt-1.5 bg-black/70 px-2.5 py-0.5 rounded border border-white/[0.08]">
                 {isFr ? 'Vidéo en cours d’intégration' : 'Video uploading soon'}
               </span>

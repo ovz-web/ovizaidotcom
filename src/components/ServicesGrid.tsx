@@ -6,7 +6,7 @@ import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight,
 import { Language, Currency } from '@/types';
 import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
 import TrustSection from '@/components/TrustSection';
-import { YOUTUBE_VIDEOS } from '@/lib/videos';
+import { YOUTUBE_VIDEOS, LOCAL_VIDEOS } from '@/lib/videos';
 
 interface ServicesGridProps {
   lang: Language;
@@ -18,109 +18,94 @@ const SERVICE_TYPE_MAP: Record<string, { type: string; budget: string }> = {
   'films-series': { type: 'film-series', budget: 'tier-3' },
   'clips-visualisers': { type: 'clip-visualiser', budget: 'tier-2' },
   'pub-brand-content': { type: 'pub-brand', budget: 'tier-2' },
-  'da-univers-visuels': { type: 'da-univers', budget: 'tier-1' },
-  'web-digital': { type: 'web-digital', budget: 'tier-2' },
+  'direction-artistique': { type: 'art-direction', budget: 'tier-1' },
+  'sites-web-nextjs': { type: 'site-web', budget: 'tier-2' }
 };
 
 const FIVE_SERVICES = [
   {
     id: 'films-series',
     number: '01',
-    title: {
-      fr: 'Réalisation de Films & Séries',
-      en: 'Film & Series Direction'
-    },
+    title: { fr: 'Production de Films & Séries IA', en: 'AI Film & Series Production' },
     tagline: {
-      fr: 'Productions cinématographiques d’envergure, de la première idée au rendu 4K.',
-      en: 'Major cinematic productions, from initial vision to 4K master.'
+      fr: 'Développement de courts-métrages, pilotes de séries et fictions narratives complètes.',
+      en: 'Development of short films, series pilots, and complete narrative fiction.'
     },
     description: {
-      fr: 'Prise en charge complète : écriture, storyboard, génération 8K, montage et étalonnage.',
-      en: 'Full production management: script, storyboard, 8K generation, editing, and color grading.'
+      fr: 'Conception intégrale de fictions cinématographiques. De l\'écriture du scénario au montage final, nous générons des plans d\'un réalisme saisissant avec une cohérence parfaite des personnages, des décors et de la lumière à travers chaque séquence.',
+      en: 'Full creation of cinematic fiction. From scriptwriting to final cut, we generate strikingly realistic shots with consistent characters, sets, and lighting across scenes.'
     },
     deliverables: {
-      fr: ['Concept & écriture', 'Storyboard numérique', 'Génération des plans', 'Montage & étalonnage ACES', 'Sound design spatialisé', 'Livraison multi-formats'],
-      en: ['Concept & Script', 'Digital Storyboard', 'Shot Generation', 'ACES Editing & Grading', 'Spatial Sound Design', 'Multi-Format Delivery']
+      fr: ['Bible visuelle & character design', 'Génération 4K cinématographique', 'Montage narratif & étalonnage', 'Sound design & bande-son originale', 'Export master cinéma (DCP / Pro-Res)'],
+      en: ['Visual Bible & Character Design', '4K Cinematic Generation', 'Narrative Editing & Color Grading', 'Sound Design & Original Score', 'Cinema Master Export (DCP / ProRes)']
     },
     icon: Film
   },
   {
     id: 'clips-visualisers',
     number: '02',
-    title: {
-      fr: 'Clips Vidéos & Visualisers',
-      en: 'Music Videos & Stage Visualisers'
-    },
+    title: { fr: 'Clips Vidéos & Scénographies VJing', en: 'Music Videos & Stage Visuals' },
     tagline: {
-      fr: 'Créations musicales et scénographies VJing à l\'esthétique sur-mesure.',
-      en: 'Music creations and stage visualisers with custom aesthetics.'
+      fr: 'Univers surréalistes et visuels scéniques synchronisés sur la musique pour artistes et labels.',
+      en: 'Surreal universes and beat-synced stage visuals for artists and record labels.'
     },
     description: {
-      fr: 'Création de visuels de scène qui subliment la signature artistique.',
-      en: 'Creation of stage visuals elevating the artist\'s identity.'
+      fr: 'Réalisation de clips musicaux complets et de visuels de scène immersifs. Nous traduisons votre signature musicale en univers visuels inédits, avec une synchronisation rythmique précise et une direction artistique sur-mesure.',
+      en: 'Production of music videos and immersive stage visuals. We translate your sound identity into unique visual worlds with precise rhythm synchronization and custom art direction.'
     },
     deliverables: {
-      fr: ['Direction artistique', 'Moodboard & références', 'Séquences animées', 'Montage rythmé', 'Effets VFX & Lip-sync', 'Formats réseaux sociaux (Vertical 9:16)'],
-      en: ['Art Direction', 'Moodboards & References', 'Animated Sequences', 'Rhythmic Editing', 'VFX & Lip-sync Effects', 'Social Media Formats (9:16)']
+      fr: ['Storyboard & moodboards visuels', 'Génération calée sur le BPM/rythme', 'Boucles VJing haute résolution', 'Déclinaisons réseaux (9:16, 1:1, 16:9)', 'Livrables prêts pour diffusion scène'],
+      en: ['Storyboard & Visual Moodboards', 'BPM-Synced Generation', 'High-Res VJing Loops', 'Social Media Cuts (9:16, 1:1, 16:9)', 'Stage-Ready Display Files']
     },
     icon: Music2
   },
   {
     id: 'pub-brand-content',
     number: '03',
-    title: {
-      fr: 'Publicités & Brand Content',
-      en: 'Commercials & Brand Content'
-    },
+    title: { fr: 'Publicité & Brand Content', en: 'Commercials & Brand Content' },
     tagline: {
-      fr: 'Spots publicitaires et contenus de marque produits plus vite.',
-      en: 'Commercial spots and brand content produced faster.'
+      fr: 'Spots publicitaires percutants et contenus visuels premium pour marques audacieuses.',
+      en: 'Impactful commercials and premium visual content for forward-thinking brands.'
     },
     description: {
-      fr: 'Publicités et spots sur-mesure intégrés à votre charte de marque.',
-      en: 'Tailored commercial spots aligned with your brand identity.'
+      fr: 'Campagnes publicitaires cinématiques qui captent l\'attention dès la première seconde. Nous créons des scènes impossibles à tourner en réel avec une qualité digne des plus grands studios, optimisées pour la conversion et l\'image de marque.',
+      en: 'Cinematic ad campaigns engineered to capture attention from the first second. We create scenes impossible to shoot in real life, with top-studio quality optimized for conversion and brand authority.'
     },
     deliverables: {
-      fr: ['Concept publicitaire', 'Script & storyboard', 'Production visuelle rapide', 'Déclinaisons multi-formats', 'Intégration charte de marque', 'Optimisation conversion'],
-      en: ['Ad Concept', 'Script & Storyboard', 'Fast Visual Production', 'Multi-Format Variants', 'Brandbook Integration', 'Conversion Optimization']
+      fr: ['Concept créatif & scénarisation', 'Packshots & scènes de marque sur-mesure', 'Formats multi-plateformes (Ads, Social, DOOH)', 'Voix-off IA ou studio & mix audio', 'A/B testing visuel disponible'],
+      en: ['Creative Concept & Scripting', 'Custom Packshots & Brand Scenes', 'Multi-Platform Formats (Ads, Social, DOOH)', 'Studio or AI Voiceover & Audio Mix', 'Visual A/B Testing Variations']
     },
     icon: Clapperboard
   },
   {
-    id: 'da-univers-visuels',
+    id: 'direction-artistique',
     number: '04',
-    title: {
-      fr: 'Direction Artistique & Univers de Marque',
-      en: 'Art Direction & Brand Universes'
-    },
+    title: { fr: 'Direction Artistique & Identité Visuelle', en: 'Art Direction & Visual Identity' },
     tagline: {
-      fr: 'Façonnez l\'identité visuelle complète de votre marque.',
-      en: 'Shape your brand\'s complete visual identity.'
+      fr: 'Définition d\'univers graphiques singuliers, moodboards cinématiques et bibles visuelles.',
+      en: 'Definition of distinctive visual worlds, cinematic moodboards, and visual bibles.'
     },
     description: {
-      fr: 'Conception visuelle globale, charte graphique et visuels clés 8K.',
-      en: 'Complete visual design, brand guidelines, and 8K key visuals.'
+      fr: 'Accompagnement créatif stratégique pour marques, agences et créateurs. Nous posons les fondations esthétiques de votre projet grâce à l\'exploration visuelle par IA : styles graphiques, palettes, textures et grammaire cinématographique.',
+      en: 'Strategic creative direction for brands, agencies, and artists. We lay the aesthetic foundations of your project through generative visual exploration: art styles, palettes, textures, and cinematic grammar.'
     },
     deliverables: {
-      fr: ['Direction artistique globale', 'Univers visuel sur-mesure', 'Charte graphique & Brandbook', 'Visuels clés 8K (ultra haute définition)', 'Guidelines de marque'],
-      en: ['Global Art Direction', 'Custom Visual Universe', 'Brandbook & Guidelines', '8K Key Visuals (ultra high definition)', 'Brand Guidelines']
+      fr: ['Guide de style & charte visuelle IA', 'Génération de keyframes de référence', 'Exploration de concepts en haute définition', 'Consulting & prompts certifiés', 'Fichiers sources & documentation'],
+      en: ['AI Style Guide & Visual Specs', 'Reference Keyframe Generation', 'High-Definition Concept Exploration', 'Consulting & Verified Prompts', 'Source Files & Documentation']
     },
     icon: Palette
   },
   {
-    id: 'web-digital',
+    id: 'sites-web-nextjs',
     number: '05',
-    title: {
-      fr: 'Création de Sites Web & Plateformes Digitales',
-      en: 'Custom Web & Digital Platforms'
-    },
+    title: { fr: 'Création de Sites Web Next.js', en: 'Next.js Website Development' },
     tagline: {
-      fr: 'Sites web sur-mesure (Next.js / React) optimisés pour la conversion.',
-      en: 'Custom Next.js/React websites engineered for conversion.'
+      fr: 'Plateformes web sur-mesure, ultra-rapides et pensées comme des expériences immersives.',
+      en: 'Custom, ultra-fast web platforms designed as immersive digital experiences.'
     },
     description: {
-      fr: 'Design dark luxury, animations fluides et intégration responsive haute performance.',
-      en: 'Dark luxury design, fluid animations, and high-performance responsive web engineering.'
+      fr: 'Conception et développement de sites vitrines et plateformes e-commerce à forte identité visuelle. Bâtis sur Next.js 15, ils allient performances exceptionnelles, design sombre cinématique et intégrations complètes (Stripe, CMS, formulaires).',
+      en: 'Design and development of showcase websites and e-commerce platforms with a strong visual identity. Built on Next.js 15, they combine lightning-fast performance, cinematic dark aesthetics, and full integrations (Stripe, CMS, forms).'
     },
     deliverables: {
       fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
@@ -132,32 +117,36 @@ const FIVE_SERVICES = [
 
 const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
   {
+    src: LOCAL_VIDEOS.spec01.src,
+    poster: LOCAL_VIDEOS.spec01.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
     title: {
-      fr: 'Films Publicitaires & Direction Artistique IA',
-      en: 'Commercial Films & AI Art Direction',
+      fr: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
+      en: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
     },
     description: {
-      fr: 'Aperçu de nos réalisations visuelles et univers générés par IA.',
-      en: 'Overview of our visual productions and AI-generated universes.',
+      fr: 'Collision entre romantisme victorien sombre et béton brut. Bande-son : PNL — Autre monde.',
+      en: 'Dark romanticism, opulence, and raw asphalt. Soundtrack: PNL — Autre monde.',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'pub-brand-content',
-    badge: { fr: '01 // COMMERCIAL SHOWREEL', en: '01 // COMMERCIAL SHOWREEL' },
+    badge: { fr: '01 // SPEC FILM — PARIS 1990', en: '01 // SPEC FILM — PARIS 1990' },
   },
   {
+    src: LOCAL_VIDEOS.spec02.src,
+    poster: LOCAL_VIDEOS.spec02.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase2,
     title: {
-      fr: 'Clips Vidéos & Scénographies VJing',
-      en: 'Music Videos & Stage Visualisers',
+      fr: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
+      en: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
     },
     description: {
-      fr: 'Démonstrations de nos créations pour artistes et scénographies scéniques.',
-      en: 'Showcase of our creations for artists and stage visualisers.',
+      fr: 'Dandysme nocturne et dérive gothique sur l’asphalte froid. Bande-son : PNL — Autre monde.',
+      en: 'Nocturnal dandyism, gothic drift, and cold concrete. Soundtrack: PNL — Autre monde.',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'clips-visualisers',
-    badge: { fr: '02 // MUSIC & VISUALISERS', en: '02 // MUSIC & VISUALISERS' },
+    badge: { fr: '02 // SPEC FILM — PARIS 1990', en: '02 // SPEC FILM — PARIS 1990' },
   },
 ];
 
@@ -278,7 +267,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
           {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
-            <VideoShowcase key={video.youtubeId || idx} video={video} lang={lang} />
+            <VideoShowcase key={video.src || video.youtubeId || idx} video={video} lang={lang} />
           ))}
         </div>
 
