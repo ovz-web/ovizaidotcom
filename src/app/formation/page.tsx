@@ -148,26 +148,30 @@ export default function FormationPage() {
                 </h3>
               </div>
 
-              {/* Promo comparison toggle button */}
-              <div className="inline-flex items-center gap-1.5 p-1 rounded-lg bg-black/50 border border-white/[0.08] self-start sm:self-auto">
+              {/* iOS Style Promo Switch Toggle */}
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                <span className="mono text-[10.5px] text-muted font-mono">
+                  {showPromo
+                    ? (isFr ? 'Offre −30%' : '−30% Offer')
+                    : (isFr ? 'Standard' : 'Standard')}
+                </span>
                 <button
                   type="button"
-                  onClick={() => setShowPromo(false)}
-                  className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all ${
-                    !showPromo ? 'bg-white/[0.08] text-fg font-bold' : 'text-muted hover:text-fg'
+                  role="switch"
+                  aria-checked={showPromo}
+                  aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
+                  onClick={() => setShowPromo((prev) => !prev)}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
+                    showPromo ? 'bg-gold' : 'bg-white/[0.15]'
                   }`}
                 >
-                  {isFr ? 'Standard' : 'Regular'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowPromo(true)}
-                  className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all flex items-center gap-1 ${
-                    showPromo ? 'bg-gold/15 text-gold-bright border border-gold/30 font-bold' : 'text-muted hover:text-gold'
-                  }`}
-                >
-                  <Sparkles className="w-3 h-3 text-gold" />
-                  <span>{isFr ? 'Offre −30%' : '−30% Offer'}</span>
+                  <span
+                    className={`pointer-events-none inline-block h-5 w-5 transform rounded-full transition duration-200 ease-in-out ${
+                      showPromo
+                        ? 'translate-x-5 bg-black shadow-sm'
+                        : 'translate-x-0 bg-white/80 shadow-sm'
+                    }`}
+                  />
                 </button>
               </div>
             </div>

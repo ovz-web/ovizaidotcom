@@ -417,34 +417,43 @@ export default function TarifsClient() {
         />
 
         <div className="max-w-xl mx-auto px-4 mb-8">
-          {/* Promo Comparison Toggle */}
-          <div className="flex items-center justify-between gap-3 mb-4 p-2 rounded-xl bg-card border border-border">
-            <div className="flex items-center gap-2 pl-1">
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
-              <span className="mono text-xs text-fg font-medium">
-                {isFr ? 'Offre de Lancement' : 'Launch Offer'}
-              </span>
+          {/* iOS Style Promo Switch Toggle */}
+          <div className="flex items-center justify-between gap-3 mb-4 px-4 py-3 rounded-xl bg-card border border-border">
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="w-4 h-4 text-gold flex-shrink-0" />
+              <div>
+                <span className="mono text-xs text-fg font-semibold block">
+                  {isFr ? 'Offre de Lancement (−30%)' : 'Launch Offer (−30%)'}
+                </span>
+                <span className="text-[10.5px] text-muted font-mono block mt-0.5">
+                  {showPromo
+                    ? (isFr ? 'Tarif réduit appliqué' : 'Discount active')
+                    : (isFr ? 'Plein tarif standard' : 'Regular pricing')}
+                </span>
+              </div>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 p-1 rounded-lg bg-black/50 border border-white/[0.08]">
+            <div className="flex items-center gap-2">
+              <span className="mono text-[10px] text-muted hidden sm:inline uppercase tracking-wider">
+                {showPromo ? (isFr ? 'Activé' : 'On') : (isFr ? 'Désactivé' : 'Off')}
+              </span>
               <button
                 type="button"
-                onClick={() => setShowPromo(false)}
-                className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all ${
-                  !showPromo ? 'bg-white/[0.08] text-fg font-bold' : 'text-muted hover:text-fg'
+                role="switch"
+                aria-checked={showPromo}
+                aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
+                onClick={() => setShowPromo((prev) => !prev)}
+                className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
+                  showPromo ? 'bg-gold' : 'bg-white/[0.15]'
                 }`}
               >
-                {isFr ? 'Tarif standard' : 'Regular'}
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowPromo(true)}
-                className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all flex items-center gap-1 ${
-                  showPromo ? 'bg-gold/15 text-gold-bright border border-gold/30 font-bold' : 'text-muted hover:text-gold'
-                }`}
-              >
-                <Sparkles className="w-3 h-3 text-gold" />
-                <span>{isFr ? 'Offre −30%' : '−30% Offer'}</span>
+                <span
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full transition duration-200 ease-in-out ${
+                    showPromo
+                      ? 'translate-x-5 bg-black shadow-sm'
+                      : 'translate-x-0 bg-white/80 shadow-sm'
+                  }`}
+                />
               </button>
             </div>
           </div>
