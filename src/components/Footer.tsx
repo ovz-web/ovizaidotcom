@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { Youtube, Instagram } from 'lucide-react';
 import { Language } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -12,19 +12,13 @@ interface FooterProps {
 }
 
 /**
- * Minimalist, low-profile bottom bar inspired by top AI creative suites (Higgsfield style).
- * Very low height, discreet typography, clean horizontal layout, full responsiveness.
+ * Minimalist, low-profile bottom bar.
+ * TopBar remains the single language switch. Social icons included with labels.
  */
 export default function Footer({ lang }: FooterProps) {
   const langContext = useLanguage();
   const activeLang = lang || langContext?.lang || 'fr';
   const isFr = activeLang === 'fr';
-
-  const handleToggleLang = () => {
-    if (langContext?.toggleLanguage) {
-      langContext.toggleLanguage();
-    }
-  };
 
   return (
     <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/60 backdrop-blur-md mt-auto">
@@ -37,19 +31,8 @@ export default function Footer({ lang }: FooterProps) {
           </span>
         </div>
 
-        {/* Right: Language switch, support/legal links & socials */}
+        {/* Right: Support/legal links & socials with miniature icons */}
         <div className="flex items-center flex-wrap justify-center sm:justify-end gap-x-4 sm:gap-x-5 gap-y-1.5">
-          {/* Interactive Language Selector */}
-          <button
-            type="button"
-            onClick={handleToggleLang}
-            title={isFr ? 'Passer en Anglais' : 'Switch to French'}
-            className="inline-flex items-center gap-1 hover:text-fg transition-colors cursor-pointer text-muted/90"
-          >
-            <span>{isFr ? '🇫🇷 Français' : '🇺🇸 English'}</span>
-            <ChevronDown className="w-3 h-3 opacity-60 transition-transform duration-200" />
-          </button>
-
           <Link href="/contact" className="hover:text-fg transition-colors">
             {isFr ? 'Contact & Studio' : 'Contact & Studio'}
           </Link>
@@ -76,17 +59,19 @@ export default function Footer({ lang }: FooterProps) {
             href="https://youtube.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors"
+            className="hover:text-gold-bright transition-colors inline-flex items-center gap-1.5"
           >
-            YouTube
+            <Youtube className="w-3.5 h-3.5 text-gold" />
+            <span>YouTube</span>
           </a>
           <a
             href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors"
+            className="hover:text-gold-bright transition-colors inline-flex items-center gap-1.5"
           >
-            Instagram
+            <Instagram className="w-3.5 h-3.5 text-gold" />
+            <span>Instagram</span>
           </a>
         </div>
       </div>
