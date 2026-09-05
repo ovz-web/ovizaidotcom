@@ -49,10 +49,10 @@ export default function FormationSuccessPage() {
             </div>
 
             <div>
-              <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono font-bold mb-1">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
                 {isFr ? '02 // PAIEMENT CONFIRMÉ & ACCÈS VALIDÉ' : '02 // PAYMENT CONFIRMED & ACCESS GRANTED'}
               </p>
-              <h1 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-[#ECE4D3] mb-3">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
                 {isFr ? 'BIENVENUE DANS LA MASTERCLASS' : 'WELCOME TO THE MASTERCLASS'}
               </h1>
               <p className="text-xs sm:text-sm text-[#8c8375] max-w-md mx-auto leading-relaxed">

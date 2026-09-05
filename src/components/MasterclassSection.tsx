@@ -52,7 +52,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
 
         {/* Section Eyebrow */}
         <div className="flex items-center justify-between gap-2 mb-4">
-          <span className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono font-bold flex items-center gap-1.5">
+          <span className="mono text-[10px] tracking-[0.25em] uppercase text-[#CAA243] font-bold flex items-center gap-1.5">
             <GraduationCap className="w-4 h-4 text-[#CAA243]" />
             {isFr ? '02 // FORMATION & MASTERCLASS IA' : '02 // AI MASTERCLASS & TRAINING'}
           </span>
@@ -63,16 +63,16 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
         </div>
 
         {/* Header Title */}
-        <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-[#ECE4D3] mb-3 leading-tight">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
           {isFr ? (
             <>
               MAÎTRISEZ LE CINÉMA IA <br />
-              <span className="text-gold-gradient text-gold-glow">DU PROMPT AU MASTER FINAL</span>
+              DU PROMPT AU <span className="text-gold-gradient text-gold-glow">MASTER FINAL</span>
             </>
           ) : (
             <>
               MASTER AI CINEMATOGRAPHY <br />
-              <span className="text-gold-gradient text-gold-glow">FROM PROMPT TO FINAL MASTER</span>
+              FROM PROMPT TO <span className="text-gold-gradient text-gold-glow">FINAL MASTER</span>
             </>
           )}
         </h2>
@@ -85,7 +85,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
 
         {/* Modules List */}
         <div className="space-y-3 mb-8">
-          <h3 className="mono text-xs font-bold uppercase text-[#ECE4D3] tracking-wider mb-2">
+          <h3 className="mono text-xs font-semibold uppercase text-[#ECE4D3] tracking-[0.2em] mb-2">
             {isFr ? 'LES 5 MODULES DU PROGRAMME :' : 'CURRICULUM 5 MODULES:'}
           </h3>
 
@@ -98,7 +98,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
                 {mod.num}
               </span>
               <div>
-                <h4 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
+                <h4 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
                   {mod.title[lang]}
                 </h4>
                 <p className="text-[11.5px] text-[#9C9384] mt-0.5 leading-normal">

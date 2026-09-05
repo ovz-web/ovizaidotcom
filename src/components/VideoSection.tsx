@@ -80,11 +80,11 @@ export default function VideoSection({
     <section className="max-w-xl mx-auto mb-10 px-4 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <p className="mono text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1 flex items-center justify-center gap-1.5">
+        <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold flex items-center justify-center gap-1.5">
           <Sparkles className="w-3 h-3 text-[#CAA243]" />
           <span>{customEyebrow || (isFr ? 'RÉALISATIONS & DÉMONSTRATIONS' : 'SHOWCASE & DEMO REELS')}</span>
         </p>
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-1">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
           {customTitle || (isFr ? 'APERÇU DE NOS RENDUS' : 'VISUAL PROOF & SHOWREEL')}
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
@@ -103,18 +103,17 @@ export default function VideoSection({
           return (
             <div
               key={video.id}
-              className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between"
+              className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 overflow-hidden flex flex-col justify-between"
             >
-              {/* Video Player Box / Thumbnail Area */}
-              <div className="relative aspect-video bg-black/80 flex items-center justify-center border-b border-white/[0.06] overflow-hidden group">
+              {/* Video Media Container */}
+              <div className="relative aspect-video bg-black overflow-hidden group">
                 {hasYoutube && isPlaying ? (
                   <iframe
+                    className="absolute inset-0 w-full h-full border-0"
                     src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
                     title={video.title[lang]}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="w-full h-full border-0"
-                    loading="lazy"
                   />
                 ) : (
                   <div
@@ -132,7 +131,7 @@ export default function VideoSection({
                     </div>
 
                     {/* Category Tag */}
-                    <span className="relative z-20 mono text-[9.5px] uppercase tracking-widest text-[#CAA243] font-bold">
+                    <span className="relative z-20 mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold">
                       {video.badge}
                     </span>
 
@@ -148,10 +147,10 @@ export default function VideoSection({
               {/* Card Meta & Description */}
               <div className="p-4 sm:p-5 flex-grow flex flex-col justify-between">
                 <div>
-                  <p className="mono text-[9.5px] uppercase tracking-widest text-[#CAA243] font-bold mb-1">
+                  <p className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold mb-1">
                     {video.category[lang]}
                   </p>
-                  <h3 className="text-sm font-bold text-[#ECE4D3] mb-1.5 leading-snug">
+                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-1.5 leading-snug">
                     {video.title[lang]}
                   </h3>
                   <p className="text-xs text-[#9C9384] leading-relaxed">

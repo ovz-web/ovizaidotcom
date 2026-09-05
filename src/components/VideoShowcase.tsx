@@ -100,7 +100,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
 
             {/* Badge */}
             {video.badge && (
-              <span className="relative z-10 mono text-[9.5px] uppercase tracking-widest text-[#CAA243] font-bold mt-1">
+              <span className="relative z-10 mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold mt-1">
                 {video.badge[lang]}
               </span>
             )}
@@ -118,7 +118,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
       <div className="p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-1">
           <Film className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-          <h3 className="text-sm font-bold text-[#ECE4D3] leading-snug truncate">
+          <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] leading-snug truncate">
             {video.title[lang]}
           </h3>
         </div>

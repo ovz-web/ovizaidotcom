@@ -57,7 +57,7 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
               TOOLSET
             </span>
             <div>
-              <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
+              <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
                 {isFr ? 'DÉTAIL DES OUTILS & LOGICIELS DU PROGRAMME' : 'PROGRAM TOOLSET & SOFTWARE DETAILS'}
               </h3>
               <p className="text-[11px] text-[#8c8375] mt-0.5">
@@ -66,7 +66,7 @@ function FormationToolsetCollapse({ lang }: { lang: 'fr' | 'en' }) {
             </div>
           </div>
 
-          <span className="mono text-xs text-[#CAA243] font-bold">
+          <span className="mono text-xs text-[#CAA243] font-semibold">
             {isOpen ? (isFr ? 'Masquer -' : 'Hide -') : (isFr ? 'Afficher +' : 'Show +')}
           </span>
         </button>
@@ -118,7 +118,17 @@ export default function FormationPage() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '02 // FORMATION VIDÉO IA' : '02 // AI VIDEO COURSE'}
-          title={isFr ? 'Formation Vidéo IA & Masterclass' : 'AI Video Course & Masterclass'}
+          title={
+            isFr ? (
+              <>
+                Formation Vidéo IA & <span className="text-gold-gradient text-gold-glow">Masterclass</span>
+              </>
+            ) : (
+              <>
+                AI Video Course & <span className="text-gold-gradient text-gold-glow">Masterclass</span>
+              </>
+            )
+          }
           subtitle={
             isFr
               ? 'Un programme pratique en 5 modules pour maîtriser la création de films cinématographiques 4K.'

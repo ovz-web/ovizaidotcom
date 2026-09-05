@@ -194,11 +194,11 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <span className="mono text-[10px] text-[#CAA243] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
+                      <span className="mono text-[10px] text-[#CAA243] font-bold tracking-[0.2em] uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
                         {isFr ? `${service.letterCode} // PÔLE` : `${service.letterCode} // UNIT`}
                       </span>
                     </div>
-                    <h3 className="font-display text-sm sm:text-base font-bold text-[#ECE4D3] leading-snug">
+                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] leading-snug">
                       {isFr ? service.title.fr : service.title.en}
                     </h3>
                     <p className="text-xs text-[#9C9384] mt-1 leading-relaxed">
@@ -221,7 +221,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
               {isOpen && (
                 <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-white/[0.06] space-y-4 animate-fadeIn">
                   <div>
-                    <h4 className="mono text-[10px] sm:text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2">
+                    <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2">
                       {isFr ? 'Description du pôle :' : 'Scope of service:'}
                     </h4>
                     <p className="text-xs text-[#ECE4D3] leading-relaxed">
@@ -230,7 +230,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   </div>
 
                   <div>
-                    <h4 className="mono text-[10px] sm:text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2.5">
+                    <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2.5">
                       {isFr ? 'Livrables inclus :' : 'Deliverables included:'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -263,10 +263,10 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
       {/* Video Showcase Section embedded at bottom of Services page */}
       <div className="mt-10 pt-8 border-t border-white/[0.08]">
         <div className="text-center mb-6">
-          <p className="mono text-[10px] sm:text-[10.5px] uppercase tracking-widest text-[#CAA243] font-mono font-bold mb-1">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
             {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
           </p>
-          <h2 className="text-xl font-bold text-[#ECE4D3]">
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
             {isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
           </h2>
         </div>

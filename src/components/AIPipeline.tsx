@@ -122,10 +122,10 @@ export default function AIPipeline({
       {/* Section Title (rendered only if hideHeader is false) */}
       {!hideHeader && (
         <div className="mb-6 text-center">
-          <p className="mono text-[10px] tracking-[0.2em] uppercase text-[#CAA243] font-mono mb-1 font-bold">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
             {customEyebrow || (isFr ? '03 // NOTRE PIPELINE DE PRODUCTION' : '03 // OUR PRODUCTION PIPELINE')}
           </p>
-          <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-2">
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
             {customTitle || (isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master')}
           </h2>
           <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
@@ -153,14 +153,14 @@ export default function AIPipeline({
                     <IconComp className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-display text-sm sm:text-base font-extrabold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors leading-snug">
+                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors leading-snug">
                       {displayTitle}
                     </h3>
                   </div>
                 </div>
 
                 {!hideTechBadge && (
-                  <span className="mono text-[9.5px] px-2.5 py-1 rounded bg-[#CAA243]/10 border border-[#CAA243]/25 text-[#CAA243] font-bold whitespace-nowrap">
+                  <span className="mono text-[10px] px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/25 text-[#CAA243] font-bold whitespace-nowrap">
                     {step.techBadge[lang]}
                   </span>
                 )}
@@ -177,10 +177,10 @@ export default function AIPipeline({
       {/* Bottom Conversion Card */}
       {showConversionCard && (
         <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-xl sm:rounded-2xl text-center mt-8">
-          <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
+          <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
             {isFr ? 'UN PROCESSUS CLAIR, DES RÉSULTATS GARANTIS' : 'CLEAR PROCESS, GUARANTEED RESULTS'}
           </span>
-          <h3 className="text-sm sm:text-base font-bold text-[#ECE4D3] mb-2">
+          <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-2">
             {isFr ? 'Prêt à donner vie à votre projet visuel ?' : 'Ready to bring your visual project to life?'}
           </h3>
           <p className="text-xs text-[#9C9384] max-w-md mx-auto mb-4 leading-relaxed">

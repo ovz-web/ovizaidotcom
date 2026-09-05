@@ -28,13 +28,13 @@ export default function ConfidentialitePage() {
             <span>Retour Accueil</span>
           </Link>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#ECE4D3] mb-6">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] mb-6">
             POLITIQUE DE CONFIDENTIALITÉ
           </h1>
 
           <div className="space-y-6 text-xs text-[#9C9384] leading-relaxed">
             <section className="ovizai-card p-5 border border-white/[0.08] bg-[#0B0A08]">
-              <h2 className="text-sm font-bold text-[#ECE4D3] mb-2 font-mono uppercase tracking-wider text-[#CAA243]">
+              <h2 className="mono text-xs sm:text-[13px] font-semibold text-[#CAA243] mb-2 uppercase tracking-[0.2em]">
                 1. Collecte des Données
               </h2>
               <p>

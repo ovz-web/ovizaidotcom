@@ -303,7 +303,17 @@ export default function TarifsClient() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '04 // TARIFS & FORMULES' : '04 // PRICING & PACKAGES'}
-          title={isFr ? 'Tarifs & Formules de Production' : 'Production Pricing & Packages'}
+          title={
+            isFr ? (
+              <>
+                Tarifs & <span className="text-gold-gradient text-gold-glow">Formules de Production</span>
+              </>
+            ) : (
+              <>
+                Production <span className="text-gold-gradient text-gold-glow">Pricing & Packages</span>
+              </>
+            )
+          }
           subtitle={
             isFr
               ? 'Des tarifs clairs et transparents pour tous vos projets de création vidéo IA.'
@@ -320,10 +330,10 @@ export default function TarifsClient() {
           {/* ── SECTION D — FORMULES CLÉS EN MAIN ─────────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION D
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionA}
               </h2>
               <p className="text-xs text-[#9C9384] mt-1">
@@ -333,7 +343,7 @@ export default function TarifsClient() {
 
             {/* Toggle: Normal Price vs Launch Discount (-30%) */}
             <div className="mb-5 p-3 sm:p-4 rounded-xl bg-[#0B0A08] border border-white/[0.08] flex items-center justify-between gap-4 flex-wrap">
-              <span className="mono text-xs text-[#ECE4D3] font-bold">
+              <span className="mono text-xs text-[#ECE4D3] font-semibold">
                 {isFr ? 'TARIFICATION APPLIQUÉE' : 'PRICING MODE'}
               </span>
               <div className="flex items-center gap-3">
@@ -341,7 +351,7 @@ export default function TarifsClient() {
                   type="button"
                   onClick={() => setShowLaunchDiscount(false)}
                   className={`mono text-xs transition-colors cursor-pointer ${
-                    !showLaunchDiscount ? 'text-[#CAA243] font-bold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
+                    !showLaunchDiscount ? 'text-[#CAA243] font-semibold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
                   }`}
                 >
                   {isFr ? 'Tarif standard' : 'Standard rate'}
@@ -367,7 +377,7 @@ export default function TarifsClient() {
                   type="button"
                   onClick={() => setShowLaunchDiscount(true)}
                   className={`mono text-xs transition-colors flex items-center gap-1.5 cursor-pointer ${
-                    showLaunchDiscount ? 'text-[#f0c869] font-bold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
+                    showLaunchDiscount ? 'text-[#f0c869] font-semibold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
                   }`}
                 >
                   <span>{isFr ? 'Offre de lancement (-30%)' : 'Launch offer (-30%)'}</span>
@@ -383,7 +393,7 @@ export default function TarifsClient() {
               <div className="mb-6 rounded-xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-3.5 sm:p-4 flex items-start gap-3">
                 <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
                 <div className="text-xs text-[#ECE4D3] leading-relaxed">
-                  <span className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold block mb-0.5">
+                  <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-0.5">
                     {isFr ? 'OFFRE DE LANCEMENT — LIMITÉE (−30%)' : 'LAUNCH OFFER — LIMITED (−30%)'}
                   </span>
                   <p className="text-xs text-[#ECE4D3]">
@@ -424,7 +434,7 @@ export default function TarifsClient() {
                           <p className="mono text-[10px] text-[#CAA243] mb-0.5 font-bold tracking-wider">
                             {plan.badge[lang]}
                           </p>
-                          <h3 className="text-base font-bold text-[#ECE4D3]">{plan.name[lang]}</h3>
+                          <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">{plan.name[lang]}</h3>
                         </div>
                         <div className="flex items-center gap-1.5 flex-wrap">
                           {showLaunchDiscount && plan.launchOffer && (
@@ -522,10 +532,10 @@ export default function TarifsClient() {
           {/* ── SECTION E — PRESTATIONS SUR-MESURE ───────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION E
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionB}
               </h2>
               <p className="text-xs text-[#9C9384] mt-1">
@@ -545,7 +555,7 @@ export default function TarifsClient() {
                       <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2.5 py-1 rounded flex-shrink-0">
                         {service.number}
                       </span>
-                      <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] truncate">
+                      <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] truncate">
                         {service.title[lang]}
                       </h3>
                     </div>
@@ -567,10 +577,10 @@ export default function TarifsClient() {
           {/* ── SECTION F — FORMATION & MASTERCLASS PRO ─────────────── */}
           <section id="masterclass" className="mb-14 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION F
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.sectionC}
               </h2>
               <p className="text-xs text-[#9C9384] mt-1">
@@ -581,10 +591,10 @@ export default function TarifsClient() {
             <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                 <div>
-                  <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-widest block mb-1">
+                  <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-1">
                     {isFr ? 'PROGRAMME DE FORMATION 5 MODULES' : '5-MODULE TRAINING CURRICULUM'}
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-[#ECE4D3]">
+                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
                     {isFr ? 'Masterclass Cinéma & Vidéo IA' : 'AI Cinema & Video Masterclass'}
                   </h3>
                 </div>
@@ -659,10 +669,10 @@ export default function TarifsClient() {
           {/* ── SECTION G — QUESTIONS FRÉQUENTES ─────────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION G // FAQ
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
                 {t.faqTitle}
               </h2>
               <p className="text-xs text-[#9C9384] mt-1">

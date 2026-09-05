@@ -40,7 +40,17 @@ export default function ServicesPage() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '01 // NOS SERVICES' : '01 // OUR SERVICES'}
-          title={isFr ? 'Nos Services & Direction Artistique' : 'Our Services & Art Direction'}
+          title={
+            isFr ? (
+              <>
+                Nos Services & <span className="text-gold-gradient text-gold-glow">Direction Artistique</span>
+              </>
+            ) : (
+              <>
+                Our Services & <span className="text-gold-gradient text-gold-glow">Art Direction</span>
+              </>
+            )
+          }
           subtitle={
             isFr
               ? 'De la conception au master final, des films conçus pour votre marque.'

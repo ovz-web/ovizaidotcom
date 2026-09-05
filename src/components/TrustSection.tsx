@@ -52,11 +52,11 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
     <section className="w-full max-w-xl mx-auto mb-10 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <p className="mono text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1 flex items-center justify-center gap-1.5">
+        <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold flex items-center justify-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-[#CAA243]" />
           <span>{isFr ? 'ENGAGEMENTS & TRANSPARENCE' : 'GUARANTEES & TRANSPARENCY'}</span>
         </p>
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#ECE4D3] mb-1">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
           {isFr ? 'UNE MÉTHODE VÉRIFIABLE & SÉCURISÉE' : 'DOCUMENTED & SAFE PROCESS'}
         </h2>
         <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
@@ -73,11 +73,11 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 px-2 py-0.5 rounded font-bold uppercase">
+              <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 px-2 py-0.5 rounded font-bold uppercase tracking-[0.2em]">
                 {isFr ? 'B1 // TRANSPARENCE' : 'B1 // TRANSPARENCY'}
               </span>
             </div>
-            <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] mb-2">
+            <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-2">
               {isFr ? 'Studio Indépendant en Lancement' : 'Independent Studio Launch'}
             </h3>
             <p className="text-xs text-[#9C9384] leading-relaxed">
@@ -95,11 +95,11 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/15 border border-[#CAA243]/30 px-2 py-0.5 rounded font-bold uppercase">
+              <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/15 border border-[#CAA243]/30 px-2 py-0.5 rounded font-bold uppercase tracking-[0.2em]">
                 {isFr ? 'B2 // GARANTIES CONTRACTUELLES' : 'B2 // CONTRACTUAL GUARANTEES'}
               </span>
             </div>
-            <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] mb-2">
+            <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-2">
               {isFr ? 'Révisions & Délais Garantis' : 'Guaranteed Revisions & Deadlines'}
             </h3>
             <ul className="space-y-1.5 text-xs text-[#9C9384]">
@@ -130,10 +130,10 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       {!hideProcessStep && (
         <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl mb-4">
           <div className="mb-4">
-            <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
+            <span className="mono text-[10px] text-[#CAA243] uppercase tracking-[0.25em] font-bold block mb-1">
               03 // PROCESSUS DE PRODUCTION
             </span>
-            <h3 className="mono text-sm sm:text-base font-bold text-[#ECE4D3]">
+            <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
               {isFr ? 'Les 4 Étapes de Production' : 'The 4 Production Steps'}
             </h3>
           </div>
@@ -144,7 +144,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
                 <span className="mono text-xs font-bold text-[#CAA243] bg-black/60 border border-[#CAA243]/30 px-2 py-0.5 rounded inline-block mb-2">
                   {step.num}
                 </span>
-                <h4 className="mono text-xs font-bold text-[#ECE4D3] mb-1">
+                <h4 className="mono text-xs font-semibold text-[#ECE4D3] mb-1">
                   {step.title[lang]}
                 </h4>
                 <p className="text-[11px] text-[#8C8375] leading-relaxed">
@@ -163,7 +163,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
             <Mail className="w-5 h-5 text-[#CAA243]" />
           </div>
           <div>
-            <h4 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3]">
+            <h4 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
               {isFr ? 'Interlocuteur Direct & Réponse 24h' : 'Direct Contact & 24h Response'}
             </h4>
             <p className="text-[11px] text-[#8C8375] mt-0.5 leading-relaxed">

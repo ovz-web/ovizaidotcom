@@ -150,12 +150,12 @@ export default function QualifiedContact({
             className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]"
           >
             <CheckCircle2 className="w-12 h-12 text-[#CAA243] mx-auto animate-pulse" />
-            <h3 className="mono text-lg font-extrabold text-[#ECE4D3] tracking-wide">
+            <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] tracking-wide">
               {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
             </h3>
             
             <div className="bg-black/60 border border-white/[0.08] p-4 sm:p-5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
-              <p className="text-xs font-bold text-[#CAA243] uppercase flex items-center gap-2">
+              <p className="text-xs font-semibold text-[#CAA243] uppercase flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#CAA243]" />
                 <span>{isFr ? 'Engagement Réponse (SLA OVIZai) :' : 'Response Commitment (OVIZai SLA):'}</span>
               </p>
@@ -189,7 +189,7 @@ export default function QualifiedContact({
             />
             {/* Step H: Project Type Cards (H1 to H6) */}
             <fieldset>
-              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
                 {isFr ? 'H. Quel type de projet souhaitez-vous réaliser ?' : 'H. What type of project do you want to create?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -219,7 +219,7 @@ export default function QualifiedContact({
 
             {/* Step I: Dynamic Budget Cards (I1 to I4) */}
             <fieldset>
-              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
                 {isFr ? 'I. Quelle est votre enveloppe budgétaire estimée ?' : 'I. What is your estimated budget tier?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -238,7 +238,7 @@ export default function QualifiedContact({
                           : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
                       }`}
                     >
-                      <span className="mono text-xs font-bold block">{tier.title[lang]}</span>
+                      <span className="mono text-xs font-semibold block">{tier.title[lang]}</span>
                     </button>
                   );
                 })}
@@ -256,7 +256,7 @@ export default function QualifiedContact({
                 onChange={e => setWebsite(e.target.value)}
                 className="hidden absolute opacity-0 pointer-events-none"
               />
-              <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-1">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-1">
                 {isFr ? 'J. Vos coordonnées pour recevoir notre proposition :' : 'J. Your details to receive our proposal:'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

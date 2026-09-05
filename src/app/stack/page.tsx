@@ -39,7 +39,17 @@ export default function StackPage() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD'}
-          title={isFr ? 'Notre Méthode de Production' : 'Our Production Method'}
+          title={
+            isFr ? (
+              <>
+                Notre Méthode de <span className="text-gold-gradient text-gold-glow">Production</span>
+              </>
+            ) : (
+              <>
+                Our <span className="text-gold-gradient text-gold-glow">Production</span> Method
+              </>
+            )
+          }
           subtitle={
             isFr
               ? '4 étapes claires pour transformer vos idées en films de qualité cinéma.'

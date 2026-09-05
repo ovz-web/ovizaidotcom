@@ -44,7 +44,17 @@ function ContactPageContent() {
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '05 // DEVIS & CONTACT' : '05 // CONTACT & QUOTE'}
-          title={isFr ? 'Démarrer un Projet Vidéo IA' : 'Start an AI Video Project'}
+          title={
+            isFr ? (
+              <>
+                Démarrer un <span className="text-gold-gradient text-gold-glow">Projet Vidéo IA</span>
+              </>
+            ) : (
+              <>
+                Start an <span className="text-gold-gradient text-gold-glow">AI Video Project</span>
+              </>
+            )
+          }
           subtitle={
             isFr
               ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h.'

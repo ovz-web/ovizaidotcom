@@ -39,18 +39,18 @@ export default function PageHeader({
       </div>
 
       {/* 2. Eyebrow */}
-      <p className="mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1">
+      <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
         {eyebrow}
       </p>
 
       {/* 3. Title H1 */}
-      <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gold-gradient text-gold-glow drop-shadow-[0_0_16px_rgba(202,162,67,0.3)] mb-2 leading-tight">
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
         {title}
       </h1>
 
       {/* 4. Subtitle */}
       {subtitle && (
-        <p className="text-xs sm:text-sm text-[#9C9384] max-w-md sm:max-w-lg mx-auto leading-relaxed font-mono">
+        <p className="text-xs sm:text-sm text-[#9C9384] max-w-xs sm:max-w-md text-center mx-auto mb-2 leading-relaxed font-mono">
           {subtitle}
         </p>
       )}
