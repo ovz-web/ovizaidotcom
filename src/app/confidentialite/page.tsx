@@ -81,6 +81,9 @@ export default function ConfidentialitePage() {
               <p>
                 Le site OVIZai utilise uniquement le stockage local strictement nécessaire au fonctionnement de l’application (mémorisation de votre choix de langue FR/EN et de votre devise de facturation USD/EUR/CAD). Aucun cookie tiers à des fins publicitaires n’est déposé.
               </p>
+              <p className="mt-2">
+                Nous utilisons Vercel Analytics et Speed Insights pour mesurer la fréquentation et les performances du site. Ces outils ne déposent aucun cookie et ne collectent aucune donnée personnelle identifiable.
+              </p>
             </section>
           </div>
         </div>
