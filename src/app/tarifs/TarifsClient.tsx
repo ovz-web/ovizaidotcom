@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Clock, Check, HelpCircle, Zap, ShieldCheck, Loader2 } from 'lucide-react';
+import { ArrowUpRight, Check, HelpCircle, Zap, ShieldCheck } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -125,35 +125,26 @@ const copy = {
     back: 'Retour Accueil',
     eyebrow: '04 // TARIFS & FORMULES',
     title: 'Tarifs & Formules de Production',
-    titleHighlight: '',
-    marketRef:
-      'Une vidéo de marque traditionnelle coûte de 5 000 € à 30 000 € et exige 2 à 6 semaines de tournage.',
     sectionA: 'D. Formules Clés en Main',
     sectionASub: 'Sprint Pilote et Campagne de Marque avec révisions et délais garantis.',
     sectionB: 'E. Prestations Sur-Mesure',
-    sectionBSub: 'Fourchettes budgétaires pour projets complexes et productions d’envergure.',
+    sectionBSub: 'Projets complexes et productions d’envergure avec accompagnement dédié.',
     sectionC: 'F. Formation & Masterclass Pro',
-    sectionCSub: 'Accès illimité et à vie au programme de formation vidéo IA 4K.',
-    comparison:
-      "À titre de référence de marché : la production vidéo IA réduit le coût par vidéo de 70 à 90 % par rapport à la production traditionnelle en éliminant les coûts d'équipe, de matériel et de studio — une fourchette documentée dans les études sectorielles sur l'adoption de l'IA en production audiovisuelle.",
+    sectionCSub: 'Programme complet de production vidéo IA 4K pour créateurs et studios.',
     faqTitle: 'G. Questions Fréquentes',
-    faqSub: 'Modalités de règlement, politique de révision et garanties.',
+    faqSub: 'Modalités de règlement, acomptes et facturation d’entreprise.',
     faqs: [
       {
         q: 'Comment fonctionne le paiement du Sprint Pilote 48-72h ?',
         a: "Le Sprint Pilote est sans engagement : le règlement s'effectue après validation de l'aperçu visuel de votre asset.",
       },
       {
-        q: 'Comment se déroulent les révisions incluses dans les formules ?',
-        a: "Chaque formule comprend des rounds de révision intégrés (1 round pour le Sprint, 3 rounds pour la Campagne) pour affiner le rythme, les cadrages ou la colorimétrie.",
-      },
-      {
-        q: 'Pourquoi les tarifs OVIZai sont-ils 70 à 90% inférieurs à une agence classique ?',
-        a: "En remplaçant les tournages physiques (équipes, studios, matériel) par notre pipeline génératif 4K, nous éliminons les coûts logistiques pour vous offrir la même qualité cinématographique à une fraction du prix.",
+        q: 'Quelles sont les modalités de paiement pour les projets sur-mesure ?',
+        a: "Pour les campagnes et projets sur-mesure (E01 à E05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
       },
       {
         q: 'Le paiement est-il sécurisé et émettez-vous des factures professionnelles ?',
-        a: "Oui, tous les règlements sont sécurisés par Stripe et vous recevez automatiquement une facture pro conforme (avec mentions de TVA le cas échéant).",
+        a: "Oui, tous les règlements sont sécurisés par Stripe et vous recevez automatiquement une facture pro conforme avec mentions légales de TVA.",
       },
     ],
     ctaLabel: 'Demander un devis sur-mesure (24h)',
@@ -163,31 +154,22 @@ const copy = {
     back: 'Back Home',
     eyebrow: '04 // PRICING & PACKAGES',
     title: 'Production Pricing & Packages',
-    titleHighlight: '',
-    marketRef:
-      'A professional brand video (crew, shoot, edit) costs between €5,000 and €30,000 at a traditional agency — with a typical timeline of 2 to 6 weeks from brief to delivery.',
     sectionA: 'D. Turnkey Packages',
     sectionASub: 'Pilot Sprint and Brand Campaign with guaranteed delivery & revisions.',
     sectionB: 'E. Custom Services',
-    sectionBSub: 'Budget ranges for complex productions and full campaigns.',
+    sectionBSub: 'Complex productions and custom campaigns with dedicated art direction.',
     sectionC: 'F. Pro Training & Masterclass',
-    sectionCSub: 'Unlimited lifetime access to the 4K AI video training curriculum.',
-    comparison:
-      'For market reference: AI video production reduces the cost per video by 70 to 90% compared to traditional production by eliminating crew, equipment and studio costs — a range documented in sector adoption studies.',
+    sectionCSub: 'Complete 4K AI video production training for creators and studios.',
     faqTitle: 'G. FAQ',
-    faqSub: 'Payment terms, included revisions, and delivery guarantees.',
+    faqSub: 'Payment terms, deposits, and corporate invoicing.',
     faqs: [
       {
         q: 'How does payment work for the 48-72h Pilot Sprint?',
         a: 'The Pilot Sprint is zero-risk: payment is settled upon preview approval of your initial video cut.',
       },
       {
-        q: 'How do included revision rounds work?',
-        a: 'Every package includes built-in revision rounds (1 for Sprint, 3 for Brand Campaign) to fine-tune pacing, framing, or colour grading.',
-      },
-      {
-        q: 'Why are OVIZai prices 70 to 90% lower than traditional agencies?',
-        a: 'By replacing physical shoots (crews, studio rentals, gear) with our 4K generative pipeline, we pass high operational savings directly onto you.',
+        q: 'What are the payment terms for custom projects?',
+        a: 'For custom campaigns and productions (E01 to E05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
       },
       {
         q: 'Are payments secure and do you issue corporate invoices?',
@@ -201,11 +183,9 @@ const copy = {
 
 export default function TarifsClient() {
   const { lang, toggleLanguage } = useLanguage();
-  const { currency, setCurrency, formatPrice, formatRange } = useCurrency();
+  const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [mcLoading, setMcLoading] = useState(false);
-  const [mcError, setMcError] = useState<string | null>(null);
   const [showLaunchDiscount, setShowLaunchDiscount] = useState<boolean>(true);
 
   const isFr = lang === 'fr';
@@ -215,40 +195,19 @@ export default function TarifsClient() {
   const masterclassCurrent = MASTERCLASS_PRICE[currency] || 490;
   const masterclassOriginal = MASTERCLASS_ORIGINAL_PRICE[currency] || 990;
 
-  const formattedMasterclassCurrent = currency === 'EUR'
-    ? `${masterclassCurrent} €`
-    : currency === 'CAD'
-    ? `${masterclassCurrent} $ CAD`
-    : `${masterclassCurrent} $ USD`;
+  const formattedMasterclassCurrent =
+    currency === 'EUR'
+      ? `${masterclassCurrent} €`
+      : currency === 'CAD'
+      ? `${masterclassCurrent} $ CAD`
+      : `${masterclassCurrent} $ USD`;
 
-  const formattedMasterclassOriginal = currency === 'EUR'
-    ? `${masterclassOriginal} €`
-    : currency === 'CAD'
-    ? `${masterclassOriginal} $ CAD`
-    : `${masterclassOriginal} $ USD`;
-
-  const handleMasterclassCheckout = async () => {
-    setMcLoading(true);
-    setMcError(null);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currency: currency.toLowerCase() }),
-      });
-
-      const data = await res.json();
-      if (res.ok && data.url) {
-        window.location.href = data.url;
-      } else {
-        setMcError(data.error || (isFr ? 'Erreur lors de l’initialisation Stripe.' : 'Failed to create checkout session.'));
-        setMcLoading(false);
-      }
-    } catch (err: any) {
-      setMcError(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
-      setMcLoading(false);
-    }
-  };
+  const formattedMasterclassOriginal =
+    currency === 'EUR'
+      ? `${masterclassOriginal} €`
+      : currency === 'CAD'
+      ? `${masterclassOriginal} $ CAD`
+      : `${masterclassOriginal} $ USD`;
 
   const professionalServiceJsonLd = {
     '@context': 'https://schema.org',
@@ -265,7 +224,7 @@ export default function TarifsClient() {
       itemListElement: PLANS_DATA.map((plan) => {
         return {
           '@type': 'Offer',
-          'itemOffered': {
+          itemOffered: {
             '@type': 'Service',
             name: plan.name[lang],
             description: plan.includes[lang].join(', '),
@@ -321,14 +280,9 @@ export default function TarifsClient() {
           }
         />
 
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Market reference note */}
-          <p className="text-xs text-[#9C9384] leading-relaxed mb-8 border-l-2 border-[#CAA243]/40 pl-3.5 max-w-2xl mx-auto">
-            {t.marketRef}
-          </p>
-
+        <div className="max-w-xl mx-auto px-4">
           {/* ── SECTION D — FORMULES CLÉS EN MAIN ─────────────────────── */}
-          <section className="mb-14 scroll-mt-24">
+          <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION D
@@ -415,8 +369,8 @@ export default function TarifsClient() {
               </div>
             )}
 
-            {/* 2 Packaged Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Vertical Packaged Cards Stack (matching unified max-w-xl design system) */}
+            <div className="flex flex-col gap-5">
               {PLANS_DATA.map((plan) => {
                 return (
                   <div
@@ -530,7 +484,7 @@ export default function TarifsClient() {
           </section>
 
           {/* ── SECTION E — PRESTATIONS SUR-MESURE ───────────────────── */}
-          <section className="mb-14 scroll-mt-24">
+          <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION E
@@ -543,7 +497,7 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            {/* Synthetic 5-Row Table with Prices Hidden */}
+            {/* Synthetic 5-Row Table */}
             <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08] divide-y divide-white/[0.06] rounded-xl overflow-hidden mb-4">
               {CUSTOM_SERVICES_SUMMARY.map((service) => {
                 return (
@@ -575,7 +529,7 @@ export default function TarifsClient() {
           </section>
 
           {/* ── SECTION F — FORMATION & MASTERCLASS PRO ─────────────── */}
-          <section id="masterclass" className="mb-14 scroll-mt-24">
+          <section id="masterclass" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION F
@@ -588,14 +542,14 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
+            <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
                 <div>
-                  <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-1">
-                    {isFr ? 'PROGRAMME DE FORMATION 5 MODULES' : '5-MODULE TRAINING CURRICULUM'}
+                  <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-0.5">
+                    {isFr ? 'F // FORMATION VIDÉO IA' : 'F // AI VIDEO TRAINING'}
                   </span>
                   <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
-                    {isFr ? 'Masterclass Cinéma & Vidéo IA' : 'AI Cinema & Video Masterclass'}
+                    {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
                   </h3>
                 </div>
 
@@ -611,63 +565,47 @@ export default function TarifsClient() {
                 </div>
               </div>
 
-              <div className="py-4 space-y-2.5 text-xs text-[#9C9384]">
+              <div className="py-3 space-y-2 text-xs text-[#9C9384]">
                 <p className="flex items-center gap-2 text-[#ECE4D3]">
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-                  <span>{isFr ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci' : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}</span>
+                  <span>
+                    {isFr
+                      ? '5 modules vidéo pratiques : Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'
+                      : '5 practical modules: Midjourney v6, Runway Gen-3, Kling, Topaz & DaVinci'}
+                  </span>
                 </p>
                 <p className="flex items-center gap-2 text-[#ECE4D3]">
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-                  <span>{isFr ? 'Accès illimité et à vie + toutes les mises à jour des futurs modèles incluses' : 'Unlimited lifetime access + all future model updates included'}</span>
+                  <span>
+                    {isFr
+                      ? 'Accès illimité et à vie + toutes les mises à jour des futurs modèles incluses'
+                      : 'Unlimited lifetime access + all future model updates included'}
+                  </span>
                 </p>
                 <p className="flex items-center gap-2 text-[#ECE4D3]">
                   <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-                  <span>{isFr ? 'Accès immédiat par e-mail après validation sécurisée via Stripe' : 'Instant email access upon secure Stripe checkout'}</span>
+                  <span>
+                    {isFr
+                      ? 'Accès immédiat par e-mail après règlement sécurisé Stripe'
+                      : 'Instant email access upon secure Stripe checkout'}
+                  </span>
                 </p>
               </div>
 
               <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
                 <Link
                   href="/formation"
-                  className="mono text-xs text-[#CAA243] hover:underline"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[44px]"
                 >
-                  {isFr ? 'Consulter le détail des 5 modules →' : 'View the 5-module curriculum →'}
+                  <span>{isFr ? 'Découvrir le programme & S’inscrire →' : 'View curriculum & Enroll →'}</span>
+                  <ArrowUpRight className="w-4 h-4 text-black" />
                 </Link>
-
-                <button
-                  type="button"
-                  disabled={mcLoading}
-                  onClick={handleMasterclassCheckout}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] cursor-pointer min-h-[44px]"
-                >
-                  {mcLoading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 text-black animate-spin" />
-                      <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>{isFr ? 'S’inscrire à la Masterclass +' : 'Enroll in Masterclass +'}</span>
-                      <ArrowUpRight className="w-4 h-4 text-black" />
-                    </>
-                  )}
-                </button>
               </div>
-
-              {mcError && (
-                <p className="text-xs text-red-400 font-mono mt-3 text-center">{mcError}</p>
-              )}
             </div>
           </section>
 
-          {/* ── Market comparison note ────────────────────────────────── */}
-          <p className="text-xs text-[#9C9384] leading-relaxed mb-10 flex items-start gap-2 bg-[#0B0A08] p-3.5 rounded-xl border border-white/[0.06]">
-            <Clock className="w-4 h-4 text-[#CAA243]/80 flex-shrink-0 mt-0.5" />
-            <span>{t.comparison}</span>
-          </p>
-
           {/* ── SECTION G — QUESTIONS FRÉQUENTES ─────────────────────── */}
-          <section className="mb-14 scroll-mt-24">
+          <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
                 SECTION G // FAQ
