@@ -133,65 +133,41 @@ export default function TopBar({
 
   return (
     <>
-      {/* Single Fixed TopBar — 2 rows on mobile (<sm), 1 centered row on desktop (sm+) */}
+      {/* Single Fixed TopBar — Strictly 1 single row on both mobile and desktop */}
       <header
         ref={headerRef}
         style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
-        className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] px-3 sm:px-4 py-2 sm:py-0 sm:h-14 flex flex-col justify-center"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] px-2.5 sm:px-4 py-1.5 sm:py-0 sm:h-14 flex flex-col justify-center"
       >
-        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4">
-          {/* Mobile Row 1 (Logo left, controls right) / Desktop Left Column (Logo) */}
-          <div className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2">
-            <Link className="flex items-center py-0.5 flex-shrink-0" href="/">
+        <div className="max-w-6xl mx-auto w-full flex items-center justify-between gap-1.5 sm:gap-4">
+          {/* Left Column: Logo */}
+          <div className="flex items-center flex-shrink-0">
+            <Link className="flex items-center py-0.5" href="/">
               <Image
                 src="/logo.png"
                 alt="OVIZai"
                 width={100}
                 height={40}
-                className="h-7 sm:h-9 w-auto object-contain mix-blend-screen"
+                className="h-6 sm:h-8 w-auto object-contain mix-blend-screen"
                 priority
               />
             </Link>
-
-            {/* Mobile Controls (Right side of Row 1 on mobile) */}
-            <div className="flex sm:hidden items-center gap-2">
-              <button
-                onClick={onToggleLang}
-                type="button"
-                aria-label={isFr ? 'Changer la langue (English)' : 'Switch language (Français)'}
-                className="flex items-center gap-1 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-2.5 py-1 text-[10px] font-mono transition-all cursor-pointer min-h-[36px]"
-              >
-                <Globe className="w-3 h-3 text-[#CAA243]" />
-                <span className="mono font-semibold">{lang === 'en' ? 'FR' : 'EN'}</span>
-              </button>
-
-              <button
-                ref={(el) => { if (el) burgerRef.current = el; }}
-                type="button"
-                onClick={() => setIsDrawerOpen(true)}
-                aria-expanded={isDrawerOpen}
-                aria-label={isFr ? 'Ouvrir le menu de navigation' : 'Open navigation menu'}
-                className="p-2 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
-              >
-                <Menu className="w-4 h-4 text-[#ECE4D3]" />
-              </button>
-            </div>
           </div>
 
-          {/* Mobile Row 2 / Desktop Center Column: Centered Launch Offer Micro-Pill */}
-          <div className="w-full sm:w-auto flex-1 flex justify-center items-center py-0.5 sm:py-0">
+          {/* Center Column: Centered Launch Offer Micro-Pill (Always on the same line) */}
+          <div className="flex-1 flex justify-center items-center px-1 min-w-0">
             <PromoBar lang={lang} />
           </div>
 
-          {/* Desktop Right Controls (Language + Burger Trigger) */}
-          <div className="hidden sm:flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
+          {/* Right Column: Language & Burger Menu (Always on the same line) */}
+          <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
             <button
               onClick={onToggleLang}
               type="button"
               aria-label={isFr ? 'Changer la langue (English)' : 'Switch language (Français)'}
-              className="flex items-center gap-1.5 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-3 py-2 text-[11px] font-mono transition-all cursor-pointer min-h-[44px]"
+              className="flex items-center gap-1 bg-white/[0.02] border border-white/[0.12] text-[#ECE4D3] hover:border-[#CAA243]/50 hover:text-[#f0c869] rounded-full px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-[11px] font-mono transition-all cursor-pointer min-h-[32px] sm:min-h-[38px]"
             >
-              <Globe className="w-3.5 h-3.5 text-[#CAA243]" />
+              <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#CAA243]" />
               <span className="mono font-semibold">{lang === 'en' ? 'FR' : 'EN'}</span>
             </button>
 
@@ -201,9 +177,9 @@ export default function TopBar({
               onClick={() => setIsDrawerOpen(true)}
               aria-expanded={isDrawerOpen}
               aria-label={isFr ? 'Ouvrir le menu de navigation' : 'Open navigation menu'}
-              className="p-2.5 sm:p-3 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="p-1.5 sm:p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.1] text-[#ECE4D3] hover:text-[#f0c869] hover:border-[#CAA243]/40 transition-all cursor-pointer min-h-[32px] min-w-[32px] sm:min-h-[38px] sm:min-w-[38px] flex items-center justify-center"
             >
-              <Menu className="w-5 h-5 text-[#ECE4D3]" />
+              <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-[#ECE4D3]" />
             </button>
           </div>
         </div>
