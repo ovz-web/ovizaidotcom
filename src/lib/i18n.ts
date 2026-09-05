@@ -5,59 +5,59 @@ export const DICTIONARY: Record<Language, Dictionary> = {
     status: 'PRODUCTION VIDÉO IA — PROJETS SÉLECTIONNÉS',
     eyebrow: 'DIRECTION ARTISTIQUE & CINÉMA IA',
     heroTitle: 'OVIZai',
-    heroTagline: 'Films IA cinématographiques pour marques et artistes.',
-    heroSub: 'Production vidéo haut de gamme avec les meilleurs outils IA actuels.',
+    heroTagline: 'Films IA cinématographiques pour marques et artistes',
+    heroSub: 'Production vidéo haut de gamme sans contrainte de tournage',
     searchPlaceholder: 'Rechercher une commande, un service, une collab…',
     searchTrigger: 'Rechercher… (⌘K)',
     commandsTitle: 'MENU COMMANDES',
     freePromptsTitle: 'RESSOURCES EN ACCÈS LIBRE',
-    freePromptsDesc: 'Chaque semaine : méthodes, outils et techniques vidéo IA directement issus de nos productions. Zéro spam',
+    freePromptsDesc: 'Chaque semaine : méthodes, outils et techniques vidéo IA issus de nos productions\nZéro spam',
     emailPlaceholder: 'votre@email.com',
     joinBtn: 'Rejoindre gratuitement',
     submitting: 'Inscription…',
-    subscribedMsg: 'Inscrit avec succès. Vérifiez votre boîte mail.',
-    alreadySubscribedMsg: 'Cet e-mail est déjà enregistré. Merci de votre confiance !',
-    errorMsg: 'Une erreur est survenue. Veuillez réessayer.',
+    subscribedMsg: 'Inscrit avec succès\nVérifiez votre boîte mail',
+    alreadySubscribedMsg: 'Cet e-mail est déjà enregistré\nMerci de votre confiance',
+    errorMsg: 'Une erreur est survenue\nVeuillez réessayer',
     followLabel: 'SUIVRE OVIZAI',
     pressCmd: '⌘K pour le menu rapide',
     pressEsc: 'ESC pour fermer',
     toastContact: 'Ouverture du client mail…',
     toastResources: 'Navigation vers les ressources…',
-    toastCopied: 'Lien copié dans le presse-papier !',
-    rights: '© 2026 OVIZai. Tous droits réservés.',
+    toastCopied: 'Lien copié dans le presse-papier',
+    rights: '© 2026 OVIZai — Tous droits réservés',
     privacy: 'Confidentialité',
     terms: 'Conditions',
     pipelineTitle: 'OUTILS & STACK TECHNIQUE',
-    pipelineSub: 'Meilleurs outils IA du marché combinés à une post-production cinématographique professionnelle.',
+    pipelineSub: 'Moteurs génératifs combinés à une post-production cinématographique',
   },
   en: {
     status: 'AI VIDEO PRODUCTION — SELECT PROJECTS ONLY',
     eyebrow: 'AI ART DIRECTION & CINEMATOGRAPHY',
     heroTitle: 'OVIZai',
-    heroTagline: 'Cinematic AI films for brands and artists.',
-    heroSub: 'High-end video production using the best AI tools available today.',
+    heroTagline: 'Cinematic AI films for brands and artists',
+    heroSub: 'High-end video production with zero filming constraints',
     searchPlaceholder: 'Search a service, collab…',
     searchTrigger: 'Search… (⌘K)',
     commandsTitle: 'COMMAND MENU',
     freePromptsTitle: 'FREE RESOURCES',
-    freePromptsDesc: 'Weekly methods, tools and techniques straight from our productions. No spam',
+    freePromptsDesc: 'Weekly methods, tools and techniques straight from our productions\nNo spam',
     emailPlaceholder: 'your@email.com',
     joinBtn: 'Join free',
     submitting: 'Subscribing…',
-    subscribedMsg: 'Subscribed successfully. Check your inbox.',
-    alreadySubscribedMsg: 'This email is already registered. Thank you!',
-    errorMsg: 'An error occurred. Please try again.',
+    subscribedMsg: 'Subscribed successfully\nCheck your inbox',
+    alreadySubscribedMsg: 'This email is already registered\nThank you',
+    errorMsg: 'An error occurred\nPlease try again',
     followLabel: 'FOLLOW OVIZAI',
     pressCmd: '⌘K for fast commands',
     pressEsc: 'ESC to close',
     toastContact: 'Opening email client…',
     toastResources: 'Scrolling to resources…',
-    toastCopied: 'Link copied to clipboard!',
-    rights: '© 2026 OVIZai. All rights reserved.',
+    toastCopied: 'Link copied to clipboard',
+    rights: '© 2026 OVIZai — All rights reserved',
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
     pipelineTitle: 'TOOLS & TECHNICAL STACK',
-    pipelineSub: 'Best-in-class AI tools combined with professional cinematic post-production.',
+    pipelineSub: 'Generative engines combined with cinematic post-production',
   }
 };
 
@@ -147,8 +147,8 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     category: 'IMAGE GEN & CONCEPT ART',
     version: 'Rendu 8K RAW',
     desc: {
-      fr: 'Génération de keyframes cinématiques 8K, maîtrise absolue des éclairages volumétriques et cohérence stylistique des personnages.',
-      en: '8K cinematic keyframe generation, master volumetric lighting, and character stylistic consistency.'
+      fr: 'Génération de keyframes cinématiques 8K, maîtrise absolue des éclairages volumétriques et cohérence stylistique des personnages',
+      en: '8K cinematic keyframe generation, master volumetric lighting, and character stylistic consistency'
     },
     badge: 'Core Visual Engine',
     features: {
@@ -162,8 +162,8 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     category: 'CAMERA MOTION & VIDEO SYNTHESIS',
     version: 'Cinematics Engine',
     desc: {
-      fr: 'Contrôle précis des mouvements de caméra virtuels (crane, orbit, dolly, zoom) et simulation fluide de la physique.',
-      en: 'Precise virtual camera motion control (crane, orbit, dolly, zoom) and fluid physics simulation.'
+      fr: 'Contrôle précis des mouvements de caméra virtuels (crane, orbit, dolly, zoom) et simulation fluide de la physique',
+      en: 'Precise virtual camera motion control (crane, orbit, dolly, zoom) and fluid physics simulation'
     },
     badge: 'Cinematography Engine',
     features: {
@@ -177,8 +177,8 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     category: 'PHYSICS & HIGH DYNAMICS',
     version: 'High Dynamics',
     desc: {
-      fr: 'Rendu hyper-réaliste des mouvements complexes, drapés de vêtements, explosions et physiques naturelles à 60 FPS.',
-      en: 'Hyper-realistic rendering of complex movements, cloth physics, explosions, and natural dynamics at 60 FPS.'
+      fr: 'Rendu hyper-réaliste des mouvements complexes, drapés de vêtements, explosions et physiques naturelles à 60 FPS',
+      en: 'Hyper-realistic rendering of complex movements, cloth physics, explosions, and natural dynamics at 60 FPS'
     },
     badge: 'Physics Engine',
     features: {
@@ -192,8 +192,8 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     category: 'UPSCALING & ENHANCEMENT',
     version: 'Master 4K/8K',
     desc: {
-      fr: 'Upscale 4K / 8K Master, débruitage argentique sélectif, restauration de textures et interpolation de fréquence d’images.',
-      en: '4K / 8K Master Upscaling, selective film noise restoration, texture recovery, and frame interpolation.'
+      fr: 'Upscale 4K / 8K Master, débruitage argentique sélectif, restauration de textures et interpolation de fréquence d’images',
+      en: '4K / 8K Master Upscaling, selective film noise restoration, texture recovery, and frame interpolation'
     },
     badge: 'Mastering & Enhancement',
     features: {
@@ -207,8 +207,8 @@ export const PIPELINE_TOOLS: PipelineTool[] = [
     category: 'COLOR GRADING & AUDIO SOUNDSCAPE',
     version: 'Color Grading Pro',
     desc: {
-      fr: 'Étalonnage couleur ACES cinématographique, montage rythmé, sound design spatialisé et mastering final d’exportation.',
-      en: 'Cinematic ACES color grading, rhythmic editing, spatial sound design, and master delivery exports.'
+      fr: 'Étalonnage couleur ACES cinématographique, montage rythmé, sound design spatialisé et mastering final d’exportation',
+      en: 'Cinematic ACES color grading, rhythmic editing, spatial sound design, and master delivery exports'
     },
     badge: 'Post-Production Core',
     features: {

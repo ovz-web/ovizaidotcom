@@ -67,7 +67,7 @@ export async function sendTeamNotification(payload: LeadEmailPayload) {
   const htmlContent = `
     <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
       <h2 style="color: #CAA243; margin-top: 0;">⚡ NOUVELLE DEMANDE DE BRIEF — OVIZai</h2>
-      <p style="font-size: 14px; color: #8C8375;">Une nouvelle soumission de projet a été enregistrée sur le site.</p>
+      <p style="font-size: 14px; color: #8C8375;">Nouvelle soumission de projet enregistrée sur le site</p>
       
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px;">
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
@@ -140,11 +140,11 @@ export async function sendProspectConfirmation(email: string, name?: string) {
       </div>
 
       <p style="font-size: 14px; line-height: 1.6; color: #ECE4D3;">Bonjour ${safeName},</p>
-      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Nous avons bien reçu votre demande concernant votre projet visuel.</p>
+      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Nous avons bien reçu votre demande de projet visuel</p>
       
       <div style="margin: 24px 0; padding: 16px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
         <p style="margin: 0; font-size: 13px; color: #ECE4D3; font-weight: bold;">⚡ Engagement SLA :</p>
-        <p style="margin: 4px 0 0 0; font-size: 12px; color: #8C8375;">Notre équipe étudie votre brief et revient vers vous avec un retour d'orientation créative sous 24h à 48h ouvrées.</p>
+        <p style="margin: 4px 0 0 0; font-size: 12px; color: #8C8375;">Notre équipe étudie votre brief<br/>Retour d'orientation créative sous 24h à 48h ouvrées</p>
       </div>
 
       <p style="font-size: 13px; color: #8C8375; margin-top: 24px;">Cordialement,<br/><strong style="color: #ECE4D3;">L'équipe OVIZai</strong></p>
@@ -196,12 +196,12 @@ export async function sendMasterclassWelcome(email: string, name?: string) {
       </div>
 
       <p style="font-size: 14px; line-height: 1.6; color: #ECE4D3;">Bonjour ${safeName ? safeName : ''},</p>
-      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Félicitations ! Votre inscription à la Masterclass Cinéma IA OVIZai a bien été validée.</p>
+      <p style="font-size: 14px; line-height: 1.6; color: #8C8375;">Félicitations ! Votre inscription à la Masterclass Cinéma IA est validée</p>
       
       <div style="margin: 24px 0; padding: 20px; background-color: #141210; border-radius: 8px; border-left: 3px solid #CAA243;">
         <p style="margin: 0; font-size: 13px; color: #CAA243; font-weight: bold;">⚡ Votre accès direct au programme :</p>
         <p style="margin: 8px 0 12px 0; font-size: 12.5px; color: #ECE4D3; line-height: 1.5;">
-          Votre inscription vous donne un accès immédiat et à vie aux 5 modules de la Masterclass (Génération d'images cinématiques, Animation de plans, Caméra virtuelle 3D, Restauration & upscaling, Étalonnage & mastering 4K).
+          Accès immédiat et à vie aux 5 modules du programme<br/>Génération cinématique, animation, caméra 3D, upscaling et mastering 4K
         </p>
         <div style="text-align: center; margin: 16px 0 8px 0;">
           <a href="https://ovizai.com/formation" style="display: inline-block; background-color: #CAA243; color: #000000; font-weight: bold; font-size: 12px; text-transform: uppercase; tracking: 0.05em; text-decoration: none; padding: 12px 24px; border-radius: 8px;">
@@ -264,7 +264,7 @@ export async function sendMasterclassSaleNotification(payload: MasterclassSalePa
   const htmlContent = `
     <div style="background-color: #080808; color: #ECE4D3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; border-radius: 12px; border: 1px solid rgba(202,162,67,0.4);">
       <h2 style="color: #CAA243; margin-top: 0;">🎉 NOUVELLE VENTE MASTERCLASS — OVIZai</h2>
-      <p style="font-size: 14px; color: #8C8375;">Un nouveau règlement a été validé avec succès via Stripe Checkout.</p>
+      <p style="font-size: 14px; color: #8C8375;">Nouveau règlement validé avec succès via Stripe Checkout</p>
       
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px;">
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">

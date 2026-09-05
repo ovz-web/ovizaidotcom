@@ -2,6 +2,8 @@
 
 import React, { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { ShieldCheck, Clock, FileText, ArrowUpRight } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -38,7 +40,7 @@ function ContactPageContent() {
 
       <main
         className="flex-grow relative z-10 pb-12"
-        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -57,8 +59,8 @@ function ContactPageContent() {
           }
           subtitle={
             isFr
-              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h.'
-              : 'Submit your brief in 3 simple steps and get a proposal within 24h.'
+              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h'
+              : 'Submit your brief in 3 simple steps and get a proposal within 24h'
           }
         />
 
@@ -70,6 +72,45 @@ function ContactPageContent() {
           initialType={typeParam}
           initialBudget={budgetParam}
         />
+
+        {/* Sober Reassurance & Link Hub balancing page density */}
+        <div className="max-w-xl mx-auto px-4 mt-2 mb-8">
+          <div className="ovizai-card border border-border bg-card/80 p-4 sm:p-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <Clock className="w-4 h-4 text-gold flex-shrink-0" />
+                <span className="text-xs text-muted font-mono">
+                  {isFr ? 'Réponse 24-48h' : '24-48h Response'}
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-gold flex-shrink-0" />
+                <span className="text-xs text-muted font-mono">
+                  {isFr ? 'Confidentialité totale' : 'Strict Confidentiality'}
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <FileText className="w-4 h-4 text-gold flex-shrink-0" />
+                <span className="text-xs text-muted font-mono">
+                  {isFr ? 'Devis sans engagement' : 'No-obligation quote'}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-3 pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono">
+              <span className="text-muted">
+                {isFr ? 'Envie de comparer nos formules ?' : 'Want to compare packages?'}
+              </span>
+              <Link
+                href="/tarifs"
+                className="text-gold hover:underline inline-flex items-center gap-1 font-semibold"
+              >
+                <span>{isFr ? 'Consulter la grille des tarifs →' : 'View pricing grid →'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </main>
 
       <Footer lang={lang} onShowToast={showToast} />

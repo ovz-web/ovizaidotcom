@@ -31,51 +31,62 @@ export default function FormationCancelPage() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-16 px-4">
+      <main
+        className="flex-grow relative z-10 pb-16 px-4"
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+      >
         <div className="max-w-xl mx-auto">
           {/* Back Link */}
           <Link
-            href="/formation"
-            className="font-mono text-xs text-[#8C8375] hover:text-[#CAA243] transition-colors inline-flex items-center gap-2 mb-6"
+            href="/tarifs#masterclass"
+            className="font-mono text-xs text-muted hover:text-gold transition-colors inline-flex items-center gap-2 mb-6"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>{isFr ? 'Retour Masterclass' : 'Back to Masterclass'}</span>
+            <span>{isFr ? 'Retour aux Formules & Tarifs' : 'Back to Pricing & Packages'}</span>
           </Link>
 
           {/* Cancel Card */}
-          <div className="border border-white/[0.1] bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 text-center space-y-5">
-            <div className="w-14 h-14 bg-white/[0.04] border border-white/[0.1] rounded-full flex items-center justify-center mx-auto">
-              <XCircle className="w-7 h-7 text-[#8C8375]" />
+          <div className="ovizai-card border border-border bg-card/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 text-center space-y-5">
+            <div className="w-14 h-14 bg-white/[0.04] border border-border rounded-full flex items-center justify-center mx-auto">
+              <XCircle className="w-7 h-7 text-muted" />
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-[#8C8375] mb-1 font-mono font-bold">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-muted mb-1 font-mono font-bold">
                 {isFr ? 'COMMANDE INTERROMPUE' : 'CHECKOUT CANCELLED'}
               </p>
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-fg text-center mb-1.5 leading-snug">
                 {isFr ? 'Inscription Interrompue' : 'Enrollment Cancelled'}
               </h1>
-              <p className="text-xs sm:text-sm text-[#8c8375] max-w-sm mx-auto leading-relaxed">
-                {isFr
-                  ? 'La procédure de paiement Stripe a été annulée. Aucun débit n’a été effectué sur votre compte.'
-                  : 'The Stripe payment session was cancelled. No charges were made to your card.'}
-              </p>
+              <div className="text-xs sm:text-sm text-muted max-w-sm mx-auto leading-relaxed space-y-1">
+                {isFr ? (
+                  <>
+                    <p>La procédure de paiement Stripe a été annulée</p>
+                    <p>Aucun débit n’a été effectué sur votre compte</p>
+                  </>
+                ) : (
+                  <>
+                    <p>The Stripe payment session was cancelled</p>
+                    <p>No charges were made to your account</p>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
               <Link
-                href="/formation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
+                href="/tarifs#masterclass"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-gold"
               >
                 <RefreshCw className="w-3.5 h-3.5 text-black" />
                 <span>{isFr ? 'Réessayer l’inscription' : 'Retry Enrollment'}</span>
               </Link>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/40 hover:bg-white/[0.04] text-[#ECE4D3] border border-white/[0.1] px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/40 hover:bg-white/[0.04] text-fg border border-border px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-[#CAA243]" />
+                <MessageSquare className="w-3.5 h-3.5 text-gold" />
                 <span>{isFr ? 'Poser une question' : 'Ask a Question'}</span>
               </Link>
             </div>

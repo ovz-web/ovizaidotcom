@@ -29,12 +29,24 @@ const FIVE_SERVICES = [
     letterCode: 'A1',
     title: { fr: 'Production de Films & Séries IA', en: 'AI Film & Series Production' },
     tagline: {
-      fr: 'Développement de courts-métrages, pilotes de séries et fictions narratives complètes.',
-      en: 'Development of short films, series pilots, and complete narrative fiction.'
+      fr: 'Courts-métrages, pilotes de séries et fictions narratives complètes',
+      en: 'Short films, series pilots and complete narrative fiction'
     },
-    description: {
-      fr: 'Conception intégrale de fictions cinématographiques. De l\'écriture du scénario au montage final, nous générons des plans d\'un réalisme saisissant avec une cohérence parfaite des personnages, des décors et de la lumière à travers chaque séquence.',
-      en: 'Full creation of cinematic fiction. From scriptwriting to final cut, we generate strikingly realistic shots with consistent characters, sets, and lighting across scenes.'
+    descriptionLines: {
+      fr: [
+        'Conception intégrale de fictions cinématographiques',
+        'De l\'écriture du scénario jusqu\'au montage final',
+        'Plans cinématiques au réalisme saisissant',
+        'Cohérence totale des personnages et des décors',
+        'Gestion sur-mesure de la lumière sur chaque séquence'
+      ],
+      en: [
+        'End-to-end production of cinematic fiction',
+        'From original scriptwriting to final cut',
+        'Strikingly realistic generative shots',
+        'Seamless consistency for characters and sets',
+        'Custom lighting control across every sequence'
+      ]
     },
     deliverables: {
       fr: ['Bible visuelle & character design', 'Génération 4K cinématographique', 'Montage narratif & étalonnage', 'Sound design & bande-son originale', 'Export master cinéma (DCP / Pro-Res)'],
@@ -48,12 +60,22 @@ const FIVE_SERVICES = [
     letterCode: 'A2',
     title: { fr: 'Clips Vidéos & Scénographies VJing', en: 'Music Videos & Stage Visuals' },
     tagline: {
-      fr: 'Univers surréalistes et visuels scéniques synchronisés sur la musique pour artistes et labels.',
-      en: 'Surreal universes and beat-synced stage visuals for artists and record labels.'
+      fr: 'Univers surréalistes et visuels scéniques synchronisés sur la musique',
+      en: 'Surreal worlds and beat-synced stage visuals for artists'
     },
-    description: {
-      fr: 'Réalisation de clips musicaux complets et de visuels de scène immersifs. Nous traduisons votre signature musicale en univers visuels inédits, avec une synchronisation rythmique précise et une direction artistique sur-mesure.',
-      en: 'Production of music videos and immersive stage visuals. We translate your sound identity into unique visual worlds with precise rhythm synchronization and custom art direction.'
+    descriptionLines: {
+      fr: [
+        'Réalisation de clips musicaux complets et visuels de scène',
+        'Traduction de votre univers sonore en images inédites',
+        'Synchronisation rythmique précise calée sur le tempo',
+        'Direction artistique sur-mesure pour artistes et labels'
+      ],
+      en: [
+        'Music video production and immersive stage visuals',
+        'Translating your sound identity into distinctive imagery',
+        'Precise rhythm synchronization mapped to BPM',
+        'Tailored art direction for artists and record labels'
+      ]
     },
     deliverables: {
       fr: ['Storyboard & moodboards visuels', 'Génération calée sur le BPM/rythme', 'Boucles VJing haute résolution', 'Déclinaisons réseaux (9:16, 1:1, 16:9)', 'Livrables prêts pour diffusion scène'],
@@ -67,12 +89,22 @@ const FIVE_SERVICES = [
     letterCode: 'A3',
     title: { fr: 'Publicité & Brand Content', en: 'Commercials & Brand Content' },
     tagline: {
-      fr: 'Spots publicitaires percutants et contenus visuels premium pour marques audacieuses.',
-      en: 'Impactful commercials and premium visual content for forward-thinking brands.'
+      fr: 'Spots publicitaires percutants et contenus visuels premium pour marques',
+      en: 'Impactful commercials and premium visual content for brands'
     },
-    description: {
-      fr: 'Campagnes publicitaires cinématiques qui captent l\'attention dès la première seconde. Nous créons des scènes impossibles à tourner en réel avec une qualité digne des plus grands studios, optimisées pour la conversion et l\'image de marque.',
-      en: 'Cinematic ad campaigns engineered to capture attention from the first second. We create scenes impossible to shoot in real life, with top-studio quality optimized for conversion and brand authority.'
+    descriptionLines: {
+      fr: [
+        'Campagnes publicitaires cinématiques conçues pour captiver',
+        'Scènes impossibles à tourner en conditions réelles',
+        'Qualité digne des plus grands studios de production',
+        'Formats optimisés pour la conversion et l\'autorité de marque'
+      ],
+      en: [
+        'Cinematic ad campaigns designed to capture immediate attention',
+        'Visual scenes impossible to shoot in real life',
+        'Studio-grade quality matching major production houses',
+        'Formats optimized for conversion and brand authority'
+      ]
     },
     deliverables: {
       fr: ['Concept créatif & scénarisation', 'Packshots & scènes de marque sur-mesure', 'Formats multi-plateformes (Ads, Social, DOOH)', 'Voix-off IA ou studio & mix audio', 'A/B testing visuel disponible'],
@@ -86,12 +118,22 @@ const FIVE_SERVICES = [
     letterCode: 'A4',
     title: { fr: 'Direction Artistique & Identité Visuelle', en: 'Art Direction & Visual Identity' },
     tagline: {
-      fr: 'Définition d\'univers graphiques singuliers, moodboards cinématiques et bibles visuelles.',
-      en: 'Definition of distinctive visual worlds, cinematic moodboards, and visual bibles.'
+      fr: 'Définition d\'univers graphiques singuliers et moodboards cinématiques',
+      en: 'Distinctive visual worlds and cinematic moodboards'
     },
-    description: {
-      fr: 'Accompagnement créatif stratégique pour marques, agences et créateurs. Nous posons les fondations esthétiques de votre projet grâce à l\'exploration visuelle par IA : styles graphiques, palettes, textures et grammaire cinématographique.',
-      en: 'Strategic creative direction for brands, agencies, and artists. We lay the aesthetic foundations of your project through generative visual exploration: art styles, palettes, textures, and cinematic grammar.'
+    descriptionLines: {
+      fr: [
+        'Accompagnement créatif stratégique pour marques et artistes',
+        'Fondations esthétiques complètes pour votre projet',
+        'Exploration visuelle par génération haute fidélité',
+        'Palettes de couleurs, textures et grammaire cinématographique'
+      ],
+      en: [
+        'Strategic creative direction for brands and artists',
+        'Complete aesthetic foundations for your visual project',
+        'Generative exploration in high definition',
+        'Color palettes, textures and cinematic visual language'
+      ]
     },
     deliverables: {
       fr: ['Guide de style & charte visuelle IA', 'Génération de keyframes de référence', 'Exploration de concepts en haute définition', 'Consulting & prompts certifiés', 'Fichiers sources & documentation'],
@@ -105,12 +147,22 @@ const FIVE_SERVICES = [
     letterCode: 'A5',
     title: { fr: 'Création de Sites Web Next.js', en: 'Next.js Website Development' },
     tagline: {
-      fr: 'Plateformes web sur-mesure, ultra-rapides et pensées comme des expériences immersives.',
-      en: 'Custom, ultra-fast web platforms designed as immersive digital experiences.'
+      fr: 'Plateformes web Next.js ultra-rapides et expériences immersives',
+      en: 'Ultra-fast Next.js web platforms and immersive digital experiences'
     },
-    description: {
-      fr: 'Conception et développement de sites vitrines et plateformes e-commerce à forte identité visuelle. Bâtis sur Next.js 15, ils allient performances exceptionnelles, design sombre cinématique et intégrations complètes (Stripe, CMS, formulaires).',
-      en: 'Design and development of showcase websites and e-commerce platforms with a strong visual identity. Built on Next.js 15, they combine lightning-fast performance, cinematic dark aesthetics, and full integrations (Stripe, CMS, forms).'
+    descriptionLines: {
+      fr: [
+        'Conception et développement de sites vitrines et plateformes',
+        'Architecture moderne propulsée par Next.js',
+        'Performances d\'affichage ultra-rapides et design sombre',
+        'Intégrations complètes incluant Stripe, CMS et formulaires'
+      ],
+      en: [
+        'Design and development of showcase websites and platforms',
+        'Modern architecture powered by Next.js',
+        'Lightning-fast load speed and cinematic dark aesthetics',
+        'Full integrations including Stripe, CMS and custom forms'
+      ]
     },
     deliverables: {
       fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
@@ -130,8 +182,8 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
       en: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
     },
     description: {
-      fr: 'Collision entre romantisme victorien sombre et béton brut. Bande-son : PNL — Autre monde.',
-      en: 'Dark romanticism, opulence, and raw asphalt. Soundtrack: PNL — Autre monde.',
+      fr: 'Collision entre romantisme victorien sombre et béton brut\nBande-son : PNL — Autre monde',
+      en: 'Dark romanticism, opulence, and raw asphalt\nSoundtrack: PNL — Autre monde',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'pub-brand-content',
@@ -146,8 +198,8 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
       en: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
     },
     description: {
-      fr: 'Dandysme nocturne et dérive gothique sur l’asphalte froid. Bande-son : PNL — Autre monde.',
-      en: 'Nocturnal dandyism, gothic drift, and cold concrete. Soundtrack: PNL — Autre monde.',
+      fr: 'Dandysme nocturne et dérive gothique sur l’asphalte froid\nBande-son : PNL — Autre monde',
+      en: 'Nocturnal dandyism, gothic drift, and cold concrete\nSoundtrack: PNL — Autre monde',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'clips-visualisers',
@@ -179,7 +231,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
             <div
               key={service.id}
               className={`ovizai-card transition-all duration-300 ${
-                isOpen ? 'border-[#CAA243]/50 bg-black/80' : 'hover:border-[#CAA243]/30'
+                isOpen ? 'border-border-gold bg-black/80' : 'hover:border-border-gold'
               }`}
             >
               {/* Header Button (Click to Expand) */}
@@ -189,29 +241,29 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                 className="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
               >
                 <div className="flex items-start gap-3 sm:gap-3.5 min-w-0">
-                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/60 border border-border text-gold flex-shrink-0 mt-0.5">
                     <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <span className="mono text-[10px] text-[#CAA243] font-bold tracking-[0.2em] uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
+                      <span className="mono text-[10px] text-gold font-bold tracking-[0.2em] uppercase px-2 py-0.5 rounded bg-gold/10 border border-gold/20">
                         {service.number}
                       </span>
                     </div>
-                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] leading-snug">
+                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg leading-snug">
                       {isFr ? service.title.fr : service.title.en}
                     </h3>
-                    <p className="text-xs text-[#9C9384] mt-1 leading-relaxed">
+                    <p className="text-xs text-muted mt-1 leading-relaxed">
                       {isFr ? service.tagline.fr : service.tagline.en}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 flex-shrink-0 pt-1">
-                  <span className="mono text-[10px] uppercase text-[#CAA243] hidden sm:inline font-semibold">
+                  <span className="mono text-[10px] uppercase text-gold hidden sm:inline font-semibold">
                     {isOpen ? (isFr ? 'Fermer' : 'Close') : (isFr ? 'Détails' : 'Details')}
                   </span>
-                  <div className={`p-1.5 rounded-lg border border-white/[0.08] bg-black/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#CAA243]' : 'text-[#8C8375]'}`}>
+                  <div className={`p-1.5 rounded-lg border border-border bg-black/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-muted'}`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </div>
@@ -219,24 +271,26 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
 
               {/* Collapsible Details */}
               {isOpen && (
-                <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-white/[0.06] space-y-4 animate-fadeIn">
+                <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-border space-y-4 animate-fadeIn">
                   <div>
-                    <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2">
+                    <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
                       {isFr ? 'Présentation' : 'Overview'}
                     </h4>
-                    <p className="text-xs text-[#ECE4D3] leading-relaxed">
-                      {isFr ? service.description.fr : service.description.en}
-                    </p>
+                    <div className="text-xs text-fg leading-relaxed space-y-1">
+                      {(isFr ? service.descriptionLines.fr : service.descriptionLines.en).map((line, idx) => (
+                        <p key={idx}>{line}</p>
+                      ))}
+                    </div>
                   </div>
 
                   <div>
-                    <h4 className="mono text-[10px] uppercase text-[#CAA243] font-bold tracking-[0.2em] mb-2.5">
+                    <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2.5">
                       {isFr ? 'Livrables inclus' : 'Deliverables'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-[#9C9384] bg-black/40 p-2 rounded-lg border border-white/[0.04]">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                        <div key={idx} className="flex items-center gap-2 text-xs text-muted bg-black/40 p-2 rounded-lg border border-white/[0.04]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                           <span>{item}</span>
                         </div>
                       ))}
@@ -244,10 +298,10 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   </div>
 
                   {/* Footer CTAs inside card */}
-                  <div className="pt-3 flex justify-end border-t border-white/[0.06]">
+                  <div className="pt-3 flex justify-end border-t border-border">
                     <Link
                       href={quoteHref}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
                     >
                       <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
                       <ArrowUpRight className="w-4 h-4" />
@@ -261,12 +315,12 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
       </div>
 
       {/* Video Showcase Section embedded at bottom of Services page */}
-      <div className="mt-10 pt-8 border-t border-white/[0.08]">
+      <div className="mt-10 pt-8 border-t border-border">
         <div className="text-center mb-6">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
             {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
           </p>
-          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
             {isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
           </h2>
         </div>

@@ -34,7 +34,7 @@ export default function ServicesPage() {
 
       <main
         className="flex-grow relative z-10 pb-12"
-        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* 1. Standardized Unified Page Header */}
         <PageHeader
@@ -53,23 +53,23 @@ export default function ServicesPage() {
           }
           subtitle={
             isFr
-              ? 'De la conception au master final, des films conçus pour votre marque.'
-              : 'From concept to final master, films crafted for your brand.'
+              ? 'De la conception au master final, des films conçus pour votre marque'
+              : 'From concept to final master, films crafted for your brand'
           }
         />
 
         {/* 2. Segmented 2-option tab AFTER PageHeader */}
         <div className="max-w-xl mx-auto px-4 mb-6">
-          <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-white/[0.08] mono text-xs w-full">
+          <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-border mono text-xs w-full">
             <Link
               href="/services"
-              className="py-2.5 text-center font-bold rounded-lg transition-all bg-[#CAA243] text-black shadow cursor-default"
+              className="py-2.5 text-center font-bold rounded-lg transition-all bg-gold text-black shadow cursor-default"
             >
               {isFr ? 'Nos Services' : 'Our Services'}
             </Link>
             <Link
               href="/tarifs"
-              className="py-2.5 text-center font-bold rounded-lg transition-all text-[#8C8375] hover:text-[#ECE4D3] cursor-pointer"
+              className="py-2.5 text-center font-bold rounded-lg transition-all text-muted hover:text-fg cursor-pointer"
             >
               {isFr ? 'Tarifs & Formules' : 'Pricing & Packages'}
             </Link>

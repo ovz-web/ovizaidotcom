@@ -36,8 +36,8 @@ const DEFAULT_VIDEOS: VideoItem[] = [
       en: 'ART DIRECTION & CINEMATOGRAPHY',
     },
     description: {
-      fr: 'Aperçu de nos publicités et univers de marque.',
-      en: 'Overview of our commercials and brand visual universes.',
+      fr: 'Aperçu de nos publicités et univers de marque',
+      en: 'Overview of our commercials and brand visual universes',
     },
     badge: 'SHOWREEL 4K',
   },
@@ -53,8 +53,8 @@ const DEFAULT_VIDEOS: VideoItem[] = [
       en: 'MASTERCLASS & AI PIPELINE',
     },
     description: {
-      fr: 'Extrait de nos méthodes de génération et post-production 4K.',
-      en: 'Preview of our generation and 4K post-production workflows.',
+      fr: 'Extrait de nos méthodes de génération et post-production 4K',
+      en: 'Preview of our generation and 4K post-production workflows',
     },
     badge: 'MASTERCLASS DEMO',
   },
@@ -80,17 +80,17 @@ export default function VideoSection({
     <section className="max-w-xl mx-auto mb-10 px-4 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold flex items-center justify-center gap-1.5">
-          <Sparkles className="w-3 h-3 text-[#CAA243]" />
+        <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold flex items-center justify-center gap-1.5">
+          <Sparkles className="w-3 h-3 text-gold" />
           <span>{customEyebrow || (isFr ? 'RÉALISATIONS & DÉMONSTRATIONS' : 'SHOWCASE & DEMO REELS')}</span>
         </p>
-        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
           {customTitle || (isFr ? 'APERÇU DE NOS RENDUS' : 'VISUAL PROOF & SHOWREEL')}
         </h2>
-        <p className="text-xs text-[#9C9384] max-w-md mx-auto leading-relaxed">
+        <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
           {customSubtitle || (isFr
-            ? 'Découvrez nos productions vidéo en 4K.'
-            : 'Discover our 4K video productions.')}
+            ? 'Découvrez nos productions vidéo en 4K'
+            : 'Discover our 4K video productions')}
         </p>
       </div>
 
@@ -103,7 +103,7 @@ export default function VideoSection({
           return (
             <div
               key={video.id}
-              className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 overflow-hidden flex flex-col justify-between"
+              className="ovizai-card border border-border bg-card/90 overflow-hidden flex flex-col justify-between"
             >
               {/* Video Media Container */}
               <div className="relative aspect-video bg-black overflow-hidden group">
@@ -119,24 +119,24 @@ export default function VideoSection({
                   <div
                     onClick={() => hasYoutube && setActiveVideoId(video.id)}
                     className={`w-full h-full flex flex-col items-center justify-center relative p-4 text-center cursor-pointer transition-all ${
-                      hasYoutube ? 'hover:bg-[#CAA243]/[0.06]' : 'opacity-85'
+                      hasYoutube ? 'hover:bg-gold/[0.06]' : 'opacity-85'
                     }`}
                   >
                     {/* Background Glow */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
 
                     {/* Play Button Icon */}
-                    <div className="relative z-20 w-12 h-12 rounded-full bg-[#CAA243] text-black flex items-center justify-center shadow-[0_0_20px_rgba(202,162,67,0.4)] group-hover:scale-110 transition-transform mb-2">
+                    <div className="relative z-20 w-12 h-12 rounded-full bg-gold text-black flex items-center justify-center shadow-gold group-hover:scale-110 transition-transform mb-2">
                       <Play className="w-5 h-5 fill-black ml-0.5" />
                     </div>
 
                     {/* Category Tag */}
-                    <span className="relative z-20 mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold">
+                    <span className="relative z-20 mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold">
                       {video.badge}
                     </span>
 
                     {!hasYoutube && (
-                      <span className="relative z-20 mono text-[10px] text-[#9C9384] mt-1 bg-black/60 px-2.5 py-0.5 rounded border border-white/[0.08]">
+                      <span className="relative z-20 mono text-[10px] text-muted mt-1 bg-black/60 px-2.5 py-0.5 rounded border border-border">
                         {isFr ? 'Vidéo en cours d’intégration' : 'Video uploading soon'}
                       </span>
                     )}
@@ -147,13 +147,13 @@ export default function VideoSection({
               {/* Card Meta & Description */}
               <div className="p-4 sm:p-5 flex-grow flex flex-col justify-between">
                 <div>
-                  <p className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold mb-1">
+                  <p className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold mb-1">
                     {video.category[lang]}
                   </p>
-                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] mb-1.5 leading-snug">
+                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg mb-1.5 leading-snug">
                     {video.title[lang]}
                   </h3>
-                  <p className="text-xs text-[#9C9384] leading-relaxed">
+                  <p className="text-xs text-muted leading-relaxed">
                     {video.description[lang]}
                   </p>
                 </div>
@@ -169,19 +169,19 @@ export default function VideoSection({
           href={SOCIAL_LINKS.youtube}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
+          className="text-muted hover:text-gold transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
         >
-          <Youtube className="w-3.5 h-3.5 text-[#CAA243]" />
+          <Youtube className="w-3.5 h-3.5 text-gold" />
           <span>{isFr ? 'Voir plus sur YouTube →' : 'See more on YouTube →'}</span>
         </a>
-        <span className="text-[#9C9384] font-mono text-xs">•</span>
+        <span className="text-muted font-mono text-xs">•</span>
         <a
           href={SOCIAL_LINKS.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#9C9384] hover:text-[#CAA243] transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
+          className="text-muted hover:text-gold transition-colors inline-flex items-center gap-1.5 min-h-[44px] px-2 py-1"
         >
-          <Instagram className="w-3.5 h-3.5 text-[#CAA243]" />
+          <Instagram className="w-3.5 h-3.5 text-gold" />
           <span>{isFr ? 'Voir plus sur Instagram →' : 'See more on Instagram →'}</span>
         </a>
       </div>

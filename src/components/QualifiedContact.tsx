@@ -99,77 +99,88 @@ export default function QualifiedContact({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          name,
-          projectType: projectObj?.title[lang] || selectedProject,
+          name: name || undefined,
+          projectType: projectObj ? projectObj.title[lang] : selectedProject,
           budgetRange: formattedBudget,
           currency: activeCurrency,
-          message: brief,
-          company,
-          website,
-          sourcePlan: originPlan || initialServiceId || null,
+          message: brief || undefined,
+          company: company || undefined,
+          website: website || undefined,
+          originPlan: originPlan || undefined,
         }),
       });
 
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('success');
-        setEmail('');
-        setName('');
-        setBrief('');
-        setCompany('');
-      } else {
-        setErrorMsg(data.error || (isFr ? 'Une erreur est survenue' : 'An error occurred'));
-        setStatus('error');
+      if (!res.ok) {
+        throw new Error('Failed to submit');
       }
-    } catch (err: any) {
-      setErrorMsg(err.message || (isFr ? 'Erreur réseau' : 'Network error'));
+
+      setStatus('success');
+      setEmail('');
+      setName('');
+      setBrief('');
+    } catch (err) {
+      console.error(err);
       setStatus('error');
+      setErrorMsg(
+        isFr
+          ? 'Une erreur est survenue lors de l\'envoi\nVeuillez réessayer'
+          : 'An error occurred while submitting\nPlease try again'
+      );
     }
   };
 
   return (
     <section id="contact" className="max-w-xl mx-auto mb-8 px-4">
       {/* Card Wrapper */}
-      <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl">
+      <div className="border border-border bg-card/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl">
         <div className="text-center mb-6">
           {/* 3-Step Indicator Bar */}
-          <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
-            <span>{isFr ? '1. Projet' : '1. Project'}</span>
-            <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? '2. Budget' : '2. Budget'}</span>
-            <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? '3. Coordonnées' : '3. Contact'}</span>
+          <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-gold bg-gold/10 border border-gold/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
+            <span>{isFr ? '1 // Projet' : '1 // Project'}</span>
+            <span className="text-muted">•</span>
+            <span>{isFr ? '2 // Budget' : '2 // Budget'}</span>
+            <span className="text-muted">•</span>
+            <span>{isFr ? '3 // Coordonnées' : '3 // Contact'}</span>
           </div>
         </div>
 
-        {/* Persistent Visual Confirmation State Post-Submission (CHANTIER 3) */}
         {status === 'success' ? (
           <div
             role="status"
             aria-live="polite"
-            className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]"
+            className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-border-gold bg-gold/10 text-center space-y-4 shadow-gold"
           >
-            <CheckCircle2 className="w-12 h-12 text-[#CAA243] mx-auto animate-pulse" />
-            <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] tracking-wide">
+            <CheckCircle2 className="w-12 h-12 text-gold mx-auto animate-pulse" />
+            <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg tracking-wide">
               {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
             </h3>
             
-            <div className="bg-black/60 border border-white/[0.08] p-4 sm:p-5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
-              <p className="text-xs font-semibold text-[#CAA243] uppercase flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#CAA243]" />
+            <div className="bg-black/60 border border-border p-4 sm:p-5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
+              <p className="text-xs font-semibold text-gold uppercase flex items-center gap-2">
+                <Clock className="w-4 h-4 text-gold" />
                 <span>{isFr ? 'Engagement Réponse (SLA OVIZai) :' : 'Response Commitment (OVIZai SLA):'}</span>
               </p>
-              <p className="text-xs text-[#ECE4D3] leading-relaxed font-sans">
-                {isFr
-                  ? 'Merci pour votre confiance. Notre équipe artistique examine votre brief avec attention et revient vers vous avec une proposition d’orientation et un devis personnalisé sous 24h à 48h ouvrées.'
-                  : 'Thank you for your trust. Our art directors are reviewing your details carefully and will return to you with creative proposals and a custom quote within 24 to 48 business hours.'}
-              </p>
+              <div className="text-xs text-fg leading-relaxed font-sans space-y-1">
+                {isFr ? (
+                  <>
+                    <p>Merci pour votre confiance</p>
+                    <p>Notre équipe artistique examine votre brief avec attention</p>
+                    <p>Proposition d’orientation et devis personnalisé sous 24h à 48h ouvrées</p>
+                  </>
+                ) : (
+                  <>
+                    <p>Thank you for your trust</p>
+                    <p>Our art direction team is reviewing your brief carefully</p>
+                    <p>Tailored proposal and custom quote delivered within 24 to 48 business hours</p>
+                  </>
+                )}
+              </div>
             </div>
 
             <button
               type="button"
               onClick={() => setStatus('idle')}
-              className="mt-3 text-xs text-[#CAA243] hover:text-[#f0c869] underline font-mono cursor-pointer transition-colors"
+              className="mt-3 text-xs text-gold hover:text-gold-bright underline font-mono cursor-pointer transition-colors"
             >
               {isFr ? 'Envoyer une autre demande' : 'Submit another inquiry'}
             </button>
@@ -189,7 +200,7 @@ export default function QualifiedContact({
             />
             {/* Step: Project Type Cards */}
             <fieldset>
-              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-fg block mb-3">
                 {isFr ? 'Quel type de projet souhaitez-vous réaliser ?' : 'What type of project do you want to create?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -205,11 +216,11 @@ export default function QualifiedContact({
                       onClick={() => setSelectedProject(pt.id)}
                       className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] ${
                         isSelected
-                          ? 'border-[#CAA243] bg-[#CAA243]/10 text-[#ECE4D3]'
-                          : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
+                          ? 'border-gold bg-gold/10 text-fg'
+                          : 'border-border bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-[#CAA243]' : 'text-[#8c8375]'}`} />
+                      <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-gold' : 'text-muted'}`} />
                       <span className="mono text-xs font-semibold">{pt.title[lang]}</span>
                     </button>
                   );
@@ -219,7 +230,7 @@ export default function QualifiedContact({
 
             {/* Step: Dynamic Budget Cards */}
             <fieldset>
-              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-3">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-fg block mb-3">
                 {isFr ? 'Quelle est votre enveloppe budgétaire estimée ?' : 'What is your estimated budget tier?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -234,8 +245,8 @@ export default function QualifiedContact({
                       onClick={() => setSelectedBudget(tier.id)}
                       className={`p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] flex items-center ${
                         isSelected
-                          ? 'border-[#CAA243] bg-[#CAA243]/10 text-[#ECE4D3]'
-                          : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
+                          ? 'border-gold bg-gold/10 text-fg'
+                          : 'border-border bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
                       }`}
                     >
                       <span className="mono text-xs font-semibold block">{tier.title[lang]}</span>
@@ -256,12 +267,12 @@ export default function QualifiedContact({
                 onChange={e => setWebsite(e.target.value)}
                 className="hidden absolute opacity-0 pointer-events-none"
               />
-              <legend className="mono text-xs uppercase tracking-wider font-semibold text-[#ECE4D3] block mb-1">
+              <legend className="mono text-xs uppercase tracking-wider font-semibold text-fg block mb-1">
                 {isFr ? 'Vos coordonnées pour recevoir notre proposition :' : 'Your details to receive our proposal:'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="contact-name" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                  <label htmlFor="contact-name" className="mono text-[11px] text-muted uppercase block mb-1">
                     {isFr ? 'Nom / Organisation (facultatif) :' : 'Name / Company (optional):'}
                   </label>
                   <input
@@ -270,12 +281,12 @@ export default function QualifiedContact({
                     value={name}
                     onChange={e => setName(e.target.value)}
                     placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
-                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
+                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-email" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                  <label htmlFor="contact-email" className="mono text-[11px] text-muted uppercase block mb-1">
                     {isFr ? 'Adresse E-mail * :' : 'Email Address *:'}
                   </label>
                   <input
@@ -285,13 +296,13 @@ export default function QualifiedContact({
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="contact@domaine.com"
-                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
+                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
+                <label htmlFor="contact-message" className="mono text-[11px] text-muted uppercase block mb-1">
                   {isFr ? 'Détails du projet (facultatif) :' : 'Project details (optional):'}
                 </label>
                 <textarea
@@ -299,8 +310,8 @@ export default function QualifiedContact({
                   rows={3}
                   value={brief}
                   onChange={e => setBrief(e.target.value)}
-                  placeholder={isFr ? 'Objectifs visuels, références, délais souhaités... (facultatif)' : 'Visual goals, references, timelines... (optional)'}
-                  className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
+                  placeholder={isFr ? 'Objectifs visuels, références, délais souhaités (facultatif)' : 'Visual goals, references, timelines (optional)'}
+                  className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
                 />
               </div>
             </div>
@@ -319,11 +330,11 @@ export default function QualifiedContact({
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full min-h-[48px] bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] cursor-pointer"
+              className="w-full min-h-[48px] bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-gold cursor-pointer"
             >
               <span>
                 {status === 'loading'
-                  ? (isFr ? 'Envoi en cours...' : 'Sending...')
+                  ? (isFr ? 'Envoi en cours…' : 'Sending…')
                   : (isFr ? 'Envoyer mon Brief Qualifié +' : 'Submit Qualified Brief +')}
               </span>
               <Send className="w-4 h-4 text-black" />

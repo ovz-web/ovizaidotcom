@@ -46,7 +46,7 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
     : null;
 
   return (
-    <div className="ovizai-card overflow-hidden border border-white/[0.08] bg-[#0B0A08]/90 rounded-2xl flex flex-col justify-between shadow-xl">
+    <div className="ovizai-card overflow-hidden border border-border bg-card/90 rounded-2xl flex flex-col justify-between shadow-xl">
       {jsonLd && (
         <script
           type="application/ld+json"
@@ -94,19 +94,19 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
             <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 group-hover:bg-black/20 transition-colors" />
 
             {/* Centered Play Button */}
-            <span className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#CAA243] flex items-center justify-center shadow-[0_0_24px_rgba(202,162,67,0.4)] group-hover:scale-105 transition-transform mb-1">
+            <span className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gold flex items-center justify-center shadow-gold group-hover:scale-105 transition-transform mb-1">
               <Play className="w-5 h-5 sm:w-6 sm:h-6 text-black ml-0.5" fill="black" />
             </span>
 
             {/* Badge */}
             {video.badge && (
-              <span className="relative z-10 mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold mt-1">
+              <span className="relative z-10 mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold mt-1">
                 {video.badge[lang]}
               </span>
             )}
 
             {!hasVideo && (
-              <span className="relative z-10 mono text-[10px] text-[#9C9384] mt-1.5 bg-black/70 px-2.5 py-0.5 rounded border border-white/[0.08]">
+              <span className="relative z-10 mono text-[10px] text-muted mt-1.5 bg-black/70 px-2.5 py-0.5 rounded border border-border">
                 {isFr ? 'Vidéo en cours d’intégration' : 'Video uploading soon'}
               </span>
             )}
@@ -117,15 +117,17 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
       {/* Video Title & Meta Details */}
       <div className="p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-1">
-          <Film className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
-          <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] leading-snug truncate">
+          <Film className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+          <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg leading-snug truncate">
             {video.title[lang]}
           </h3>
         </div>
         {!compact && (
-          <p className="text-xs text-[#9C9384] mt-1 leading-relaxed">
-            {video.description[lang]}
-          </p>
+          <div className="text-xs text-muted mt-1 leading-relaxed space-y-0.5">
+            {video.description[lang].split('\n').map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </div>
         )}
       </div>
     </div>

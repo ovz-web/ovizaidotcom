@@ -12,9 +12,9 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section className="relative z-10 max-w-2xl mx-auto pt-0 pb-1 px-4 flex flex-col items-center justify-center text-center">
+    <section className="relative z-10 max-w-xl mx-auto pt-0 pb-1 px-4 flex flex-col items-center justify-center text-center">
       {/* Eyebrow */}
-      <p className="text-[10px] uppercase tracking-[0.25em] text-[#CAA243] mb-1 font-mono font-bold">
+      <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
         {isFr ? 'CRÉATION VIDÉO IA POUR MARQUES ET ARTISTES' : 'AI VIDEO PRODUCTION FOR BRANDS AND ARTISTS'}
       </p>
 
@@ -31,7 +31,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </div>
 
       {/* Sobriety Main Title */}
-      <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-[#ECE4D3] text-center mb-1.5 leading-snug">
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-fg text-center mb-1.5 leading-snug">
         {isFr ? (
           <>
             PRODUCTIONS IA <span className="text-gold-gradient text-gold-glow">CINÉMATOGRAPHIQUES</span>
@@ -43,9 +43,9 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
         )}
       </h1>
 
-      {/* Short Subtitle - Punchy Single Sentence */}
-      <p className="text-xs sm:text-sm text-[#9C9384] max-w-xs sm:max-w-xl text-center mx-auto mb-2 leading-relaxed font-mono sm:whitespace-nowrap">
-        {isFr ? 'Vos projets visuels, sans contraintes de tournage' : 'Your visual projects, without the constraints of filming'}
+      {/* Short Subtitle - Punchy Single Sentence, Zero trailing period */}
+      <p className="text-xs sm:text-sm text-muted max-w-xs sm:max-w-xl text-center mx-auto mb-2 leading-relaxed font-mono sm:whitespace-nowrap">
+        {isFr ? 'Vos projets visuels sans contraintes de tournage' : 'Your visual projects without filming constraints'}
       </p>
     </section>
   );

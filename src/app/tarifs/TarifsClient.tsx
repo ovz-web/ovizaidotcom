@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check, HelpCircle, Zap, ShieldCheck, Loader2 } from 'lucide-react';
+import { ArrowUpRight, Check, HelpCircle, Zap, Loader2 } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -17,8 +17,6 @@ const CUSTOM_SERVICES_SUMMARY = [
     id: 'films-series',
     number: '01',
     title: { fr: 'Réalisation de Films & Séries', en: 'Film & Series Direction' },
-    minUsd: 8000,
-    maxUsd: 15000,
     type: 'film-series',
     budget: 'tier-3',
   },
@@ -26,8 +24,6 @@ const CUSTOM_SERVICES_SUMMARY = [
     id: 'clips-visualisers',
     number: '02',
     title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' },
-    minUsd: 3000,
-    maxUsd: 8000,
     type: 'clip-visualiser',
     budget: 'tier-2',
   },
@@ -35,8 +31,6 @@ const CUSTOM_SERVICES_SUMMARY = [
     id: 'pub-brand-content',
     number: '03',
     title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' },
-    minUsd: 3000,
-    maxUsd: 8000,
     type: 'pub-brand',
     budget: 'tier-2',
   },
@@ -44,8 +38,6 @@ const CUSTOM_SERVICES_SUMMARY = [
     id: 'da-univers-visuels',
     number: '04',
     title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' },
-    minUsd: 1000,
-    maxUsd: 3000,
     type: 'da-univers',
     budget: 'tier-1',
   },
@@ -53,8 +45,6 @@ const CUSTOM_SERVICES_SUMMARY = [
     id: 'web-digital',
     number: '05',
     title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' },
-    minUsd: 3000,
-    maxUsd: 8000,
     type: 'web-digital',
     budget: 'tier-2',
   },
@@ -66,28 +56,28 @@ const copy = {
     eyebrow: '04 // TARIFS & FORMULES',
     title: 'Tarifs & Formules de Production',
     sectionA: 'Formules Clés en Main',
-    sectionASub: 'Sprint Pilote et Campagne de Marque avec révisions et délais garantis.',
+    sectionASub: 'Sprint Pilote et Campagne de Marque avec révisions et délais garantis',
     sectionB: 'Prestations Sur-Mesure',
-    sectionBSub: 'Projets complexes et productions d’envergure avec accompagnement dédié.',
+    sectionBSub: 'Projets complexes et productions d’envergure avec accompagnement dédié',
     sectionC: 'Formation & Masterclass Pro',
-    sectionCSub: 'Programme complet de production vidéo IA 4K pour créateurs et studios.',
+    sectionCSub: 'Programme complet de production vidéo IA 4K pour créateurs et studios',
     faqTitle: 'Questions Fréquentes',
-    faqSub: 'Toutes les réponses sur nos tarifs, nos modalités de règlement, nos délais et la formation.',
+    faqSub: 'Toutes les réponses sur nos tarifs, nos modalités de règlement et nos délais',
     faqCategories: [
       {
         category: 'Facturation & Règlements',
         items: [
           {
             q: 'Comment fonctionne le paiement du Sprint Pilote 48-72h ?',
-            a: "Le Sprint Pilote est sans engagement : le règlement s'effectue après validation de l'aperçu visuel de votre asset.",
+            a: 'Le Sprint Pilote est totalement sans engagement\nVous découvrez d’abord l’aperçu visuel de votre asset\nLe règlement s’effectue uniquement après votre validation',
           },
           {
             q: 'Quelles sont les modalités de paiement pour les projets sur-mesure ?',
-            a: "Pour les campagnes et projets sur-mesure (01 à 05), un acompte de 50 % est requis au lancement de la production, le solde étant réglé à la livraison finale du master 4K.",
+            a: 'Pour les campagnes et projets sur-mesure\nAcompte de 50 % au lancement de la production\nSolde réglé à la livraison finale du master 4K',
           },
           {
             q: 'Le paiement est-il sécurisé et émettez-vous des factures professionnelles ?',
-            a: "Oui, tous les règlements sont sécurisés par Stripe et vous recevez automatiquement une facture pro conforme avec mentions légales de TVA.",
+            a: 'Tous les règlements sont sécurisés par Stripe\nFacture professionnelle conforme avec TVA émise automatiquement',
           },
         ],
       },
@@ -96,11 +86,11 @@ const copy = {
         items: [
           {
             q: 'Comment se déroulent les validations et les rounds de révision inclus ?',
-            a: "Chaque formule et projet sur-mesure comprend des rounds de révision intégrés (1 pour le Sprint 48h, 3 pour les Campagnes). Vous validez d’abord une prévisualisation de l’asset pour ajuster le rythme, les cadrages ou la colorimétrie avant l’export final 4K.",
+            a: 'Rounds de révision inclus sur chaque formule\nValidation sur prévisualisation pour ajuster rythme et cadrages\nFinalisation et étalonnage avant l’export 4K',
           },
           {
-            q: 'Pourquoi vos tarifs sont-ils plus compétitifs qu’une production conventionnelle ?',
-            a: "En remplaçant les tournages physiques (équipes de 10 personnes, location de plateaux, matériel lourd, logistique complexe) par un pipeline génératif de pointe combiné à une post-production cinéma et un étalonnage 4K rigoureux, nous réduisons les coûts d'infrastructure de plus de 60 % tout en maintenant une direction artistique d'excellence.",
+            q: 'Quels sont les délais garantis de livraison ?',
+            a: 'Livraison sous 48 à 72h ouvrées pour le Sprint Pilote\nLivraison prioritaire 48 à 72h pour la Campagne de Marque\nPlanning dédié validé au devis pour les projets sur-mesure',
           },
         ],
       },
@@ -108,50 +98,50 @@ const copy = {
         category: 'Formation & Masterclass',
         items: [
           {
-            q: 'L’accès à la Masterclass inclut-il les futures versions des modèles IA ?',
-            a: "Oui. Votre accès est illimité et à vie. Il inclut toutes les futures mises à jour vidéo du curriculum sans surcoût (nouveaux modèles de génération, d'animation, de caméra 3D et workflows d’upscale 4K).",
+            q: 'L’inscription à la Masterclass inclut-elle les futures mises à jour ?',
+            a: 'Votre accès est illimité et garanti à vie\nToutes les futures mises à jour vidéo sont incluses sans supplément\nNouveaux modèles de génération, 3D et méthodes d’upscaling 4K',
           },
           {
-            q: 'Faut-il du matériel lourd ou des compétences préalables en montage ?',
-            a: "Aucune compétence préalable ni matériel puissant n'est exigé. Les calculs s'effectuent sur des serveurs cloud, un ordinateur standard suffit. Le programme vous guide pas à pas depuis les bases de la génération jusqu’à l’étalonnage pro.",
+            q: 'Faut-il du matériel puissant ou une expérience préalable en montage ?',
+            a: 'Aucune expérience préalable ni matériel lourd requis\nLes générations s’exécutent sur serveurs cloud distants\nUn simple ordinateur portable connecté suffit',
           },
           {
-            q: 'Comment reçois-je mes accès après le règlement sécurisé ?',
-            a: "Immédiatement après validation du règlement sur Stripe, un e-mail de confirmation contenant vos identifiants d’accès et les liens des 5 modules 4K vous est transmis automatiquement.",
+            q: 'Comment reçoit-on les accès après le règlement ?',
+            a: 'Délivrance immédiate par e-mail dès confirmation Stripe\nIdentifiants personnels et liens d’accès direct aux 5 modules 4K\nAccès instantané à l’ensemble des ressources privées',
           },
         ],
       },
     ],
     ctaLabel: 'Demander un devis sur-mesure (24h)',
-    ctaSub: 'Réponse et proposition sous 24-48h — sans engagement.',
+    ctaSub: 'Réponse et proposition sous 24-48h — sans engagement',
   },
   en: {
     back: 'Back Home',
     eyebrow: '04 // PRICING & PACKAGES',
     title: 'Production Pricing & Packages',
     sectionA: 'Turnkey Packages',
-    sectionASub: 'Pilot Sprint and Brand Campaign with guaranteed delivery & revisions.',
+    sectionASub: 'Pilot Sprint and Brand Campaign with guaranteed revisions and turnaround',
     sectionB: 'Custom Services',
-    sectionBSub: 'Complex productions and custom campaigns with dedicated art direction.',
+    sectionBSub: 'Scale productions and custom projects with dedicated art direction',
     sectionC: 'Pro Training & Masterclass',
-    sectionCSub: 'Complete 4K AI video production training for creators and studios.',
+    sectionCSub: 'Complete 4K AI video production curriculum for creators and studios',
     faqTitle: 'Frequently Asked Questions',
-    faqSub: 'All answers regarding pricing, payment terms, production turnaround, and training access.',
+    faqSub: 'All answers regarding pricing, payment terms, and delivery turnaround',
     faqCategories: [
       {
         category: 'Billing & Payments',
         items: [
           {
             q: 'How does payment work for the 48-72h Pilot Sprint?',
-            a: 'The Pilot Sprint is zero-risk: payment is settled upon preview approval of your initial video cut.',
+            a: 'The Pilot Sprint is completely commitment-free\nYou first review the visual preview of your asset\nPayment takes place after your final approval',
           },
           {
             q: 'What are the payment terms for custom projects?',
-            a: 'For custom campaigns and productions (01 to 05), a 50% deposit is required at kickoff, with the balance settled upon final 4K master delivery.',
+            a: 'For campaigns and custom projects\n50% initial deposit upon production kickoff\nRemaining balance paid upon final 4K master delivery',
           },
           {
             q: 'Are payments secure and do you issue corporate invoices?',
-            a: 'Yes, all payments are processed securely via Stripe and VAT-compliant corporate invoices are generated automatically.',
+            a: 'All payments are securely handled by Stripe\nCompliant invoice with legal tax details issued automatically',
           },
         ],
       },
@@ -160,11 +150,11 @@ const copy = {
         items: [
           {
             q: 'How do project previews and included revision rounds work?',
-            a: 'Each turnkey package and custom production includes built-in revision rounds (1 for 48h Sprint, 3 for Campaigns). You first review a watermarked preview to fine-tune pacing, camera framing, or color grading prior to final 4K master delivery.',
+            a: 'Included revision rounds across every package\nApproval on preview cut to fine-tune pacing and framing\nFinal grading and mastering before 4K delivery',
           },
           {
-            q: 'Why are prices significantly lower than traditional agency shoots?',
-            a: 'By replacing physical shoots (10-person crews, studio rentals, heavy camera gear, logistics) with our generative pipeline combining advanced generative systems and pro 4K color grading, we reduce infrastructure overhead by over 60% while retaining cinema-grade visual fidelity.',
+            q: 'What are the guaranteed turnaround times?',
+            a: '48 to 72 business hours for the Pilot Sprint\n48 to 72 business hours priority for the Brand Campaign\nDedicated production schedule agreed upon for custom projects',
           },
         ],
       },
@@ -173,21 +163,21 @@ const copy = {
         items: [
           {
             q: 'Does Masterclass enrollment include future AI model updates?',
-            a: 'Yes. Your access is unlimited and lifetime. It includes all future curriculum video updates at no extra charge (new generation, animation, 3D camera models, and 4K upscale workflows).',
+            a: 'Your access is unlimited and lifetime\nAll future video updates included at zero extra charge\nNew generation, 3D motion, and 4K upscale workflows',
           },
           {
             q: 'Is heavy hardware or prior editing experience required?',
-            a: 'No prior experience or powerful hardware is required. Processing runs on cloud infrastructure, so a standard computer suffices. The curriculum guides you step-by-step from generative fundamentals to professional finishing.',
+            a: 'No prior experience or powerful computer required\nGenerative computing runs on remote cloud servers\nA standard laptop with internet connection is sufficient',
           },
           {
             q: 'How do I receive access after secure payment?',
-            a: 'Immediately following Stripe payment confirmation, an automated email containing your personal access link and credentials to all 5 4K modules is dispatched to your inbox.',
+            a: 'Instant email delivery upon Stripe checkout confirmation\nPersonal login credentials and direct links to all 5 4K modules\nImmediate access to all private prompt libraries',
           },
         ],
       },
     ],
     ctaLabel: 'Request a custom quote (24h)',
-    ctaSub: 'Reply and proposal within 24-48h — no commitment.',
+    ctaSub: 'Reply and proposal within 24-48h — no commitment',
   },
 };
 
@@ -203,7 +193,7 @@ export default function TarifsClient() {
   const t = copy[lang];
   const showToast = (msg: string) => setToastMessage(msg);
 
-  const masterclassCurrent = MASTERCLASS_PRICE[currency] || 490;
+  const masterclassCurrent = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
 
   const formattedMasterclassCurrent =
     currency === 'EUR'
@@ -229,13 +219,13 @@ export default function TarifsClient() {
         setMcError(
           data.error ||
             (isFr
-              ? 'Erreur lors de l’initialisation Stripe.'
-              : 'Failed to create checkout session.')
+              ? 'Erreur lors de l’initialisation Stripe'
+              : 'Failed to create checkout session')
         );
         setMcLoading(false);
       }
     } catch (err: any) {
-      setMcError(isFr ? 'Erreur de connexion serveur.' : 'Server connection error.');
+      setMcError(isFr ? 'Erreur de connexion serveur' : 'Server connection error');
       setMcLoading(false);
     }
   };
@@ -271,7 +261,7 @@ export default function TarifsClient() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-[#080808] text-[#ECE4D3]">
+    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
@@ -306,8 +296,8 @@ export default function TarifsClient() {
           }
           subtitle={
             isFr
-              ? 'Des tarifs clairs et transparents pour tous vos projets de création vidéo IA.'
-              : 'Clear and transparent pricing for all your AI video creation projects.'
+              ? 'Des tarifs clairs et transparents pour tous vos projets de création vidéo IA'
+              : 'Clear and transparent pricing for all your AI video creation projects'
           }
         />
 
@@ -315,13 +305,13 @@ export default function TarifsClient() {
           {/* ── FORMULES CLÉS EN MAIN ─────────────────────── */}
           <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'FORMULES CLÉS EN MAIN' : 'TURNKEY PACKAGES'}
               </span>
-              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
                 {t.sectionA}
               </h2>
-              <p className="text-xs text-[#9C9384] mt-1">
+              <p className="text-xs text-muted mt-1">
                 {t.sectionASub}
               </p>
             </div>
@@ -334,26 +324,26 @@ export default function TarifsClient() {
                     key={plan.id}
                     className={`ovizai-card flex flex-col justify-between gap-4 p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all ${
                       plan.primary
-                        ? 'border border-[#CAA243]/70 bg-[#0B0A08]/95 shadow-[0_0_24px_rgba(202,162,67,0.12)]'
-                        : 'border border-[#CAA243]/40 bg-[#0B0A08]/80'
+                        ? 'border border-gold/70 bg-card/95 shadow-gold'
+                        : 'border border-border-gold bg-card/80'
                     }`}
                   >
                     <div>
                       {/* Header */}
                       <div className="flex items-start justify-between gap-2 mb-2 flex-wrap">
                         <div>
-                          <p className="mono text-[10px] text-[#CAA243] mb-0.5 font-bold tracking-wider">
+                          <p className="mono text-[10px] text-gold mb-0.5 font-bold tracking-wider">
                             {plan.badge[lang]}
                           </p>
-                          <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">{plan.name[lang]}</h3>
+                          <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg">{plan.name[lang]}</h3>
                         </div>
                         <div className="flex items-center gap-1.5 flex-wrap">
                           {plan.primary ? (
-                            <span className="mono text-[9px] uppercase tracking-widest bg-white/[0.06] text-[#ECE4D3] px-2 py-0.5 rounded-full border border-white/[0.1] font-medium">
+                            <span className="mono text-[9px] uppercase tracking-widest bg-white/[0.06] text-fg px-2 py-0.5 rounded-full border border-white/[0.1] font-medium">
                               {isFr ? 'Recommandé' : 'Recommended'}
                             </span>
                           ) : plan.starterHighlight ? (
-                            <span className="mono text-[9px] uppercase tracking-widest bg-white/[0.06] text-[#ECE4D3] px-2 py-0.5 rounded-full border border-white/[0.1] font-medium">
+                            <span className="mono text-[9px] uppercase tracking-widest bg-white/[0.06] text-fg px-2 py-0.5 rounded-full border border-white/[0.1] font-medium">
                               {isFr ? 'Starter' : 'Starter'}
                             </span>
                           ) : null}
@@ -361,27 +351,27 @@ export default function TarifsClient() {
                       </div>
 
                       {/* Price */}
-                      <div className="my-3 pb-3 border-b border-white/[0.06]">
+                      <div className="my-3 pb-3 border-b border-border">
                         <div className="flex items-baseline gap-2.5 flex-wrap">
-                          <p className="text-2xl sm:text-3xl font-semibold font-mono text-[#ECE4D3] leading-none tracking-tight">
+                          <p className="text-2xl sm:text-3xl font-semibold font-mono text-fg leading-none tracking-tight">
                             {formatPrice(plan.minUsd, currency)}
                           </p>
                         </div>
-                        <p className="text-[11px] text-[#9C9384] mt-1.5 font-mono">
+                        <p className="text-[11px] text-muted mt-1.5 font-mono">
                           {plan.period[lang]}
                         </p>
                         {plan.id === 'premium' && (
-                          <p className="text-[10px] text-[#CAA243] mt-1 font-mono">
+                          <p className="text-[10px] text-gold mt-1 font-mono">
                             {isFr
-                              ? 'Pack 3 films : économie vs sprints unitaires avec direction artistique dédiée'
-                              : '3-film package: bundled savings vs single sprints with dedicated art direction'}
+                              ? 'Pack 3 films : tarif optimisé avec direction artistique dédiée'
+                              : '3-film package: bundled rate with dedicated art direction'}
                           </p>
                         )}
                       </div>
 
                       {/* Tag if present */}
                       {plan.tag && (
-                        <div className="mb-3 flex items-center gap-1.5 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 px-2.5 py-1 rounded border border-[#CAA243]/20">
+                        <div className="mb-3 flex items-center gap-1.5 text-[10.5px] font-mono text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">
                           <Zap className="w-3 h-3 flex-shrink-0" />
                           <span>{plan.tag[lang]}</span>
                         </div>
@@ -390,25 +380,25 @@ export default function TarifsClient() {
                       {/* Includes List */}
                       <ul className="flex flex-col gap-2.5 my-3">
                         {plan.includes[lang].map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-[#9C9384] leading-snug">
-                            <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0 mt-0.5" />
-                            <span className="text-[#ECE4D3]/90">{item}</span>
+                          <li key={i} className="flex items-start gap-2 text-xs text-muted leading-snug">
+                            <Check className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-0.5" />
+                            <span className="text-fg/90">{item}</span>
                           </li>
                         ))}
                       </ul>
 
                       {/* Revision Policy Notice */}
-                      <div className="mt-3 pt-2.5 border-t border-white/[0.06] text-[10.5px] text-[#9C9384] leading-relaxed">
-                        <span className="text-[#CAA243] font-semibold block font-mono mb-0.5">
+                      <div className="mt-3 pt-2.5 border-t border-border text-[10.5px] text-muted leading-relaxed">
+                        <span className="text-gold font-semibold block font-mono mb-0.5">
                           {isFr ? 'Si le résultat nécessite des ajustements :' : 'If adjustments are needed:'}
                         </span>
                         {plan.id === 'sprint'
                           ? (isFr
-                              ? '1 round de révision inclus pour ajuster le rythme ou la couleur, avec validation sur prévisualisation.'
-                              : '1 revision round included to adjust pacing or color grading, with preview approval.')
+                              ? '1 round de révision inclus pour ajuster le rythme ou la couleur\nValidation directe sur prévisualisation'
+                              : '1 revision round included to adjust pacing or color grading\nDirect approval on preview cut')
                           : (isFr
-                              ? '3 rounds de révision inclus pour affiner chaque plan et déclinaison selon vos retours.'
-                              : '3 revision rounds included to fine-tune every shot and variation based on feedback.')}
+                              ? '3 rounds de révision inclus pour affiner chaque plan\nPrise en compte de vos retours sur chaque déclinaison'
+                              : '3 revision rounds included to fine-tune every shot\nDedicated feedback integrated across all cuts')}
                       </div>
                     </div>
 
@@ -417,8 +407,8 @@ export default function TarifsClient() {
                       href={`/contact?service=${plan.id}&type=pub-brand&budget=${plan.budgetTierId}`}
                       className={`w-full min-h-[48px] flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer ${
                         plan.primary
-                          ? 'bg-[#CAA243] hover:bg-[#f0c869] text-black shadow-[0_0_18px_rgba(202,162,67,0.25)] hover:scale-[1.01]'
-                          : 'bg-black/50 border border-[#CAA243]/50 hover:border-[#CAA243] text-[#ECE4D3] hover:text-[#f0c869]'
+                          ? 'bg-gold hover:bg-gold-bright text-black shadow-gold hover:scale-[1.01]'
+                          : 'bg-black/50 border border-border-gold hover:border-gold text-fg hover:text-gold-bright'
                       }`}
                     >
                       <span>
@@ -436,19 +426,19 @@ export default function TarifsClient() {
           {/* ── PRESTATIONS SUR-MESURE ───────────────────── */}
           <section className="mb-12 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'PRESTATIONS SUR-MESURE' : 'CUSTOM SERVICES'}
               </span>
-              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
                 {t.sectionB}
               </h2>
-              <p className="text-xs text-[#9C9384] mt-1">
+              <p className="text-xs text-muted mt-1">
                 {t.sectionBSub}
               </p>
             </div>
 
             {/* Synthetic 5-Row Table */}
-            <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08] divide-y divide-white/[0.06] rounded-xl overflow-hidden mb-4">
+            <div className="ovizai-card border border-border bg-card divide-y divide-border rounded-xl overflow-hidden mb-4">
               {CUSTOM_SERVICES_SUMMARY.map((service) => {
                 return (
                   <div
@@ -456,10 +446,10 @@ export default function TarifsClient() {
                     className="p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.02] transition-colors"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2.5 py-1 rounded flex-shrink-0">
+                      <span className="mono text-xs font-bold text-gold bg-black/50 border border-border-gold px-2.5 py-1 rounded flex-shrink-0">
                         {service.number}
                       </span>
-                      <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] truncate">
+                      <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg truncate">
                         {service.title[lang]}
                       </h3>
                     </div>
@@ -467,7 +457,7 @@ export default function TarifsClient() {
                     <div className="flex items-center justify-end flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
                       <Link
                         href={`/contact?service=${service.id}&type=${service.type}&budget=${service.budget}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#CAA243]/10 hover:bg-[#CAA243]/20 border border-[#CAA243]/30 hover:border-[#CAA243]/60 mono text-xs text-[#CAA243] hover:text-[#f0c869] font-bold transition-all cursor-pointer whitespace-nowrap"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold/10 hover:bg-gold/20 border border-border-gold hover:border-gold mono text-xs text-gold hover:text-gold-bright font-bold transition-all cursor-pointer whitespace-nowrap"
                       >
                         <span>{isFr ? 'Sur devis (24h) →' : 'Custom quote (24h) →'}</span>
                       </Link>
@@ -481,65 +471,65 @@ export default function TarifsClient() {
           {/* ── FORMATION & MASTERCLASS PRO ─────────────── */}
           <section id="masterclass" className="mb-12 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'FORMATION & MASTERCLASS' : 'TRAINING & MASTERCLASS'}
               </span>
-              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
                 {t.sectionC}
               </h2>
-              <p className="text-xs text-[#9C9384] mt-1">
+              <p className="text-xs text-muted mt-1">
                 {t.sectionCSub}
               </p>
             </div>
 
-            <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
+            <div className="ovizai-card border border-border-gold bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-gold">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-border">
                 <div>
-                  <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-[0.25em] block mb-0.5">
+                  <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.25em] block mb-0.5">
                     {isFr ? 'FORMATION VIDÉO IA' : 'AI VIDEO TRAINING'}
                   </span>
-                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3]">
+                  <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg">
                     {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
                   </h3>
                 </div>
 
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl sm:text-3xl font-semibold text-[#CAA243] font-mono">
+                  <span className="text-2xl sm:text-3xl font-semibold text-gold font-mono">
                     {formattedMasterclassCurrent}
                   </span>
-                  <span className="mono text-[11px] text-[#8C8375]">
+                  <span className="mono text-[11px] text-muted">
                     {isFr ? 'paiement unique' : 'one-time'}
                   </span>
                 </div>
               </div>
 
-              <div className="py-3 space-y-2 text-xs text-[#9C9384]">
-                <p className="flex items-center gap-2 text-[#ECE4D3]">
-                  <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+              <div className="py-3 space-y-2 text-xs text-muted">
+                <p className="flex items-center gap-2 text-fg">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                   <span>
                     {isFr
-                      ? '5 modules vidéo pratiques : concept art 8K, caméra virtuelle 3D, animation, sound design et étalonnage 4K'
-                      : '5 practical modules: 8K concept art, 3D virtual camera, motion, sound design and 4K color grading'}
+                      ? '5 modules vidéo pratiques : concept art 8K, animation et étalonnage 4K'
+                      : '5 practical modules: 8K concept art, motion and 4K color grading'}
                   </span>
                 </p>
-                <p className="flex items-center gap-2 text-[#ECE4D3]">
-                  <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                <p className="flex items-center gap-2 text-fg">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                   <span>
                     {isFr
-                      ? 'Accès illimité et à vie + toutes les mises à jour des futurs modèles incluses'
-                      : 'Unlimited lifetime access + all future model updates included'}
+                      ? 'Accès illimité à vie et futures mises à jour des modèles incluses'
+                      : 'Unlimited lifetime access and future model updates included'}
                   </span>
                 </p>
-                <p className="flex items-center gap-2 text-[#ECE4D3]">
-                  <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                <p className="flex items-center gap-2 text-fg">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                   <span>
                     {isFr
-                      ? 'Fichiers projets de post-production cinéma & prompts certifiés fournis'
-                      : 'Cinema post-production project files & certified prompts provided'}
+                      ? 'Fichiers projets de post-production cinéma et prompts certifiés'
+                      : 'Cinema post-production project files and certified prompts provided'}
                   </span>
                 </p>
-                <p className="flex items-center gap-2 text-[#ECE4D3]">
-                  <Check className="w-3.5 h-3.5 text-[#CAA243] flex-shrink-0" />
+                <p className="flex items-center gap-2 text-fg">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                   <span>
                     {isFr
                       ? 'Délivrance immédiate par e-mail après règlement sécurisé Stripe'
@@ -548,10 +538,10 @@ export default function TarifsClient() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
                 <Link
                   href="/formation"
-                  className="mono text-xs text-[#CAA243] hover:underline"
+                  className="mono text-xs text-gold hover:underline"
                 >
                   {isFr ? 'Consulter le détail des 5 modules →' : 'View the 5-module curriculum →'}
                 </Link>
@@ -560,12 +550,12 @@ export default function TarifsClient() {
                   type="button"
                   disabled={mcLoading}
                   onClick={handleMasterclassCheckout}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_18px_rgba(202,162,67,0.25)] cursor-pointer min-h-[44px]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold cursor-pointer min-h-[44px]"
                 >
                   {mcLoading ? (
                     <>
                       <Loader2 className="w-4 h-4 text-black animate-spin" />
-                      <span>{isFr ? 'Redirection Stripe...' : 'Redirecting...'}</span>
+                      <span>{isFr ? 'Redirection Stripe…' : 'Redirecting…'}</span>
                     </>
                   ) : (
                     <>
@@ -589,30 +579,30 @@ export default function TarifsClient() {
           {/* ── QUESTIONS FRÉQUENTES ─────────── */}
           <section id="faq" className="mb-12 scroll-mt-24">
             <div className="mb-4">
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-[#CAA243] font-bold block mb-1">
+              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'QUESTIONS FRÉQUENTES' : 'FREQUENTLY ASKED QUESTIONS'}
               </span>
-              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#ECE4D3] mb-1.5 leading-snug">
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
                 {t.faqTitle}
               </h2>
-              <p className="text-xs text-[#9C9384] mt-1">
+              <p className="text-xs text-muted mt-1">
                 {t.faqSub}
               </p>
             </div>
 
             <div className="space-y-4">
               {t.faqCategories.map((cat, catIdx) => (
-                <div key={cat.category} className="ovizai-card border border-white/[0.08] bg-[#0B0A08] overflow-hidden">
-                  <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-between">
-                    <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold">
+                <div key={cat.category} className="ovizai-card border border-border bg-card overflow-hidden">
+                  <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-border flex items-center justify-between">
+                    <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold">
                       {cat.category}
                     </span>
-                    <span className="mono text-[10px] text-[#8C8375]">
+                    <span className="mono text-[10px] text-muted">
                       {cat.items.length} {isFr ? 'questions' : 'questions'}
                     </span>
                   </div>
 
-                  <div className="divide-y divide-white/[0.06]">
+                  <div className="divide-y divide-border">
                     {cat.items.map((faq, itemIdx) => {
                       const faqKey = `${catIdx}-${itemIdx}`;
                       const isOpen = openFaq === faqKey;
@@ -623,17 +613,19 @@ export default function TarifsClient() {
                             onClick={() => setOpenFaq(isOpen ? null : faqKey)}
                             className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
                           >
-                            <span className="text-xs text-[#ECE4D3] font-medium leading-snug">{faq.q}</span>
+                            <span className="text-xs text-fg font-medium leading-snug">{faq.q}</span>
                             <HelpCircle
                               className={`w-4 h-4 flex-shrink-0 transition-colors ${
-                                isOpen ? 'text-[#CAA243]' : 'text-[#9C9384]'
+                                isOpen ? 'text-gold' : 'text-muted'
                               }`}
                             />
                           </button>
                           {isOpen && (
-                            <p className="px-4 sm:px-5 pb-4 text-xs text-[#9C9384] leading-relaxed border-t border-white/[0.04] pt-2">
-                              {faq.a}
-                            </p>
+                            <div className="px-4 sm:px-5 pb-4 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
+                              {faq.a.split('\n').map((line, lIdx) => (
+                                <p key={lIdx}>{line}</p>
+                              ))}
+                            </div>
                           )}
                         </div>
                       );
@@ -648,12 +640,12 @@ export default function TarifsClient() {
           <div className="text-center pt-2">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(202,162,67,0.25)] hover:scale-[1.01] cursor-pointer min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold hover:scale-[1.01] cursor-pointer min-h-[48px]"
             >
               <span>{t.ctaLabel}</span>
               <ArrowUpRight className="w-4 h-4 text-black" />
             </Link>
-            <p className="text-[11px] text-[#9C9384] font-mono mt-2.5">{t.ctaSub}</p>
+            <p className="text-[11px] text-muted font-mono mt-2.5">{t.ctaSub}</p>
           </div>
         </div>
       </main>
