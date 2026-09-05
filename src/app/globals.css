@@ -28,6 +28,13 @@
   }
 }
 
+/* Calibrage de la densité d'affichage sur Mac / ordinateur de bureau (équivalent Safari "Zoom arrière" x2 / 75%) */
+@media (min-width: 1024px) {
+  html {
+    zoom: 0.75;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
