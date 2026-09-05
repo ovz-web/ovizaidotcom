@@ -11,15 +11,22 @@ interface AIPipelineProps {
   customTitle?: string;
   showConversionCard?: boolean;
   hideHeader?: boolean;
+  stepPrefix?: 'numeric' | 'letterC';
+  hideTechBadge?: boolean;
 }
 
 const PIPELINE_STEPS = [
   {
     stepNum: '01',
+    letterNum: 'C1',
     id: 'step-design',
     title: {
       fr: '01. Direction Artistique & Personnages',
       en: '01. Art Direction & Character Design',
+    },
+    titleLetterC: {
+      fr: 'C1. Direction Artistique & Personnages',
+      en: 'C1. Art Direction & Character Design',
     },
     benefit: {
       fr: 'Création de l’univers visuel et de personnages uniques, constants d’un plan à l’autre.',
@@ -33,10 +40,15 @@ const PIPELINE_STEPS = [
   },
   {
     stepNum: '02',
+    letterNum: 'C2',
     id: 'step-motion',
     title: {
       fr: '02. Animation & Mouvements',
       en: '02. Animation & Natural Motion',
+    },
+    titleLetterC: {
+      fr: 'C2. Animation & Mouvements',
+      en: 'C2. Animation & Natural Motion',
     },
     benefit: {
       fr: 'Animation réaliste des expressions, des fluides et des éclairages dynamiques.',
@@ -50,10 +62,15 @@ const PIPELINE_STEPS = [
   },
   {
     stepNum: '03',
+    letterNum: 'C3',
     id: 'step-camera',
     title: {
       fr: '03. Caméra & Mise en scène',
       en: '03. Camera & Scene Direction',
+    },
+    titleLetterC: {
+      fr: 'C3. Caméra & Mise en scène',
+      en: 'C3. Camera & Scene Direction',
     },
     benefit: {
       fr: 'Mouvements de caméra cinématographiques (panoramiques, travellings) pour rythmer le récit.',
@@ -67,10 +84,15 @@ const PIPELINE_STEPS = [
   },
   {
     stepNum: '04',
+    letterNum: 'C4',
     id: 'step-grading',
     title: {
       fr: '04. Étalonnage & Master 4K',
       en: '04. Color Grading & 4K Master',
+    },
+    titleLetterC: {
+      fr: 'C4. Étalonnage & Master 4K',
+      en: 'C4. Color Grading & 4K Master',
     },
     benefit: {
       fr: 'Étalonnage cinéma, émulation du grain 35mm, sound design et master final 4K.',
@@ -90,6 +112,8 @@ export default function AIPipeline({
   customTitle,
   showConversionCard = true,
   hideHeader = false,
+  stepPrefix = 'numeric',
+  hideTechBadge = false,
 }: AIPipelineProps) {
   const isFr = lang === 'fr';
 
@@ -116,6 +140,8 @@ export default function AIPipeline({
       <div className="space-y-3">
         {PIPELINE_STEPS.map((step) => {
           const IconComp = step.icon;
+          const displayTitle = stepPrefix === 'letterC' ? step.titleLetterC[lang] : step.title[lang];
+
           return (
             <div
               key={step.id}
@@ -128,14 +154,16 @@ export default function AIPipeline({
                   </div>
                   <div>
                     <h3 className="font-display text-sm sm:text-base font-extrabold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors leading-snug">
-                      {step.title[lang]}
+                      {displayTitle}
                     </h3>
                   </div>
                 </div>
 
-                <span className="mono text-[9.5px] px-2.5 py-1 rounded bg-[#CAA243]/10 border border-[#CAA243]/25 text-[#CAA243] font-bold whitespace-nowrap">
-                  {step.techBadge[lang]}
-                </span>
+                {!hideTechBadge && (
+                  <span className="mono text-[9.5px] px-2.5 py-1 rounded bg-[#CAA243]/10 border border-[#CAA243]/25 text-[#CAA243] font-bold whitespace-nowrap">
+                    {step.techBadge[lang]}
+                  </span>
+                )}
               </div>
 
               <p className="text-xs text-[#9C9384] leading-relaxed pl-11">

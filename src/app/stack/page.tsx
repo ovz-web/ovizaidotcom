@@ -49,6 +49,8 @@ export default function StackPage() {
           lang={lang}
           hideHeader={true}
           showConversionCard={false}
+          stepPrefix="letterC"
+          hideTechBadge={true}
         />
 
         {/* 3. Single Unique Action Button */}
