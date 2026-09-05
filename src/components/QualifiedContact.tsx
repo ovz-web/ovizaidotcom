@@ -15,12 +15,12 @@ interface QualifiedContactProps {
 }
 
 const PROJECT_TYPES = [
-  { id: 'pub-brand', icon: Clapperboard, title: { fr: '01. Publicité & Brand Content', en: '01. Commercial & Brand Content' } },
-  { id: 'clip-visualiser', icon: Music2, title: { fr: '02. Clip Vidéo & Visualiser', en: '02. Music Video & Visualiser' } },
-  { id: 'film-series', icon: Film, title: { fr: '03. Film & Série', en: '03. Film & Series' } },
-  { id: 'da-univers', icon: Palette, title: { fr: '04. Direction Artistique', en: '04. Art Direction & Branding' } },
-  { id: 'web-digital', icon: Globe2, title: { fr: '05. Site Web sur-mesure', en: '05. Custom Website' } },
-  { id: 'formation-pro', icon: GraduationCap, title: { fr: '06. Formation & Masterclass', en: '06. Masterclass Training' } },
+  { id: 'pub-brand', icon: Clapperboard, title: { fr: 'H1. Publicité & Brand Content', en: 'H1. Commercial & Brand Content' } },
+  { id: 'clip-visualiser', icon: Music2, title: { fr: 'H2. Clip Vidéo & Visualiser', en: 'H2. Music Video & Visualiser' } },
+  { id: 'film-series', icon: Film, title: { fr: 'H3. Film & Série', en: 'H3. Film & Series' } },
+  { id: 'da-univers', icon: Palette, title: { fr: 'H4. Direction Artistique', en: 'H4. Art Direction & Branding' } },
+  { id: 'web-digital', icon: Globe2, title: { fr: 'H5. Site Web sur-mesure', en: 'H5. Custom Website' } },
+  { id: 'formation-pro', icon: GraduationCap, title: { fr: 'H6. Formation & Masterclass', en: 'H6. Masterclass Training' } },
 ];
 
 const SERVICE_ID_MAP: Record<string, string> = {
@@ -33,10 +33,10 @@ const SERVICE_ID_MAP: Record<string, string> = {
 };
 
 const BUDGET_TIERS = [
-  { id: 'tier-0', title: { fr: 'Sprint Pilote (Asset court 15-30s)', en: 'Pilot Sprint (Short asset 15-30s)' } },
-  { id: 'tier-1', title: { fr: 'Direction Artistique & Pack Visuels', en: 'Art Direction & Key Visuals' } },
-  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / Site Web', en: 'Brand Campaign / Music Video / Web' } },
-  { id: 'tier-3', title: { fr: 'Production Majeure (Film / Série)', en: 'Scale Production (Film / Series)' } },
+  { id: 'tier-0', title: { fr: 'I1. Sprint Pilote (Asset court 15-30s)', en: 'I1. Pilot Sprint (Short asset 15-30s)' } },
+  { id: 'tier-1', title: { fr: 'I2. Direction Artistique & Pack Visuels', en: 'I2. Art Direction & Key Visuals' } },
+  { id: 'tier-2', title: { fr: 'I3. Campagne / Clip Vidéo / Site Web', en: 'I3. Brand Campaign / Music Video / Web' } },
+  { id: 'tier-3', title: { fr: 'I4. Production Majeure (Film / Série)', en: 'I4. Scale Production (Film / Series)' } },
 ];
 
 export default function QualifiedContact({
@@ -132,13 +132,13 @@ export default function QualifiedContact({
       {/* Card Wrapper */}
       <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl">
         <div className="text-center mb-6">
-          {/* 3-Step Indicator Bar */}
+          {/* 3-Step Indicator Bar: H, I, J */}
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
-            <span>{isFr ? '1. Projet' : '1. Project'}</span>
+            <span>{isFr ? 'H. Projet' : 'H. Project'}</span>
             <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? '2. Enveloppe' : '2. Tier'}</span>
+            <span>{isFr ? 'I. Enveloppe' : 'I. Tier'}</span>
             <span className="text-[#8c8375]">•</span>
-            <span>{isFr ? '3. Coordonnées' : '3. Contact'}</span>
+            <span>{isFr ? 'J. Coordonnées' : 'J. Contact'}</span>
           </div>
         </div>
 
@@ -187,10 +187,10 @@ export default function QualifiedContact({
               className="hidden"
               style={{ position: 'absolute', left: '-9999px', top: '-9999px', width: '1px', height: '1px', opacity: 0, pointerEvents: 'none' }}
             />
-            {/* Step 1: Project Type Cards */}
+            {/* Step H: Project Type Cards (H1 to H6) */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
-                {isFr ? '1. Quel type de projet souhaitez-vous réaliser ?' : '1. What type of project do you want to create?'}
+                {isFr ? 'H. Quel type de projet souhaitez-vous réaliser ?' : 'H. What type of project do you want to create?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {PROJECT_TYPES.map(pt => {
@@ -203,13 +203,13 @@ export default function QualifiedContact({
                       type="button"
                       aria-pressed={isSelected}
                       onClick={() => setSelectedProject(pt.id)}
-                      className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] ${
                         isSelected
                           ? 'border-[#CAA243] bg-[#CAA243]/10 text-[#ECE4D3]'
                           : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
                       }`}
                     >
-                      <Icon className={`w-4 h-4 ${isSelected ? 'text-[#CAA243]' : 'text-[#8c8375]'}`} />
+                      <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-[#CAA243]' : 'text-[#8c8375]'}`} />
                       <span className="mono text-xs font-semibold">{pt.title[lang]}</span>
                     </button>
                   );
@@ -217,10 +217,10 @@ export default function QualifiedContact({
               </div>
             </fieldset>
 
-            {/* Step 2: Dynamic Budget Cards */}
+            {/* Step I: Dynamic Budget Cards (I1 to I4) */}
             <fieldset>
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-3">
-                {isFr ? '2. Quelle est votre enveloppe budgétaire estimée ?' : '2. What is your estimated budget tier?'}
+                {isFr ? 'I. Quelle est votre enveloppe budgétaire estimée ?' : 'I. What is your estimated budget tier?'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {BUDGET_TIERS.map(tier => {
@@ -232,7 +232,7 @@ export default function QualifiedContact({
                       type="button"
                       aria-pressed={isSelected}
                       onClick={() => setSelectedBudget(tier.id)}
-                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] flex items-center ${
                         isSelected
                           ? 'border-[#CAA243] bg-[#CAA243]/10 text-[#ECE4D3]'
                           : 'border-white/[0.08] bg-black/40 text-[#8c8375] hover:border-white/[0.2] hover:text-[#ECE4D3]'
@@ -245,7 +245,7 @@ export default function QualifiedContact({
               </div>
             </fieldset>
 
-            {/* Step 3: Contact Inputs */}
+            {/* Step J: Contact Inputs */}
             <div className="space-y-3 pt-2">
               <input
                 type="text"
@@ -257,20 +257,20 @@ export default function QualifiedContact({
                 className="hidden absolute opacity-0 pointer-events-none"
               />
               <legend className="mono text-xs uppercase tracking-wider font-bold text-[#ECE4D3] block mb-1">
-                {isFr ? '3. Vos coordonnées pour recevoir notre proposition :' : '3. Your details to receive our proposal:'}
+                {isFr ? 'J. Vos coordonnées pour recevoir notre proposition :' : 'J. Your details to receive our proposal:'}
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label htmlFor="contact-name" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
-                    {isFr ? 'Nom / Organisation :' : 'Name / Company:'}
+                    {isFr ? 'Nom / Organisation (facultatif) :' : 'Name / Company (optional):'}
                   </label>
                   <input
                     id="contact-name"
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins'}
-                    className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
+                    placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
+                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
                   />
                 </div>
 
@@ -285,21 +285,21 @@ export default function QualifiedContact({
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="contact@domaine.com"
-                    className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
+                    className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="contact-message" className="mono text-[11px] text-[#8c8375] uppercase block mb-1">
-                  {isFr ? 'Détails du projet / Message :' : 'Project Brief / Message:'}
+                  {isFr ? 'Détails du projet (facultatif) :' : 'Project details (optional):'}
                 </label>
                 <textarea
                   id="contact-message"
                   rows={3}
                   value={brief}
                   onChange={e => setBrief(e.target.value)}
-                  placeholder={isFr ? 'Objectifs visuels, références, délais souhaités...' : 'Visual goals, references, timelines...'}
+                  placeholder={isFr ? 'Objectifs visuels, références, délais souhaités... (facultatif)' : 'Visual goals, references, timelines... (optional)'}
                   className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-[#ECE4D3] focus:border-[#CAA243] outline-none transition-colors"
                 />
               </div>
