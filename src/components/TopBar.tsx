@@ -23,6 +23,35 @@ export default function TopBar({
   const isFr = lang === 'fr';
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerRef = useRef<HTMLButtonElement | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // Dynamic header height measurement for CSS variable --topbar-height + safe area
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        if (height > 0) {
+          document.documentElement.style.setProperty('--topbar-height', `${height}px`);
+        }
+      }
+    };
+
+    updateHeaderHeight();
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateHeaderHeight();
+      });
+      resizeObserver.observe(headerRef.current);
+    }
+
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  }, []);
 
   const NAV_LINKS = [
     { href: '/', label: isFr ? '00. Accueil' : '00. Home' },
@@ -97,7 +126,11 @@ export default function TopBar({
   return (
     <>
       {/* Single Fixed TopBar — 2 rows on mobile (<sm), 1 centered row on desktop (sm+) */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] px-3 sm:px-4 py-2 sm:py-0 sm:h-14 flex flex-col justify-center">
+      <header
+        ref={headerRef}
+        style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+        className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[0.08] px-3 sm:px-4 py-2 sm:py-0 sm:h-14 flex flex-col justify-center"
+      >
         <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4">
           {/* Mobile Row 1 (Logo left, controls right) / Desktop Left Column (Logo) */}
           <div className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2">

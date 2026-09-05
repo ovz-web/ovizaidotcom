@@ -6,6 +6,7 @@
 @tailwind utilities;
 
 :root {
+  --topbar-height: 80px;
   --bg: #080808;
   --bg-card: #141210;
   --bg-dark: #080808;
@@ -19,6 +20,12 @@
   --border-strong: rgba(236, 228, 211, 0.16);
   --border-gold: rgba(202, 162, 67, 0.3);
   --radius: 16px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --topbar-height: 56px;
+  }
 }
 
 * {

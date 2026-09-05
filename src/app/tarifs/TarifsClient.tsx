@@ -295,7 +295,10 @@ export default function TarifsClient() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-16">
+      <main
+        className="flex-grow relative z-10 pb-16"
+        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+      >
         {/* Standardized Unified Page Header */}
         <PageHeader
           lang={lang}
@@ -408,7 +411,7 @@ export default function TarifsClient() {
                 return (
                   <div
                     key={plan.id}
-                    className={`ovizai-card flex flex-col justify-between gap-4 p-5 sm:p-6 transition-all ${
+                    className={`ovizai-card flex flex-col justify-between gap-4 p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all ${
                       plan.primary
                         ? 'border border-[#CAA243]/70 bg-[#0B0A08]/95 shadow-[0_0_24px_rgba(202,162,67,0.12)]'
                         : 'border border-[#CAA243]/40 bg-[#0B0A08]/80'
@@ -536,7 +539,7 @@ export default function TarifsClient() {
                 return (
                   <div
                     key={service.id}
-                    className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.02] transition-colors"
+                    className="p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.02] transition-colors"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2.5 py-1 rounded flex-shrink-0">
@@ -575,7 +578,7 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl p-5 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
+            <div className="ovizai-card border border-[#CAA243]/50 bg-[#0B0A08]/90 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-[0_0_24px_rgba(202,162,67,0.1)]">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.06]">
                 <div>
                   <span className="mono text-[10px] text-[#CAA243] font-bold uppercase tracking-widest block mb-1">

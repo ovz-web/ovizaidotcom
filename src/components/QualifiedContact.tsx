@@ -130,7 +130,7 @@ export default function QualifiedContact({
   return (
     <section id="contact" className="max-w-2xl mx-auto mb-14 px-4">
       {/* Card Wrapper */}
-      <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
         <div className="text-center mb-6">
           {/* 3-Step Indicator Bar: H, I, J */}
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
@@ -147,7 +147,7 @@ export default function QualifiedContact({
           <div
             role="status"
             aria-live="polite"
-            className="p-6 sm:p-8 rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]"
+            className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-[#CAA243]/50 bg-[#CAA243]/10 text-center space-y-4 shadow-[0_0_30px_rgba(202,162,67,0.15)]"
           >
             <CheckCircle2 className="w-12 h-12 text-[#CAA243] mx-auto animate-pulse" />
             <h3 className="mono text-lg font-extrabold text-[#ECE4D3] tracking-wide">

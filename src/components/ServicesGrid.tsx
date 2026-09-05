@@ -188,9 +188,9 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                 onClick={() => toggleService(service.id)}
                 className="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
               >
-                <div className="flex items-start gap-3.5 sm:gap-4 min-w-0">
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
-                    <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="flex items-start gap-3 sm:gap-3.5 min-w-0">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
+                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
@@ -198,7 +198,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                         {isFr ? `${service.letterCode} // PÔLE` : `${service.letterCode} // UNIT`}
                       </span>
                     </div>
-                    <h3 className="font-display text-base sm:text-lg font-bold text-[#ECE4D3] leading-snug">
+                    <h3 className="font-display text-sm sm:text-base font-bold text-[#ECE4D3] leading-snug">
                       {isFr ? service.title.fr : service.title.en}
                     </h3>
                     <p className="text-xs text-[#9C9384] mt-1 leading-relaxed">

@@ -110,7 +110,10 @@ export default function FormationPage() {
         onSelectCurrency={setCurrency}
       />
 
-      <main className="flex-grow relative z-10 pt-16 sm:pt-20 pb-12">
+      <main
+        className="flex-grow relative z-10 pb-12"
+        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 16px)' }}
+      >
         {/* Standardized Unified Page Header */}
         <PageHeader
           lang={lang}

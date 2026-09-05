@@ -70,7 +70,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         
         {/* Pillar 1: Studio en Lancement */}
-        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
+        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 px-2 py-0.5 rounded font-bold uppercase">
@@ -92,7 +92,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         </div>
 
         {/* Pillar 2: Engagements & Garanties */}
-        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
+        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/15 border border-[#CAA243]/30 px-2 py-0.5 rounded font-bold uppercase">
@@ -128,7 +128,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
 
       {/* Pillar 3: Processus de Production en 4 Étapes (Optional) */}
       {!hideProcessStep && (
-        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-5 sm:p-6 rounded-2xl mb-4">
+        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl mb-4">
           <div className="mb-4">
             <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
               03 // PROCESSUS DE PRODUCTION
@@ -157,7 +157,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       )}
 
       {/* Pillar 4: Contact Direct */}
-      <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-[#CAA243]/10 border border-[#CAA243]/30 text-[#CAA243]">
             <Mail className="w-5 h-5 text-[#CAA243]" />

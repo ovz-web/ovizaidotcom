@@ -145,7 +145,7 @@ export default function AIPipeline({
           return (
             <div
               key={step.id}
-              className="border border-white/[0.08] bg-[#0B0A08] hover:border-[#CAA243]/50 rounded-xl p-4 sm:p-5 transition-all duration-300 group shadow-lg"
+              className="border border-white/[0.08] bg-[#0B0A08] hover:border-[#CAA243]/50 rounded-xl p-3.5 sm:p-5 transition-all duration-300 group shadow-lg"
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex items-start gap-3">
@@ -166,7 +166,7 @@ export default function AIPipeline({
                 )}
               </div>
 
-              <p className="text-xs text-[#9C9384] leading-relaxed pl-11">
+              <p className="text-xs text-[#9C9384] leading-relaxed pl-10 sm:pl-11">
                 {step.benefit[lang]}
               </p>
             </div>
@@ -176,7 +176,7 @@ export default function AIPipeline({
 
       {/* Bottom Conversion Card */}
       {showConversionCard && (
-        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-5 rounded-2xl text-center mt-8">
+        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-xl sm:rounded-2xl text-center mt-8">
           <span className="mono text-[10px] text-[#CAA243] uppercase tracking-widest font-bold block mb-1">
             {isFr ? 'UN PROCESSUS CLAIR, DES RÉSULTATS GARANTIS' : 'CLEAR PROCESS, GUARANTEED RESULTS'}
           </span>
