@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check, HelpCircle, Zap, Loader2, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Check, HelpCircle, Zap, Loader2, ShieldCheck, Film, Music2, Clapperboard, Palette, Globe2 } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
+import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
@@ -14,11 +15,11 @@ import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE, PRICING_PLANS } from '@/
 import { trackEvent } from '@/lib/analytics';
 
 const CUSTOM_SERVICES = [
-  { id: 'films-series', num: '01', title: { fr: 'Réalisation de Films & Séries', en: 'Film & Series Direction' }, type: 'film-series', budget: 'tier-3' },
-  { id: 'clips-visualisers', num: '02', title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' }, type: 'clip-visualiser', budget: 'tier-2' },
-  { id: 'pub-brand-content', num: '03', title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' }, type: 'pub-brand', budget: 'tier-2' },
-  { id: 'da-univers-visuels', num: '04', title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' }, type: 'da-univers', budget: 'tier-1' },
-  { id: 'web-digital', num: '05', title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' }, type: 'web-digital', budget: 'tier-2' },
+  { id: 'films-series', num: '01', title: { fr: 'Réalisation de Films & Séries', en: 'Film & Series Direction' }, type: 'film-series', budget: 'tier-3', icon: Film },
+  { id: 'clips-visualisers', num: '02', title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' }, type: 'clip-visualiser', budget: 'tier-2', icon: Music2 },
+  { id: 'pub-brand-content', num: '03', title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' }, type: 'pub-brand', budget: 'tier-2', icon: Clapperboard },
+  { id: 'da-univers-visuels', num: '04', title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' }, type: 'da-univers', budget: 'tier-1', icon: Palette },
+  { id: 'web-digital', num: '05', title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' }, type: 'web-digital', budget: 'tier-2', icon: Globe2 },
 ];
 
 const copy = {
@@ -347,32 +348,17 @@ export default function TarifsClient() {
               <p className="text-xs text-muted mt-1">{t.sectionBSub}</p>
             </div>
 
-            <div className="ovizai-card border border-border bg-card divide-y divide-border rounded-xl overflow-hidden mb-4">
-              {CUSTOM_SERVICES.map((service) => (
-                <div
-                  key={service.id}
-                  className="p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.02] transition-colors"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="mono text-xs font-bold text-gold bg-black/50 border border-border-gold px-2.5 py-1 rounded flex-shrink-0">
-                      {service.num}
-                    </span>
-                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg truncate">
-                      {service.title[lang]}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center justify-end flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
-                    <Link
-                      href={`/contact?service=${service.id}&type=${service.type}&budget=${service.budget}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold/10 hover:bg-gold/20 border border-border-gold hover:border-gold mono text-xs text-gold hover:text-gold-bright font-bold transition-all cursor-pointer whitespace-nowrap"
-                    >
-                      <span>{isFr ? 'Sur devis (24h) →' : 'Custom quote (24h) →'}</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ListMenuCard
+              items={CUSTOM_SERVICES.map((service) => ({
+                id: service.id,
+                icon: service.icon,
+                title: `${service.num} // ${service.title[lang]}`,
+                subtitle: isFr ? 'Prestation sur-mesure sous 24-48h' : 'Custom service quote in 24-48h',
+                href: `/contact?service=${service.id}&type=${service.type}&budget=${service.budget}`,
+                trailing: isFr ? 'Sur devis (24h) →' : 'Quote (24h) →',
+              }))}
+              className="mb-4"
+            />
           </section>
 
           {/* ── FORMATION & MASTERCLASS PRO ─────────────── */}
