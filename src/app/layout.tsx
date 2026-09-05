@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { CurrencyProvider } from '@/context/CurrencyContext';
 import { LanguageProvider } from '@/context/LanguageContext';
+import CinematicBackground from '@/components/CinematicBackground';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -94,7 +95,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
       </head>
-      <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright">
+      <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright relative">
+        <CinematicBackground />
         <CurrencyProvider>
           <LanguageProvider>
             {children}
