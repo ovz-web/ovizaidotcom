@@ -128,9 +128,9 @@ export default function QualifiedContact({
   };
 
   return (
-    <section id="contact" className="max-w-2xl mx-auto mb-14 px-4">
+    <section id="contact" className="max-w-xl mx-auto mb-14 px-4">
       {/* Card Wrapper */}
-      <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+      <div className="border border-white/[0.08] bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl">
         <div className="text-center mb-6">
           {/* 3-Step Indicator Bar: H, I, J */}
           <div className="flex items-center justify-center gap-2 text-[10.5px] font-mono text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 py-1 px-3 rounded-full max-w-md mx-auto mb-4">
@@ -319,7 +319,7 @@ export default function QualifiedContact({
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] cursor-pointer"
+              className="w-full min-h-[48px] bg-[#CAA243] hover:bg-[#f0c869] disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(202,162,67,0.25)] cursor-pointer"
             >
               <span>
                 {status === 'loading'

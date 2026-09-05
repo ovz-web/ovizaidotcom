@@ -41,9 +41,9 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section id="masterclass" className="max-w-3xl mx-auto mb-14 px-4">
+    <section id="masterclass" className="max-w-xl mx-auto mb-14 px-4">
       {/* Container Card */}
-      <div className="relative border border-[#CAA243]/40 bg-[#0B0A08]/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_0_35px_rgba(202,162,67,0.1)] overflow-hidden">
+      <div className="relative border border-[#CAA243]/40 bg-[#0B0A08]/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-[0_0_35px_rgba(202,162,67,0.1)] overflow-hidden">
         {/* Ambient Radial Aura */}
         <div
           className="absolute top-0 right-0 w-80 h-80 blur-3xl pointer-events-none -z-10"

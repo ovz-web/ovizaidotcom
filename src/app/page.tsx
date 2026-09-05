@@ -42,7 +42,10 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow relative z-10 pt-14 sm:pt-16">
+      <main
+        className="flex-grow relative z-10"
+        style={{ paddingTop: 'calc(var(--topbar-height, 80px) + 8px)' }}
+      >
         {/* 1. Minimalist Hero Section (Enlarged Logo + Main Title + Tagline) */}
         <HeroBrutalist lang={lang} />
 

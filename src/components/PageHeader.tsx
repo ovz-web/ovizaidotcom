@@ -28,12 +28,12 @@ export default function PageHeader({
   return (
     <div className="max-w-xl mx-auto px-4 mb-6 text-center">
       {/* 1. Back Link */}
-      <div className="flex justify-start mb-4">
+      <div className="flex justify-start mb-4 sm:mb-5">
         <Link
           href={backLinkHref}
-          className="inline-flex items-center gap-2 text-xs font-mono text-[#8C8375] hover:text-[#CAA243] transition-colors min-h-[44px] py-1"
+          className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#CAA243]/50 text-xs font-mono text-[#ECE4D3] hover:text-[#f0c869] transition-all min-h-[44px] cursor-pointer"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3.5 h-3.5 text-[#CAA243]" />
           <span>{backLinkLabel || defaultBackLabel}</span>
         </Link>
       </div>

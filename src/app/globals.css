@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  --topbar-height: 80px;
+  --topbar-height: calc(84px + env(safe-area-inset-top, 0px));
   --bg: #080808;
   --bg-card: #141210;
   --bg-dark: #080808;
