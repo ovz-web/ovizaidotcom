@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, ArrowLeft, Mail, BookOpen } from 'lucide-react';
+import { CheckCircle2, Mail, BookOpen } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
@@ -35,19 +35,6 @@ export default function FormationSuccessPage() {
         className="flex-grow relative z-10 pb-16 px-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
-        <div className="relative max-w-6xl mx-auto mb-4 sm:mb-6">
-          {/* Back Home Link */}
-          <div className="flex justify-start sm:absolute sm:left-4 lg:left-6 sm:top-0 mb-3 sm:mb-0 z-20">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-border hover:border-gold/50 text-xs font-mono text-fg hover:text-gold-bright transition-all min-h-[36px] cursor-pointer"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 text-gold" />
-              <span>{isFr ? 'Retour Accueil' : 'Back Home'}</span>
-            </Link>
-          </div>
-        </div>
-
         <div className="max-w-xl mx-auto">
 
           {/* Success Card */}
