@@ -457,7 +457,7 @@ export default function TarifsClient() {
                       {/* Price */}
                       <div className="my-3 pb-3 border-b border-white/[0.06]">
                         <div className="flex items-baseline gap-2.5 flex-wrap">
-                          <p className="text-2xl sm:text-3xl font-extrabold text-[#ECE4D3] leading-none tracking-tight">
+                          <p className="text-2xl sm:text-3xl font-semibold font-mono text-[#ECE4D3] leading-none tracking-tight">
                             {showLaunchDiscount
                               ? formatPrice(plan.minUsd, currency)
                               : formatPrice(plan.originalMinUsd || plan.minUsd, currency)}
@@ -600,7 +600,7 @@ export default function TarifsClient() {
                 </div>
 
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-[#CAA243] font-mono">
+                  <span className="text-2xl sm:text-3xl font-semibold text-[#CAA243] font-mono">
                     {showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}
                   </span>
                   {showLaunchDiscount && (
