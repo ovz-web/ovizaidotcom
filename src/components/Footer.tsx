@@ -1,8 +1,7 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
-import { Youtube, Instagram, ShieldCheck, FileText, Tag } from 'lucide-react';
-import { DICTIONARY } from '@/lib/i18n';
 import { Language } from '@/types';
 
 interface FooterProps {
@@ -10,70 +9,56 @@ interface FooterProps {
   onShowToast?: (msg: string) => void;
 }
 
-export default function Footer({ lang, onShowToast }: FooterProps) {
-  const t = DICTIONARY[lang];
+/**
+ * Minimalist, low-profile cinema studio bottom bar inspired by top AI creative suites.
+ * Very low height, discreet typography, clean horizontal layout.
+ */
+export default function Footer({ lang }: FooterProps) {
+  const isFr = lang === 'fr';
 
   return (
-    <footer className="relative z-10 max-w-xl mx-auto pt-6 pb-12 px-4 border-t border-border flex flex-col gap-5 items-center text-center font-mono text-[11px] text-muted">
-      {/* Social Links Row */}
-      <div className="w-full">
-        <p className="mono text-[10.5px] uppercase text-muted mb-3 tracking-wider">
-          {t.followLabel}
-        </p>
-        <div className="flex items-center justify-center gap-8">
+    <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/40 backdrop-blur-sm mt-auto">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-muted">
+        
+        {/* Left: Copyright */}
+        <div className="flex items-center gap-2 text-muted/90">
+          <span>
+            © 2026 OVIZai. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}
+          </span>
+        </div>
+
+        {/* Right: Social & Navigation / Legal Links */}
+        <div className="flex items-center flex-wrap justify-center gap-x-4 sm:gap-x-5 gap-y-1.5 text-muted">
           <a
             href="https://youtube.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-muted hover:text-gold-bright transition-colors text-xs font-medium"
+            className="hover:text-gold-bright transition-colors"
           >
-            <Youtube className="w-4 h-4 text-gold" />
-            <span>YouTube</span>
+            YouTube
           </a>
-
           <a
             href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-muted hover:text-gold-bright transition-colors text-xs font-medium"
+            className="hover:text-gold-bright transition-colors"
           >
-            <Instagram className="w-4 h-4 text-gold" />
-            <span>Instagram</span>
+            Instagram
           </a>
-        </div>
-      </div>
 
-      {/* Bottom Rights & Legal */}
-      <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 pt-3 border-t border-border">
-        <span className="text-muted">{t.rights}</span>
-        <div className="grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2 sm:gap-4 text-muted w-full sm:w-auto">
-          <Link
-            href="/tarifs"
-            className="hover:text-fg transition-colors flex items-center justify-center gap-1 cursor-pointer text-gold font-bold min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-border sm:border-0"
-          >
-            <Tag className="w-3 h-3 text-gold" />
-            <span>{lang === 'fr' ? 'Tarifs' : 'Pricing'}</span>
+          <span className="text-white/[0.12] hidden sm:inline select-none">|</span>
+
+          <Link href="/tarifs" className="hover:text-fg transition-colors">
+            {isFr ? 'Tarifs' : 'Pricing'}
           </Link>
-          <Link
-            href="/mentions-legales"
-            className="hover:text-fg transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-border sm:border-0"
-          >
-            <FileText className="w-3 h-3 text-gold" />
-            <span>{lang === 'fr' ? 'Mentions Légales' : 'Legal Notice'}</span>
+          <Link href="/cgv" className="hover:text-fg transition-colors">
+            {isFr ? 'CGV' : 'Terms'}
           </Link>
-          <Link
-            href="/confidentialite"
-            className="hover:text-fg transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-border sm:border-0"
-          >
-            <ShieldCheck className="w-3 h-3 text-gold" />
-            <span>{lang === 'fr' ? 'Confidentialité' : 'Privacy Policy'}</span>
+          <Link href="/confidentialite" className="hover:text-fg transition-colors">
+            {isFr ? 'Confidentialité' : 'Privacy'}
           </Link>
-          <Link
-            href="/cgv"
-            className="hover:text-fg transition-colors flex items-center justify-center gap-1 cursor-pointer min-h-[44px] px-2 bg-black/30 sm:bg-transparent rounded-lg border border-border sm:border-0"
-          >
-            <FileText className="w-3 h-3 text-gold" />
-            <span>{lang === 'fr' ? 'CGV' : 'Terms'}</span>
+          <Link href="/mentions-legales" className="hover:text-fg transition-colors">
+            {isFr ? 'Mentions Légales' : 'Legal'}
           </Link>
         </div>
       </div>
