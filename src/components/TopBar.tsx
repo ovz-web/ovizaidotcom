@@ -29,7 +29,8 @@ export default function TopBar({
   useEffect(() => {
     const updateHeaderHeight = () => {
       if (headerRef.current) {
-        const height = headerRef.current.offsetHeight;
+        const rect = headerRef.current.getBoundingClientRect();
+        const height = Math.ceil(rect.height || headerRef.current.offsetHeight);
         if (height > 0) {
           document.documentElement.style.setProperty('--topbar-height', `${height}px`);
         }
@@ -37,6 +38,10 @@ export default function TopBar({
     };
 
     updateHeaderHeight();
+    const rafId = requestAnimationFrame(updateHeaderHeight);
+    if (typeof document !== 'undefined' && 'fonts' in document) {
+      document.fonts.ready.then(updateHeaderHeight).catch(() => {});
+    }
 
     let resizeObserver: ResizeObserver | null = null;
     if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
@@ -47,9 +52,12 @@ export default function TopBar({
     }
 
     window.addEventListener('resize', updateHeaderHeight);
+    window.addEventListener('orientationchange', updateHeaderHeight);
     return () => {
+      cancelAnimationFrame(rafId);
       if (resizeObserver) resizeObserver.disconnect();
       window.removeEventListener('resize', updateHeaderHeight);
+      window.removeEventListener('orientationchange', updateHeaderHeight);
     };
   }, []);
 
