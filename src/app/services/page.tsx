@@ -46,7 +46,7 @@ export default function ServicesPage() {
         />
 
         {/* 2. Segmented 2-option tab AFTER PageHeader */}
-        <div className="max-w-3xl mx-auto px-4 mb-6">
+        <div className="max-w-xl mx-auto px-4 mb-6">
           <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-white/[0.08] mono text-xs w-full">
             <Link
               href="/services"

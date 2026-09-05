@@ -26,6 +26,7 @@ const FIVE_SERVICES = [
   {
     id: 'films-series',
     number: '01',
+    letterCode: 'A1',
     title: { fr: 'Production de Films & Séries IA', en: 'AI Film & Series Production' },
     tagline: {
       fr: 'Développement de courts-métrages, pilotes de séries et fictions narratives complètes.',
@@ -44,6 +45,7 @@ const FIVE_SERVICES = [
   {
     id: 'clips-visualisers',
     number: '02',
+    letterCode: 'A2',
     title: { fr: 'Clips Vidéos & Scénographies VJing', en: 'Music Videos & Stage Visuals' },
     tagline: {
       fr: 'Univers surréalistes et visuels scéniques synchronisés sur la musique pour artistes et labels.',
@@ -62,6 +64,7 @@ const FIVE_SERVICES = [
   {
     id: 'pub-brand-content',
     number: '03',
+    letterCode: 'A3',
     title: { fr: 'Publicité & Brand Content', en: 'Commercials & Brand Content' },
     tagline: {
       fr: 'Spots publicitaires percutants et contenus visuels premium pour marques audacieuses.',
@@ -80,6 +83,7 @@ const FIVE_SERVICES = [
   {
     id: 'direction-artistique',
     number: '04',
+    letterCode: 'A4',
     title: { fr: 'Direction Artistique & Identité Visuelle', en: 'Art Direction & Visual Identity' },
     tagline: {
       fr: 'Définition d\'univers graphiques singuliers, moodboards cinématiques et bibles visuelles.',
@@ -98,6 +102,7 @@ const FIVE_SERVICES = [
   {
     id: 'sites-web-nextjs',
     number: '05',
+    letterCode: 'A5',
     title: { fr: 'Création de Sites Web Next.js', en: 'Next.js Website Development' },
     tagline: {
       fr: 'Plateformes web sur-mesure, ultra-rapides et pensées comme des expériences immersives.',
@@ -159,7 +164,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
   };
 
   return (
-    <section id="services" className="max-w-3xl mx-auto mb-14 px-4">
+    <section id="services" className="max-w-xl mx-auto mb-14 px-4">
       {/* Grid of 5 Services */}
       <div className="space-y-4 mb-12">
         {FIVE_SERVICES.map(service => {
@@ -181,16 +186,16 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
               <button
                 type="button"
                 onClick={() => toggleService(service.id)}
-                className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
+                className="w-full text-left p-4 sm:p-5 flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
               >
-                <div className="flex items-start gap-4 min-w-0">
-                  <div className="p-3 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
+                <div className="flex items-start gap-3.5 sm:gap-4 min-w-0">
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-black/60 border border-white/[0.08] text-[#CAA243] flex-shrink-0 mt-0.5">
                     <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="mono text-[10px] text-[#CAA243] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-[#CAA243]/10 border border-[#CAA243]/20">
-                        {`${service.number} // PÔLE`}
+                        {isFr ? `${service.letterCode} // PÔLE` : `${service.letterCode} // UNIT`}
                       </span>
                     </div>
                     <h3 className="font-display text-base sm:text-lg font-bold text-[#ECE4D3] leading-snug">
@@ -214,9 +219,9 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
 
               {/* Collapsible Details */}
               {isOpen && (
-                <div className="px-5 pb-6 sm:px-6 pt-2 border-t border-white/[0.06] space-y-5 animate-fadeIn">
+                <div className="px-4 pb-5 sm:px-5 pt-2 border-t border-white/[0.06] space-y-4 animate-fadeIn">
                   <div>
-                    <h4 className="mono text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2">
+                    <h4 className="mono text-[10px] sm:text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2">
                       {isFr ? 'Description du pôle :' : 'Scope of service:'}
                     </h4>
                     <p className="text-xs text-[#ECE4D3] leading-relaxed">
@@ -225,7 +230,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   </div>
 
                   <div>
-                    <h4 className="mono text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2.5">
+                    <h4 className="mono text-[10px] sm:text-[10.5px] uppercase text-[#CAA243] font-bold tracking-wider mb-2.5">
                       {isFr ? 'Livrables inclus :' : 'Deliverables included:'}
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -242,7 +247,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                   <div className="pt-3 flex justify-end border-t border-white/[0.06]">
                     <Link
                       href={quoteHref}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#CAA243] hover:bg-[#f0c869] text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
                     >
                       <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
                       <ArrowUpRight className="w-4 h-4" />
@@ -256,16 +261,16 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
       </div>
 
       {/* Video Showcase Section embedded at bottom of Services page */}
-      <div className="mt-12 pt-8 border-t border-white/[0.08]">
+      <div className="mt-10 pt-8 border-t border-white/[0.08]">
         <div className="text-center mb-6">
-          <p className="mono text-xs uppercase tracking-widest text-[#CAA243] font-bold mb-1">
-            {isFr ? '02 // DÉMONSTRATIONS EN ACTION' : '02 // DEMONSTRATIONS IN ACTION'}
+          <p className="mono text-[10px] sm:text-[10.5px] uppercase tracking-widest text-[#CAA243] font-mono font-bold mb-1">
+            {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
           </p>
           <h2 className="text-xl font-bold text-[#ECE4D3]">
             {isFr ? 'Réalisations Vidéo & Direction Artistique' : 'Video Output & Art Direction Showcase'}
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
           {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
             <VideoShowcase key={video.src || video.youtubeId || idx} video={video} lang={lang} />
           ))}

@@ -49,7 +49,7 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
   ];
 
   return (
-    <section className="max-w-xl mx-auto mb-10 px-4 relative z-10">
+    <section className="w-full max-w-xl mx-auto mb-10 relative z-10">
       {/* Section Header */}
       <div className="text-center mb-6">
         <p className="mono text-[10.5px] uppercase tracking-[0.25em] text-[#CAA243] font-mono font-bold mb-1 flex items-center justify-center gap-1.5">
@@ -70,11 +70,11 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         
         {/* Pillar 1: Studio en Lancement */}
-        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-5 rounded-2xl flex flex-col justify-between">
+        <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08]/90 p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/10 border border-[#CAA243]/20 px-2 py-0.5 rounded font-bold uppercase">
-                01 // TRANSPARENCE
+                {isFr ? 'B1 // TRANSPARENCE' : 'B1 // TRANSPARENCY'}
               </span>
             </div>
             <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] mb-2">
@@ -92,11 +92,11 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
         </div>
 
         {/* Pillar 2: Engagements & Garanties */}
-        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-5 rounded-2xl flex flex-col justify-between">
+        <div className="ovizai-card border border-[#CAA243]/30 bg-[#CAA243]/[0.03] p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="mono text-[10px] text-[#CAA243] bg-[#CAA243]/15 border border-[#CAA243]/30 px-2 py-0.5 rounded font-bold uppercase">
-                02 // GARANTIES CONTRACTUELLES
+                {isFr ? 'B2 // GARANTIES CONTRACTUELLES' : 'B2 // CONTRACTUAL GUARANTEES'}
               </span>
             </div>
             <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] mb-2">

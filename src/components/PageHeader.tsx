@@ -26,7 +26,7 @@ export default function PageHeader({
   const defaultBackLabel = isFr ? 'Retour Accueil' : 'Back Home';
 
   return (
-    <div className="max-w-3xl mx-auto px-4 mb-6 text-center">
+    <div className="max-w-xl mx-auto px-4 mb-6 text-center">
       {/* 1. Back Link */}
       <div className="flex justify-start mb-4">
         <Link
