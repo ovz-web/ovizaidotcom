@@ -85,7 +85,7 @@ export default function TarifsClient() {
   const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showPromo, setShowPromo] = useState(true);
-  const [openCard, setOpenCard] = useState<string | null>('offer-masterclass');
+  const [openCard, setOpenCard] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mcLoading, setMcLoading] = useState(false);
   const [mcError, setMcError] = useState<string | null>(null);
@@ -350,16 +350,16 @@ export default function TarifsClient() {
                 <Link
                   key={srv.id}
                   href={`/contact?service=${srv.id}&type=${srv.type}&budget=${srv.budget}`}
-                  className="flex items-center justify-between gap-3 p-2.5 hover:bg-white/[0.02] transition-colors"
+                  className="group flex items-center justify-between gap-3 p-2.5 hover:bg-white/[0.02] transition-colors"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <Icon className="w-4 h-4 text-gold flex-shrink-0" />
-                    <span className="mono text-xs text-fg font-medium truncate">
+                    <span className="mono text-xs text-fg group-hover:text-gold transition-colors font-medium truncate">
                       {`${srv.num} // ${srv.title[lang]}`}
                     </span>
                   </div>
-                  <span className="mono text-[10.5px] text-gold hover:text-gold-bright font-medium flex-shrink-0">
-                    {isFr ? 'Devis →' : 'Quote →'}
+                  <span className="mono text-xs text-muted group-hover:text-gold transition-colors flex-shrink-0">
+                    →
                   </span>
                 </Link>
               );
