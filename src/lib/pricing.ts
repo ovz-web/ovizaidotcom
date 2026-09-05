@@ -19,7 +19,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'sprint',
     name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
-    badge: { fr: '01 // TARIF DE LANCEMENT', en: '01 // LAUNCH TIER' },
+    badge: { fr: 'D01 // TARIF DE LANCEMENT', en: 'D01 // LAUNCH TIER' },
     minUsd: 530,
     budgetTierId: 'tier-0',
     tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
@@ -46,7 +46,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'premium',
     name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
-    badge: { fr: '02 // CAMPAGNE DE MARQUE', en: '02 // BRAND CAMPAIGN' },
+    badge: { fr: 'D02 // CAMPAGNE DE MARQUE', en: 'D02 // BRAND CAMPAIGN' },
     minUsd: 2600,
     budgetTierId: 'tier-1',
     period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },

@@ -18,7 +18,7 @@ const PLACES_RESTANTES: number = 5;
 const PLANS_DATA = [
   {
     id: 'sprint',
-    badge: { fr: '01 // TARIF DE LANCEMENT', en: '01 // LAUNCH TIER' },
+    badge: { fr: 'D01 // TARIF DE LANCEMENT', en: 'D01 // LAUNCH TIER' },
     name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
     minUsd: 530,
     originalMinUsd: 750,
@@ -46,7 +46,7 @@ const PLANS_DATA = [
   },
   {
     id: 'premium',
-    badge: { fr: '02 // CAMPAGNE DE MARQUE', en: '02 // BRAND CAMPAIGN' },
+    badge: { fr: 'D02 // CAMPAGNE DE MARQUE', en: 'D02 // BRAND CAMPAIGN' },
     name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
     minUsd: 2600,
     originalMinUsd: 3700,
@@ -75,7 +75,7 @@ const PLANS_DATA = [
 const CUSTOM_SERVICES_SUMMARY = [
   {
     id: 'films-series',
-    number: '01',
+    number: 'E01',
     title: { fr: 'Réalisation de Films & Séries', en: 'Film & Series Direction' },
     minUsd: 8000,
     maxUsd: 15000,
@@ -84,8 +84,8 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'clips-visualisers',
-    number: '02',
-    title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Stage Visualisers' },
+    number: 'E02',
+    title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' },
     minUsd: 3000,
     maxUsd: 8000,
     type: 'clip-visualiser',
@@ -93,7 +93,7 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'pub-brand-content',
-    number: '03',
+    number: 'E03',
     title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' },
     minUsd: 3000,
     maxUsd: 8000,
@@ -102,8 +102,8 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'da-univers-visuels',
-    number: '04',
-    title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Universes' },
+    number: 'E04',
+    title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' },
     minUsd: 1000,
     maxUsd: 3000,
     type: 'da-univers',
@@ -111,8 +111,8 @@ const CUSTOM_SERVICES_SUMMARY = [
   },
   {
     id: 'web-digital',
-    number: '05',
-    title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Custom Web & Digital Platforms' },
+    number: 'E05',
+    title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' },
     minUsd: 3000,
     maxUsd: 8000,
     type: 'web-digital',
@@ -128,15 +128,15 @@ const copy = {
     titleHighlight: '',
     marketRef:
       'Une vidéo de marque traditionnelle coûte de 5 000 € à 30 000 € et exige 2 à 6 semaines de tournage.',
-    sectionA: '01. Formules Clés en Main (Commande immédiate)',
+    sectionA: 'D. Formules Clés en Main',
     sectionASub: 'Sprint Pilote et Campagne de Marque avec révisions et délais garantis.',
-    sectionB: '02. Prestations Sur-Mesure (Services à la carte)',
+    sectionB: 'E. Prestations Sur-Mesure',
     sectionBSub: 'Fourchettes budgétaires pour projets complexes et productions d’envergure.',
-    sectionC: '03. Formation & Masterclass Pro',
+    sectionC: 'F. Formation & Masterclass Pro',
     sectionCSub: 'Accès illimité et à vie au programme de formation vidéo IA 4K.',
     comparison:
       "À titre de référence de marché : la production vidéo IA réduit le coût par vidéo de 70 à 90 % par rapport à la production traditionnelle en éliminant les coûts d'équipe, de matériel et de studio — une fourchette documentée dans les études sectorielles sur l'adoption de l'IA en production audiovisuelle.",
-    faqTitle: '04. Questions sur nos Tarifs & Facturation',
+    faqTitle: 'G. Questions Fréquentes',
     faqSub: 'Modalités de règlement, politique de révision et garanties.',
     faqs: [
       {
@@ -166,15 +166,15 @@ const copy = {
     titleHighlight: '',
     marketRef:
       'A professional brand video (crew, shoot, edit) costs between €5,000 and €30,000 at a traditional agency — with a typical timeline of 2 to 6 weeks from brief to delivery.',
-    sectionA: '01. Turnkey Packages (Immediate Booking)',
+    sectionA: 'D. Turnkey Packages',
     sectionASub: 'Pilot Sprint and Brand Campaign with guaranteed delivery & revisions.',
-    sectionB: '02. Custom Services (A la Carte)',
+    sectionB: 'E. Custom Services',
     sectionBSub: 'Budget ranges for complex productions and full campaigns.',
-    sectionC: '03. Pro Training & Masterclass',
+    sectionC: 'F. Pro Training & Masterclass',
     sectionCSub: 'Unlimited lifetime access to the 4K AI video training curriculum.',
     comparison:
       'For market reference: AI video production reduces the cost per video by 70 to 90% compared to traditional production by eliminating crew, equipment and studio costs — a range documented in sector adoption studies.',
-    faqTitle: '04. Pricing & Billing FAQ',
+    faqTitle: 'G. FAQ',
     faqSub: 'Payment terms, included revisions, and delivery guarantees.',
     faqs: [
       {
@@ -206,6 +206,7 @@ export default function TarifsClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mcLoading, setMcLoading] = useState(false);
   const [mcError, setMcError] = useState<string | null>(null);
+  const [showLaunchDiscount, setShowLaunchDiscount] = useState<boolean>(true);
 
   const isFr = lang === 'fr';
   const t = copy[lang];
@@ -313,11 +314,11 @@ export default function TarifsClient() {
             {t.marketRef}
           </p>
 
-          {/* ── SECTION 01 — FORMULES CLÉS EN MAIN ─────────────────────── */}
+          {/* ── SECTION D — FORMULES CLÉS EN MAIN ─────────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
-                SECTION 01
+                SECTION D
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
                 {t.sectionA}
@@ -327,36 +328,83 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            {/* Embedded Launch Offer Callout */}
-            <div className="mb-6 rounded-xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-3.5 sm:p-4 flex items-start gap-3">
-              <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
-              <div className="text-xs text-[#ECE4D3] leading-relaxed">
-                <span className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold block mb-0.5">
-                  {isFr ? 'OFFRE DE LANCEMENT — LIMITÉE (−30%)' : 'LAUNCH OFFER — LIMITED (−30%)'}
-                </span>
-                <p className="text-xs text-[#ECE4D3]">
-                  {isFr ? (
-                    <>
-                      Offre de lancement : −30 % sur nos 2 formules pour les 5 premiers clients.
-                      <br className="hidden sm:inline" />
-                      <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} places restantes</span> — retour au tarif normal ensuite.
-                    </>
-                  ) : (
-                    <>
-                      Launch offer: −30% on both plans for the first 5 clients.
-                      <br className="hidden sm:inline" />
-                      <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} spots remaining</span> — full price applies after.
-                    </>
+            {/* Toggle: Normal Price vs Launch Discount (-30%) */}
+            <div className="mb-5 p-3 sm:p-4 rounded-xl bg-[#0B0A08] border border-white/[0.08] flex items-center justify-between gap-4 flex-wrap">
+              <span className="mono text-xs text-[#ECE4D3] font-bold">
+                {isFr ? 'TARIFICATION APPLIQUÉE' : 'PRICING MODE'}
+              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchDiscount(false)}
+                  className={`mono text-xs transition-colors cursor-pointer ${
+                    !showLaunchDiscount ? 'text-[#CAA243] font-bold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
+                  }`}
+                >
+                  {isFr ? 'Tarif standard' : 'Standard rate'}
+                </button>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={showLaunchDiscount}
+                  onClick={() => setShowLaunchDiscount(!showLaunchDiscount)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer border focus:outline-none ${
+                    showLaunchDiscount
+                      ? 'bg-[#CAA243] border-[#CAA243]'
+                      : 'bg-black/60 border-white/20'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-black transition-transform ${
+                      showLaunchDiscount ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowLaunchDiscount(true)}
+                  className={`mono text-xs transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    showLaunchDiscount ? 'text-[#f0c869] font-bold' : 'text-[#9C9384] hover:text-[#ECE4D3]'
+                  }`}
+                >
+                  <span>{isFr ? 'Offre de lancement (-30%)' : 'Launch offer (-30%)'}</span>
+                  {showLaunchDiscount && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CAA243] animate-pulse" />
                   )}
-                </p>
+                </button>
               </div>
             </div>
+
+            {/* Embedded Launch Offer Callout (only if showLaunchDiscount) */}
+            {showLaunchDiscount && (
+              <div className="mb-6 rounded-xl border border-[#CAA243]/30 bg-[#CAA243]/[0.05] p-3.5 sm:p-4 flex items-start gap-3">
+                <ShieldCheck className="w-4 h-4 text-[#CAA243] flex-shrink-0 mt-0.5" />
+                <div className="text-xs text-[#ECE4D3] leading-relaxed">
+                  <span className="mono text-[10px] uppercase tracking-widest text-[#CAA243] font-bold block mb-0.5">
+                    {isFr ? 'OFFRE DE LANCEMENT — LIMITÉE (−30%)' : 'LAUNCH OFFER — LIMITED (−30%)'}
+                  </span>
+                  <p className="text-xs text-[#ECE4D3]">
+                    {isFr ? (
+                      <>
+                        Offre de lancement : −30 % sur nos 2 formules pour les 5 premiers clients.
+                        <br className="hidden sm:inline" />
+                        <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} places restantes</span> — retour au tarif normal ensuite.
+                      </>
+                    ) : (
+                      <>
+                        Launch offer: −30% on both plans for the first 5 clients.
+                        <br className="hidden sm:inline" />
+                        <span className="text-[#CAA243] font-semibold"> {PLACES_RESTANTES} spots remaining</span> — full price applies after.
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* 2 Packaged Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {PLANS_DATA.map((plan) => {
-                const formattedPrice = formatPrice(plan.minUsd, currency);
-
                 return (
                   <div
                     key={plan.id}
@@ -376,7 +424,7 @@ export default function TarifsClient() {
                           <h3 className="text-base font-bold text-[#ECE4D3]">{plan.name[lang]}</h3>
                         </div>
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          {plan.launchOffer && (
+                          {showLaunchDiscount && plan.launchOffer && (
                             <span className="mono text-[9px] uppercase tracking-wider bg-[#CAA243]/20 text-[#f0c869] px-2 py-0.5 rounded-full border border-[#CAA243]/50 font-bold shadow-[0_0_8px_rgba(202,162,67,0.2)]">
                               {isFr ? 'Offre de lancement -30%' : 'Launch offer -30%'}
                             </span>
@@ -397,9 +445,11 @@ export default function TarifsClient() {
                       <div className="my-3 pb-3 border-b border-white/[0.06]">
                         <div className="flex items-baseline gap-2.5 flex-wrap">
                           <p className="text-2xl sm:text-3xl font-extrabold text-[#ECE4D3] leading-none tracking-tight">
-                            {formattedPrice}
+                            {showLaunchDiscount
+                              ? formatPrice(plan.minUsd, currency)
+                              : formatPrice(plan.originalMinUsd || plan.minUsd, currency)}
                           </p>
-                          {plan.originalMinUsd && (
+                          {showLaunchDiscount && plan.originalMinUsd && (
                             <p className="text-sm sm:text-base text-[#9C9384] line-through font-mono font-medium">
                               {formatPrice(plan.originalMinUsd, currency)}
                             </p>
@@ -466,11 +516,11 @@ export default function TarifsClient() {
             </div>
           </section>
 
-          {/* ── SECTION 02 — PRESTATIONS SUR-MESURE ───────────────────── */}
+          {/* ── SECTION E — PRESTATIONS SUR-MESURE ───────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
-                SECTION 02
+                SECTION E
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
                 {t.sectionB}
@@ -480,18 +530,16 @@ export default function TarifsClient() {
               </p>
             </div>
 
-            {/* Synthetic 5-Row Price Table */}
+            {/* Synthetic 5-Row Table with Prices Hidden */}
             <div className="ovizai-card border border-white/[0.08] bg-[#0B0A08] divide-y divide-white/[0.06] rounded-xl overflow-hidden mb-4">
               {CUSTOM_SERVICES_SUMMARY.map((service) => {
-                const rangeStr = formatRange(service.minUsd, service.maxUsd, currency);
-
                 return (
                   <div
                     key={service.id}
                     className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.02] transition-colors"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2 py-0.5 rounded flex-shrink-0">
+                      <span className="mono text-xs font-bold text-[#CAA243] bg-black/50 border border-[#CAA243]/30 px-2.5 py-1 rounded flex-shrink-0">
                         {service.number}
                       </span>
                       <h3 className="mono text-xs sm:text-sm font-bold text-[#ECE4D3] truncate">
@@ -499,15 +547,12 @@ export default function TarifsClient() {
                       </h3>
                     </div>
 
-                    <div className="flex items-center justify-between sm:justify-end gap-4 flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
-                      <span className="mono text-xs text-[#CAA243] font-semibold">
-                        {rangeStr}
-                      </span>
+                    <div className="flex items-center justify-end flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.04]">
                       <Link
                         href={`/contact?service=${service.id}&type=${service.type}&budget=${service.budget}`}
-                        className="inline-flex items-center gap-1 mono text-[11px] text-[#ECE4D3] hover:text-[#f0c869] font-medium transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#CAA243]/10 hover:bg-[#CAA243]/20 border border-[#CAA243]/30 hover:border-[#CAA243]/60 mono text-xs text-[#CAA243] hover:text-[#f0c869] font-bold transition-all cursor-pointer whitespace-nowrap"
                       >
-                        <span>{isFr ? 'Devis 24h →' : 'Quote 24h →'}</span>
+                        <span>{isFr ? 'Sur devis (24h) →' : 'Custom quote (24h) →'}</span>
                       </Link>
                     </div>
                   </div>
@@ -516,11 +561,11 @@ export default function TarifsClient() {
             </div>
           </section>
 
-          {/* ── SECTION 03 — FORMATION & MASTERCLASS PRO ─────────────── */}
+          {/* ── SECTION F — FORMATION & MASTERCLASS PRO ─────────────── */}
           <section id="masterclass" className="mb-14 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
-                SECTION 03
+                SECTION F
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
                 {t.sectionC}
@@ -543,11 +588,13 @@ export default function TarifsClient() {
 
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-extrabold text-[#CAA243] font-mono">
-                    {formattedMasterclassCurrent}
+                    {showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}
                   </span>
-                  <span className="text-xs text-[#9C9384] line-through font-mono">
-                    {formattedMasterclassOriginal}
-                  </span>
+                  {showLaunchDiscount && (
+                    <span className="text-xs text-[#9C9384] line-through font-mono">
+                      {formattedMasterclassOriginal}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -606,11 +653,11 @@ export default function TarifsClient() {
             <span>{t.comparison}</span>
           </p>
 
-          {/* ── SECTION 04 — QUESTIONS SUR NOS TARIFS & FACTURATION ────── */}
+          {/* ── SECTION G — QUESTIONS FRÉQUENTES ─────────────────────── */}
           <section className="mb-14 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.2em] text-[#CAA243] font-bold block mb-1">
-                SECTION 04
+                SECTION G // FAQ
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#ECE4D3]">
                 {t.faqTitle}
