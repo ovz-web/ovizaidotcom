@@ -35,7 +35,7 @@
 | Élément | Composant / Fichier | Comportement Attendu | Résultat & Statut |
 | :--- | :--- | :--- | :--- |
 | **TopBar Navigation** | `src/components/TopBar.tsx` | Liens de navigation, logo réactif, menu mobile responsive. | ✅ Fonctionnel |
-| **CommandMenu (⌘K)** | `src/components/CommandMenu.tsx` | Ouverture via raccourci clavier `⌘K` / `Ctrl+K` ou bouton. Navigation instantanée. | ✅ Fonctionnel |
+| **CommandMenu (Accueil)** | `src/components/CommandMenu.tsx` | Menu vertical 01→05 central sous le hero (ListMenuCard). Navigation instantanée vers les pages clés. | ✅ Fonctionnel |
 | **Sélecteur de Langue (FR/EN)** | `src/context/LanguageContext.tsx` | Bascule dynamique des textes et dictionnaires avec persistance `localStorage`. | ✅ Fonctionnel |
 | **Sélecteur de Devise (USD/EUR/CAD)** | `src/context/CurrencyContext.tsx` | Conversion dynamique des tarifs (Sprint 1 150$, Campagne 3 200$, Masterclass 490$) avec règles d'arrondi psycologiques. | ✅ Fonctionnel |
 | **Formulaire Newsletter** | `src/components/NewsletterForm.tsx` | Inscription rapide avec validation email, retour visuel et stockage Supabase. | ✅ Fonctionnel |

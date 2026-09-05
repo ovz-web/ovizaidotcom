@@ -22,7 +22,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       <div className="relative flex items-center justify-center my-1 overflow-visible">
         <Image
           src="/logo.png"
-          alt="OVIZai"
+          alt={isFr ? 'OVIZai — Logo Studio Cinéma & Vidéo IA 4K' : 'OVIZai — 4K AI Cinema & Video Studio Logo'}
           width={240}
           height={240}
           className="h-36 sm:h-48 w-auto object-contain mix-blend-screen"

@@ -1,9 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { sendTeamNotification, sendProspectConfirmation, maskEmail } from '@/lib/mail';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
   try {
+    const rateLimit = checkRateLimit(req, 'leads', { limit: 5, windowMs: 60_000 });
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Trop de requêtes. Veuillez patienter avant de réessayer' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateLimit.resetInSeconds),
+          },
+        }
+      );
+    }
+
     const body = await req.json();
     const { email, name, projectType, budgetRange, currency, message, company, website, sourcePlan } = body;
 

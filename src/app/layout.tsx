@@ -41,6 +41,14 @@ export const metadata: Metadata = {
   description: 'Direction artistique IA, films publicitaires narratifs, clips musicaux et pipelines vidéo haute fidélité.',
   keywords: ['AI Video', 'Direction Artistique IA', 'Cinéma Génératif', 'Production Vidéo IA', 'Animation Virtuelle', 'Post-Production 4K', 'OVIZai'],
   authors: [{ name: 'OVIZai' }],
+  alternates: {
+    canonical: 'https://ovizai.com',
+    languages: {
+      fr: 'https://ovizai.com',
+      en: 'https://ovizai.com',
+      'x-default': 'https://ovizai.com',
+    },
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
@@ -80,6 +88,9 @@ export default function RootLayout({
       className={`dark ${inter.variable} ${plexMono.variable} ${syne.variable} ${archivoBlack.variable}`}
     >
       <head>
+        <link rel="alternate" hrefLang="fr" href="https://ovizai.com" />
+        <link rel="alternate" hrefLang="en" href="https://ovizai.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://ovizai.com" />
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
       </head>

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, Clock } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
+import { trackEvent } from '@/lib/analytics';
 
 interface QualifiedContactProps {
   lang: Language;
@@ -113,6 +114,12 @@ export default function QualifiedContact({
       if (!res.ok) {
         throw new Error('Failed to submit');
       }
+
+      trackEvent('cta_submit_brief', {
+        projectType: projectObj ? projectObj.id : selectedProject,
+        budgetRange: selectedBudget,
+        currency: activeCurrency,
+      });
 
       setStatus('success');
       setEmail('');

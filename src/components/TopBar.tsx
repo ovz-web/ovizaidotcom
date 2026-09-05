@@ -142,7 +142,7 @@ export default function TopBar({
             <Link className="flex items-center py-0.5" href="/">
               <Image
                 src="/logo.png"
-                alt="OVIZai"
+                alt={isFr ? 'OVIZai — Studio de production vidéo et direction artistique IA' : 'OVIZai — AI Art Direction & Video Production Studio'}
                 width={100}
                 height={40}
                 className="h-6 sm:h-8 w-auto object-contain mix-blend-screen"

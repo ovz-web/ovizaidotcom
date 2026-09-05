@@ -11,6 +11,7 @@ import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
 import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE, PRICING_PLANS } from '@/lib/pricing';
+import { trackEvent } from '@/lib/analytics';
 
 // Offre de lancement — places restantes modifiables
 const PLACES_RESTANTES: number = 3;
@@ -215,6 +216,7 @@ export default function TarifsClient() {
       : `${masterclassOriginal} $ USD`;
 
   const handleMasterclassCheckout = async () => {
+    trackEvent('cta_enroll_masterclass', { currency, source: 'tarifs_page' });
     setMcLoading(true);
     setMcError(null);
     try {
@@ -313,9 +315,42 @@ export default function TarifsClient() {
           }
         />
 
+        {/* Quick Anchors Navigation Bar */}
+        <nav aria-label={isFr ? 'Sommaire des rubriques tarifaires' : 'Pricing sections navigation'} className="max-w-xl mx-auto px-4 mb-6">
+          <div className="flex items-center justify-between gap-1 sm:gap-2 p-1.5 rounded-xl bg-card border border-border">
+            <a
+              href="#formules"
+              className="flex-1 text-center py-2 px-2 rounded-lg mono text-[11px] sm:text-xs text-muted hover:text-gold-bright hover:bg-white/[0.03] transition-all font-medium"
+            >
+              {isFr ? 'Formules' : 'Packages'}
+            </a>
+            <span className="text-border text-xs">•</span>
+            <a
+              href="#sur-mesure"
+              className="flex-1 text-center py-2 px-2 rounded-lg mono text-[11px] sm:text-xs text-muted hover:text-gold-bright hover:bg-white/[0.03] transition-all font-medium"
+            >
+              {isFr ? 'Sur-mesure' : 'Custom'}
+            </a>
+            <span className="text-border text-xs">•</span>
+            <a
+              href="#masterclass"
+              className="flex-1 text-center py-2 px-2 rounded-lg mono text-[11px] sm:text-xs text-muted hover:text-gold-bright hover:bg-white/[0.03] transition-all font-medium"
+            >
+              {isFr ? 'Formation' : 'Training'}
+            </a>
+            <span className="text-border text-xs">•</span>
+            <a
+              href="#faq"
+              className="flex-1 text-center py-2 px-2 rounded-lg mono text-[11px] sm:text-xs text-muted hover:text-gold-bright hover:bg-white/[0.03] transition-all font-medium"
+            >
+              FAQ
+            </a>
+          </div>
+        </nav>
+
         <div className="max-w-xl mx-auto px-4">
           {/* ── FORMULES CLÉS EN MAIN ─────────────────────── */}
-          <section className="mb-12 scroll-mt-24">
+          <section id="formules" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'FORMULES CLÉS EN MAIN' : 'TURNKEY PACKAGES'}
@@ -440,14 +475,17 @@ export default function TarifsClient() {
 
                       {/* Price */}
                       <div className="my-3 pb-3 border-b border-border">
-                        <div className="flex items-baseline gap-2.5 flex-wrap">
+                        <div className="flex items-baseline gap-2 flex-wrap">
                           <p className="text-2xl sm:text-3xl font-semibold font-mono text-fg leading-none tracking-tight">
                             {showLaunchDiscount
                               ? formatPrice(plan.minUsd, currency)
                               : formatPrice(plan.originalMinUsd || plan.minUsd, currency)}
                           </p>
+                          <span className="mono text-[10px] sm:text-xs text-muted font-bold uppercase tracking-wider">
+                            {isFr ? 'HT' : 'Excl. VAT'}
+                          </span>
                           {showLaunchDiscount && plan.originalMinUsd && (
-                            <p className="text-sm sm:text-base text-muted line-through font-mono font-medium">
+                            <p className="text-sm sm:text-base text-muted line-through font-mono font-medium ml-1">
                               {formatPrice(plan.originalMinUsd, currency)}
                             </p>
                           )}
@@ -455,8 +493,17 @@ export default function TarifsClient() {
                         <p className="text-[11px] text-muted mt-1.5 font-mono">
                           {plan.period[lang]}
                         </p>
+                        {/* Guarantee / Refund policy short notice */}
+                        <div className="mt-2 pt-2 border-t border-border/50 flex items-start gap-1.5 text-[10.5px] text-muted font-mono">
+                          <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-0.5" />
+                          <span>
+                            {plan.id === 'sprint'
+                              ? (isFr ? 'Garantie prévisualisation : validation du cut avant tout prélèvement' : 'Preview guarantee: cut approved before final charge')
+                              : (isFr ? 'Garantie révisions : 3 rounds inclus jusqu’au master 4K validé' : 'Revision guarantee: 3 rounds included until approved 4K master')}
+                          </span>
+                        </div>
                         {plan.id === 'premium' && (
-                          <p className="text-[10px] text-gold mt-1 font-mono">
+                          <p className="text-[10px] text-gold mt-1.5 font-mono">
                             {isFr
                               ? 'Pack 3 films : tarif optimisé avec direction artistique dédiée'
                               : '3-film package: bundled rate with dedicated art direction'}
@@ -500,6 +547,12 @@ export default function TarifsClient() {
                     {/* Single CTA Link per Card */}
                     <Link
                       href={`/contact?service=${plan.id}&type=pub-brand&budget=${plan.budgetTierId}`}
+                      onClick={() => {
+                        trackEvent(plan.id === 'sprint' ? 'cta_reserve_sprint' : 'cta_reserve_campaign', {
+                          plan: plan.id,
+                          currency,
+                        });
+                      }}
                       className={`w-full min-h-[48px] flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl mono text-xs uppercase tracking-wider font-bold transition-all cursor-pointer ${
                         plan.primary
                           ? 'bg-gold hover:bg-gold-bright text-black shadow-gold hover:scale-[1.01]'
@@ -519,7 +572,7 @@ export default function TarifsClient() {
           </section>
 
           {/* ── PRESTATIONS SUR-MESURE ───────────────────── */}
-          <section className="mb-12 scroll-mt-24">
+          <section id="sur-mesure" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
                 {isFr ? 'PRESTATIONS SUR-MESURE' : 'CUSTOM SERVICES'}
@@ -588,12 +641,15 @@ export default function TarifsClient() {
                   </h3>
                 </div>
 
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-baseline gap-2 flex-wrap">
                   <span className="text-2xl sm:text-3xl font-semibold text-gold font-mono">
                     {showLaunchDiscount ? formattedMasterclassCurrent : formattedMasterclassOriginal}
                   </span>
+                  <span className="mono text-[10px] sm:text-xs text-muted font-bold uppercase tracking-wider">
+                    {isFr ? 'TTC' : 'Incl. VAT'}
+                  </span>
                   {showLaunchDiscount && (
-                    <span className="text-xs text-muted line-through font-mono">
+                    <span className="text-xs text-muted line-through font-mono ml-1">
                       {formattedMasterclassOriginal}
                     </span>
                   )}
@@ -601,6 +657,16 @@ export default function TarifsClient() {
                     {isFr ? 'paiement unique' : 'one-time'}
                   </span>
                 </div>
+              </div>
+
+              {/* Guarantee / Refund policy short notice */}
+              <div className="mt-2.5 pt-2 border-t border-border/50 flex items-start gap-1.5 text-[10.5px] text-muted font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-0.5" />
+                <span>
+                  {isFr
+                    ? 'Accès immédiat garanti à vie — contenu numérique sans rétractation (CGV art. 4)'
+                    : 'Lifetime instant access guaranteed — digital content with immediate activation (Terms art. 4)'}
+                </span>
               </div>
 
               <div className="py-3 space-y-2 text-xs text-muted">
@@ -674,9 +740,59 @@ export default function TarifsClient() {
                 <p className="text-xs text-red-400 font-mono mt-3 text-center">{mcError}</p>
               )}
             </div>
+
+            {/* Category FAQ: Formation & Masterclass relocated under #masterclass */}
+            {t.faqCategories[2] && (
+              <div className="mt-4 ovizai-card border border-border bg-card overflow-hidden">
+                <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-border flex items-center justify-between">
+                  <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold">
+                    {t.faqCategories[2].category}
+                  </span>
+                  <span className="mono text-[10px] text-muted">
+                    {t.faqCategories[2].items.length} {isFr ? 'questions' : 'questions'}
+                  </span>
+                </div>
+
+                <div className="divide-y divide-border">
+                  {t.faqCategories[2].items.map((faq, itemIdx) => {
+                    const faqKey = `mc-${itemIdx}`;
+                    const isOpen = openFaq === faqKey;
+                    return (
+                      <div key={faq.q}>
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          aria-label={
+                            isOpen
+                              ? (isFr ? `Fermer la réponse : ${faq.q}` : `Close answer: ${faq.q}`)
+                              : (isFr ? `Ouvrir la réponse : ${faq.q}` : `Open answer: ${faq.q}`)
+                          }
+                          onClick={() => setOpenFaq(isOpen ? null : faqKey)}
+                          className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
+                        >
+                          <span className="text-xs text-fg font-medium leading-snug">{faq.q}</span>
+                          <HelpCircle
+                            className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                              isOpen ? 'text-gold' : 'text-muted'
+                            }`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 sm:px-5 pb-4 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
+                            {faq.a.split('\n').map((line, lIdx) => (
+                              <p key={lIdx}>{line}</p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </section>
 
-          {/* ── QUESTIONS FRÉQUENTES ─────────── */}
+          {/* ── QUESTIONS FRÉQUENTES (Facturation & Règlements + Production/Délais) ─────────── */}
           <section id="faq" className="mb-12 scroll-mt-24">
             <div className="mb-4">
               <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
@@ -691,7 +807,7 @@ export default function TarifsClient() {
             </div>
 
             <div className="space-y-4">
-              {t.faqCategories.map((cat, catIdx) => (
+              {t.faqCategories.slice(0, 2).map((cat, catIdx) => (
                 <div key={cat.category} className="ovizai-card border border-border bg-card overflow-hidden">
                   <div className="px-4 sm:px-5 py-2.5 bg-white/[0.02] border-b border-border flex items-center justify-between">
                     <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold">
@@ -710,6 +826,12 @@ export default function TarifsClient() {
                         <div key={faq.q}>
                           <button
                             type="button"
+                            aria-expanded={isOpen}
+                            aria-label={
+                              isOpen
+                                ? (isFr ? `Fermer la réponse : ${faq.q}` : `Close answer: ${faq.q}`)
+                                : (isFr ? `Ouvrir la réponse : ${faq.q}` : `Open answer: ${faq.q}`)
+                            }
                             onClick={() => setOpenFaq(isOpen ? null : faqKey)}
                             className="w-full min-h-[48px] flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer"
                           >
@@ -740,6 +862,7 @@ export default function TarifsClient() {
           <div className="text-center pt-2">
             <Link
               href="/contact"
+              onClick={() => trackEvent('cta_request_custom_quote', { source: 'tarifs_bottom' })}
               className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all shadow-gold hover:scale-[1.01] cursor-pointer min-h-[48px]"
             >
               <span>{t.ctaLabel}</span>

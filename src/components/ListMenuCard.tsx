@@ -32,14 +32,14 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-3 min-w-0">
                 {IconComp && (
-                  <IconComp className="w-4 h-4 text-[#CAA243] group-hover:text-[#f0c869] flex-shrink-0 transition-colors" />
+                  <IconComp className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
                 )}
                 <div className="flex flex-col min-w-0">
-                  <span className="mono text-xs sm:text-[13px] font-semibold text-[#ECE4D3] group-hover:text-[#f0c869] transition-colors truncate">
+                  <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                     {item.title}
                   </span>
                   {item.subtitle && (
-                    <span className="text-[11px] sm:text-xs text-[#8c8375] mt-0.5 truncate">
+                    <span className="text-[11px] sm:text-xs text-muted mt-0.5 truncate">
                       {item.subtitle}
                     </span>
                   )}
@@ -47,7 +47,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
               </div>
 
               {item.trailing !== undefined && (
-                <span className="mono text-[10.5px] text-[#CAA243] group-hover:text-[#f0c869] hidden sm:inline transition-colors font-medium flex-shrink-0">
+                <span className="mono text-[10.5px] text-gold group-hover:text-gold-bright hidden sm:inline transition-colors font-medium flex-shrink-0">
                   {item.trailing}
                 </span>
               )}
@@ -78,7 +78,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
                 </button>
 
                 {item.expanded && item.expandedContent && (
-                  <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-white/[0.06] bg-black/20 text-xs text-[#8c8375]">
+                  <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-white/[0.06] bg-black/20 text-xs text-muted">
                     {item.expandedContent}
                   </div>
                 )}

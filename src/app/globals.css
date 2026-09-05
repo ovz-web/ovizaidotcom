@@ -51,26 +51,28 @@ html, body {
   color: var(--gold-bright);
 }
 
-/* 100% Completely Invisible Scrollbar Across All Browsers & Containers (Scroll remains 100% functional) */
-html, body, *, *::before, *::after {
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE / Edge */
+/* Thin, discreet themed scrollbar */
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(236, 228, 211, 0.2) rgba(15, 15, 15, 0.5);
 }
 
 ::-webkit-scrollbar {
-  width: 0px !important;
-  height: 0px !important;
-  display: none !important;
-  background: transparent !important;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent !important;
+  background: rgba(15, 15, 15, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: transparent !important;
-  border: none !important;
+  background: rgba(236, 228, 211, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(202, 162, 67, 0.4);
 }
 
 .mono {

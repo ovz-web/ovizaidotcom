@@ -1,9 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { MASTERCLASS_PRICE, PricingCurrency } from '@/lib/pricing';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
   try {
+    const rateLimit = checkRateLimit(req, 'checkout', { limit: 5, windowMs: 60_000 });
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Trop de requêtes. Veuillez patienter avant de réessayer' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateLimit.resetInSeconds),
+          },
+        }
+      );
+    }
+
     const apiKey = process.env.STRIPE_SECRET_KEY;
     if (!apiKey) {
       console.error('[STRIPE CHECKOUT] Missing STRIPE_SECRET_KEY environment variable.');
