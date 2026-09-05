@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Check, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCurrency } from '@/context/CurrencyContext';
-import { MASTERCLASS_PRICE } from '@/lib/pricing';
+import { MASTERCLASS_PRICE, MASTERCLASS_ORIGINAL_PRICE } from '@/lib/pricing';
 import { trackEvent } from '@/lib/analytics';
 
 const COURSE_JSON_LD = {
@@ -36,64 +36,59 @@ const COURSE_JSON_LD = {
     price: MASTERCLASS_PRICE.EUR,
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
-    url: 'https://ovizai.com/tarifs#masterclass',
+    url: 'https://ovizai.com/formation',
   },
 };
-
-function FormationToolsetRow({ lang }: { lang: 'fr' | 'en' }) {
-  const isFr = lang === 'fr';
-  const tools = isFr
-    ? [
-        'Génération Visuelle 8K',
-        'Animation & Caméra 3D',
-        'Simulation Physique & Fluides',
-        'Upscaling Neuronal 4K/8K',
-        'Étalonnage & Mastering ACES',
-        'Sound Design & Voix IA',
-      ]
-    : [
-        '8K Visual Generation',
-        '3D Camera & Motion',
-        'Physics & Fluid Simulation',
-        'Neural 4K/8K Upscaling',
-        'ACES Grading & Mastering',
-        'Spatial Audio & AI Voice',
-      ];
-
-  return (
-    <div className="max-w-xl mx-auto mb-8 px-4">
-      <div className="border border-border bg-card/90 rounded-xl p-4 sm:p-5">
-        <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
-          {isFr ? 'STACK DU PROGRAMME' : 'CURRICULUM STACK'}
-        </span>
-        <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg mb-3">
-          {isFr ? 'Moteurs Génératifs & Pipeline Étudiés' : 'Generative Engines & Pipeline Covered'}
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {tools.map((tool) => (
-            <span
-              key={tool}
-              className="mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-black/60 border border-border text-fg"
-            >
-              {tool}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function FormationPage() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [showPromo, setShowPromo] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
   };
 
   const isFr = lang === 'fr';
+
+  const promoPrice = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
+  const standardPrice = MASTERCLASS_ORIGINAL_PRICE[currency] || MASTERCLASS_ORIGINAL_PRICE.USD;
+  const displayedPrice = showPromo ? promoPrice : standardPrice;
+
+  const formattedDisplayedPrice = currency === 'EUR' ? `${displayedPrice} €` : `${displayedPrice} $ ${currency}`;
+  const formattedOriginalPrice = currency === 'EUR' ? `${standardPrice} €` : `${standardPrice} $ ${currency}`;
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    setError(null);
+    trackEvent('checkout_started', {
+      plan: 'masterclass',
+      currency,
+      price: displayedPrice,
+      promoApplied: showPromo,
+    });
+
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currency }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError(data.error || (isFr ? 'Une erreur est survenue lors de l’initialisation' : 'An error occurred during checkout'));
+      }
+    } catch {
+      setError(isFr ? 'Erreur de connexion au serveur de paiement' : 'Connection error to payment server');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
@@ -113,7 +108,7 @@ export default function FormationPage() {
         className="flex-grow relative z-10 pb-16"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
-        {/* Standardized Unified Page Header */}
+        {/* Page Header */}
         <PageHeader
           lang={lang}
           eyebrow={isFr ? '02 // FORMATION VIDÉO IA' : '02 // AI VIDEO COURSE'}
@@ -135,78 +130,145 @@ export default function FormationPage() {
           }
         />
 
-        {/* 1. 5 Masterclass Modules */}
+        {/* 1. 5 Expandable Modules Accordion */}
         <MasterclassSection lang={lang} />
 
-        {/* 2. Masterclass Toolset Badges */}
-        <FormationToolsetRow lang={lang} />
-
-        {/* 3. Short Hook Card redirecting to /tarifs#masterclass (no price, no redundant bullet list) */}
+        {/* 2. Direct Enrollment Card (Autonomous, no redirect to /tarifs) */}
         <div id="inscription" className="max-w-xl mx-auto px-4 mb-8">
           <div className="ovizai-card border border-border-strong bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-            <div className="pb-3 border-b border-border flex items-center justify-between gap-2">
-              <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.25em]">
-                {isFr ? 'ACCÈS AU PROGRAMME' : 'PROGRAM ACCESS'}
-              </span>
-              <span className="mono text-[10px] text-muted flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-gold" />
-                {isFr ? 'Accès à vie' : 'Lifetime access'}
-              </span>
+            
+            {/* Header with Promo Switch Toggle */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border">
+              <div>
+                <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.25em] block mb-0.5">
+                  {isFr ? 'INSCRIPTION IMMÉDIATE' : 'INSTANT ENROLLMENT'}
+                </span>
+                <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg">
+                  {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
+                </h3>
+              </div>
+
+              {/* Promo comparison toggle button */}
+              <div className="inline-flex items-center gap-1.5 p-1 rounded-lg bg-black/50 border border-white/[0.08] self-start sm:self-auto">
+                <button
+                  type="button"
+                  onClick={() => setShowPromo(false)}
+                  className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all ${
+                    !showPromo ? 'bg-white/[0.08] text-fg font-bold' : 'text-muted hover:text-fg'
+                  }`}
+                >
+                  {isFr ? 'Standard' : 'Regular'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowPromo(true)}
+                  className={`px-2.5 py-1 rounded text-[10.5px] font-mono transition-all flex items-center gap-1 ${
+                    showPromo ? 'bg-gold/15 text-gold-bright border border-gold/30 font-bold' : 'text-muted hover:text-gold'
+                  }`}
+                >
+                  <Sparkles className="w-3 h-3 text-gold" />
+                  <span>{isFr ? 'Offre −30%' : '−30% Offer'}</span>
+                </button>
+              </div>
             </div>
 
-            <div className="py-4 space-y-1.5 text-xs text-muted leading-relaxed font-sans">
-              <p className="text-sm font-semibold text-fg mono">
-                {isFr ? 'Rejoignez la Masterclass Vidéo IA 4K' : 'Join the 4K AI Video Masterclass'}
-              </p>
-              <p>
+            {/* Price block */}
+            <div className="py-4 border-b border-border/60">
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="text-3xl sm:text-4xl font-semibold text-gold font-mono tracking-tight">
+                  {formattedDisplayedPrice}
+                </span>
+                <span className="mono text-[10px] sm:text-xs text-muted font-bold uppercase tracking-wider">
+                  {isFr ? 'TTC' : 'Incl. VAT'}
+                </span>
+                {showPromo && (
+                  <span className="text-sm text-muted line-through font-mono ml-1">
+                    {formattedOriginalPrice}
+                  </span>
+                )}
+                <span className="mono text-xs text-muted ml-auto">
+                  {isFr ? 'Paiement unique sans abonnement' : 'One-time fee, zero subscription'}
+                </span>
+              </div>
+              {showPromo && (
+                <p className="text-[11px] font-mono text-gold-bright mt-1.5 flex items-center gap-1">
+                  <span>✓</span>
+                  <span>
+                    {isFr
+                      ? 'Tarif de lancement appliqué : 30% de réduction immédiate'
+                      : 'Launch rate applied: 30% immediate discount'}
+                  </span>
+                </p>
+              )}
+            </div>
+
+            {/* What is included */}
+            <div className="py-3.5 space-y-2 text-xs text-muted font-sans">
+              {[
+                isFr ? '5 modules vidéo complets en accès instantané illimité' : '5 complete video modules with instant unlimited lifetime access',
+                isFr ? 'Bibles de prompts certifiés cinéma & presets d’éclairage' : 'Certified cinema prompt bibles & studio lighting presets',
+                isFr ? 'Profils d’upscaling Topaz Video AI & templates DaVinci Resolve' : 'Topaz Video AI upscaling profiles & DaVinci Resolve templates',
+                isFr ? 'Toutes les futures mises à jour des nouveaux moteurs IA incluses' : 'All future updates for emerging generative video engines included',
+              ].map((feat, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-fg/90">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Legal guarantee note */}
+            <div className="mt-1 pt-2.5 border-t border-border/40 flex items-start gap-1.5 text-[10.5px] text-muted font-mono">
+              <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-0.5" />
+              <span>
                 {isFr
-                  ? 'Accédez immédiatement aux 5 modules vidéo, aux bibles de prompts et aux méthodes de post-production 4K'
-                  : 'Get instant access to all 5 video modules, prompt bibles, and 4K post-production workflows'}
-              </p>
-              <p className="text-[11px] text-muted font-mono pt-1">
-                {isFr ? 'Règlement sécurisé Stripe en paiement unique sans abonnement' : 'Secure Stripe checkout with one-time payment and zero subscription'}
-              </p>
-            </div>
-
-            <div className="pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-              <span className="mono text-[10.5px] text-muted">
-                {isFr ? 'Tarif et inscription sur la grille officielle' : 'Pricing and enrollment on official grid'}
+                  ? 'Accès immédiat garanti à vie — contenu numérique avec activation instantanée'
+                  : 'Guaranteed lifetime access — instant digital delivery upon confirmation'}
               </span>
-
-              <Link
-                href="/tarifs#masterclass"
-                onClick={() => trackEvent('cta_enroll_masterclass', { source: 'formation_page' })}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
-              >
-                <span>{isFr ? 'Consulter le tarif & S’inscrire →' : 'View pricing & Enroll →'}</span>
-                <ArrowUpRight className="w-4 h-4 text-black" />
-              </Link>
             </div>
+
+            {/* Stripe Action Button */}
+            <div className="pt-4 mt-2 border-t border-border">
+              <button
+                type="button"
+                disabled={loading}
+                onClick={handleCheckout}
+                className="w-full inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold px-6 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 text-black animate-spin" />
+                    <span>{isFr ? 'Redirection vers Stripe…' : 'Redirecting to Stripe…'}</span>
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      {isFr
+                        ? `Accéder à la Masterclass (${formattedDisplayedPrice}) →`
+                        : `Enroll in Masterclass (${formattedDisplayedPrice}) →`}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-black" />
+                  </>
+                )}
+              </button>
+            </div>
+
+            {error && <p className="text-xs text-red-400 font-mono mt-3 text-center">{error}</p>}
           </div>
         </div>
 
-        {/* 4. Referral to central site-wide FAQ on /tarifs#faq */}
-        <div className="max-w-xl mx-auto px-4 mb-8 text-center">
+        {/* Contact fallback */}
+        <div className="max-w-xl mx-auto px-4 mb-4 text-center">
           <p className="text-xs text-muted">
             {isFr
-              ? 'Une question sur le programme ou les modalités d’accès ?'
-              : 'Have a question about the curriculum or enrollment?'}
+              ? 'Une question sur le programme ou les modalités de formation ?'
+              : 'Have a question about the curriculum or training details?'}
           </p>
           <Link
-            href="/tarifs#masterclass"
-            className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1 font-semibold"
+            href="/contact"
+            className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1.5"
           >
-            <span>{isFr ? 'Consulter la FAQ de la formation →' : 'View training FAQ →'}</span>
-          </Link>
-        </div>
-
-        {/* 5. Final Outgoing Link to Pricing */}
-        <div className="max-w-xl mx-auto px-4 mt-8 mb-4 text-center">
-          <Link
-            href="/tarifs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/60 border border-border-strong hover:border-gold/50 text-fg hover:text-gold-bright font-bold px-8 py-3.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
-          >
-            <span>{isFr ? 'Consulter nos formules de production vidéo →' : 'View video production packages →'}</span>
+            <span>{isFr ? 'Poser une question à l’équipe →' : 'Ask our studio team →'}</span>
           </Link>
         </div>
       </main>

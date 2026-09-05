@@ -1,185 +1,234 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { Cpu, Zap, Layers, Sliders } from 'lucide-react';
+import React, { useState } from 'react';
+import { Palette, Film, SlidersHorizontal, Layers, Check } from 'lucide-react';
 import { Language } from '@/types';
+import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 
 interface AIPipelineProps {
   lang: Language;
-  customEyebrow?: string;
-  customTitle?: string;
-  showConversionCard?: boolean;
-  hideHeader?: boolean;
-  stepPrefix?: 'numeric' | 'letterC';
-  hideTechBadge?: boolean;
 }
 
-const PIPELINE_STEPS = [
+interface PipelineStep {
+  id: string;
+  num: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: { fr: string; en: string };
+  subtitle: { fr: string; en: string };
+  specs: { fr: string[]; en: string[] };
+  tools: string[];
+  deliverables: { fr: string[]; en: string[] };
+}
+
+const PIPELINE_STEPS: PipelineStep[] = [
   {
-    id: 'step-design',
+    id: 'step-01',
+    num: '01',
+    icon: Palette,
     title: {
-      fr: '01 // Direction Artistique & Personnages',
-      en: '01 // Art Direction & Character Design',
+      fr: 'Conception Visuelle & Storyboard 8K',
+      en: 'Visual Conception & 8K Storyboard',
     },
-    benefit: {
-      fr: 'Création de l’univers visuel et de personnages uniques\nCohérence garantie d’un plan à l’autre',
-      en: 'Creation of custom visual worlds and characters\nConsistent appearance from shot to shot',
+    subtitle: {
+      fr: 'Direction artistique, cohérence des personnages & moodboards',
+      en: 'Art direction, character consistency & moodboards',
     },
-    techBadge: {
-      fr: 'Génération Visuelle 8K',
-      en: '8K Visual Generation',
+    specs: {
+      fr: [
+        'Création de la bible visuelle et fixation des codes cinématographiques de votre marque',
+        'Génération d’images clés 8K photoréalistes avec contrôle optique (anamorphique, 35mm)',
+        'Verrouillage des visages, silhouettes et décors pour une continuité sans rupture',
+      ],
+      en: [
+        'Creation of the visual bible and definition of brand cinematic language',
+        'Photorealistic 8K keyframe generation with cine lens control (anamorphic, 35mm)',
+        'Character, setting and lighting consistency locking across all planned sequences',
+      ],
     },
-    icon: Cpu,
+    tools: ['Midjourney v6.1', 'Flux.1 Dev', 'Magnific AI'],
+    deliverables: {
+      fr: ['Bible de style & moodboard validé', 'Storyboard complet séquence par séquence'],
+      en: ['Approved visual style bible & moodboard', 'Complete shot-by-shot sequence storyboard'],
+    },
   },
   {
-    id: 'step-motion',
+    id: 'step-02',
+    num: '02',
+    icon: Film,
     title: {
-      fr: '02 // Animation & Mouvements',
-      en: '02 // Animation & Natural Motion',
+      fr: 'Génération Cinématographique & Mouvements',
+      en: 'Cinematic Generation & Natural Motion',
     },
-    benefit: {
-      fr: 'Animation réaliste des expressions et des fluides\nÉclairages dynamiques à haute cadence',
-      en: 'Realistic animation of expressions and fluids\nDynamic lighting with natural motion',
+    subtitle: {
+      fr: 'Animation physique, caméra virtuelle 3D & cohérence temporelle',
+      en: 'Physics animation, 3D virtual camera & temporal consistency',
     },
-    techBadge: {
-      fr: 'Simulation Physique & Mouvements',
-      en: 'Physics & Motion Simulation',
+    specs: {
+      fr: [
+        'Mise en mouvement des séquences via les moteurs génératifs de pointe',
+        'Trajectoires de caméras immersives : travellings, panoramiques et plans séquences fluides',
+        'Gestion de la dynamique physique des fluides, de la lumière et des micro-expressions',
+      ],
+      en: [
+        'Sequence animation using state-of-the-art generative video neural engines',
+        'Immersive 3D camera paths: dolly shots, tracking pans, and seamless continuous takes',
+        'Accurate fluid dynamics, volumetric lighting, and organic physical motion',
+      ],
     },
-    icon: Zap,
+    tools: ['Runway Gen-3 Alpha', 'Kling AI 1.5', 'Luma Dream Machine'],
+    deliverables: {
+      fr: ['Rushes cinématiques bruts haute fidélité', 'Prévisualisation de montage rythmée'],
+      en: ['High-fidelity raw cinematic rushes', 'Paced preview rough-cut for review'],
+    },
   },
   {
-    id: 'step-camera',
+    id: 'step-03',
+    num: '03',
+    icon: SlidersHorizontal,
     title: {
-      fr: '03 // Caméra & Mise en scène',
-      en: '03 // Camera & Scene Direction',
+      fr: 'Étalonnage ACES & Sound Design Spatialisé',
+      en: 'ACES Color Grading & Spatial Sound Design',
     },
-    benefit: {
-      fr: 'Mouvements de caméra cinématographiques\nPanoramiques et travellings immersifs',
-      en: 'Cinematic camera motion and direction\nImmersive panning and tracking shots',
+    subtitle: {
+      fr: 'Conformation couleur cinéma, émulation 35mm & audio immersif',
+      en: 'Cinema color conformation, 35mm film emulation & spatial audio',
     },
-    techBadge: {
-      fr: 'Caméra Virtuelle 3D',
-      en: '3D Virtual Camera',
+    specs: {
+      fr: [
+        'Pipeline colorimétrique ACES garantissant un rendu cinéma organique et luxueux',
+        'Application de grain argentique 35mm pour briser l’aspect synthétique du numérique',
+        'Création d’un sound design spatialisé complet, bruitages cinéma et voix IA calibrées',
+      ],
+      en: [
+        'ACES color pipeline delivering rich, cinematic, high-end organic textures',
+        '35mm analog film grain emulation to eliminate synthetic digital sheen',
+        'Spatial sound design, bespoke foley, cinematic impacts, and studio-grade voiceover',
+      ],
     },
+    tools: ['DaVinci Resolve Studio', 'ElevenLabs Voice', 'Banque SFX OVIZai'],
+    deliverables: {
+      fr: ['Étalonnage cinéma finalisé', 'Mixage audio stéréo & spatialisé master'],
+      en: ['Finalized cinema color grading', 'Master stereo & spatial sound mix'],
+    },
+  },
+  {
+    id: 'step-04',
+    num: '04',
     icon: Layers,
-  },
-  {
-    id: 'step-grading',
     title: {
-      fr: '04 // Étalonnage & Master 4K',
-      en: '04 // Color Grading & 4K Master',
+      fr: 'Upscaling Neuronal & Livraison Master 4K',
+      en: 'Neural Upscaling & 4K Master Delivery',
     },
-    benefit: {
-      fr: 'Étalonnage cinéma et émulation du grain 35mm\nSound design spatialisé et master final 4K',
-      en: 'Cinema color grading and 35mm film emulation\nSpatial audio design and 4K final master',
+    subtitle: {
+      fr: 'Nettoyage des artefacts, suréchantillonnage & formats finaux',
+      en: 'Artifact elimination, neural upscaling & broadcast formats',
     },
-    techBadge: {
-      fr: 'Étalonnage & Mastering 4K',
-      en: 'Color Grading & 4K Master',
+    specs: {
+      fr: [
+        'Nettoyage chirurgical des micro-artefacts d’IA par interpolation temporelle',
+        'Suréchantillonnage neuronal 4K ultra-net sans altération des textures',
+        'Exportation aux normes cinéma et broadcast : ProRes 422 HQ, MP4 web optimisé et formats verticaux (9:16)',
+      ],
+      en: [
+        'Temporal interpolation cleanup removing all residual generative artifacts',
+        'Neural 4K upscaling preserving micro-contrast and fine organic textures',
+        'Broadcast-ready exports: Apple ProRes 422 HQ, high-bitrate MP4, and 9:16 vertical cuts',
+      ],
     },
-    icon: Sliders,
+    tools: ['Topaz Video AI v5', 'ProRes 422 HQ', 'DCP Cinéma'],
+    deliverables: {
+      fr: ['Master 4K sans compression', 'Déclinaisons 16:9 & 9:16 prêtes à diffuser'],
+      en: ['Uncompressed 4K master file', 'Multi-format 16:9 & 9:16 ready-to-air exports'],
+    },
   },
 ];
 
-export default function AIPipeline({
-  lang,
-  customEyebrow,
-  customTitle,
-  showConversionCard = true,
-  hideHeader = false,
-  hideTechBadge = false,
-}: AIPipelineProps) {
+export default function AIPipeline({ lang }: AIPipelineProps) {
   const isFr = lang === 'fr';
+  const [openStep, setOpenStep] = useState<string | null>(null);
 
-  return (
-    <section className="max-w-xl mx-auto mb-6 px-4">
-      {/* Section Title (rendered only if hideHeader is false) */}
-      {!hideHeader && (
-        <div className="mb-6 text-center">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
-            {customEyebrow || (isFr ? 'PIPELINE DE PRODUCTION' : 'PRODUCTION PIPELINE')}
-          </p>
-          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg mb-1.5 leading-snug">
-            {customTitle || (isFr ? 'Le Processus de votre Idée au Rendu Final' : 'The Process from Idea to Final Master')}
-          </h2>
-          <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
-            {isFr
-              ? '4 étapes combinant les moteurs génératifs et la post-production cinéma'
-              : '4 steps combining generative engines and cinema post-production'}
-          </p>
-        </div>
-      )}
+  const toggleStep = (id: string) => {
+    setOpenStep((prev) => (prev === id ? null : id));
+  };
 
-      {/* 4 Numbered Steps */}
-      <div className="space-y-3">
-        {PIPELINE_STEPS.map((step) => {
-          const IconComp = step.icon;
+  const items: ListMenuItem[] = PIPELINE_STEPS.map((step) => {
+    const isOpen = openStep === step.id;
 
-          return (
-            <div
-              key={step.id}
-              className="border border-border bg-card hover:border-gold/50 rounded-xl p-3.5 sm:p-5 transition-all duration-300 group shadow-lg"
-            >
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-lg bg-black/60 border border-white/[0.1] text-gold group-hover:border-gold/50 transition-colors mt-0.5">
-                    <IconComp className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors leading-snug">
-                      {step.title[lang]}
-                    </h3>
-                  </div>
+    return {
+      id: step.id,
+      icon: step.icon,
+      title: `${step.num} // ${isFr ? step.title.fr : step.title.en}`,
+      subtitle: isFr ? step.subtitle.fr : step.subtitle.en,
+      trailing: isOpen ? (isFr ? 'Fermer ↑' : 'Close ↑') : (isFr ? 'Détails ↓' : 'Details ↓'),
+      onClick: () => toggleStep(step.id),
+      expanded: isOpen,
+      expandedContent: (
+        <div className="space-y-4 pt-1">
+          <div>
+            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
+              {isFr ? 'Spécifications Techniques' : 'Technical Specifications'}
+            </h4>
+            <div className="space-y-1.5 text-xs text-fg/90 leading-relaxed">
+              {(isFr ? step.specs.fr : step.specs.en).map((line, idx) => (
+                <div key={idx} className="flex items-start gap-2">
+                  <span className="text-gold font-mono text-[11px] mt-0.5">•</span>
+                  <span>{line}</span>
                 </div>
-
-                {!hideTechBadge && (
-                  <span className="mono text-[10px] px-2 py-0.5 rounded bg-gold/10 border border-gold/25 text-gold font-bold whitespace-nowrap">
-                    {step.techBadge[lang]}
-                  </span>
-                )}
-              </div>
-
-              <div className="text-xs text-muted leading-relaxed pl-10 sm:pl-11 space-y-0.5">
-                {step.benefit[lang].split('\n').map((line, i) => (
-                  <p key={i}>{line}</p>
-                ))}
-              </div>
+              ))}
             </div>
-          );
-        })}
-      </div>
+          </div>
 
-      {/* Bottom Conversion Card */}
-      {showConversionCard && (
-        <div className="ovizai-card border border-border-gold bg-gold/[0.03] p-4 sm:p-5 rounded-xl sm:rounded-2xl text-center mt-8">
-          <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
-            {isFr ? 'Processus clair • Délais garantis' : 'Clear process • Guaranteed delivery'}
-          </span>
-          <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg mb-2">
-            {isFr ? 'Prêt à donner vie à votre projet visuel ?' : 'Ready to bring your visual project to life?'}
-          </h3>
-          <p className="text-xs text-muted max-w-md mx-auto mb-4 leading-relaxed">
-            {isFr
-              ? 'Profitez de la liberté de création du cinéma IA avec des délais garantis et des révisions incluses'
-              : 'Enjoy the creative freedom of AI cinema with guaranteed delivery times and included revisions'}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="/tarifs"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-            >
-              <span>{isFr ? 'Voir nos tarifs & formules →' : 'View pricing & packages →'}</span>
-            </Link>
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[44px]"
-            >
-              <span>{isFr ? 'Demander un devis 24h →' : 'Request 24h quote →'}</span>
-            </Link>
+          <div>
+            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
+              {isFr ? 'Moteurs & Outils Déployés' : 'Deployed Engines & Tools'}
+            </h4>
+            <div className="flex flex-wrap gap-1.5">
+              {step.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="mono text-[10.5px] font-semibold px-2.5 py-1 rounded-md bg-black/60 border border-white/[0.08] text-fg"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="pt-2 border-t border-white/[0.06]">
+            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
+              {isFr ? 'Livrables de l’Étape' : 'Phase Deliverables'}
+            </h4>
+            <div className="space-y-1 text-xs text-muted">
+              {(isFr ? step.deliverables.fr : step.deliverables.en).map((deliv, idx) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                  <span className="text-fg/80">{deliv}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      )}
-    </section>
+      ),
+    };
+  });
+
+  return (
+    <div className="max-w-xl mx-auto px-4 mb-8">
+      <div className="mb-3">
+        <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">
+          {isFr ? 'NOTRE MÉTHODE DE STUDIO' : 'OUR STUDIO WORKFLOW'}
+        </span>
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg leading-snug">
+          {isFr ? 'Le Pipeline de Production 4K' : 'The 4K Production Pipeline'}
+        </h2>
+        <p className="text-xs text-muted mt-1">
+          {isFr
+            ? 'Cliquez sur chaque phase pour explorer les moteurs, les spécifications et les livrables'
+            : 'Click on each phase to explore engines, technical specs, and deliverables'}
+        </p>
+      </div>
+
+      <ListMenuCard items={items} />
+    </div>
   );
 }
