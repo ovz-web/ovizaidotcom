@@ -433,6 +433,30 @@ Tâche : mets en place un minimum viable, pas une usine à gaz :
 Reste minimal : l'objectif est d'attraper les régressions évidentes (page qui crash, route 404 par erreur), pas d'atteindre une couverture de test élevée.</pre>
   </div>
 
+  <div class="callout">
+    <strong>Bug constaté après le premier push (05/09/2026) :</strong> le pipeline CI ajouté en Priorité 5 échoue avec <span class="mono">npm error Missing: @emnapi/runtime@1.11.3 from lock file</span>. Cause : <span class="mono">package-lock.json</span> n'a pas été régénéré après l'ajout de Playwright, donc il ne contient pas la version exacte de <span class="mono">@emnapi/runtime</span>/<span class="mono">@emnapi/core</span> qu'exige une dépendance optionnelle de <span class="mono">sharp</span> (sharp-wasm32). <span class="mono">npm ci</span> est strict sur ce point (contrairement à <span class="mono">npm install</span>, qui avait masqué le problème en local). Le prompt ci-dessous corrige ça.
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag red">Priorité 6</span><span class="title">CI cassé — package-lock.json désynchronisé (npm ci)</span></div>
+      <button class="copy-btn" data-target="p6b">Copier</button>
+    </div>
+    <pre id="p6b">Le workflow .github/workflows/ci.yml échoue à l'étape "Install dependencies" avec :
+npm error Missing: @emnapi/runtime@1.11.3 from lock file
+npm error Missing: @emnapi/core@1.11.3 from lock file
+
+Cause : package.json a été modifié (ajout de @playwright/test) via `npm install`, mais package-lock.json qui en résulte ne satisfait pas la contrainte stricte de `npm ci` sur une dépendance optionnelle transitive de sharp (@img/sharp-wasm32 exige @emnapi/runtime et @emnapi/core en ^1.11.3, absents du lock actuel).
+
+Tâche :
+1. Supprime node_modules et package-lock.json à la racine du repo.
+2. Relance `npm install` (pas `npm ci`) pour régénérer un package-lock.json cohérent avec le package.json actuel.
+3. Vérifie que `npm ci` passe ensuite sans erreur en local (c'est exactement la commande utilisée par la CI).
+4. Relance `npm run build` et `npm run test` pour confirmer que rien n'a changé de comportement, seulement le lock file.
+5. Commit uniquement package-lock.json (ne touche à aucun fichier source) avec le message "fix(ci): régénérer package-lock.json pour resynchroniser npm ci", puis push sur main pour relancer la CI.
+Ne modifie pas les versions dans package.json : le but est uniquement de resynchroniser le lock file avec l'état actuel des dépendances.</pre>
+  </div>
+
   <div class="copybox">
     <div class="cb-head">
       <div><span class="tag red">Lancement 1</span><span class="title">Nettoyer le dépôt avant le lancement officiel</span></div>
