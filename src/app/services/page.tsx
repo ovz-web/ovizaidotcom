@@ -33,7 +33,7 @@ export default function ServicesPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
+        className="flex-grow relative z-10 pb-16 sm:pb-4"
         style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
       >
         {/* 1. Standardized Unified Page Header */}
