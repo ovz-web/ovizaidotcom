@@ -124,13 +124,7 @@ export default function CgvClient() {
       >
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? 'CADRE CONTRACTUEL' : 'LEGAL FRAMEWORK'}
-          title={isFr ? 'CONDITIONS GÉNÉRALES DE VENTE' : 'TERMS OF SERVICE'}
-          subtitle={
-            isFr
-              ? 'Modalités applicables aux prestations de production vidéo IA et à la Masterclass OVIZai'
-              : 'Terms applicable to AI video production services and the OVIZai Masterclass'
-          }
+          title={isFr ? 'Conditions Générales de Vente' : 'Terms of Service'}
         />
 
         <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">

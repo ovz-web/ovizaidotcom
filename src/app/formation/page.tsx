@@ -112,23 +112,7 @@ export default function FormationPage() {
         {/* Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '02 // FORMATION VIDÉO IA' : '02 // AI VIDEO COURSE'}
-          title={
-            isFr ? (
-              <>
-                Formation Vidéo IA & <span className="text-gold-gradient">Masterclass</span>
-              </>
-            ) : (
-              <>
-                AI Video Course & <span className="text-gold-gradient">Masterclass</span>
-              </>
-            )
-          }
-          subtitle={
-            isFr
-              ? 'Un programme pratique en 5 modules pour maîtriser la création de films cinématographiques 4K'
-              : 'A practical 5-module program to master 4K cinematic film creation'
-          }
+          title={isFr ? '02 // Formation Vidéo IA' : '02 // AI Video Course'}
         />
 
         {/* 1. 5 Expandable Modules Accordion */}

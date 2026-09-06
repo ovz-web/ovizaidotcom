@@ -152,13 +152,7 @@ export default function ConfidentialiteClient() {
       >
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? 'PROTECTION DES DONNÉES' : 'DATA PROTECTION'}
-          title={isFr ? 'POLITIQUE DE CONFIDENTIALITÉ' : 'PRIVACY POLICY'}
-          subtitle={
-            isFr
-              ? 'Transparence totale sur la collecte, l’utilisation et la protection de vos données personnelles'
-              : 'Complete transparency regarding the collection, use and protection of your personal data'
-          }
+          title={isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
         />
 
         <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">

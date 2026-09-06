@@ -40,23 +40,7 @@ export default function StackPage() {
         {/* Unified Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD'}
-          title={
-            isFr ? (
-              <>
-                Notre Méthode de <span className="text-gold-gradient">Production 4K</span>
-              </>
-            ) : (
-              <>
-                Our 4K <span className="text-gold-gradient">Production Method</span>
-              </>
-            )
-          }
-          subtitle={
-            isFr
-              ? 'Le workflow technique complet de notre studio : de la conception 8K au master cinéma'
-              : 'Our studio’s complete technical pipeline: from 8K visual design to final cinema master'
-          }
+          title={isFr ? '03 // Notre Méthode de Production' : '03 // Our Production Method'}
         />
 
         {/* 1. Interactive 4-Phase Pipeline Box (Exact same style as services) */}

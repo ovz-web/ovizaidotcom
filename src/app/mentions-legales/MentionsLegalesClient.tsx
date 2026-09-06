@@ -145,13 +145,7 @@ export default function MentionsLegalesClient() {
       >
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? 'INFORMATIONS LÉGALES' : 'LEGAL NOTICE'}
-          title={isFr ? 'MENTIONS LÉGALES' : 'LEGAL INFORMATION'}
-          subtitle={
-            isFr
-              ? 'Informations légales, éditoriales et hébergement du site OVIZai Studio'
-              : 'Legal, editorial and hosting details for OVIZai Studio'
-          }
+          title={isFr ? 'Mentions Légales' : 'Legal Notice'}
         />
 
         <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">

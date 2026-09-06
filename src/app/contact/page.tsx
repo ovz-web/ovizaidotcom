@@ -45,23 +45,7 @@ function ContactPageContent() {
         {/* Standardized Unified Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '05 // DEVIS & CONTACT' : '05 // CONTACT & QUOTE'}
-          title={
-            isFr ? (
-              <>
-                Démarrer un <span className="text-gold-gradient">Projet Vidéo IA</span>
-              </>
-            ) : (
-              <>
-                Start an <span className="text-gold-gradient">AI Video Project</span>
-              </>
-            )
-          }
-          subtitle={
-            isFr
-              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h'
-              : 'Submit your brief in 3 simple steps and get a proposal within 24h'
-          }
+          title={isFr ? '05 // Devis & Contact' : '05 // Quote & Contact'}
         />
 
         <QualifiedContact

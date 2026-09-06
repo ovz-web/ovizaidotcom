@@ -413,23 +413,7 @@ export default function TarifsClient() {
         {/* Page Header */}
         <PageHeader
           lang={lang}
-          eyebrow={isFr ? '04 // TARIFS & FORMULES DE PRODUCTION' : '04 // PRICING & PRODUCTION PACKAGES'}
-          title={
-            isFr ? (
-              <>
-                Tarifs & <span className="text-gold-gradient">Formules de Studio</span>
-              </>
-            ) : (
-              <>
-                Studio <span className="text-gold-gradient">Pricing & Packages</span>
-              </>
-            )
-          }
-          subtitle={
-            isFr
-              ? 'Une grille tarifaire claire et ordonnée pour tous vos projets de vidéo et de formation'
-              : 'A clear, structured pricing grid for all your video production and training projects'
-          }
+          title={isFr ? '04 // Tarifs & Formules' : '04 // Pricing & Packages'}
         />
 
         <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
