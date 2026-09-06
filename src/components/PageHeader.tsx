@@ -6,8 +6,6 @@ import { Language } from '@/types';
 interface PageHeaderProps {
   title: string | React.ReactNode;
   lang?: Language;
-  backLinkHref?: string;
-  backLinkLabel?: string;
 }
 
 export default function PageHeader({
