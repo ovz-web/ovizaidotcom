@@ -4,37 +4,30 @@ import React from 'react';
 import { Language } from '@/types';
 
 interface PageHeaderProps {
-  lang: Language;
-  eyebrow: string;
   title: string | React.ReactNode;
+  eyebrow?: string;
   subtitle?: string;
+  lang?: Language;
   backLinkHref?: string;
   backLinkLabel?: string;
 }
 
 export default function PageHeader({
-  eyebrow,
   title,
-  subtitle,
+  eyebrow,
 }: PageHeaderProps) {
+  // If an eyebrow starting with "0X //" exists during migration, prioritize it, otherwise use title
+  const displayTitle =
+    typeof eyebrow === 'string' && /^\d{2}\s*\/\//.test(eyebrow)
+      ? eyebrow
+      : title || eyebrow;
+
   return (
-    <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5 text-center">
-      {/* Eyebrow */}
-      <p className="text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold mb-0.5 font-mono font-bold">
-        {eyebrow}
-      </p>
-
-      {/* Title H1 */}
-      <h1 className="text-base sm:text-xl lg:text-2xl font-semibold tracking-tight text-fg text-center mb-0.5 sm:mb-1 leading-snug">
-        {title}
+    <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5 text-center">
+      {/* Unified single-line title H1 */}
+      <h1 className="text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] text-gold font-mono font-bold leading-snug">
+        {displayTitle}
       </h1>
-
-      {/* Subtitle */}
-      {subtitle && (
-        <p className="text-[10px] sm:text-[11px] text-muted max-w-xs sm:max-w-md text-center mx-auto mb-1 leading-tight font-mono">
-          {subtitle}
-        </p>
-      )}
     </div>
   );
 }
