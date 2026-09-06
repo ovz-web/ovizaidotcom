@@ -36,37 +36,10 @@ export default function ServicesPage() {
         className="flex-grow relative z-10 pb-2 sm:pb-3"
         style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
-        {/* 1. Standardized Unified Page Header */}
-        <PageHeader
-          lang={lang}
-          eyebrow={isFr ? 'SOLUTIONS & PIPELINE' : 'SOLUTIONS & WORKFLOW'}
-          title={isFr ? 'CATALOGUE DE SERVICES' : 'SERVICES CATALOG'}
-          subtitle={
-            isFr
-              ? 'Direction artistique, films de marque et post-production 4K générative'
-              : 'Art direction, brand films and 4K generative post-production'
-          }
-        />
+        {/* Unified Page Header */}
+        <PageHeader lang={lang} title={isFr ? '01 // Nos Services' : '01 // Our Services'} />
 
-        {/* 2. Segmented 2-option tab AFTER PageHeader */}
-        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
-          <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-border mono text-xs w-full">
-            <Link
-              href="/services"
-              className="py-1.5 text-center font-bold rounded-lg transition-all bg-gold text-black shadow cursor-default"
-            >
-              {isFr ? 'Nos Services' : 'Our Services'}
-            </Link>
-            <Link
-              href="/tarifs"
-              className="py-1.5 text-center font-bold rounded-lg transition-all text-muted hover:text-fg cursor-pointer"
-            >
-              {isFr ? 'Tarifs & Formules' : 'Pricing & Packages'}
-            </Link>
-          </div>
-        </div>
-
-        {/* 3. Main Services Content */}
+        {/* Main Services Content */}
         <ServicesGrid
           lang={lang}
           currency={currency}
