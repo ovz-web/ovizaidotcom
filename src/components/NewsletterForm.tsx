@@ -59,16 +59,16 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
   };
 
   return (
-    <section id="resources" className="max-w-xl mx-auto mb-2 sm:mb-8 px-4">
-      <div className="ovizai-card p-3 sm:p-6 bg-black/20 relative">
-        <div className="flex items-center justify-between mb-1 sm:mb-2">
-          <h3 className="mono text-xs sm:text-[13px] font-bold text-fg tracking-wide uppercase">
+    <section id="resources" className="max-w-xl mx-auto mb-1.5 sm:mb-2 md:mb-2.5 px-4">
+      <div className="ovizai-card p-2.5 sm:p-3.5 bg-black/20 relative">
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="mono text-[11px] sm:text-xs font-bold text-fg tracking-wide uppercase">
             {t.freePromptsTitle}
           </h3>
-          <span className="w-2 h-2 rounded-full bg-gold inline-block animate-ping" />
+          <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block animate-ping" />
         </div>
 
-        <p className="text-[11px] sm:text-xs text-fg-muted leading-tight sm:leading-relaxed mb-2.5 sm:mb-4">
+        <p className="text-[10px] sm:text-[11px] text-fg-muted leading-tight mb-2 sm:mb-2.5">
           {t.freePromptsDesc}
         </p>
 
@@ -76,9 +76,9 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
           <div
             role="status"
             aria-live="polite"
-            className="flex items-center gap-2.5 bg-gold/10 border border-gold/30 rounded-lg p-2.5 sm:p-3 text-gold-bright mono text-xs"
+            className="flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-lg p-2 sm:p-2.5 text-gold-bright mono text-xs"
           >
-            <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-gold-bright" />
+            <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-gold-bright" />
             <span>
               {status === 'already' ? t.alreadySubscribedMsg : t.subscribedMsg}
             </span>
@@ -107,12 +107,12 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
               onChange={e => setEmail(e.target.value)}
               placeholder={t.emailPlaceholder}
               disabled={loading}
-              className="flex-1 bg-bg-inset border border-border-strong rounded-lg px-3 py-1.5 sm:px-3.5 sm:py-2.5 text-fg mono text-xs focus:outline-none focus:border-gold placeholder:text-fg-muted transition-colors"
+              className="flex-1 bg-bg-inset border border-border-strong rounded-lg px-2.5 py-1.5 sm:px-3 text-fg mono text-[11px] sm:text-xs focus:outline-none focus:border-gold placeholder:text-fg-muted transition-colors"
             />
             <button
               type="submit"
               disabled={loading}
-              className="bg-fg hover:bg-white text-bg-dark font-bold rounded-lg px-3 sm:px-5 py-1.5 sm:py-2.5 mono text-[11px] sm:text-xs whitespace-nowrap transition-all duration-200 cursor-pointer disabled:opacity-60 flex items-center justify-center gap-1.5 shrink-0"
+              className="bg-fg hover:bg-white text-bg-dark font-bold rounded-lg px-2.5 sm:px-4 py-1.5 mono text-[10.5px] sm:text-xs whitespace-nowrap transition-all duration-200 cursor-pointer disabled:opacity-60 flex items-center justify-center gap-1.5 shrink-0"
             >
               {loading ? (
                 <span>{t.submitting}</span>
@@ -120,7 +120,7 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
                 <>
                   <span className="hidden min-[390px]:inline">{t.joinBtn}</span>
                   <span className="min-[390px]:hidden">{isFr ? 'Rejoindre' : 'Join'}</span>
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-3 h-3" />
                 </>
               )}
             </button>
@@ -131,9 +131,9 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
           <div
             role="alert"
             aria-live="polite"
-            className="mt-2.5 flex items-center gap-2 text-red-400 mono text-[11px]"
+            className="mt-2 flex items-center gap-2 text-red-400 mono text-[10.5px]"
           >
-            <AlertCircle className="w-3.5 h-3.5" />
+            <AlertCircle className="w-3 h-3" />
             <span>{t.errorMsg}</span>
           </div>
         )}

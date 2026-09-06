@@ -60,10 +60,10 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
   ];
 
   return (
-    <div className="px-4 max-w-xl mx-auto mb-2 sm:mb-3">
+    <div className="px-4 max-w-xl mx-auto mb-1.5 sm:mb-2">
       <ListMenuCard
         items={items}
-        className="[&_a]:!py-1.5 sm:[&_a]:!py-3.5 [&_a]:!px-3 sm:[&_a]:!px-3.5"
+        className="[&_a]:!py-1 sm:[&_a]:!py-1.5 md:[&_a]:!py-2 [&_a]:!px-2.5 sm:[&_a]:!px-3.5"
       />
     </div>
   );

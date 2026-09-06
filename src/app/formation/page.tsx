@@ -106,8 +106,8 @@ export default function FormationPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* Page Header */}
         <PageHeader
@@ -135,20 +135,20 @@ export default function FormationPage() {
         <MasterclassSection lang={lang} />
 
         {/* 2. Direct Enrollment Card (Collapsible, closed by default) */}
-        <div id="inscription" className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div id="inscription" className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
           <div className="ovizai-card border border-border bg-card/90 rounded-xl overflow-hidden transition-all">
             {/* Clickable Card Header */}
             <button
               type="button"
               onClick={() => setIsEnrollOpen((prev) => !prev)}
               aria-expanded={isEnrollOpen}
-              className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+              className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
             >
               <div className="flex flex-col min-w-0">
-                <span className="mono text-[10px] text-gold font-bold uppercase tracking-[0.2em] block mb-0.5">
+                <span className="mono text-[9px] text-gold font-bold uppercase tracking-[0.18em] block mb-0.5">
                   {isFr ? 'INSCRIPTION IMMÉDIATE' : 'INSTANT ENROLLMENT'}
                 </span>
-                <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                <h3 className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                   {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
                 </h3>
               </div>
@@ -289,15 +289,15 @@ export default function FormationPage() {
         </div>
 
         {/* Contact fallback */}
-        <div className="max-w-xl mx-auto px-4 mb-4 text-center">
-          <p className="text-xs text-muted">
+        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2 text-center">
+          <p className="text-[11px] text-muted">
             {isFr
               ? 'Une question sur le programme ou les modalités de formation ?'
               : 'Have a question about the curriculum or training details?'}
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1 mono text-xs text-gold hover:underline mt-1.5"
+            className="inline-flex items-center gap-1 mono text-[11px] text-gold hover:underline mt-1"
           >
             <span>{isFr ? 'Poser une question à l’équipe →' : 'Ask our studio team →'}</span>
           </Link>

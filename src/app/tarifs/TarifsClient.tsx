@@ -407,8 +407,8 @@ export default function TarifsClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-16 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* Page Header */}
         <PageHeader
@@ -432,13 +432,13 @@ export default function TarifsClient() {
           }
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
           {/* iOS Style Promo Switch Toggle */}
-          <div className="flex items-center justify-between gap-3 mb-2.5 px-3.5 py-2 rounded-xl bg-card border border-border">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-3 mb-1.5 px-3 py-1.5 rounded-lg bg-card border border-border">
+            <div className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
               <div>
-                <span className="mono text-[11.5px] sm:text-xs text-fg font-semibold block leading-tight">
+                <span className="mono text-[11px] sm:text-xs text-fg font-semibold block leading-tight">
                   {isFr ? 'Offre de Lancement (−30%)' : 'Launch Offer (−30%)'}
                 </span>
               </div>
@@ -470,26 +470,29 @@ export default function TarifsClient() {
           </div>
 
           {/* Unified Pricing Box (Ascending Order, Expandable Accordion) */}
-          <div className="mb-2.5 sm:mb-3">
-            <ListMenuCard items={pricingItems} />
+          <div className="mb-1.5 sm:mb-2">
+            <ListMenuCard
+              items={pricingItems}
+              className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
+            />
           </div>
 
           {/* Centralized Clean FAQ (Collapsible accordion card) */}
-          <div className="mb-2.5 sm:mb-3">
+          <div className="mb-1.5 sm:mb-2">
             <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
               <button
                 type="button"
                 onClick={() => setIsFaqSectionOpen((prev) => !prev)}
                 aria-expanded={isFaqSectionOpen}
-                className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+                className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
               >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <HelpCircle className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
+                <div className="flex items-center gap-2 min-w-0">
+                  <HelpCircle className="w-3.5 h-3.5 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
                   <div className="flex flex-col min-w-0">
-                    <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                    <span className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                       {isFr ? 'Questions Fréquentes (4)' : 'Frequently Asked Questions (4)'}
                     </span>
-                    <span className="text-[11px] text-muted truncate">
+                    <span className="text-[10px] text-muted truncate">
                       {isFr ? 'Facturation, production & délais de livraison' : 'Billing, turnaround & production workflow'}
                     </span>
                   </div>
@@ -509,9 +512,9 @@ export default function TarifsClient() {
                         <button
                           type="button"
                           onClick={() => setOpenFaq(isOpen ? null : idx)}
-                          className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+                          className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
                         >
-                          <span className="text-xs text-fg font-medium leading-snug group-hover:text-gold-bright transition-colors">
+                          <span className="text-[11px] sm:text-xs text-fg font-medium leading-snug group-hover:text-gold-bright transition-colors">
                             {faq.q[lang]}
                           </span>
                           <span className="mono text-xs text-gold font-medium flex-shrink-0 ml-2">
@@ -519,7 +522,7 @@ export default function TarifsClient() {
                           </span>
                         </button>
                         {isOpen && (
-                          <div className="px-4 sm:px-5 pb-3.5 text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
+                          <div className="px-3.5 sm:px-4 pb-3 text-[11px] sm:text-xs text-muted leading-relaxed border-t border-white/[0.04] pt-2 space-y-1">
                             {faq.a[lang].split('\n').map((line, lIdx) => (
                               <p key={lIdx}>{line}</p>
                             ))}
@@ -534,11 +537,11 @@ export default function TarifsClient() {
           </div>
 
           {/* Bottom Custom Quote Direct Link */}
-          <div className="text-center pt-1 mb-1">
+          <div className="text-center pt-0.5 mb-1">
             <Link
               href="/contact"
               onClick={() => trackEvent('cta_request_custom_quote', { source: 'tarifs_bottom' })}
-              className="inline-flex items-center gap-1.5 mono text-xs text-gold hover:underline"
+              className="inline-flex items-center gap-1 mono text-[11px] text-gold hover:underline"
             >
               <span>{isFr ? 'Demander un devis sur-mesure (24h) →' : 'Request custom quote (24h) →'}</span>
             </Link>

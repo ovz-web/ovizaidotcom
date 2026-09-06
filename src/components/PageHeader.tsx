@@ -18,20 +18,20 @@ export default function PageHeader({
   subtitle,
 }: PageHeaderProps) {
   return (
-    <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4 text-center">
+    <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5 text-center">
       {/* Eyebrow */}
-      <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
+      <p className="text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold mb-0.5 font-mono font-bold">
         {eyebrow}
       </p>
 
       {/* Title H1 */}
-      <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-fg text-center mb-1.5 leading-snug">
+      <h1 className="text-base sm:text-xl lg:text-2xl font-semibold tracking-tight text-fg text-center mb-0.5 sm:mb-1 leading-snug">
         {title}
       </h1>
 
       {/* Subtitle */}
       {subtitle && (
-        <p className="text-xs sm:text-sm text-muted max-w-xs sm:max-w-md text-center mx-auto mb-2 leading-relaxed font-mono">
+        <p className="text-[10px] sm:text-[11px] text-muted max-w-xs sm:max-w-md text-center mx-auto mb-1 leading-tight font-mono">
           {subtitle}
         </p>
       )}

@@ -33,8 +33,8 @@ export default function ServicesPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-16 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* 1. Standardized Unified Page Header */}
         <PageHeader
@@ -49,17 +49,17 @@ export default function ServicesPage() {
         />
 
         {/* 2. Segmented 2-option tab AFTER PageHeader */}
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
           <div className="grid grid-cols-2 gap-1 bg-black/60 p-1 rounded-xl border border-border mono text-xs w-full">
             <Link
               href="/services"
-              className="py-2.5 text-center font-bold rounded-lg transition-all bg-gold text-black shadow cursor-default"
+              className="py-1.5 text-center font-bold rounded-lg transition-all bg-gold text-black shadow cursor-default"
             >
               {isFr ? 'Nos Services' : 'Our Services'}
             </Link>
             <Link
               href="/tarifs"
-              className="py-2.5 text-center font-bold rounded-lg transition-all text-muted hover:text-fg cursor-pointer"
+              className="py-1.5 text-center font-bold rounded-lg transition-all text-muted hover:text-fg cursor-pointer"
             >
               {isFr ? 'Tarifs & Formules' : 'Pricing & Packages'}
             </Link>

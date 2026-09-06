@@ -296,22 +296,20 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
   });
 
   return (
-    <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
-      <div className="mb-2 sm:mb-2.5">
-        <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold block mb-0.5">
-          {isFr ? 'NOTRE MÉTHODE DE STUDIO' : 'OUR STUDIO WORKFLOW'}
+    <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
+      <div className="flex items-center justify-between mb-1 px-0.5">
+        <span className="mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold font-bold">
+          {isFr ? 'Pipeline en 4 Phases' : '4-Phase Pipeline'}
         </span>
-        <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-fg leading-snug">
-          {isFr ? 'Le Pipeline de Production 4K' : 'The 4K Production Pipeline'}
-        </h2>
-        <p className="text-xs text-muted mt-1">
-          {isFr
-            ? 'Cliquez sur chaque phase pour explorer les moteurs, les spécifications et les livrables'
-            : 'Click on each phase to explore engines, technical specs, and deliverables'}
-        </p>
+        <span className="text-[10px] text-muted font-mono">
+          {isFr ? 'Détails au clic ↓' : 'Click to expand ↓'}
+        </span>
       </div>
 
-      <ListMenuCard items={items} />
+      <ListMenuCard
+        items={items}
+        className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
+      />
     </div>
   );
 }

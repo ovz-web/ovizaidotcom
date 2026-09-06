@@ -278,24 +278,27 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
   });
 
   return (
-    <section id="services" className="max-w-xl mx-auto mb-3 sm:mb-4 px-4">
+    <section id="services" className="max-w-xl mx-auto mb-2 sm:mb-2.5 px-4">
       {/* 5 Services List in Unified ListMenuCard */}
-      <ListMenuCard items={serviceItems} className="mb-2.5 sm:mb-3" />
+      <ListMenuCard
+        items={serviceItems}
+        className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3 mb-2 sm:mb-2.5"
+      />
 
       {/* Video Showcase Section (Collapsible accordion, closed by default) */}
-      <div className="mt-2.5 sm:mt-3">
+      <div className="mt-1.5 sm:mt-2">
         <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
           <button
             type="button"
             onClick={() => setIsDemosOpen((prev) => !prev)}
             aria-expanded={isDemosOpen}
-            className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+            className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
           >
             <div className="flex flex-col min-w-0">
-              <span className="mono text-[10px] uppercase tracking-[0.2em] text-gold font-bold block mb-0.5">
+              <span className="mono text-[9px] uppercase tracking-[0.18em] text-gold font-bold block mb-0.5">
                 {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
               </span>
-              <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+              <h3 className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                 {isFr ? 'Réalisations Vidéo & Direction Artistique (2)' : 'Video Output & Art Direction Showcase (2)'}
               </h3>
             </div>

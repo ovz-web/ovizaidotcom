@@ -39,8 +39,8 @@ function ContactPageContent() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -74,30 +74,30 @@ function ContactPageContent() {
         />
 
         {/* Sober Reassurance & Link Hub balancing page density */}
-        <div className="max-w-xl mx-auto px-4 mt-2 mb-8">
-          <div className="ovizai-card border border-border bg-card/80 p-4 sm:p-5">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left">
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <Clock className="w-4 h-4 text-gold flex-shrink-0" />
-                <span className="text-xs text-muted font-mono">
+        <div className="max-w-xl mx-auto px-4 mt-1.5 mb-2 sm:mb-2.5">
+          <div className="ovizai-card border border-border bg-card/80 p-3 sm:p-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <Clock className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span className="text-[11px] text-muted font-mono">
                   {isFr ? 'Réponse 24-48h' : '24-48h Response'}
                 </span>
               </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-gold flex-shrink-0" />
-                <span className="text-xs text-muted font-mono">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span className="text-[11px] text-muted font-mono">
                   {isFr ? 'Confidentialité totale' : 'Strict Confidentiality'}
                 </span>
               </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <FileText className="w-4 h-4 text-gold flex-shrink-0" />
-                <span className="text-xs text-muted font-mono">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <FileText className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span className="text-[11px] text-muted font-mono">
                   {isFr ? 'Devis sans engagement' : 'No-obligation quote'}
                 </span>
               </div>
             </div>
 
-            <div className="mt-3 pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono">
+            <div className="mt-2 pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] font-mono">
               <span className="text-muted">
                 {isFr ? 'Envie de comparer nos formules ?' : 'Want to compare packages?'}
               </span>

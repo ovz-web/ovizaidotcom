@@ -32,3 +32,4 @@ yarn-error.log*
 /.lighthouse-ci/
 /test-results/
 /playwright-report/
+/scratch/

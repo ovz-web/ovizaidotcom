@@ -34,8 +34,8 @@ export default function StackPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* Unified Page Header */}
         <PageHeader
@@ -63,55 +63,49 @@ export default function StackPage() {
         <AIPipeline lang={lang} />
 
         {/* 2. Compact Studio Standards & Commitments Card */}
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
-          <div className="ovizai-card border border-border bg-card/90 rounded-xl sm:rounded-2xl p-4 sm:p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="w-4 h-4 text-gold" />
-              <span className="mono text-[10px] uppercase tracking-[0.25em] text-gold font-bold">
+        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
+          <div className="ovizai-card border border-border bg-card/90 rounded-xl p-2.5 sm:p-3.5">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-gold" />
+              <span className="mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold font-bold">
                 {isFr ? 'STANDARDS DU STUDIO' : 'STUDIO STANDARDS'}
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-              <div className="p-3 rounded-lg bg-black/40 border border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-1">
-                  <Clock className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                  <span className="mono text-[11px] font-bold text-fg">
-                    {isFr ? 'Délais 48-72h' : '48-72h Turnaround'}
+            <div className="grid grid-cols-3 gap-1.5 pt-0.5 text-center sm:text-left">
+              <div className="p-1.5 sm:p-2.5 rounded-lg bg-black/40 border border-white/[0.06]">
+                <div className="flex items-center justify-center sm:justify-start gap-1 mb-0.5">
+                  <Clock className="w-3 h-3 text-gold flex-shrink-0" />
+                  <span className="mono text-[10px] sm:text-[11px] font-bold text-fg">
+                    {isFr ? '48-72h' : '48-72h'}
                   </span>
                 </div>
-                <p className="text-[11px] text-muted leading-snug">
-                  {isFr
-                    ? 'Livraison express garantie sur le Sprint Pilote'
-                    : 'Guaranteed express delivery on Pilot Sprint'}
+                <p className="text-[9.5px] sm:text-[10.5px] text-muted leading-tight">
+                  {isFr ? 'Livraison express' : 'Express delivery'}
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-black/40 border border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                  <span className="mono text-[11px] font-bold text-fg">
-                    {isFr ? 'Droits Complets' : 'Full Commercial Rights'}
+              <div className="p-1.5 sm:p-2.5 rounded-lg bg-black/40 border border-white/[0.06]">
+                <div className="flex items-center justify-center sm:justify-start gap-1 mb-0.5">
+                  <ShieldCheck className="w-3 h-3 text-gold flex-shrink-0" />
+                  <span className="mono text-[10px] sm:text-[11px] font-bold text-fg">
+                    {isFr ? 'Droits 100%' : 'Full Rights'}
                   </span>
                 </div>
-                <p className="text-[11px] text-muted leading-snug">
-                  {isFr
-                    ? 'Cession intégrale et libre exploitation commerciale'
-                    : '100% intellectual property transfer to your brand'}
+                <p className="text-[9.5px] sm:text-[10.5px] text-muted leading-tight">
+                  {isFr ? 'Exploitation libre' : 'Full IP transfer'}
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-black/40 border border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                  <span className="mono text-[11px] font-bold text-fg">
-                    {isFr ? 'Qualité 4K Native' : 'Native 4K Master'}
+              <div className="p-1.5 sm:p-2.5 rounded-lg bg-black/40 border border-white/[0.06]">
+                <div className="flex items-center justify-center sm:justify-start gap-1 mb-0.5">
+                  <CheckCircle2 className="w-3 h-3 text-gold flex-shrink-0" />
+                  <span className="mono text-[10px] sm:text-[11px] font-bold text-fg">
+                    {isFr ? 'Master 4K' : '4K Master'}
                   </span>
                 </div>
-                <p className="text-[11px] text-muted leading-snug">
-                  {isFr
-                    ? 'Export ProRes ou H.265 étalonné aux normes cinéma'
-                    : 'ProRes / H.265 delivery calibrated to cinema specs'}
+                <p className="text-[9.5px] sm:text-[10.5px] text-muted leading-tight">
+                  {isFr ? 'Normes cinéma' : 'Cinema specs'}
                 </p>
               </div>
             </div>
@@ -119,19 +113,19 @@ export default function StackPage() {
         </div>
 
         {/* 3. Action CTAs */}
-        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2 flex flex-row items-center justify-center gap-2">
           <Link
             href="/tarifs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[48px]"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-3 py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[38px]"
           >
-            <span>{isFr ? 'Consulter les tarifs & formules →' : 'View pricing & packages →'}</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>{isFr ? 'Tarifs & formules →' : 'View pricing →'}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
           <Link
             href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/60 border border-border-strong hover:border-gold/50 text-fg hover:text-gold-bright font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer min-h-[48px]"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-black/60 border border-border-strong hover:border-gold/50 text-fg hover:text-gold-bright font-bold px-3 py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[38px]"
           >
-            <span>{isFr ? 'Demander un devis sous 24h →' : 'Request 24h quote →'}</span>
+            <span>{isFr ? 'Devis sous 24h →' : '24h quote →'}</span>
           </Link>
         </div>
       </main>
