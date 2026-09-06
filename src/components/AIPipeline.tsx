@@ -297,15 +297,6 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
 
   return (
     <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
-      <div className="flex items-center justify-between mb-1 px-0.5">
-        <span className="mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold font-bold">
-          {isFr ? 'Pipeline en 4 Phases' : '4-Phase Pipeline'}
-        </span>
-        <span className="text-[10px] text-muted font-mono">
-          {isFr ? 'Détails au clic ↓' : 'Click to expand ↓'}
-        </span>
-      </div>
-
       <ListMenuCard
         items={items}
         className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"

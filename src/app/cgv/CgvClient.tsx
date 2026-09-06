@@ -119,15 +119,32 @@ export default function CgvClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         <PageHeader
+          tag={isFr ? 'CADRE CONTRACTUEL' : 'LEGAL FRAMEWORK'}
+          title={
+            isFr ? (
+              <>
+                CONDITIONS GÉNÉRALES <span className="text-gold-gradient">DE VENTE & SERVICES</span>
+              </>
+            ) : (
+              <>
+                TERMS OF SERVICE & <span className="text-gold-gradient">STUDIO AGREEMENT</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Modalités contractuelles de nos prestations et de la formation'
+              : 'Contractual terms for our video productions and masterclass'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? 'Conditions Générales de Vente' : 'Terms of Service'}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
           <ListMenuCard items={items} />
         </div>
       </main>

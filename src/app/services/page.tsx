@@ -37,7 +37,27 @@ export default function ServicesPage() {
         style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         {/* Unified Page Header */}
-        <PageHeader lang={lang} title={isFr ? '01 // Nos Services' : '01 // Our Services'} />
+        <PageHeader
+          tag={isFr ? '01 // NOS SERVICES' : '01 // OUR SERVICES'}
+          title={
+            isFr ? (
+              <>
+                OFFRES & PRESTATIONS <span className="text-gold-gradient">CINÉMATOGRAPHIQUES</span>
+              </>
+            ) : (
+              <>
+                SERVICES & CINEMATIC <span className="text-gold-gradient">PRODUCTIONS</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Direction artistique, films de marque et étalonnage 4K'
+              : 'Art direction, brand films and 4K color grading'
+          }
+          showDetailsHint={true}
+          lang={lang}
+        />
 
         {/* Main Services Content */}
         <ServicesGrid

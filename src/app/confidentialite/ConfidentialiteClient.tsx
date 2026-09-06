@@ -147,15 +147,32 @@ export default function ConfidentialiteClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         <PageHeader
+          tag={isFr ? 'PROTECTION DES DONNÉES' : 'DATA PROTECTION'}
+          title={
+            isFr ? (
+              <>
+                POLITIQUE DE <span className="text-gold-gradient">CONFIDENTIALITÉ RGPD</span>
+              </>
+            ) : (
+              <>
+                PRIVACY POLICY & <span className="text-gold-gradient">DATA PROTECTION</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Transparence totale sur vos données personnelles et vos droits'
+              : 'Complete transparency on personal data and your privacy rights'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? 'Politique de Confidentialité' : 'Privacy Policy'}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
           <ListMenuCard items={items} />
         </div>
       </main>

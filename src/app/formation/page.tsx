@@ -111,8 +111,25 @@ export default function FormationPage() {
       >
         {/* Page Header */}
         <PageHeader
+          tag={isFr ? '02 // FORMATION VIDÉO IA' : '02 // AI VIDEO COURSE'}
+          title={
+            isFr ? (
+              <>
+                MASTERCLASS CINÉMA & <span className="text-gold-gradient">VIDÉO GÉNÉRATIVE</span>
+              </>
+            ) : (
+              <>
+                CINEMA MASTERCLASS & <span className="text-gold-gradient">GENERATIVE VIDEO</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? '5 modules pratiques pour maîtriser la réalisation de films 4K'
+              : '5 practical modules to master 4K filmmaking workflow'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? '02 // Formation Vidéo IA' : '02 // AI Video Course'}
         />
 
         {/* 1. 5 Expandable Modules Accordion */}

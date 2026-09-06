@@ -412,52 +412,68 @@ export default function TarifsClient() {
       >
         {/* Page Header */}
         <PageHeader
+          tag={isFr ? '04 // TARIFS & FORMULES' : '04 // PRICING & PACKAGES'}
+          title={
+            isFr ? (
+              <>
+                FORMULES CLAIRES & <span className="text-gold-gradient">ENGAGEMENTS FERMES</span>
+              </>
+            ) : (
+              <>
+                TRANSPARENT PACKAGES & <span className="text-gold-gradient">FIXED DELIVERIES</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Sprint 48-72h ou projets sur-mesure sans abonnement caché'
+              : '48-72h sprint or custom projects without hidden fees'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? '04 // Tarifs & Formules' : '04 // Pricing & Packages'}
         />
 
         <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
-          {/* iOS Style Promo Switch Toggle */}
-          <div className="flex items-center justify-between gap-3 mb-1.5 px-3 py-1.5 rounded-lg bg-card border border-border">
-            <div className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <div>
+          {/* Unified Pricing Box with integrated Promo Switch Header */}
+          <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-1.5 sm:mb-2">
+            {/* iOS Style Promo Switch Toggle Header */}
+            <div className="flex items-center justify-between gap-3 px-3 py-1.5 border-b border-border bg-white/[0.02]">
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                 <span className="mono text-[11px] sm:text-xs text-fg font-semibold block leading-tight">
                   {isFr ? 'Offre de Lancement (−30%)' : 'Launch Offer (−30%)'}
                 </span>
               </div>
-            </div>
 
-            <div className="flex items-center gap-2">
-              <span className="mono text-[10px] text-muted hidden sm:inline uppercase tracking-wider">
-                {showPromo ? (isFr ? 'Activé' : 'On') : (isFr ? 'Désactivé' : 'Off')}
-              </span>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={showPromo}
-                aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
-                onClick={() => setShowPromo((prev) => !prev)}
-                className={`relative inline-flex h-5 w-9 sm:h-5 sm:w-10 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
-                  showPromo ? 'bg-gold' : 'bg-white/[0.15]'
-                }`}
-              >
-                <span
-                  className={`pointer-events-none inline-block h-4 w-4 transform rounded-full transition duration-200 ease-in-out ${
-                    showPromo
-                      ? 'translate-x-4 sm:translate-x-5 bg-black shadow-sm'
-                      : 'translate-x-0 bg-white/80 shadow-sm'
+              <div className="flex items-center gap-2">
+                <span className="mono text-[10px] text-muted hidden sm:inline uppercase tracking-wider">
+                  {showPromo ? (isFr ? 'Activé' : 'On') : (isFr ? 'Désactivé' : 'Off')}
+                </span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={showPromo}
+                  aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
+                  onClick={() => setShowPromo((prev) => !prev)}
+                  className={`relative inline-flex h-5 w-9 sm:h-5 sm:w-10 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
+                    showPromo ? 'bg-gold' : 'bg-white/[0.15]'
                   }`}
-                />
-              </button>
+                >
+                  <span
+                    className={`pointer-events-none inline-block h-4 w-4 transform rounded-full transition duration-200 ease-in-out ${
+                      showPromo
+                        ? 'translate-x-4 sm:translate-x-5 bg-black shadow-sm'
+                        : 'translate-x-0 bg-white/80 shadow-sm'
+                    }`}
+                  />
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Unified Pricing Box (Ascending Order, Expandable Accordion) */}
-          <div className="mb-1.5 sm:mb-2">
+            {/* Pricing Items */}
             <ListMenuCard
               items={pricingItems}
-              className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
+              className="border-0 bg-transparent rounded-none [&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
             />
           </div>
 

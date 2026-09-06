@@ -44,8 +44,25 @@ function ContactPageContent() {
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
+          tag={isFr ? '05 // DEVIS & CONTACT' : '05 // QUOTE & CONTACT'}
+          title={
+            isFr ? (
+              <>
+                LANCER UN PROJET AVEC <span className="text-gold-gradient">LE STUDIO OVIZAI</span>
+              </>
+            ) : (
+              <>
+                START A PROJECT WITH <span className="text-gold-gradient">OVIZAI STUDIO</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h'
+              : 'Submit your brief in 3 steps and receive a quote within 24h'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? '05 // Devis & Contact' : '05 // Quote & Contact'}
         />
 
         <QualifiedContact

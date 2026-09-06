@@ -140,15 +140,32 @@ export default function MentionsLegalesClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-3 sm:pb-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3"
+        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
       >
         <PageHeader
+          tag={isFr ? 'INFORMATIONS LÉGALES' : 'LEGAL NOTICE'}
+          title={
+            isFr ? (
+              <>
+                MENTIONS LÉGALES & <span className="text-gold-gradient">ÉDITEUR DU SITE</span>
+              </>
+            ) : (
+              <>
+                LEGAL NOTICE & <span className="text-gold-gradient">SITE PUBLISHER</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'Propriété intellectuelle, hébergement et cadre légal du studio'
+              : 'Intellectual property, hosting and legal framework of the studio'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? 'Mentions Légales' : 'Legal Notice'}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4">
+        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
           <ListMenuCard items={items} />
         </div>
       </main>

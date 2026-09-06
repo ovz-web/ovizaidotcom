@@ -39,8 +39,25 @@ export default function StackPage() {
       >
         {/* Unified Page Header */}
         <PageHeader
+          tag={isFr ? '03 // NOTRE MÉTHODE DE PRODUCTION' : '03 // OUR PRODUCTION METHOD'}
+          title={
+            isFr ? (
+              <>
+                PIPELINE TECHNIQUE & <span className="text-gold-gradient">STANDARDS DU STUDIO</span>
+              </>
+            ) : (
+              <>
+                TECHNICAL PIPELINE & <span className="text-gold-gradient">STUDIO STANDARDS</span>
+              </>
+            )
+          }
+          subtitle={
+            isFr
+              ? 'De la direction artistique au master cinéma 4K sans compromis'
+              : 'From art direction to final 4K cinema master without compromise'
+          }
+          showDetailsHint={true}
           lang={lang}
-          title={isFr ? '03 // Notre Méthode de Production' : '03 // Our Production Method'}
         />
 
         {/* 1. Interactive 4-Phase Pipeline Box (Exact same style as services) */}

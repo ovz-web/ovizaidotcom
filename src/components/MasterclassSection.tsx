@@ -244,15 +244,6 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
 
   return (
     <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
-      <div className="flex items-center justify-between mb-1 px-0.5">
-        <span className="mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold font-bold">
-          {isFr ? '5 Modules Pratiques · Méthode 4K' : '5 Practical Modules · 4K Method'}
-        </span>
-        <span className="text-[10px] text-muted font-mono">
-          {isFr ? 'Détails au clic ↓' : 'Click to expand ↓'}
-        </span>
-      </div>
-
       <ListMenuCard
         items={items}
         className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
