@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Feuille de route interactive OVIZai : audit, corrections de bugs, guide étape par étape avec suivi de progression, contenu Instagram et prospection jusqu'au premier client.">
+<meta name="color-scheme" content="dark">
+<title>OVIZai — Feuille de Route : de l'Audit au Premier Dollar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#080808;
+    --bg-panel:#0f0e0c;
+    --bronze:#0B0A08;
+    --cream:#ECE4D3;
+    --muted:#8C8375;
+    --gold:#CAA243;
+    --gold-bright:#F0C869;
+    --line:rgba(255,255,255,.08);
+    --red-flag:#B24C3A;
+    --green-ok:#6E8F5C;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top left, rgba(202,162,67,.07), transparent 45%),
+      radial-gradient(ellipse at bottom right, rgba(202,162,67,.05), transparent 50%),
+      var(--bg);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;color:var(--cream);margin:0;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--gold-bright);}
+
+  /* ---------- HERO / HEADER ---------- */
+  header.top{
+    padding:56px 24px 40px;
+    max-width:1180px;margin:0 auto;
+    border-bottom:1px solid var(--line);
+  }
+  header.top .kicker{
+    color:var(--gold);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    margin-bottom:14px;
+    display:block;
+  }
+  header.top h1{font-size:clamp(28px,5vw,46px);max-width:820px;}
+  header.top p.lead{color:var(--muted);max-width:640px;font-size:16px;margin-top:16px;}
+  .scorebadge-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:32px;}
+  .scorebadge{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 22px;
+    background:rgba(255,255,255,.02);
+    min-width:150px;
+  }
+  .scorebadge .num{font-family:'Syne';font-size:32px;font-weight:800;color:var(--gold-bright);}
+  .scorebadge .lbl{color:var(--muted);font-size:12.5px;margin-top:4px;}
+
+  /* ---------- TABS ---------- */
+  nav.tabs{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,8,8,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav.tabs .inner{max-width:1180px;margin:0 auto;display:flex;padding:0 24px;}
+  nav.tabs button{
+    background:none;border:none;color:var(--muted);
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.05em;
+    padding:18px 16px;cursor:pointer;border-bottom:2px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  nav.tabs button:hover{color:var(--cream);}
+  nav.tabs button.active{color:var(--gold-bright);border-bottom-color:var(--gold);}
+
+  main{max-width:1180px;margin:0 auto;padding:48px 24px 100px;}
+  section.panel{display:none;animation:fade .3s ease;}
+  section.panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .section-title{margin-bottom:8px;}
+  .section-sub{color:var(--muted);font-size:14.5px;max-width:680px;margin-bottom:32px;}
+
+  /* ---------- GRID / CARDS ---------- */
+  .grid{display:grid;gap:20px;}
+  .grid.cols-2{grid-template-columns:1fr 1fr;}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  @media (max-width:820px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr;}}
+
+  .card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0));
+    padding:22px;
+  }
+  .card h3{font-size:15px;margin-bottom:10px;}
+  .card h3 .n{color:var(--gold);margin-right:8px;}
+  .card p{color:var(--muted);font-size:13.8px;margin:0;}
+  .card .grade{font-family:'Syne';font-size:26px;font-weight:800;color:var(--gold-bright);float:right;}
+
+  .audit-row{
+    display:flex;align-items:center;gap:16px;
+    border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;margin-bottom:12px;
+    background:rgba(255,255,255,.02);
+  }
+  .audit-row .grade-pill{
+    font-family:'Syne';font-weight:800;font-size:20px;color:var(--bg);
+    background:var(--gold-bright);border-radius:8px;min-width:56px;text-align:center;padding:6px 0;
+    flex-shrink:0;
+  }
+  .audit-row .grade-pill.low{background:var(--red-flag);color:var(--cream);}
+  .audit-row .grade-pill.mid{background:#C7943D;}
+  .audit-row .txt strong{display:block;font-size:14.5px;color:var(--cream);margin-bottom:3px;}
+  .audit-row .txt span{color:var(--muted);font-size:13px;}
+
+  .chart-box{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:rgba(255,255,255,.02);}
+  .chart-box h4{font-size:13.5px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;font-weight:500;}
+  .chart-box canvas{max-height:280px;}
+  .chart-note{color:var(--muted);font-size:12px;margin-top:12px;line-height:1.5;}
+
+  /* ---------- COPY BOXES ---------- */
+  .copybox{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:#050505;overflow:hidden;margin-bottom:20px;
+  }
+  .copybox .cb-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 18px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);
+  }
+  .copybox .cb-head .title{font-size:13px;color:var(--gold-bright);font-weight:600;}
+  .copybox .cb-head .meta{font-size:11.5px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-left:10px;}
+  .copy-btn{
+    background:var(--gold);color:var(--bg);border:none;border-radius:7px;
+    padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;
+    cursor:pointer;transition:background .15s;flex-shrink:0;
+  }
+  .copy-btn:hover{background:var(--gold-bright);}
+  .copy-btn.copied{background:var(--green-ok);color:#fff;}
+  .copybox pre{
+    margin:0;padding:18px;font-family:'IBM Plex Mono',monospace;font-size:12.6px;
+    color:var(--cream);white-space:pre-wrap;word-wrap:break-word;line-height:1.6;
+  }
+
+  /* ---------- TIMELINE / ROADMAP ---------- */
+  .roadmap{position:relative;padding-left:28px;border-left:2px solid var(--line);margin-top:10px;}
+  .phase{position:relative;margin-bottom:44px;}
+  .phase::before{
+    content:'';position:absolute;left:-35px;top:4px;width:14px;height:14px;
+    border-radius:50%;background:var(--gold-bright);box-shadow:0 0 0 4px rgba(240,200,105,.15);
+  }
+  .phase .ph-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .phase .ph-when{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:12px;letter-spacing:.05em;}
+  .phase h3{font-size:19px;}
+  .checklist{list-style:none;margin:0;padding:0;}
+  .checklist li{
+    display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);
+    font-size:14px;color:var(--cream);
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist li .box{
+    flex-shrink:0;width:18px;height:18px;border:1.5px solid var(--gold);border-radius:5px;margin-top:2px;
+  }
+  .checklist li .desc{display:block;flex:1;}
+  .checklist li .desc span{display:block;color:var(--muted);font-size:12.6px;margin-top:2px;}
+
+  /* ---------- TABLE ---------- */
+  table.datatable{width:100%;border-collapse:collapse;font-size:13.5px;}
+  table.datatable th{
+    text-align:left;color:var(--gold);font-family:'IBM Plex Mono',monospace;font-weight:500;
+    font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;
+    padding:10px 12px;border-bottom:1px solid var(--line);
+  }
+  table.datatable td{padding:12px;border-bottom:1px solid var(--line);color:var(--cream);}
+  table.datatable tr:last-child td{border-bottom:none;}
+  table.datatable td.muted{color:var(--muted);}
+  .heat{display:inline-block;padding:3px 9px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;}
+  .heat.h3{background:rgba(240,200,105,.28);color:var(--gold-bright);}
+  .heat.h2{background:rgba(240,200,105,.14);color:var(--gold);}
+  .heat.h1{background:rgba(255,255,255,.05);color:var(--muted);}
+
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;
+    padding:3px 9px;border-radius:5px;border:1px solid var(--line);color:var(--muted);text-transform:uppercase;margin-right:6px;}
+  .tag.gold{border-color:var(--gold);color:var(--gold-bright);}
+  .tag.red{border-color:var(--red-flag);color:#d98d7c;}
+
+  .callout{
+    border-left:3px solid var(--gold);background:rgba(202,162,67,.06);
+    padding:16px 20px;border-radius:0 10px 10px 0;font-size:13.8px;color:var(--cream);margin:20px 0;
+  }
+  .callout strong{color:var(--gold-bright);}
+
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:40px 24px;font-family:'IBM Plex Mono',monospace;}
+  footer .sources{display:block;margin-top:10px;color:var(--muted);}
+  footer a{color:var(--gold);}
+
+  /* ---------- ACCESSIBILITY: focus, skip link, reduced motion ---------- */
+  .visually-hidden{
+    position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  .skip-link{
+    position:absolute;left:12px;top:-60px;z-index:100;
+    background:var(--gold-bright);color:#080808;font-weight:700;
+    padding:10px 16px;border-radius:8px;transition:top .15s;text-decoration:none;
+  }
+  .skip-link:focus{top:12px;}
+  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
+    outline:3px solid var(--gold-bright);outline-offset:2px;border-radius:4px;
+  }
+  nav.tabs button:focus-visible{outline-offset:-3px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    section.panel{animation:none;}
+    *{transition-duration:.01ms!important;animation-duration:.01ms!important;}
+  }
+
+  /* ---------- PROGRESS TRACKING ---------- */
+  .progress-widget{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:rgba(255,255,255,.03);padding:16px 20px;margin-bottom:28px;
+  }
+  .progress-widget .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+  .progress-widget .label{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;}
+  .progress-widget .count{font-family:'Syne';font-weight:800;color:var(--gold-bright);font-size:15px;}
+  .progress-bar-track{height:10px;border-radius:6px;background:rgba(255,255,255,.08);margin-top:10px;overflow:hidden;}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:6px;transition:width .3s ease;width:0%;}
+  .next-step-btn{
+    margin-top:12px;background:none;border:1px solid var(--gold);color:var(--gold-bright);
+    border-radius:8px;padding:8px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;
+  }
+  .next-step-btn:hover{background:rgba(202,162,67,.1);}
+  .reset-progress-btn{
+    background:none;border:1px solid var(--line);color:var(--muted);
+    border-radius:8px;padding:6px 12px;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;margin-left:auto;
+  }
+  .reset-progress-btn:hover{color:var(--red-flag);border-color:var(--red-flag);}
+  .phase.done-phase::before{background:var(--green-ok);box-shadow:0 0 0 4px rgba(110,143,92,.18);}
+  .phase-progress{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin-left:auto;}
+
+  /* ---------- ACCESSIBLE CHECKBOXES (replace .box) ---------- */
+  .checklist li{align-items:flex-start;}
+  .checklist li label{display:flex;gap:12px;cursor:pointer;width:100%;}
+  .checklist li input[type="checkbox"]{
+    appearance:none;-webkit-appearance:none;flex-shrink:0;width:20px;height:20px;
+    border:1.5px solid var(--gold);border-radius:5px;margin-top:1px;cursor:pointer;
+    position:relative;background:rgba(255,255,255,.02);
+  }
+  .checklist li input[type="checkbox"]:checked{background:var(--gold-bright);border-color:var(--gold-bright);}
+  .checklist li input[type="checkbox"]:checked::after{
+    content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;
+    border:solid #080808;border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .checklist li.step-done .desc strong{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--green-ok);}
+  .checklist li.step-current{background:rgba(202,162,67,.06);border-radius:8px;margin:0 -12px;padding:10px 12px;}
+  .checklist li.step-current .desc strong::after{
+    content:'← étape en cours';font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    color:var(--gold-bright);text-decoration:none;margin-left:10px;font-weight:500;
+  }
+
+  .chart-desc-toggle{
+    background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;
+    padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;margin-top:10px;
+  }
+  .chart-desc-toggle:hover{color:var(--cream);}
+  .chart-text-alt{font-size:12.5px;color:var(--cream);margin-top:10px;padding:12px;background:rgba(255,255,255,.03);border-radius:8px;}
+  .chart-text-alt[hidden]{display:none;}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
+<div id="copy-announcer" class="visually-hidden" role="status" aria-live="polite"></div>
+<div id="progress-announcer" class="visually-hidden" role="status" aria-live="polite"></div>
+
+<header class="top">
+  <span class="kicker">OVIZAI // AUDIT VISUEL &amp; PLAN D'ACTION — SEPTEMBRE 2026</span>
+  <h1>De l'audit du projet au premier dollar encaissé.</h1>
+  <p class="lead">Ce document rassemble en un seul endroit : la notation complète du projet, les comparatifs de marché (Instagram, pricing, prospection), le guide étape par étape jusqu'au premier client payant, et tous les textes prêts à copier-coller (légendes, scripts de prospection, prompts de correction pour Antigravity).</p>
+  <div class="scorebadge-row">
+    <div class="scorebadge"><div class="num">7.0/10</div><div class="lbl">Note produit/technique (hors preuve sociale &amp; réseaux)</div></div>
+    <div class="scorebadge"><div class="num">2</div><div class="lbl">Vidéos prêtes à exploiter</div></div>
+    <div class="scorebadge"><div class="num">7</div><div class="lbl">Prompts Antigravity prêts (bugs + lancement)</div></div>
+    <div class="scorebadge"><div class="num">14j</div><div class="lbl">Calendrier de contenu fourni</div></div>
+    <div class="scorebadge"><div class="num mono" id="headerProgressNum">0/17</div><div class="lbl">Étapes cochées dans le guide (04)</div></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections du guide">
+  <div class="inner" id="tabnav" role="tablist" aria-label="Sections du guide OVIZai">
+    <button class="active" id="tab-audit" role="tab" aria-selected="true" aria-controls="audit" data-tab="audit">01 · Audit visuel</button>
+    <button id="tab-bugs" role="tab" aria-selected="false" aria-controls="bugs" tabindex="-1" data-tab="bugs">02 · Bugs &amp; Antigravity</button>
+    <button id="tab-marche" role="tab" aria-selected="false" aria-controls="marche" tabindex="-1" data-tab="marche">03 · Comparatifs marché</button>
+    <button id="tab-roadmap" role="tab" aria-selected="false" aria-controls="roadmap" tabindex="-1" data-tab="roadmap">04 · Guide étape par étape</button>
+    <button id="tab-social" role="tab" aria-selected="false" aria-controls="social" tabindex="-1" data-tab="social">05 · Instagram</button>
+    <button id="tab-prospection" role="tab" aria-selected="false" aria-controls="prospection" tabindex="-1" data-tab="prospection">06 · Prospection</button>
+    <button id="tab-affiliation" role="tab" aria-selected="false" aria-controls="affiliation" tabindex="-1" data-tab="affiliation">07 · Affiliation</button>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- ============ 01 AUDIT ============ -->
+<section class="panel active" id="audit" role="tabpanel" aria-labelledby="tab-audit" tabindex="0">
+  <h2 class="section-title">Audit noté sur 10 — par axe</h2>
+  <p class="section-sub">Basé sur une lecture directe du code (pas de suppositions) : <span class="mono">pricing.ts</span>, <span class="mono">videos.ts</span>, <span class="mono">ServicesGrid.tsx</span>, <span class="mono">page.tsx</span>, et les 6 fichiers .md déjà présents dans le repo. Notation limitée aux axes produit/technique — la preuve sociale et la présence sur les réseaux ne sont pas notées ici, elles sont traitées comme un plan d'action dans les sections suivantes.</p>
+
+  <div class="audit-row">
+    <div class="grade-pill mid">7.5</div>
+    <div class="txt"><strong>Qualité technique du code</strong><span>Next.js 14 propre, TypeScript strict sans erreur, headers de sécurité durcis, rate-limiting sur les routes sensibles. Manque : 0 test automatisé, aucun pipeline CI/CD.</span></div>
+  </div>
+  <div class="audit-row">
+    <div class="grade-pill">8.5</div>
+    <div class="txt"><strong>Design, UX &amp; cohérence visuelle</strong><span>Identité "Dark Luxury" très différenciante et unifiée. Seule incohérence confirmée dans le code : les pages /confidentialite et /mentions-legales sont affichées en blocs statiques ouverts, alors que /cgv utilise un accordéon interactif (ListMenuCard) — les deux vidéos existantes, elles, sont déjà bien placées et n'ont pas à bouger.</span></div>
+  </div>
+  <div class="audit-row">
+    <div class="grade-pill mid">6.5</div>
+    <div class="txt"><strong>SEO technique &amp; découvrabilité</strong><span>Sitemap, robots.txt, JSON-LD et OpenGraph bien construits. Mais zéro backlink, zéro article, et les balises VideoObject pointent vers des vidéos non indexées par Google Video.</span></div>
+  </div>
+  <div class="audit-row">
+    <div class="grade-pill mid">5.5</div>
+    <div class="txt"><strong>Tunnel de conversion &amp; business</strong><span>Stripe + webhook fonctionnels pour la Masterclass. Mais 4 versions de prix différentes circulent entre le code et les 4 fichiers .md — confusion interne à résoudre en premier (détail section 02).</span></div>
+  </div>
+
+  <div class="callout">
+    <strong>Diagnostic en une phrase :</strong> OVIZai a la carrosserie technique et visuelle d'une agence haut de gamme, avec un tunnel Stripe fonctionnel — mais une dissonance tarifaire interne à trancher (4 versions de prix en circulation) et une incohérence UX sur les pages légales à corriger avant d'aller plus loin.
+  </div>
+
+  <div class="grid cols-2" style="margin-top:32px;">
+    <div class="chart-box">
+      <h4>Radar — Note par axe (/10)</h4>
+      <canvas id="chartRadar" role="img" aria-label="Graphique radar des notes sur 10 : Technique 7,5, Design/UX 8,5, SEO 6,5, Conversion 5,5."></canvas>
+      <button type="button" class="chart-desc-toggle" aria-expanded="false" data-alt-for="alt-chartRadar">Voir les données en texte</button>
+      <div id="alt-chartRadar" class="chart-text-alt" hidden>Technique : 7,5/10. Design/UX : 8,5/10. SEO : 6,5/10. Conversion : 5,5/10.</div>
+    </div>
+    <div class="chart-box">
+      <h4>Où passe le temps aujourd'hui vs où il devrait aller</h4>
+      <canvas id="chartFocus" role="img" aria-label="Graphique en barres comparant l'effort investi à l'effort recommandé, par domaine."></canvas>
+      <button type="button" class="chart-desc-toggle" aria-expanded="false" data-alt-for="alt-chartFocus">Voir les données en texte</button>
+      <div id="alt-chartFocus" class="chart-text-alt" hidden>Code/Technique : 85% investi jusqu'ici vs 15% recommandé maintenant. Design : 80% vs 15%. Distribution (réseaux, prospection) : 5% investi vs 70% recommandé.</div>
+      <p class="chart-note">Le projet est fini techniquement à ~85 %. L'effort doit maintenant basculer presque entièrement vers la mise en ligne du contenu et la prospection plutôt que vers plus de code.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 BUGS ============ -->
+<section class="panel" id="bugs" role="tabpanel" aria-labelledby="tab-bugs" tabindex="0">
+  <h2 class="section-title">5 bugs corrigés + 2 prompts pour le lancement officiel</h2>
+  <p class="section-sub">Chaque prompt ci-dessous est prêt à coller directement dans Antigravity, à la racine du repo <span class="mono">ovizaidotcom-main</span>. Un prompt = une correction ciblée, pour éviter qu'il modifie autre chose que ce qui est demandé. Les 5 premiers sont des corrections de code ; les 2 derniers préparent le passage en lancement officiel (nettoyage du dépôt + calendrier Instagram).</p>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag red">Priorité 1</span><span class="title">Réconcilier les 4 versions de prix incohérentes</span></div>
+      <button class="copy-btn" data-target="p1">Copier</button>
+    </div>
+    <pre id="p1">Dans ce repo, il existe 4 versions différentes des prix OVIZai :
+1. src/lib/pricing.ts (le code réel en production) : Sprint Pilote 890$/originalMinUsd 1250$, Campagne 2100$/originalMinUsd 2950$, Masterclass 320$USD/290€/430$CAD (originalPrice 450$/415€/620$CAD).
+2. AUDIT_COMPLET_OVIZAI.md et GUIDE-LANCEMENT.md mentionnent un Sprint Pilote à 490€/530$.
+3. AUDIT_AUTONOME.md et RAPPORT_LANCEMENT.md mentionnent un Sprint Pilote à 1150$ (barré 1650$) et une Campagne à 3200$.
+4. PROPOSITION_PRIX.md propose 3 scénarios non tranchés.
+
+Tâche : considère src/lib/pricing.ts comme l'unique source de vérité (c'est le code qui tourne réellement en prod, connecté à Stripe). Mets à jour AUDIT_COMPLET_OVIZAI.md, GUIDE-LANCEMENT.md, AUDIT_AUTONOME.md et RAPPORT_LANCEMENT.md pour que chaque mention de prix corresponde exactement aux valeurs de pricing.ts. N'invente aucun nouveau prix, ne modifie pas pricing.ts lui-même. Ajoute en tête de PROPOSITION_PRIX.md une ligne "STATUT : TRANCHÉ — voir src/lib/pricing.ts" pour qu'il ne soit plus consulté comme un document en attente.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag red">Priorité 2</span><span class="title">/confidentialite &amp; /mentions-legales n'ont pas l'accordéon de /cgv</span></div>
+      <button class="copy-btn" data-target="p2">Copier</button>
+    </div>
+    <pre id="p2">Dans ce repo, src/app/cgv/CgvClient.tsx affiche ses 4 sections dans un ListMenuCard interactif (src/components/ListMenuCard.tsx) : chaque item est fermé par défaut, avec un state openSection (useState) et une fonction toggleSection qui ouvre/ferme la section cliquée (trailing "↓"/"↑", expanded, expandedContent).
+
+En comparaison, src/app/confidentialite/ConfidentialiteClient.tsx et src/app/mentions-legales/MentionsLegalesClient.tsx affichent leurs sections en blocs statiques toujours ouverts (des &lt;section className="ovizai-card p-4 sm:p-5"&gt; avec &lt;h2&gt; + &lt;p&gt; en dur), sans accordéon.
+
+Tâche : ne touche à rien d'autre que ces deux fichiers, et ne change ni le texte ni le sens d'aucune section (garde exactement les mêmes titres, paragraphes, listes à puces et liens déjà présents dans ces deux fichiers). Convertis uniquement leur affichage pour reproduire fidèlement le pattern de src/app/cgv/CgvClient.tsx :
+1. Ajoute `const [openSection, setOpenSection] = useState&lt;string | null&gt;(null);` et une fonction `toggleSection(id: string)` identiques à celles de CgvClient.tsx.
+2. Transforme chaque section actuelle en un objet { id, title, content } (le contenu peut être du JSX si une section contient une liste à puces ou un lien, comme la section "Données Personnelles" qui contient un lien vers /confidentialite, ou la section RGPD qui contient un mailto) puis construis un tableau `items: ListMenuItem[]` avec trailing '↑'/'↓' selon openSection, exactement comme dans CgvClient.tsx.
+3. Remplace le bloc `&lt;div className="max-w-xl mx-auto px-4 space-y-4 ..."&gt;` contenant les &lt;section className="ovizai-card"&gt; par `&lt;div className="max-w-xl mx-auto px-4 mb-3 sm:mb-4"&gt;&lt;ListMenuCard items={items} /&gt;&lt;/div&gt;`, comme dans CgvClient.tsx.
+4. Importe ListMenuCard et son type ListMenuItem depuis '@/components/ListMenuCard'.
+Ne modifie ni le visuel des autres pages du site, ni la structure de TopBar/PageHeader/Footer, ni aucun texte : uniquement le comportement d'ouverture/fermeture de ces deux pages doit changer.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag gold">Priorité 3</span><span class="title">Commentaires et docs supposent à tort une future mise en ligne YouTube</span></div>
+      <button class="copy-btn" data-target="p3">Copier</button>
+    </div>
+    <pre id="p3">Aucune des deux vidéos ne sera jamais mise en ligne sur YouTube : la première a été bloquée par YouTube pour la musique (droits d'auteur PNL — Autre monde). Le seul lien YouTube qui doit subsister dans tout le projet est le lien vers la chaîne dans le pied de page (SOCIAL_LINKS.youtube dans src/lib/videos.ts) — aucune vidéo n'y sera jamais hébergée.
+
+Or, dans src/lib/videos.ts (YOUTUBE_VIDEOS) et src/lib/portfolio.ts (deux champs youtubeId), les commentaires actuels ("À remplir dès mise en ligne sur YouTube" / "Remplacer par l'ID YouTube une fois la vidéo publiée") supposent à tort qu'un ID sera un jour ajouté. RAPPORT_LANCEMENT.md peut aussi contenir une conclusion "PRÊT À LANCER" qui laisse croire que la publication YouTube est juste en attente.
+
+Tâche : ne change aucune logique ni aucun visuel, corrige uniquement les commentaires et la documentation :
+1. Dans src/lib/videos.ts, remplace les commentaires au-dessus de chaque clé de YOUTUBE_VIDEOS par une note claire : ces champs resteront vides définitivement (vidéo bloquée sur YouTube pour droits d'auteur), les deux films restent hébergés uniquement en local (LOCAL_VIDEOS) sur le site. Ne touche pas à SOCIAL_LINKS.youtube, qui reste le seul point de contact YouTube du projet (lien de chaîne en pied de page).
+2. Fais la même correction de commentaire sur les deux champs youtubeId: '' dans src/lib/portfolio.ts.
+3. Si RAPPORT_LANCEMENT.md conclut "PRÊT À LANCER" en le liant à une future publication YouTube, corrige la phrase pour retirer toute référence à une mise en ligne YouTube à venir : le statut technique du site n'en dépend pas.
+Vérifie aussi, sans rien modifier si c'est déjà correct, que src/components/VideoShowcase.tsx et ServicesGrid.tsx n'affichent jamais de lien ou bouton "Voir sur YouTube" pour ces deux vidéos — seule la lecture locale doit être proposée.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag gold">Priorité 4</span><span class="title">CTA mobile absent sur /services et /tarifs</span></div>
+      <button class="copy-btn" data-target="p4">Copier</button>
+    </div>
+    <pre id="p4">AUDIT_COMPLET_OVIZAI.md recommande déjà l'ajout d'une barre CTA fixe sur mobile pour /services et /tarifs, mais elle n'existe pas dans le code actuel (vérifie src/app/services/page.tsx et src/app/tarifs/page.tsx).
+
+Tâche : ajoute une barre sticky fixée en bas de l'écran, visible uniquement sur mobile (classe Tailwind "fixed bottom-0 left-0 right-0 z-40 p-3 sm:hidden"), avec un seul bouton "Demander un devis (24h)" qui renvoie vers /contact. Respecte le design system existant (couleurs var(--gold) / obsidian déjà utilisées dans le projet, pas de nouvelles couleurs). Vérifie qu'elle ne recouvre pas le contenu en ajoutant un padding-bottom suffisant au conteneur principal sur mobile.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag gold">Priorité 5</span><span class="title">Zéro test automatisé, zéro CI</span></div>
+      <button class="copy-btn" data-target="p5">Copier</button>
+    </div>
+    <pre id="p5">Ce repo n'a aucun script de test dans package.json et aucun dossier .github/workflows.
+
+Tâche : mets en place un minimum viable, pas une usine à gaz :
+1. Ajoute Playwright (pas Jest/Vitest, l'app n'a presque pas de logique unitaire isolée) avec un seul fichier de test e2e qui vérifie que les 5 routes principales (/, /services, /formation, /tarifs, /contact) répondent en 200 et que le titre de page attendu est présent.
+2. Ajoute un script "test" dans package.json qui lance ce fichier.
+3. Crée un fichier .github/workflows/ci.yml minimal qui, à chaque pull request, lance npm install, npm run build, et npm run test.
+Reste minimal : l'objectif est d'attraper les régressions évidentes (page qui crash, route 404 par erreur), pas d'atteindre une couverture de test élevée.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag red">Lancement 1</span><span class="title">Nettoyer le dépôt avant le lancement officiel</span></div>
+      <button class="copy-btn" data-target="p6">Copier</button>
+    </div>
+    <pre id="p6">Le site bascule en lancement officiel une fois les prompts Priorité 1 à 5 appliqués. Avant ça, nettoie le dépôt de tout fichier de préparation qui n'a plus sa place dans un repo "lancé" :
+
+1. Supprime ces 5 fichiers markdown à la racine — leur contenu est soit obsolète (prix déjà réconciliés dans pricing.ts), soit remplacé par ce guide externe, et aucun n'est référencé par le code ou par README.md : AUDIT_AUTONOME.md, AUDIT_COMPLET_OVIZAI.md, GUIDE-LANCEMENT.md, PROPOSITION_PRIX.md, RAPPORT_LANCEMENT.md.
+2. Supprime le fichier logo.png à la racine du repo (à côté de package.json) — c'est un doublon inutilisé de public/logo.png, qui est le seul fichier réellement servi par le site (référencé en https://ovizai.com/logo.png).
+3. Pour chaque script du dossier scripts/ (compress-videos.js, generate_assets.py, make_assets.js, optimize-images.js, run-lighthouse.js) : vérifie s'il est encore utile (ex. compress-videos.js et optimize-images.js peuvent resservir si de nouveaux médias sont ajoutés plus tard) ou s'il a servi une seule fois pour une tâche déjà terminée (ex. génération d'assets initiaux). Ne supprime rien sans vérifier : liste-moi d'abord ce que tu proposes de garder vs supprimer, avec une phrase de justification par script, avant d'exécuter les suppressions.
+4. Ne touche à aucun fichier de configuration (package.json, tsconfig.json, next.config.mjs, tailwind.config.js, vercel.json, .env.example, .gitignore) ni à supabase_migration_leads.sql — ce sont des fichiers de fonctionnement, pas de préparation.
+5. Ne modifie aucun fichier dans src/ ou public/ dans ce prompt : cette tâche est un nettoyage de fichiers, pas une correction de code.</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head">
+      <div><span class="tag red">Lancement 2</span><span class="title">Générer le calendrier &amp; la stratégie Instagram dans le repo</span></div>
+      <button class="copy-btn" data-target="p7">Copier</button>
+    </div>
+    <pre id="p7">Place le fichier OVIZAI_GUIDE_INTERACTIF.html (déjà fourni) à la racine du repo s'il n'y est pas déjà, puis à partir de son onglet "05 · Instagram" (les blocs copiables identifiés r1, r2, r3, c1, r4, r5, r6, c2 — hooks, visuels, légendes, hashtags) et de son onglet "03 · Comparatifs marché" (tableau des meilleurs créneaux de publication), crée un fichier CONTENU-INSTAGRAM.md à la racine du repo qui devient la seule source de vérité pour le contenu Instagram (il remplace le rôle que jouait GUIDE-LANCEMENT.md avant sa suppression).
+
+Structure attendue du fichier :
+1. Un calendrier sur 2 semaines sous forme de tableau (Jour | Date relative | Format | Contenu | Créneau recommandé), organisé ainsi :
+   Semaine 1 (vidéo "LE BANQUET") : Lundi = story teaser, Mardi 12h = Carrousel making-of (bloc c1), Mercredi 12h ou 18h = Reel 1 (bloc r1), Jeudi 18h-19h = Reel 2 (bloc r2), Vendredi = story sondage/coulisses, Samedi = repos (aucune publication), Dimanche 19h = Reel 3 (bloc r3).
+   Semaine 2 (vidéo "LE CORTÈGE") : Lundi = story teaser, Mardi 12h = Carrousel making-of (bloc c2), Mercredi 12h ou 18h = Reel 4 (bloc r4), Jeudi 18h-19h = Reel 5 (bloc r5), Vendredi = story CTA Sprint Pilote épinglée, Samedi = repos, Dimanche 19h = Reel 6 (bloc r6).
+2. Pour chaque entrée du calendrier, reprend le texte exact (hook, visuel, légende, hashtags) du bloc correspondant dans OVIZAI_GUIDE_INTERACTIF.html — ne reformule rien, copie le texte source tel quel.
+3. Une section finale "Règles du compte" reprenant telles quelles les règles déjà présentes dans le guide : pas de publication YouTube prévue (vidéos non hébergées sur YouTube pour droits d'auteur), vigilance sur le son des Reels (risque de coupure audio, remplacer par un son de la bibliothèque Instagram si besoin), et la règle d'une seule relance par prospect en prospection.
+Ne crée aucune automatisation de publication, aucun appel API Instagram : ce fichier est un document de planification texte, pas un outil technique.</pre>
+  </div>
+</section>
+
+<!-- ============ 03 MARCHE ============ -->
+<section class="panel" id="marche" role="tabpanel" aria-labelledby="tab-marche" tabindex="0">
+  <h2 class="section-title">Comparatifs de marché — ce que disent les données 2026</h2>
+  <p class="section-sub">Recherches croisées Metricool, Social Insider, Carouselli, Apollo, Cleverly, Higgsfield et les données de marché déjà présentes dans PROPOSITION_PRIX.md.</p>
+
+  <div class="grid cols-2">
+    <div class="chart-box">
+      <h4>Reels vs Carrousel — portée &amp; engagement (2026)</h4>
+      <canvas id="chartIG" role="img" aria-label="Graphique en barres : Reels 14,45% de portée moyenne et 0,46% d'engagement ; Carrousel 10% de portée et 0,52% d'engagement."></canvas>
+      <button type="button" class="chart-desc-toggle" aria-expanded="false" data-alt-for="alt-chartIG">Voir les données en texte</button>
+      <div id="alt-chartIG" class="chart-text-alt" hidden>Reels : portée moyenne 14,45%, taux d'engagement 0,46%. Carrousel : portée moyenne 10%, taux d'engagement 0,52%.</div>
+      <p class="chart-note">Un Reel touche plus de monde (reach ~14,45 %) mais un Carrousel convertit mieux ceux qui le voient déjà (engagement le plus haut de tous les formats, 2x plus de sauvegardes qu'un Reel). Le poste image unique — ta 3ᵉ idée initiale de "scènes séparées" — est le format le plus faible des trois : à éviter en post de grille, à réserver aux Stories.</p>
+    </div>
+    <div class="chart-box">
+      <h4>Où se situe OVIZai sur le marché de la vidéo (par projet, $)</h4>
+      <canvas id="chartPricing" role="img" aria-label="Graphique en barres des prix moyens par projet : Freelance solo 600$, Sprint Pilote OVIZai 890$, Campagne OVIZai 2100$, Agence IA mid-range 2000$, Agence traditionnelle 13000$."></canvas>
+      <button type="button" class="chart-desc-toggle" aria-expanded="false" data-alt-for="alt-chartPricing">Voir les données en texte</button>
+      <div id="alt-chartPricing" class="chart-text-alt" hidden>Freelance solo : 600$/projet. OVIZai Sprint Pilote : 890$. OVIZai Campagne : 2100$. Agence IA mid-range : 2000$. Agence traditionnelle : 13000$.</div>
+      <p class="chart-note">Le Sprint Pilote (890$) et la Campagne (2 100$) positionnent OVIZai juste au-dessus d'un freelance solo et nettement sous une agence traditionnelle — la zone idéale pour un studio qui démarre : crédible, mais sans friction d'achat.</p>
+    </div>
+  </div>
+
+  <div class="grid cols-2" style="margin-top:20px;">
+    <div class="chart-box">
+      <h4>Taux de réponse en prospection par canal (2026)</h4>
+      <canvas id="chartOutreach" role="img" aria-label="Graphique en barres horizontales : cold email générique 3,7% de réponse, DM générique 9%, DM personnalisé avec vidéo jointe 20%."></canvas>
+      <button type="button" class="chart-desc-toggle" aria-expanded="false" data-alt-for="alt-chartOutreach">Voir les données en texte</button>
+      <div id="alt-chartOutreach" class="chart-text-alt" hidden>Cold email générique : 3,7% de réponse. DM générique : 9%. DM personnalisé + vidéo jointe : 20%.</div>
+      <p class="chart-note">Un DM générique performe comme un cold email (~3-10 %). Un DM personnalisé avec preuve visuelle jointe (comme le recommande le script de prospection section 06) peut atteindre 15-25 % de réponse d'après les benchmarks 2026 sur l'outreach personnalisé par signal.</p>
+    </div>
+    <div class="chart-box">
+      <h4>Meilleurs créneaux de publication Instagram (France, 2026)</h4>
+      <table class="datatable">
+        <tr><th>Jour</th><th>Créneau</th><th>Intensité</th></tr>
+        <tr><td>Mercredi</td><td class="muted">12h &amp; 18h</td><td><span class="heat h3">Pic +34%</span></td></tr>
+        <tr><td>Jeudi</td><td class="muted">9h &amp; 18h-19h</td><td><span class="heat h3">Fort</span></td></tr>
+        <tr><td>Mardi</td><td class="muted">10h-11h &amp; 18h-19h</td><td><span class="heat h2">Bon</span></td></tr>
+        <tr><td>Lundi</td><td class="muted">13h-14h &amp; 16h-18h</td><td><span class="heat h2">Bon</span></td></tr>
+        <tr><td>Dimanche</td><td class="muted">12h, 19h, 23h</td><td><span class="heat h2">Correct</span></td></tr>
+        <tr><td>Vendredi / Samedi</td><td class="muted">Toute heure</td><td><span class="heat h1">Faible</span></td></tr>
+      </table>
+      <p class="chart-note">Source : analyse Metricool / Buffer / Swello sur 7 à 9,6 millions de publications, données 2026. Mercredi et jeudi sont systématiquement les deux meilleurs jours, week-end à éviter pour les posts de lancement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ROADMAP ============ -->
+<section class="panel" id="roadmap" role="tabpanel" aria-labelledby="tab-roadmap" tabindex="0">
+  <h2 class="section-title">Guide étape par étape — jusqu'au premier dollar</h2>
+  <p class="section-sub">Chaque phase a une durée réaliste et des cases à cocher, cochables et sauvegardées automatiquement dans ce navigateur. Ne saute pas la Phase 0 : publier sans corriger l'incohérence de prix ou sans preuve vidéo réelle sur le site affaiblit tout ce qui suit.</p>
+
+  <div class="progress-widget">
+    <div class="row">
+      <span class="label">Ta progression</span>
+      <span class="count"><span id="progressCount">0</span>/<span id="progressTotal">17</span> étapes cochées</span>
+      <button type="button" class="reset-progress-btn" id="resetProgressBtn">Réinitialiser</button>
+    </div>
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBarFill"></div></div>
+    <button type="button" class="next-step-btn" id="jumpNextStepBtn">Aller à ma prochaine étape à faire</button>
+  </div>
+
+  <div class="roadmap">
+
+    <div class="phase" data-phase="0">
+      <div class="ph-head"><span class="ph-when">PHASE 0 · Jours 1-2</span><h3>Combler les trous visibles</h3><span class="phase-progress" data-phase-progress="0"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p0-1"><span class="desc"><strong>Faire tourner les 7 prompts Antigravity de la section 02</strong><span>Prix réconciliés, accordéon appliqué à /confidentialite &amp; /mentions-legales, commentaires YouTube nettoyés, CTA mobile, tests minimum, nettoyage du dépôt, calendrier Instagram généré en CONTENU-INSTAGRAM.md.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p0-2"><span class="desc"><strong>Aucun upload YouTube à faire</strong><span>Vidéo bloquée pour droits d'auteur (musique) — les deux films restent en local sur le site ; seul le lien de la chaîne YouTube reste en pied de page.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p0-3"><span class="desc"><strong>Trancher définitivement le pricing</strong><span>Garder les valeurs déjà câblées dans pricing.ts (890$/2100$/290€) : elles sont cohérentes avec le marché, ne pas les changer avant d'avoir des clients.</span></span></label></li>
+      </ul>
+    </div>
+
+    <div class="phase" data-phase="1">
+      <div class="ph-head"><span class="ph-when">PHASE 1 · Jours 3-16</span><h3>Lancement Instagram (calendrier fourni en section 05)</h3><span class="phase-progress" data-phase-progress="1"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p1-1"><span class="desc"><strong>Publier le calendrier de 14 jours en section 05</strong><span>6 Reels + 2 Carrousels + Stories quotidiennes, aux créneaux du tableau ci-dessus.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p1-2"><span class="desc"><strong>Ne pas viser les abonnés, viser les DMs</strong><span>L'objectif de cette phase est de prouver que le format marche et de commencer à récolter des messages privés de prospects intéressés.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p1-3"><span class="desc"><strong>Épingler l'offre Sprint Pilote en story à la une</strong><span>Visible en permanence sur le profil, pas seulement dans les captions.</span></span></label></li>
+      </ul>
+    </div>
+
+    <div class="phase" data-phase="2">
+      <div class="ph-head"><span class="ph-when">PHASE 2 · Semaines 2-4 (en parallèle de la Phase 1)</span><h3>Prospection active — chemin le plus rapide vers le 1er euro</h3><span class="phase-progress" data-phase-progress="2"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p2-1"><span class="desc"><strong>15 DM personnalisés par jour</strong><span>Scripts prêts en section 06, ciblés labels indépendants, artistes émergents, marques streetwear/niche luxury.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p2-2"><span class="desc"><strong>Joindre systématiquement un extrait vidéo de 5-10s</strong><span>La preuve visuelle directe dans le DM double le taux de réponse par rapport à un texte seul.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p2-3"><span class="desc"><strong>Objectif réaliste : 1 client signé pour 25-40 DMs envoyés</strong><span>D'après les benchmarks 2026 d'outreach personnalisé (voir section 03) — pas 1 sur 5, reste réaliste pour ne pas te décourager.</span></span></label></li>
+      </ul>
+    </div>
+
+    <div class="phase" data-phase="3">
+      <div class="ph-head"><span class="ph-when">PHASE 3 · Dès le 1er client signé</span><h3>Livrer, documenter, réinjecter en contenu</h3><span class="phase-progress" data-phase-progress="3"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p3-1"><span class="desc"><strong>Livrer le Sprint Pilote sous 48-72h comme promis</strong><span>La garantie de délai est l'argument de vente n°1 — ne jamais la casser sur le premier client.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p3-2"><span class="desc"><strong>Republier le projet client comme contenu Instagram immédiat</strong><span>C'est ce premier vrai cas client, avec retour du client, qui construit la preuve sociale qui manque encore au site.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p3-3"><span class="desc"><strong>Demander un témoignage écrit ou vidéo de 15 secondes</strong><span>Même un message WhatsApp positif capturé en capture d'écran vaut mieux que rien sur le site.</span></span></label></li>
+      </ul>
+    </div>
+
+    <div class="phase" data-phase="4">
+      <div class="ph-head"><span class="ph-when">PHASE 4 · Mois 2</span><h3>Candidater au programme Higgsfield (détail section 07)</h3><span class="phase-progress" data-phase-progress="4"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p4-1"><span class="desc"><strong>Candidater au Higgsfield Creator Partnership Program dès 2-3 posts Instagram publiés</strong><span>La communication publique de Higgsfield indique des candidatures étudiées individuellement, sans seuil d'abonnés — postule tôt sans attendre une grosse audience.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p4-2"><span class="desc"><strong>Taguer/mentionner Higgsfield sur le contenu qui utilise leurs outils</strong><span>C'est la contrepartie demandée par le programme — en échange : crédits mensuels, accès anticipé, communauté privée.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p4-3"><span class="desc"><strong>Activer aussi le lien affilié Higgsfield en parallèle</strong><span>Actif immédiatement après inscription — à partager plus tard avec les élèves de la Masterclass, en recommandation honnête plutôt qu'en argument de vente principal.</span></span></label></li>
+      </ul>
+    </div>
+
+    <div class="phase" data-phase="5">
+      <div class="ph-head"><span class="ph-when">MOIS 2-3</span><h3>Montée en gamme</h3><span class="phase-progress" data-phase-progress="5"></span></div>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-step="p5-1"><span class="desc"><strong>Retirer le badge "SPEC FILM" une fois 3 clients réels livrés</strong><span>Remplacer par de vrais cas clients avec logos et résultats.</span></span></label></li>
+        <li><label><input type="checkbox" data-step="p5-2"><span class="desc"><strong>Augmenter les prix vers 1 250$ / 2 950$</strong><span>Seulement une fois la demande validée par des clients payants réels, pas avant.</span></span></label></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:28px;">
+    <strong>Stratégies complémentaires trouvées en recherche (2026) :</strong> en parallèle des DM, la traction la plus citée par les studios/agences qui passent le cap du bouche-à-oreille vient du <strong>contenu récurrent sur un canal (LinkedIn, YouTube)</strong> plutôt que de la seule prospection à froid — le contenu devient la brique qui continue à générer des demandes même sans DM actif. Pour les tout premiers clients, offrir 1 à 2 projets à tarif réduit ou gratuit en échange d'un témoignage filmé de 15s reste la méthode la plus citée pour amorcer la preuve sociale quand le book est encore vide. Enfin, les plateformes freelance françaises (Malt, ComeUp) sont un canal de secours utile si la prospection Instagram démarre lentement — à activer en Phase 2 si les 15 DM/jour ne suffisent pas seuls.
+  </div>
+</section>
+
+<!-- ============ 05 SOCIAL ============ -->
+<section class="panel" id="social" role="tabpanel" aria-labelledby="tab-social" tabindex="0">
+  <h2 class="section-title">Instagram — textes prêts à copier</h2>
+  <p class="section-sub">Basé sur le contenu réel vérifié image par image des deux vidéos (<span class="mono">spec-01.mp4</span> "LE BANQUET", <span class="mono">spec-02.mp4</span> "LE CORTÈGE", 29s chacune, univers banlieue 90s × gothique victorien, bande-son PNL — Autre monde). 3 Reels + 1 Carrousel par vidéo, comme recommandé section 03. Pas de publication YouTube prévue : les CTA renvoient vers ovizai.com.</p>
+
+  <div class="callout">
+    <strong>Point de vigilance audio :</strong> la première vidéo a été bloquée sur YouTube pour la musique (PNL — Autre monde). Instagram/Meta applique aussi une détection de droits d'auteur : le résultat le plus probable est un son coupé sur le Reel plutôt qu'un blocage total, mais reste vigilant. Si un Reel se retrouve muet à la publication, republie-le avec un morceau libre de droits (bibliothèque de sons Instagram) plutôt que d'insister avec la même piste.
+  </div>
+
+  <h3 style="margin:36px 0 16px;font-size:17px;">Vidéo 1 — "LE BANQUET" (spec-01.mp4)</h3>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 1</span><span class="title">0:00 – 0:09 · Le mouton, le fer à repasser</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r1">Copier</button></div>
+    <pre id="r1">HOOK ÉCRAN (0-3s) : "0 figurant. 0 tournage. 100% généré par IA."
+
+VISUEL : mouton à la broche sur une mobylette face à une aristocrate gothique qui dîne, puis un fer à repasser fumant posé sur une moto-cross, au pied d'une tour HLM.
+
+LÉGENDE :
+On a fait entrer le romantisme gothique dans une cité des années 90. Et personne ne devrait croire que c'est possible sans un seul tournage.
+
+Chez OVIZai, on conçoit des univers visuels complets par direction artistique IA : cohérence des visages, textures, lumière — pas du patchwork.
+
+Le film complet "LE BANQUET" est visible sur ovizai.com (lien en bio). On construit ton prochain visuel en 48-72h.
+
+#DirectionArtistique #CinémaIA #OVIZai #VideoProduction #Paris1990</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 2</span><span class="title">0:09 – 0:18 · Le bain rituel, la décapotable</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r2">Copier</button></div>
+    <pre id="r2">HOOK ÉCRAN (0-3s) : "Le luxe gothique n'a jamais rencontré la cité. Jusqu'à maintenant."
+
+VISUEL : rituel du bain dans une baignoire ancienne au milieu d'une esplanade HLM, puis deux dandys en costume d'époque qui roulent en décapotable rouge dans le quartier.
+
+LÉGENDE :
+La direction artistique, ce n'est pas ajouter un filtre. C'est faire cohabiter deux mondes qui ne se sont jamais parlé, image par image, sans perdre en cohérence.
+
+C'est exactement ce qu'on livre à nos clients : un univers de marque qui ne ressemble à aucun autre, produit en 48-72h.
+
+Lien en bio pour lancer ton Sprint Pilote.
+#DarkAcademia #AIFilm #CreativeDirection #OVIZai #BrandFilm</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 3</span><span class="title">0:18 – 0:29 · Le violoniste, les bougies, le regard masqué</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r3">Copier</button></div>
+    <pre id="r3">HOOK ÉCRAN (0-3s) : "C'est la vidéo la plus étrange que tu verras aujourd'hui."
+
+VISUEL : un violoniste joue près d'une benne à ordures, un vampire en costume allume la cigarette d'un jeune en survêtement à la lueur d'un candélabre, puis gros plan intense sur un regard encapuchonné. Signature OVIZai en clôture.
+
+LÉGENDE :
+Chaque plan raconte une collision : l'aristocratie et la rue, la bougie et le survêtement Lacoste. Rien n'est laissé au hasard, tout est dirigé.
+
+"LE BANQUET" — étude visuelle complète disponible sur ovizai.com (lien en bio).
+Studio OVIZai — direction artistique &amp; cinéma génératif.
+#OVIZai #AIArt #Cinematography #VisualStorytelling #Gothic</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Carrousel making-of</span><span class="title">Déconstruction de "LE BANQUET"</span><span class="meta">4:5 · 6 slides</span></div><button class="copy-btn" data-target="c1">Copier</button></div>
+    <pre id="c1">SLIDE 1 (cover) : "Anatomie d'un plan impossible : LE BANQUET, par OVIZai" — visuel : mouton à la broche + robe victorienne.
+SLIDE 2 : Le concept — collision entre l'aristocratie gothique et la cité des années 90.
+SLIDE 3 : La direction artistique — moodboard matières (velours noir, chrome, béton brut, or terni).
+SLIDE 4 : Le pipeline — génération de scènes cohérentes, contrôle de caméra virtuelle, verrouillage des visages sur toute la séquence.
+SLIDE 5 : L'étalonnage — grain 35mm, contrastes profonds, lumière ambrée.
+SLIDE 6 (CTA) : "Un concept visuel fort à produire ? On le livre en 48-72h. Lien en bio."
+
+LÉGENDE :
+Personne ne devine, en le regardant, que ce film n'a eu ni figurants, ni permis de tournage, ni décor physique.
+Voici les 4 étapes de notre pipeline pour livrer un asset cinématique complet, sans plateau.
+
+Enregistre ce carrousel pour ton prochain brief créatif.
+#CreativeAgency #AIVideoProduction #BehindTheScenes #OVIZai</pre>
+  </div>
+
+  <h3 style="margin:44px 0 16px;font-size:17px;">Vidéo 2 — "LE CORTÈGE" (spec-02.mp4)</h3>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 1</span><span class="title">0:00 – 0:09 · Le cercueil qui drift, la lessive de billets</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r4">Copier</button></div>
+    <pre id="r4">HOOK ÉCRAN (0-3s) : "Un cercueil sur le toit d'une citadine qui drift. Bienvenue chez OVIZai."
+
+VISUEL : une petite citadine noire dérape avec un cercueil arrimé sur la galerie, puis un vampire en soutane agenouillé qui lave des liasses de billets dans une machine à laver posée sur le trottoir.
+
+LÉGENDE :
+L'humour noir et le grotesque cohabitent avec l'élégance gothique — c'est cette tension qui rend un visuel mémorable, pas juste "joli".
+
+On construit ce genre d'univers sur-mesure pour les marques et les artistes qui veulent sortir du visuel générique.
+
+Lien en bio pour ton Sprint Pilote 48-72h.
+#OVIZai #DarkComedy #AIFilm #CreativeDirection #Paris1990</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 2</span><span class="title">0:09 – 0:18 · Le thé et le bélier, le rasage sur la cité</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r5">Copier</button></div>
+    <pre id="r5">HOOK ÉCRAN (0-3s) : "Le thé de 16h... avec un bélier à cornes d'or."
+
+VISUEL : un dandy gothique en haut-de-forme prend le thé avec un homme en casquette plate face à un bélier noir, puis trois hommes en survêtement se prélassent sur des transats devant une tour, l'un se faisant raser.
+
+LÉGENDE :
+Chaque plan de "LE CORTÈGE" met deux mondes face à face sans jamais les caricaturer. C'est ce niveau de direction artistique qu'on apporte à chaque projet.
+
+Formules pilotes disponibles sur ovizai.com (lien en bio).
+#ArtDirection #AIVideo #Cinematography #OVIZai #VisualStudy</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Reel 3</span><span class="title">0:18 – 0:29 · Le cheval voilé, le piano au chariot élévateur</span><span class="meta">9:16 · hook 3s</span></div><button class="copy-btn" data-target="r6">Copier</button></div>
+    <pre id="r6">HOOK ÉCRAN (0-3s) : "Un piano à queue déplacé au chariot élévateur, au milieu d'une cité."
+
+VISUEL : un cheval noir voilé de blanc mené en cortège funèbre entre les tours, une gothique brûlant des billets sur le capot d'une voiture, un piano ancien transporté par chariot élévateur, puis un portrait final saisissant. Signature OVIZai en clôture.
+
+LÉGENDE :
+"LE CORTÈGE" clôt cette étude visuelle sur l'image la plus forte : le grotesque, le sacré et le quotidien qui se percutent dans un seul plan.
+
+Le film complet est visible sur ovizai.com (lien en bio). Studio OVIZai — direction artistique &amp; cinéma génératif.
+#OVIZai #AIArt #Cinematography #Gothic #VisualStorytelling</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="tag gold">Carrousel making-of</span><span class="title">Déconstruction de "LE CORTÈGE"</span><span class="meta">4:5 · 6 slides</span></div><button class="copy-btn" data-target="c2">Copier</button></div>
+    <pre id="c2">SLIDE 1 (cover) : "5 règles de cohérence visuelle en 2026, illustrées par LE CORTÈGE" — visuel : cheval voilé + tours HLM.
+SLIDE 2 : Pourquoi 99% des vidéos IA font "amateur" (artefacts, visages qui glissent, incohérence de lumière).
+SLIDE 3 : Comment on verrouille les visages et les textures sur toute une séquence.
+SLIDE 4 : La gestion de la caméra virtuelle pour un mouvement fluide, pas saccadé.
+SLIDE 5 : L'étalonnage final — grain 35mm et suréchantillonnage 4K.
+SLIDE 6 (CTA) : "Envie d'apprendre à faire ça toi-même ? Masterclass IA Vidéo — 290€. Lien en bio."
+
+LÉGENDE :
+On t'explique pourquoi la plupart des vidéos IA se reconnaissent en 2 secondes — et comment on évite chacun de ces pièges dans "LE CORTÈGE".
+
+Enregistre ce carrousel. Masterclass complète disponible sur ovizai.com.
+#AIVideo #MasterclassIA #CreativeDirection #OVIZai #Filmmaking</pre>
+  </div>
+</section>
+
+<!-- ============ 06 PROSPECTION ============ -->
+<section class="panel" id="prospection" role="tabpanel" aria-labelledby="tab-prospection" tabindex="0">
+  <h2 class="section-title">Prospection — script prêt à envoyer</h2>
+  <p class="section-sub">Cible prioritaire : labels indépendants &amp; artistes émergents (rap, électro, dark wave), marques streetwear et parfumerie/luxe alternative. 15 DM personnalisés par jour, un extrait vidéo joint à chaque message.</p>
+
+  <div class="grid cols-3" style="margin-bottom:28px;">
+    <div class="card"><h3><span class="n">01</span>Volume quotidien</h3><p>15 DM personnalisés par jour, jamais un message générique copié-collé sans mention du nom réel de la marque/artiste.</p></div>
+    <div class="card"><h3><span class="n">02</span>Taux attendu</h3><p>15-25% de réponse réaliste avec preuve vidéo jointe. Compte 1 client signé pour 25-40 DM envoyés, pas plus vite.</p></div>
+    <div class="card"><h3><span class="n">03</span>Offre d'appel</h3><p>Sprint Pilote 890$ avec garantie de remboursement si le premier aperçu ne correspond pas au brief — lève la friction d'achat.</p></div>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="title">Script DM — Instagram / Direct</span><span class="meta">à personnaliser en gras</span></div><button class="copy-btn" data-target="dm1">Copier</button></div>
+    <pre id="dm1">Salut [Prénom / nom de la marque],
+
+J'ai vu votre dernier [drop / morceau / campagne] — [mentionner un détail précis et réel, pas une flatterie vague].
+
+J'ai conçu cet extrait de 8 secondes avec notre pipeline de cinéma génératif (vidéo jointe) — zéro tournage, zéro figurant.
+
+On lance notre studio OVIZai et on réserve quelques créneaux "Sprint Pilote 48-72h" à 890$ (asset court 15-30s, garanti remboursé si le premier aperçu ne correspond pas au brief).
+
+Si un visuel qui sort du lot vous intéresse pour votre prochaine sortie, dites-moi et je vous envoie 2 pistes de moodboard sans engagement aujourd'hui.
+
+[Prénom]
+ovizai.com</pre>
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="title">Relance J+3 (si pas de réponse)</span><span class="meta">un seul suivi, pas plus</span></div><button class="copy-btn" data-target="dm2">Copier</button></div>
+    <pre id="dm2">Petit suivi rapide — je sais que les DM se perdent vite.
+
+Voici notre film complet "LE BANQUET" si vous voulez voir le niveau de rendu sur 30 secondes : ovizai.com.
+
+Toujours partant pour vous envoyer 2 moodboards gratuits si l'idée d'un visuel sur-mesure vous parle. Sinon aucun souci, bonne continuation pour la suite !</pre>
+  </div>
+
+  <div class="callout">
+    <strong>Règle d'or :</strong> une seule relance par prospect. Au-delà, ça devient du harcèlement commercial et ça abîme la réputation du compte. Mieux vaut 15 nouveaux DM que 2 relances insistantes.
+  </div>
+</section>
+
+<!-- ============ 07 AFFILIATION ============ -->
+<section class="panel" id="affiliation" role="tabpanel" aria-labelledby="tab-affiliation" tabindex="0">
+  <h2 class="section-title">Programme Higgsfield — rejoindre, pas recruter</h2>
+  <p class="section-sub">Objectif clarifié : OVIZai ne monte pas son propre programme d'affiliation pour recruter des apporteurs. L'objectif est que <strong>OVIZai devienne partenaire de Higgsfield</strong> — Creator Partnership Program (CPP) et Affiliate Program — pour obtenir des crédits, un accès anticipé aux modèles, et une commission récurrente en recommandant honnêtement l'outil.</p>
+
+  <table class="datatable" style="margin-bottom:28px;">
+    <tr><th>Programme</th><th>Ce qu'OVIZai obtient</th><th>Contrepartie demandée</th><th>Statut / seuil</th></tr>
+    <tr><td>Creator Partnership Program</td><td class="muted">Plan complet renouvelé chaque mois + crédits pour projets volumineux, accès anticipé aux modèles, ligne directe avec l'équipe, communauté privée, mise en avant sur les canaux Higgsfield</td><td class="muted">Taguer/mentionner Higgsfield sur le contenu qui utilise leurs outils, s'engager sur les lancements</td><td class="muted">Candidature revue individuellement, aucun seuil d'abonnés officiel</td></tr>
+    <tr><td>Affiliate Program</td><td class="muted">Jusqu'à 25% de commission récurrente sur les abonnements référés, pendant 12 mois</td><td class="muted">Partage organique du lien (pas de publicité payante sur le nom Higgsfield)</td><td class="muted">Lien personnel actif immédiatement après inscription, sans attente</td></tr>
+    <tr><td>Earn Program (plan B)</td><td class="muted">Missions rémunérées ponctuelles, ouvertes à tous</td><td class="muted">—</td><td class="muted">Aucun seuil d'abonnés — utile si le CPP n'accepte pas tout de suite</td></tr>
+  </table>
+
+  <div class="callout">
+    <strong>Ordre recommandé :</strong> activer le lien Affiliate Program dès maintenant (aucune barrière à l'entrée), puis candidater au Creator Partnership Program une fois 2-3 posts Instagram publiés montrant le travail d'OVIZai — la candidature est plus crédible avec un compte actif à montrer. En cas de refus, le programme Earn reste ouvert en attendant de repostuler.
+  </div>
+
+  <div class="callout">
+    <strong>Point de vigilance (vérifié en ligne, septembre 2026) :</strong> les pages publiques de Higgsfield décrivent le CPP comme ouvert à candidature libre, sans seuil d'abonnés, étudiée individuellement. Mais le centre d'aide Higgsfield qualifie ailleurs ce même programme d'« invite-based », réservé aux créateurs ayant déjà une audience établie. Les deux sources datent de 2026 et ne sont pas parfaitement alignées : postule quand même via le formulaire public (rien à perdre), mais ne bloque pas le lancement du studio là-dessus — le programme <strong>Affiliate</strong> et le programme <strong>Earn</strong> n'ont eux aucune barrière à l'entrée confirmée.
+  </div>
+
+  <div class="copybox">
+    <div class="cb-head"><div><span class="title">Message de candidature — Higgsfield Creator Partnership Program</span><span class="meta">à adapter dans le formulaire de candidature</span></div><button class="copy-btn" data-target="aff1">Copier</button></div>
+    <pre id="aff1">Bonjour,
+
+Je m'appelle [Prénom], je dirige OVIZai, un studio de direction artistique et de cinéma génératif (vidéos publicitaires, clips musicaux, formation à la vidéo IA). Mon travail s'articule autour d'univers visuels sur-mesure — mes deux dernières études visuelles, "LE BANQUET" et "LE CORTÈGE" (collision entre l'aristocratie gothique et la banlieue parisienne des années 90), sont visibles sur ovizai.com et déclinées en contenu sur Instagram (@ovizai.co).
+
+Je souhaite intégrer vos outils dans mes prochaines productions et rejoindre le Creator Partnership Program. Je m'engage à mentionner/taguer Higgsfield sur tout contenu produit avec vos modèles et à partager mes retours d'utilisation avec la communauté de créateurs.
+
+Où retrouver mon travail :
+— Site : ovizai.com
+— Instagram : instagram.com/ovizai.co
+
+Merci pour votre considération,
+[Prénom]</pre>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  OVIZai · Mis à jour le 05/09/2026 · Document de travail interne — à mettre à jour au fil des publications réelles.
+  <span class="sources">Sources externes vérifiées pour cette mise à jour : <a href="https://higgsfield.ai/affiliate" target="_blank" rel="noopener">Higgsfield Affiliate</a> · <a href="https://higgsfield.ai/creator-partnership-program" target="_blank" rel="noopener">Higgsfield CPP</a> · <a href="https://higgsfield.ai/creator-hub/help-center/business/how-do-i-join-a-partnership-or-creator-program" target="_blank" rel="noopener">Centre d'aide Higgsfield</a></span>
+</footer>
+
+<script>
+// ---------- TABS (ARIA tablist + keyboard nav) ----------
+const tabButtons = Array.from(document.querySelectorAll('nav.tabs button[role="tab"]'));
+
+function activateTab(btn, {focus=false, scroll=true}={}){
+  tabButtons.forEach(b=>{
+    b.classList.remove('active');
+    b.setAttribute('aria-selected','false');
+    b.setAttribute('tabindex','-1');
+  });
+  document.querySelectorAll('section.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+  btn.setAttribute('tabindex','0');
+  const panel = document.getElementById(btn.dataset.tab);
+  panel.classList.add('active');
+  if(focus) btn.focus();
+  if(scroll) window.scrollTo({top:0,behavior:'smooth'});
+}
+
+tabButtons.forEach((btn,i)=>{
+  btn.addEventListener('click',()=>activateTab(btn));
+  btn.addEventListener('keydown',(e)=>{
+    let idx = null;
+    if(e.key==='ArrowRight') idx = (i+1)%tabButtons.length;
+    else if(e.key==='ArrowLeft') idx = (i-1+tabButtons.length)%tabButtons.length;
+    else if(e.key==='Home') idx = 0;
+    else if(e.key==='End') idx = tabButtons.length-1;
+    if(idx!==null){
+      e.preventDefault();
+      activateTab(tabButtons[idx], {focus:true, scroll:false});
+    }
+  });
+});
+
+// ---------- COPY BUTTONS ----------
+const copyAnnouncer = document.getElementById('copy-announcer');
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const el = document.getElementById(btn.dataset.target);
+    const text = el.innerText;
+    const done = ()=>{
+      const original = btn.textContent;
+      btn.textContent = 'Copié !';
+      btn.classList.add('copied');
+      if(copyAnnouncer) copyAnnouncer.textContent = 'Texte copié dans le presse-papier.';
+      setTimeout(()=>{btn.textContent=original;btn.classList.remove('copied');},1800);
+    };
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
+    } else {
+      fallbackCopy(text,done);
+    }
+  });
+});
+function fallbackCopy(text,cb){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);cb();
+}
+
+// ---------- CHART TEXT-ALTERNATIVE TOGGLES ----------
+document.querySelectorAll('.chart-desc-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const target = document.getElementById(btn.dataset.altFor);
+    const isHidden = target.hasAttribute('hidden');
+    if(isHidden){ target.removeAttribute('hidden'); btn.setAttribute('aria-expanded','true'); btn.textContent='Masquer les données en texte'; }
+    else { target.setAttribute('hidden',''); btn.setAttribute('aria-expanded','false'); btn.textContent='Voir les données en texte'; }
+  });
+});
+
+// ---------- GUIDE PROGRESS TRACKING (saved locally in this browser) ----------
+(function(){
+  const STORAGE_KEY = 'ovizai_guide_progress_v1';
+  const checkboxes = Array.from(document.querySelectorAll('.checklist input[type="checkbox"][data-step]'));
+  const total = checkboxes.length;
+
+  let saved = {};
+  try{
+    const raw = window.localStorage ? window.localStorage.getItem(STORAGE_KEY) : null;
+    saved = raw ? JSON.parse(raw) : {};
+  }catch(e){ saved = {}; }
+
+  function persist(){
+    try{
+      if(window.localStorage) window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    }catch(e){ /* storage unavailable (private mode, sandbox) — progress stays in-memory for this session */ }
+  }
+
+  function refreshUI(){
+    let done = 0;
+    checkboxes.forEach(cb=>{
+      const li = cb.closest('li');
+      li.classList.toggle('step-done', cb.checked);
+      if(cb.checked) done++;
+    });
+
+    document.getElementById('progressCount').textContent = done;
+    document.getElementById('progressTotal').textContent = total;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const fill = document.getElementById('progressBarFill');
+    if(fill) fill.style.width = pct + '%';
+    const headerNum = document.getElementById('headerProgressNum');
+    if(headerNum) headerNum.textContent = done + '/' + total;
+
+    document.querySelectorAll('.phase').forEach(phase=>{
+      const boxes = Array.from(phase.querySelectorAll('input[type="checkbox"][data-step]'));
+      const phaseDone = boxes.filter(b=>b.checked).length;
+      phase.classList.toggle('done-phase', boxes.length>0 && phaseDone===boxes.length);
+      const label = phase.querySelector('.phase-progress');
+      if(label) label.textContent = phaseDone + '/' + boxes.length;
+    });
+
+    document.querySelectorAll('.checklist li').forEach(li=>li.classList.remove('step-current'));
+    const nextBox = checkboxes.find(cb=>!cb.checked);
+    if(nextBox) nextBox.closest('li').classList.add('step-current');
+  }
+
+  checkboxes.forEach(cb=>{
+    const id = cb.dataset.step;
+    cb.checked = !!saved[id];
+    cb.addEventListener('change',()=>{
+      saved[cb.dataset.step] = cb.checked;
+      persist();
+      refreshUI();
+      const announcer = document.getElementById('progress-announcer');
+      const doneCount = checkboxes.filter(c=>c.checked).length;
+      if(announcer) announcer.textContent = cb.checked
+        ? 'Étape cochée. ' + doneCount + ' sur ' + total + ' au total.'
+        : 'Étape décochée. ' + doneCount + ' sur ' + total + ' au total.';
+    });
+  });
+
+  const resetBtn = document.getElementById('resetProgressBtn');
+  if(resetBtn){
+    resetBtn.addEventListener('click',()=>{
+      if(!window.confirm('Réinitialiser toute la progression du guide ?')) return;
+      saved = {};
+      persist();
+      checkboxes.forEach(cb=>cb.checked=false);
+      refreshUI();
+    });
+  }
+
+  const jumpBtn = document.getElementById('jumpNextStepBtn');
+  if(jumpBtn){
+    jumpBtn.addEventListener('click',()=>{
+      const next = checkboxes.find(cb=>!cb.checked);
+      if(!next){
+        window.alert('Toutes les étapes du guide sont cochées, bravo !');
+        return;
+      }
+      next.closest('li').scrollIntoView({behavior:'smooth', block:'center'});
+      next.focus();
+    });
+  }
+
+  refreshUI();
+})();
+
+// ---------- CHARTS ----------
+const goldBright='#F0C869', gold='#CAA243', muted='#8C8375', cream='#ECE4D3', red='#B24C3A', line='rgba(255,255,255,.08)';
+Chart.defaults.color = muted;
+Chart.defaults.font.family = "'Inter',sans-serif";
+Chart.defaults.font.size = 12;
+
+new Chart(document.getElementById('chartRadar'),{
+  type:'radar',
+  data:{
+    labels:['Technique','Design/UX','SEO','Conversion'],
+    datasets:[{
+      label:'Note /10',
+      data:[7.5,8.5,6.5,5.5],
+      backgroundColor:'rgba(202,162,67,.18)',
+      borderColor:goldBright,
+      pointBackgroundColor:goldBright,
+      borderWidth:2
+    }]
+  },
+  options:{
+    plugins:{legend:{display:false}},
+    scales:{r:{min:0,max:10,ticks:{stepSize:2,backdropColor:'transparent'},grid:{color:line},angleLines:{color:line},pointLabels:{color:cream,font:{size:11.5}}}}
+  }
+});
+
+new Chart(document.getElementById('chartFocus'),{
+  type:'bar',
+  data:{
+    labels:['Code / Technique','Design','Distribution (réseaux, prospection)'],
+    datasets:[
+      {label:"Effort investi jusqu'ici",data:[85,80,5],backgroundColor:'rgba(140,131,117,.4)'},
+      {label:'Effort recommandé maintenant',data:[15,15,70],backgroundColor:goldBright}
+    ]
+  },
+  options:{
+    plugins:{legend:{labels:{color:cream,font:{size:11}}}},
+    scales:{y:{beginAtZero:true,max:100,grid:{color:line},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}
+  }
+});
+
+new Chart(document.getElementById('chartIG'),{
+  type:'bar',
+  data:{
+    labels:['Reels','Carrousel'],
+    datasets:[
+      {label:'Portée moyenne (%)',data:[14.45,10],backgroundColor:goldBright},
+      {label:"Taux d'engagement (%)",data:[0.46,0.52],backgroundColor:gold}
+    ]
+  },
+  options:{
+    plugins:{legend:{labels:{color:cream,font:{size:11}}}},
+    scales:{y:{beginAtZero:true,grid:{color:line}},x:{grid:{display:false}}}
+  }
+});
+
+new Chart(document.getElementById('chartPricing'),{
+  type:'bar',
+  data:{
+    labels:['Freelance solo\n(/projet)','OVIZai\nSprint Pilote','OVIZai\nCampagne','Agence IA\nmid-range','Agence\ntraditionnelle'],
+    datasets:[{
+      label:'Prix moyen en $ par projet',
+      data:[600,890,2100,2000,13000],
+      backgroundColor:[muted,goldBright,goldBright,gold,'rgba(178,76,58,.55)']
+    }]
+  },
+  options:{
+    plugins:{legend:{display:false}},
+    scales:{y:{beginAtZero:true,grid:{color:line},ticks:{callback:v=>'$'+v}},x:{grid:{display:false},ticks:{font:{size:10.5}}}}
+  }
+});
+
+new Chart(document.getElementById('chartOutreach'),{
+  type:'bar',
+  data:{
+    labels:['Cold email générique','DM générique','DM personnalisé + vidéo jointe'],
+    datasets:[{
+      label:'Taux de réponse (%)',
+      data:[3.7,9,20],
+      backgroundColor:[muted,gold,goldBright]
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    plugins:{legend:{display:false}},
+    scales:{x:{beginAtZero:true,max:30,grid:{color:line},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}
+  }
+});
+</script>
+</body>
+</html>

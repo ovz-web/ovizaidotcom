@@ -1,17 +1,18 @@
-// Centralized YouTube Video IDs & Social Media Links for OVIZai
-// Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
+// NOTE : Ces champs restent vides définitivement (vidéos bloquées sur YouTube pour droits d'auteur PNL — Autre monde).
+// Les deux films restent hébergés uniquement en local (LOCAL_VIDEOS) sur le site via lecteur HTML5 natif.
+// Seul SOCIAL_LINKS.youtube reste le point de contact YouTube du projet (lien vers la chaîne en pied de page).
 
 export const YOUTUBE_VIDEOS = {
-  // Page d'accueil — Showreel & Démos principaux
-  homeShowreel1: '', // Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
-  homeShowreel2: '', // Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
+  // Page d'accueil — Inutilisé (films hébergés en local)
+  homeShowreel1: '',
+  homeShowreel2: '',
 
-  // Page Services — Showcase par prestation
-  servicesShowcase1: '', // Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
-  servicesShowcase2: '', // Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
+  // Page Services — Inutilisé (films hébergés en local via LOCAL_VIDEOS)
+  servicesShowcase1: '',
+  servicesShowcase2: '',
 
-  // Page Tarifs — Démonstration de rendu
-  tarifsSample: '', // Remplacer par l'ID YouTube une fois la vidéo publiée (11 caractères après v= dans l'URL)
+  // Page Tarifs — Inutilisé
+  tarifsSample: '',
 } as const;
 
 export const LOCAL_VIDEOS = {

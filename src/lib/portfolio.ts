@@ -24,7 +24,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       fr: 'Publicité & Brand Content',
       en: 'Commercial & Brand Content',
     },
-    youtubeId: '', // À remplir dès mise en ligne sur YouTube
+    youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
     objective: {
       fr: 'Explorer la création d’une campagne de marque haute parfumerie sans tournage physique.',
       en: 'Explore high-end perfume brand campaign creation without physical filming.',
@@ -51,7 +51,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       fr: 'Clip Vidéo & Visualiser',
       en: 'Music Video & Stage Visualiser',
     },
-    youtubeId: '', // À remplir dès mise en ligne sur YouTube
+    youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
     objective: {
       fr: 'Développer un univers scénographique futuriste avec synchronisation rythmique.',
       en: 'Develop a futuristic stage visual universe with rhythmic beat synchronization.',

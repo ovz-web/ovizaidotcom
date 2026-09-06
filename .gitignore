@@ -30,3 +30,5 @@ yarn-error.log*
 !.env.example
 /video/
 /.lighthouse-ci/
+/test-results/
+/playwright-report/
