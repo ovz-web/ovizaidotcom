@@ -140,8 +140,8 @@ export default function TarifsClient() {
     {
       id: 'offer-masterclass',
       icon: GraduationCap,
-      title: isFr ? '01 // Formation & Masterclass Vidéo IA 4K' : '01 // AI Video & Cinema Masterclass 4K',
-      subtitle: isFr ? '5 modules pratiques & bibles de prompts cinéma' : '5 practical modules & cinema prompt bibles',
+      title: isFr ? '01 // Formation & Masterclass' : '01 // Masterclass Course',
+      subtitle: isFr ? '5 modules pratiques & bibles prompts' : '5 practical modules & prompt bibles',
       trailing: (
         <span className="flex items-center gap-1.5 font-medium">
           <span>{formattedMcCurrent}</span>
@@ -221,8 +221,8 @@ export default function TarifsClient() {
     {
       id: 'offer-sprint',
       icon: Zap,
-      title: isFr ? '02 // Formule Sprint Pilote (48-72h)' : '02 // Pilot Sprint Package (48-72h)',
-      subtitle: isFr ? '1 asset publicitaire court (Reel/TikTok 15-30s)' : '1 short ad asset (Reel/TikTok 15-30s)',
+      title: isFr ? '02 // Sprint Pilote (48-72h)' : '02 // Pilot Sprint (48-72h)',
+      subtitle: isFr ? '1 asset pub court (Reel/Ad 15-30s)' : '1 short ad asset (Reel/Ad 15-30s)',
       trailing: (
         <span className="flex items-center gap-1.5 font-medium">
           <span>{formatPrice(sprintPlan.minUsd, currency)}</span>
@@ -281,8 +281,8 @@ export default function TarifsClient() {
     {
       id: 'offer-campaign',
       icon: Film,
-      title: isFr ? '03 // Formule Campagne de Marque (3 Films)' : '03 // Brand Campaign Package (3 Films)',
-      subtitle: isFr ? '3 vidéos cinématographiques déclinées & DA dédiée' : '3 cinematic campaign videos & dedicated art direction',
+      title: isFr ? '03 // Campagne de Marque' : '03 // Brand Campaign',
+      subtitle: isFr ? '3 vidéos ciné & DA dédiée' : '3 cinematic videos & art direction',
       trailing: (
         <span className="flex items-center gap-1.5 font-medium">
           <span>{formatPrice(campaignPlan.minUsd, currency)}</span>
@@ -341,8 +341,8 @@ export default function TarifsClient() {
     {
       id: 'offer-custom',
       icon: Palette,
-      title: isFr ? '04 // Prestations Sur-Mesure (5 Services)' : '04 // Custom Services (5 Disciplines)',
-      subtitle: isFr ? 'Films, clips, pubs, univers visuels & web digital' : 'Films, music videos, ads, brand worlds & digital',
+      title: isFr ? '04 // Prestations Sur-Mesure' : '04 // Custom Productions',
+      subtitle: isFr ? 'Films, clips, univers visuels & web' : 'Films, clips, brand worlds & web',
       trailing: (
         <span className="flex items-center gap-1.5 font-medium">
           <span>{isFr ? 'Sur devis (24h)' : 'Custom quote (24h)'}</span>
@@ -407,7 +407,7 @@ export default function TarifsClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
+        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Page Header */}
         <PageHeader
@@ -432,9 +432,9 @@ export default function TarifsClient() {
           lang={lang}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
+        <div className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5">
           {/* Unified Pricing Box with integrated Promo Switch Header */}
-          <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-1 sm:mb-1.5">
+          <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-0.5 sm:mb-1.5">
             {/* iOS Style Promo Switch Toggle Header */}
             <div className="flex items-center justify-between gap-3 px-3 py-1.5 border-b border-border bg-white/[0.02]">
               <div className="flex items-center gap-1.5">
@@ -477,18 +477,18 @@ export default function TarifsClient() {
           </div>
 
           {/* Centralized Clean FAQ (Collapsible accordion card) */}
-          <div className="mb-1 sm:mb-1.5">
+          <div className="mb-0.5 sm:mb-1">
             <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
               <button
                 type="button"
                 onClick={() => setIsFaqSectionOpen((prev) => !prev)}
                 aria-expanded={isFaqSectionOpen}
-                className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+                className="w-full flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 sm:py-1.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <HelpCircle className="w-3.5 h-3.5 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
                   <div className="flex flex-col min-w-0">
-                    <span className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                    <span className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                       {isFr ? 'Questions Fréquentes (4)' : 'Frequently Asked Questions (4)'}
                     </span>
                     <span className="text-[10px] text-muted truncate">
@@ -536,11 +536,11 @@ export default function TarifsClient() {
           </div>
 
           {/* Bottom Custom Quote Direct Link */}
-          <div className="text-center pt-0.5 mb-1">
+          <div className="text-center pt-0.5 mb-0.5">
             <Link
               href="/contact"
               onClick={() => trackEvent('cta_request_custom_quote', { source: 'tarifs_bottom' })}
-              className="inline-flex items-center gap-1 mono text-[11px] text-gold hover:underline"
+              className="inline-flex items-center gap-1 mono text-[10.5px] sm:text-[11px] text-gold hover:underline"
             >
               <span>{isFr ? 'Demander un devis sur-mesure (24h) →' : 'Request custom quote (24h) →'}</span>
             </Link>

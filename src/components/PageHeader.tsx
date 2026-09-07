@@ -54,7 +54,7 @@ export default function PageHeader({
 
       {/* 5. Mention Détails ↓ */}
       {showDetailsHint && (
-        <div className="flex justify-end text-[8.5px] sm:text-[9.5px] tracking-wider text-muted font-mono px-1 mb-1">
+        <div className="hidden sm:flex justify-end text-[8.5px] sm:text-[9.5px] tracking-wider text-muted font-mono px-1 mb-1">
           <span>{isFr ? 'Détails ↓' : 'Details ↓'}</span>
         </div>
       )}

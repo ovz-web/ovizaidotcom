@@ -27,10 +27,10 @@ const FIVE_SERVICES = [
     id: 'films-series',
     number: '01',
     letterCode: 'A1',
-    title: { fr: 'Production de Films & Séries IA', en: 'AI Film & Series Production' },
+    title: { fr: 'Films & Séries IA', en: 'AI Films & Series' },
     tagline: {
-      fr: 'Courts-métrages, pilotes de séries et fictions narratives complètes',
-      en: 'Short films, series pilots and complete narrative fiction'
+      fr: 'Courts-métrages, fictions & pilotes',
+      en: 'Short films, fiction & series pilots'
     },
     descriptionLines: {
       fr: [
@@ -58,10 +58,10 @@ const FIVE_SERVICES = [
     id: 'clips-visualisers',
     number: '02',
     letterCode: 'A2',
-    title: { fr: 'Clips Vidéos & Scénographies VJing', en: 'Music Videos & Stage Visuals' },
+    title: { fr: 'Clips Vidéos & VJing', en: 'Music Videos & VJing' },
     tagline: {
-      fr: 'Univers surréalistes et visuels scéniques synchronisés sur la musique',
-      en: 'Surreal worlds and beat-synced stage visuals for artists'
+      fr: 'Visuels scéniques & clips musicaux',
+      en: 'Stage visuals & music videos'
     },
     descriptionLines: {
       fr: [
@@ -89,8 +89,8 @@ const FIVE_SERVICES = [
     letterCode: 'A3',
     title: { fr: 'Publicité & Brand Content', en: 'Commercials & Brand Content' },
     tagline: {
-      fr: 'Spots publicitaires percutants et contenus visuels premium pour marques',
-      en: 'Impactful commercials and premium visual content for brands'
+      fr: 'Spots publicitaires & brand content',
+      en: 'Commercial spots & brand content'
     },
     descriptionLines: {
       fr: [
@@ -116,10 +116,10 @@ const FIVE_SERVICES = [
     id: 'direction-artistique',
     number: '04',
     letterCode: 'A4',
-    title: { fr: 'Direction Artistique & Identité Visuelle', en: 'Art Direction & Visual Identity' },
+    title: { fr: 'Direction Artistique', en: 'Art Direction' },
     tagline: {
-      fr: 'Définition d\'univers graphiques singuliers et moodboards cinématiques',
-      en: 'Distinctive visual worlds and cinematic moodboards'
+      fr: 'Univers visuels & moodboards ciné',
+      en: 'Visual worlds & cinematic moodboards'
     },
     descriptionLines: {
       fr: [
@@ -145,10 +145,10 @@ const FIVE_SERVICES = [
     id: 'sites-web-nextjs',
     number: '05',
     letterCode: 'A5',
-    title: { fr: 'Création de Sites Web Next.js', en: 'Next.js Website Development' },
+    title: { fr: 'Sites Web Next.js', en: 'Next.js Websites' },
     tagline: {
-      fr: 'Plateformes web Next.js ultra-rapides et expériences immersives',
-      en: 'Ultra-fast Next.js web platforms and immersive digital experiences'
+      fr: 'Expériences web & 3D sur-mesure',
+      en: 'Custom web & 3D experiences'
     },
     descriptionLines: {
       fr: [
@@ -278,11 +278,11 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
   });
 
   return (
-    <section id="services" className="max-w-xl mx-auto mb-1 sm:mb-2 px-4">
+    <section id="services" className="max-w-xl mx-auto mb-0.5 sm:mb-1.5 px-4">
       {/* 5 Services List in Unified ListMenuCard */}
       <ListMenuCard
         items={serviceItems}
-        className="mb-1.5 sm:mb-2"
+        className="mb-1 sm:mb-1.5"
       />
 
       {/* Video Showcase Section (Collapsible accordion, closed by default) */}
@@ -292,13 +292,13 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
             type="button"
             onClick={() => setIsDemosOpen((prev) => !prev)}
             aria-expanded={isDemosOpen}
-            className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+            className="w-full flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 sm:py-1.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
           >
             <div className="flex flex-col min-w-0">
-              <span className="mono text-[9px] uppercase tracking-[0.18em] text-gold font-bold block mb-0.5">
+              <span className="mono text-[8.5px] sm:text-[9px] uppercase tracking-[0.18em] text-gold font-bold block mb-0.5">
                 {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
               </span>
-              <h3 className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+              <h3 className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                 {isFr ? 'Réalisations Vidéo & Direction Artistique (2)' : 'Video Output & Art Direction Showcase (2)'}
               </h3>
             </div>

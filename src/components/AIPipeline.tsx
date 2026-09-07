@@ -31,12 +31,12 @@ const PIPELINE_STEPS: PipelineStep[] = [
     num: '01',
     icon: Palette,
     title: {
-      fr: 'Conception Visuelle & Storyboard 8K',
-      en: 'Visual Conception & 8K Storyboard',
+      fr: 'Conception & Storyboard',
+      en: 'Conception & Storyboard',
     },
     subtitle: {
-      fr: 'Direction artistique, cohérence des personnages & moodboards',
-      en: 'Art direction, character consistency & moodboards',
+      fr: 'Direction artistique & moodboards ciné',
+      en: 'Art direction & cinematic moodboards',
     },
     specs: {
       fr: [
@@ -74,12 +74,12 @@ const PIPELINE_STEPS: PipelineStep[] = [
     num: '02',
     icon: Film,
     title: {
-      fr: 'Génération Cinématographique & Mouvements',
-      en: 'Cinematic Generation & Natural Motion',
+      fr: 'Génération Cinéma & 3D',
+      en: 'Cinema Generation & 3D',
     },
     subtitle: {
-      fr: 'Animation physique, caméra virtuelle 3D & cohérence temporelle',
-      en: 'Physics animation, 3D virtual camera & temporal consistency',
+      fr: 'Animation physique & caméra 3D',
+      en: 'Physics animation & 3D camera',
     },
     specs: {
       fr: [
@@ -127,12 +127,12 @@ const PIPELINE_STEPS: PipelineStep[] = [
     num: '03',
     icon: SlidersHorizontal,
     title: {
-      fr: 'Étalonnage ACES & Sound Design Spatialisé',
-      en: 'ACES Color Grading & Spatial Sound Design',
+      fr: 'Étalonnage & Sound Design',
+      en: 'Color Grading & Sound Design',
     },
     subtitle: {
-      fr: 'Conformation couleur cinéma, émulation 35mm & audio immersif',
-      en: 'Cinema color conformation, 35mm film emulation & spatial audio',
+      fr: 'Colorimétrie ACES & audio immersif',
+      en: 'ACES color & immersive audio',
     },
     specs: {
       fr: [
@@ -176,12 +176,12 @@ const PIPELINE_STEPS: PipelineStep[] = [
     num: '04',
     icon: Layers,
     title: {
-      fr: 'Upscaling Neuronal & Livraison Master 4K',
-      en: 'Neural Upscaling & 4K Master Delivery',
+      fr: 'Upscaling Neuronal & Master 4K',
+      en: 'Neural Upscaling & 4K Master',
     },
     subtitle: {
-      fr: 'Nettoyage des artefacts, suréchantillonnage & formats finaux',
-      en: 'Artifact elimination, neural upscaling & broadcast formats',
+      fr: 'Nettoyage bruit & formats finaux',
+      en: 'Denoising & broadcast formats',
     },
     specs: {
       fr: [
@@ -296,7 +296,7 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
   });
 
   return (
-    <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
+    <div className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5">
       <ListMenuCard items={items} />
     </div>
   );

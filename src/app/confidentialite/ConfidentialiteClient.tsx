@@ -147,7 +147,7 @@ export default function ConfidentialiteClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
+        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         <PageHeader
           tag={isFr ? 'PROTECTION DES DONNÉES' : 'DATA PROTECTION'}
@@ -171,7 +171,7 @@ export default function ConfidentialiteClient() {
           lang={lang}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
+        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
           <ListMenuCard items={items} />
         </div>
       </main>

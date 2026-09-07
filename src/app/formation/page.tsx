@@ -106,7 +106,7 @@ export default function FormationPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
+        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Page Header */}
         <PageHeader
@@ -135,26 +135,26 @@ export default function FormationPage() {
         <MasterclassSection lang={lang} />
 
         {/* 2. Direct Enrollment Card (Collapsible, closed by default) */}
-        <div id="inscription" className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
+        <div id="inscription" className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5">
           <div className="ovizai-card border border-border bg-card/90 rounded-xl overflow-hidden transition-all">
             {/* Clickable Card Header */}
             <button
               type="button"
               onClick={() => setIsEnrollOpen((prev) => !prev)}
               aria-expanded={isEnrollOpen}
-              className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+              className="w-full flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 sm:py-1.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
             >
               <div className="flex flex-col min-w-0">
-                <span className="mono text-[9px] text-gold font-bold uppercase tracking-[0.18em] block mb-0.5">
+                <span className="mono text-[8.5px] sm:text-[9px] text-gold font-bold uppercase tracking-[0.18em] block mb-0.5">
                   {isFr ? 'INSCRIPTION IMMÉDIATE' : 'INSTANT ENROLLMENT'}
                 </span>
-                <h3 className="mono text-[11.5px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
+                <h3 className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
                   {isFr ? 'Masterclass Cinéma & Vidéo IA 4K' : 'AI Cinema & Video Masterclass 4K'}
                 </h3>
               </div>
 
               <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-2">
-                <span className="mono text-[10.5px] text-gold bg-gold/10 border border-gold/30 px-2 py-0.5 rounded font-mono font-medium">
+                <span className="mono text-[10px] sm:text-[10.5px] text-gold bg-gold/10 border border-gold/30 px-1.5 sm:px-2 py-0.5 rounded font-mono font-medium">
                   {showPromo ? (isFr ? 'Offre −30%' : '−30% Offer') : (isFr ? 'Standard' : 'Standard')}
                 </span>
                 <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0">
@@ -289,18 +289,16 @@ export default function FormationPage() {
         </div>
 
         {/* Contact fallback */}
-        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-1.5 text-center">
-          <p className="text-[11px] text-muted">
-            {isFr
-              ? 'Une question sur le programme ou les modalités de formation ?'
-              : 'Have a question about the curriculum or training details?'}
+        <div className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5 text-center">
+          <p className="text-[10px] sm:text-[11px] text-muted">
+            <span>{isFr ? 'Une question sur le programme ? ' : 'Have a question? '}</span>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-0.5 mono text-[10px] sm:text-[11px] text-gold hover:underline"
+            >
+              <span>{isFr ? 'Poser une question à l’équipe →' : 'Ask our studio team →'}</span>
+            </Link>
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1 mono text-[11px] text-gold hover:underline mt-1"
-          >
-            <span>{isFr ? 'Poser une question à l’équipe →' : 'Ask our studio team →'}</span>
-          </Link>
         </div>
       </main>
 

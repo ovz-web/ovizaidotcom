@@ -39,7 +39,7 @@ function ContactPageContent() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
+        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -74,39 +74,39 @@ function ContactPageContent() {
         />
 
         {/* Sober Reassurance & Link Hub balancing page density */}
-        <div className="max-w-xl mx-auto px-4 mt-1 mb-1 sm:mb-2">
-          <div className="ovizai-card border border-border bg-card/80 p-2 sm:p-3">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-center sm:text-left">
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <Clock className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                <span className="text-[11px] text-muted font-mono">
-                  {isFr ? 'Réponse 24-48h' : '24-48h Response'}
+        <div className="max-w-xl mx-auto px-4 mt-0.5 sm:mt-1 mb-0.5 sm:mb-1.5">
+          <div className="ovizai-card border border-border bg-card/80 p-1.5 sm:p-2.5">
+            <div className="grid grid-cols-3 gap-1 text-center">
+              <div className="flex items-center justify-center gap-1.5 p-1 rounded-lg bg-black/40 border border-white/[0.04]">
+                <Clock className="w-3 h-3 text-gold flex-shrink-0" />
+                <span className="text-[9.5px] sm:text-[11px] text-muted font-mono truncate">
+                  {isFr ? 'Réponse 24-48h' : '24-48h response'}
                 </span>
               </div>
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                <span className="text-[11px] text-muted font-mono">
-                  {isFr ? 'Confidentialité totale' : 'Strict Confidentiality'}
+              <div className="flex items-center justify-center gap-1.5 p-1 rounded-lg bg-black/40 border border-white/[0.04]">
+                <ShieldCheck className="w-3 h-3 text-gold flex-shrink-0" />
+                <span className="text-[9.5px] sm:text-[11px] text-muted font-mono truncate">
+                  {isFr ? 'Confidentialité' : 'Confidential'}
                 </span>
               </div>
-              <div className="flex items-center justify-center sm:justify-start gap-2">
-                <FileText className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                <span className="text-[11px] text-muted font-mono">
-                  {isFr ? 'Devis sans engagement' : 'No-obligation quote'}
+              <div className="flex items-center justify-center gap-1.5 p-1 rounded-lg bg-black/40 border border-white/[0.04]">
+                <FileText className="w-3 h-3 text-gold flex-shrink-0" />
+                <span className="text-[9.5px] sm:text-[11px] text-muted font-mono truncate">
+                  {isFr ? 'Devis gratuit' : 'Free quote'}
                 </span>
               </div>
             </div>
 
-            <div className="mt-2 pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] font-mono">
-              <span className="text-muted">
-                {isFr ? 'Envie de comparer nos formules ?' : 'Want to compare packages?'}
+            <div className="mt-1.5 pt-1.5 border-t border-border flex items-center justify-between gap-1 text-[10px] sm:text-[11px] font-mono">
+              <span className="text-muted truncate">
+                {isFr ? 'Comparer les formules ?' : 'Compare packages?'}
               </span>
               <Link
                 href="/tarifs"
-                className="text-gold hover:underline inline-flex items-center gap-1 font-semibold"
+                className="text-gold hover:underline inline-flex items-center gap-0.5 font-semibold shrink-0"
               >
-                <span>{isFr ? 'Consulter la grille des tarifs →' : 'View pricing grid →'}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>{isFr ? 'Grille des tarifs →' : 'Pricing grid →'}</span>
+                <ArrowUpRight className="w-3 h-3" />
               </Link>
             </div>
           </div>

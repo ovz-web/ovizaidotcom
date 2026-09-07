@@ -26,12 +26,12 @@ const MODULES: ModuleData[] = [
     num: '01',
     icon: Palette,
     title: {
-      fr: 'Ingénierie de Prompts & Direction Visuelle 8K',
-      en: 'Prompt Engineering & 8K Visual Direction',
+      fr: 'Prompts & Direction Visuelle',
+      en: 'Prompts & Visual Direction',
     },
     subtitle: {
-      fr: 'Création d’images cinématiques & cohérence de personnages',
-      en: 'Cinematic image conception & character consistency',
+      fr: 'Images cinématiques & cohérence 4K',
+      en: 'Cinematic imagery & 4K consistency',
     },
     overview: {
       fr: [
@@ -56,12 +56,12 @@ const MODULES: ModuleData[] = [
     num: '02',
     icon: Film,
     title: {
-      fr: 'Cinéma Génératif & Caméra Virtuelle 3D',
-      en: 'Generative Cinema & 3D Virtual Camera',
+      fr: 'Cinéma Génératif & Caméra 3D',
+      en: 'Generative Cinema & 3D Camera',
     },
     subtitle: {
-      fr: 'Animation physique, dynamique & mouvements de caméra',
-      en: 'Physics motion dynamics & 3D virtual camera control',
+      fr: 'Animation fluide & caméra virtuelle',
+      en: 'Fluid motion & virtual camera',
     },
     overview: {
       fr: [
@@ -86,12 +86,12 @@ const MODULES: ModuleData[] = [
     num: '03',
     icon: Cpu,
     title: {
-      fr: 'Post-Production & Upscaling Neuronal 4K/8K',
-      en: 'Post-Production & Neural 4K/8K Upscaling',
+      fr: 'Post-Production & Upscaling',
+      en: 'Post-Production & Upscaling',
     },
     subtitle: {
-      fr: 'Suppression du bruit génératif & étalonnage ACES',
-      en: 'Artifact removal & ACES cinematic color grading',
+      fr: 'Nettoyage bruit & étalonnage ACES',
+      en: 'Denoising & ACES color grading',
     },
     overview: {
       fr: [
@@ -116,12 +116,12 @@ const MODULES: ModuleData[] = [
     num: '04',
     icon: Music2,
     title: {
-      fr: 'Sound Design & Doublage Voix IA Multilingue',
-      en: 'Sound Design & Multilingual AI Voice Dubbing',
+      fr: 'Sound Design & Voix IA',
+      en: 'Sound Design & AI Voice',
     },
     subtitle: {
-      fr: 'Bandes-son spatialisées, effets sonores & synchronisation',
-      en: 'Spatial soundscapes, sound effects & beat sync',
+      fr: 'Audio spatialisé & synchronisation',
+      en: 'Spatial audio & beat sync',
     },
     overview: {
       fr: [
@@ -146,12 +146,12 @@ const MODULES: ModuleData[] = [
     num: '05',
     icon: GraduationCap,
     title: {
-      fr: 'Monétisation & Workflow Client Pro',
-      en: 'Monetization & Professional Client Pipeline',
+      fr: 'Monétisation & Workflow Client',
+      en: 'Monetization & Client Workflow',
     },
     subtitle: {
-      fr: 'Contrats commerciaux, cession de droits & livrables',
-      en: 'Commercial quoting, copyright frameworks & master delivery',
+      fr: 'Contrats, cession de droits & livrables',
+      en: 'Contracts, rights & master delivery',
     },
     overview: {
       fr: [
@@ -243,7 +243,7 @@ export default function MasterclassSection({ lang }: MasterclassSectionProps) {
   });
 
   return (
-    <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
+    <div className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5">
       <ListMenuCard items={items} />
     </div>
   );

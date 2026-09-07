@@ -49,7 +49,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
       </p>
 
       {/* Spacer matching Détails ↓ to guarantee identical first box position across all 9 pages */}
-      <div className="w-full flex justify-end text-[8.5px] sm:text-[9.5px] tracking-wider font-mono px-1 mb-1 invisible select-none" aria-hidden="true">
+      <div className="hidden sm:flex w-full justify-end text-[8.5px] sm:text-[9.5px] tracking-wider font-mono px-1 mb-1 invisible select-none" aria-hidden="true">
         <span>&nbsp;</span>
       </div>
     </section>
