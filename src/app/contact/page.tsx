@@ -29,7 +29,7 @@ function ContactPageContent() {
   const isFr = lang === 'fr';
 
   return (
-    <div className="min-h-screen min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+    <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
       <TopBar
         lang={lang}
@@ -121,7 +121,7 @@ function ContactPageContent() {
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-bg" />}>
+    <Suspense fallback={<div className="min-h-[100dvh] bg-bg" />}>
       <ContactPageContent />
     </Suspense>
   );

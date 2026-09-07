@@ -22,7 +22,7 @@ export default function FormationSuccessPage() {
   const isFr = lang === 'fr';
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+    <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
       <TopBar
         lang={lang}

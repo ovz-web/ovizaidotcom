@@ -129,7 +129,7 @@ export default function MentionsLegalesClient() {
   });
 
   return (
-    <div className="min-h-screen min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+    <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
 
       <TopBar

@@ -29,7 +29,7 @@ export default function Home() {
   }, [toastMessage]);
 
   return (
-    <div className="min-h-screen min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+    <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       {/* 35mm Silver Film Grain Filter */}
       <FilmGrain />
 
