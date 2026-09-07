@@ -25,7 +25,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
           alt={isFr ? 'OVIZai — Logo Studio Cinéma & Vidéo IA 4K' : 'OVIZai — 4K AI Cinema & Video Studio Logo'}
           width={240}
           height={240}
-          className="h-[clamp(72px,16dvh,96px)] sm:h-[clamp(96px,14dvh,160px)] w-auto object-contain mix-blend-screen"
+          className="h-[clamp(110px,22dvh,160px)] sm:h-[clamp(140px,18dvh,220px)] w-auto object-contain mix-blend-screen"
           priority
         />
       </div>
