@@ -282,7 +282,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
       {/* 5 Services List in Unified ListMenuCard */}
       <ListMenuCard
         items={serviceItems}
-        className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3 mb-1.5 sm:mb-2"
+        className="mb-1.5 sm:mb-2"
       />
 
       {/* Video Showcase Section (Collapsible accordion, closed by default) */}

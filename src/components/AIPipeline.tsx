@@ -297,10 +297,7 @@ export default function AIPipeline({ lang }: AIPipelineProps) {
 
   return (
     <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
-      <ListMenuCard
-        items={items}
-        className="[&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
-      />
+      <ListMenuCard items={items} />
     </div>
   );
 }

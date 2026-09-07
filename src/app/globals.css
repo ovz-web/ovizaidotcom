@@ -82,6 +82,15 @@ html, body {
   background: rgba(202, 162, 67, 0.4);
 }
 
+/* Utility to hide scrollbars while allowing scroll behavior */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .mono {
   font-family: var(--font-plex-mono), ui-monospace, monospace;
 }

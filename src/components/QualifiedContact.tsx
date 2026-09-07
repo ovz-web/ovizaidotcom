@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, Clock, Sparkles, Loader2, HelpCircle } from 'lucide-react';
+import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
 import { trackEvent } from '@/lib/analytics';
@@ -160,16 +161,27 @@ export default function QualifiedContact({
 
   if (status === 'success') {
     return (
-      <section id="contact" className="max-w-xl mx-auto mb-8 px-4">
+      <section id="contact" className="max-w-xl mx-auto mb-1.5 sm:mb-2 px-4">
         <div
           role="status"
           aria-live="polite"
           className="ovizai-card p-6 sm:p-8 rounded-xl sm:rounded-2xl text-center space-y-4"
         >
-          <CheckCircle2 className="w-12 h-12 text-gold mx-auto animate-pulse" />
-          <h3 className="mono text-xs sm:text-[13px] font-semibold text-fg tracking-wide">
-            {isFr ? 'BRIEF TRANSMIS AVEC SUCCÈS' : 'BRIEF SUBMITTED SUCCESSFULLY'}
-          </h3>
+          <div className="w-12 h-12 rounded-full bg-gold/20 border border-gold flex items-center justify-center mx-auto text-gold">
+            <CheckCircle2 className="w-6 h-6" />
+          </div>
+
+          <div>
+            <h3 className="font-display text-base sm:text-lg font-bold text-fg">
+              {isFr ? 'Demande de projet transmise' : 'Project inquiry submitted'}
+            </h3>
+            <p className="text-xs text-muted mt-1 font-mono">
+              {isFr
+                ? 'Un e-mail de confirmation a été envoyé à '
+                : 'A confirmation email has been sent to '}
+              <span className="text-gold font-semibold">{email}</span>
+            </p>
+          </div>
 
           <div className="bg-black/60 border border-border p-4 sm:p-5 rounded-xl text-left max-w-md mx-auto space-y-2 font-mono">
             <p className="text-xs font-semibold text-gold uppercase flex items-center gap-2">
@@ -205,10 +217,187 @@ export default function QualifiedContact({
     );
   }
 
+  const contactItems: ListMenuItem[] = [
+    {
+      id: 'step-project',
+      icon: Clapperboard,
+      title: isFr ? '01 // Type de Projet' : '01 // Project Type',
+      subtitle: projectObj
+        ? projectObj.title[lang]
+        : (isFr ? 'Format & intention de production' : 'Format & production intent'),
+      trailing: isStep1Open ? '↑' : '↓',
+      onClick: () => toggleSection('step-project'),
+      expanded: isStep1Open,
+      expandedContent: (
+        <div>
+          <p className="mono text-[10.5px] text-gold font-bold uppercase tracking-wider mb-2.5">
+            {isFr ? 'Sélectionnez le format souhaité :' : 'Select your desired format:'}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {PROJECT_TYPES.map((pt) => {
+              const Icon = pt.icon;
+              const isSelected = selectedProject === pt.id;
+
+              return (
+                <button
+                  key={pt.id}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => {
+                    setSelectedProject(pt.id);
+                    ensureOpen('step-budget');
+                  }}
+                  className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] ${
+                    isSelected
+                      ? 'border-gold bg-gold/15 text-fg font-bold'
+                      : 'border-white/[0.08] bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-gold' : 'text-muted'}`} />
+                  <span className="mono text-xs">{pt.title[lang]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 'step-budget',
+      icon: Clock,
+      title: isFr ? '02 // Enveloppe Budgétaire' : '02 // Budget Tier',
+      subtitle: budgetObj
+        ? budgetObj.title[lang]
+        : (isFr ? 'Enveloppe estimée pour votre projet' : 'Estimated budget tier'),
+      trailing: isStep2Open ? '↑' : '↓',
+      onClick: () => toggleSection('step-budget'),
+      expanded: isStep2Open,
+      expandedContent: (
+        <div>
+          <p className="mono text-[10.5px] text-gold font-bold uppercase tracking-wider mb-2.5">
+            {isFr ? 'Sélectionnez votre palier budgétaire :' : 'Select your budget tier:'}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {BUDGET_TIERS.map((tier) => {
+              const isSelected = selectedBudget === tier.id;
+
+              return (
+                <button
+                  key={tier.id}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => {
+                    setSelectedBudget(tier.id);
+                    ensureOpen('step-contact');
+                  }}
+                  className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] flex items-center ${
+                    isSelected
+                      ? 'border-gold bg-gold/15 text-fg font-bold'
+                      : 'border-white/[0.08] bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
+                  }`}
+                >
+                  <span className="mono text-xs block">{tier.title[lang]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 'step-contact',
+      icon: Send,
+      title: isFr ? '03 // Coordonnées & Envoi du Brief' : '03 // Contact Details & Submit',
+      subtitle: email
+        ? email
+        : (isFr ? 'Nom, e-mail & détails de votre brief' : 'Name, email & project notes'),
+      trailing: isStep3Open ? '↑' : '↓',
+      onClick: () => toggleSection('step-contact'),
+      expanded: isStep3Open,
+      expandedContent: (
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="contact-name" className="mono text-[11px] text-muted uppercase block mb-1">
+                {isFr ? 'Nom / Organisation (facultatif) :' : 'Name / Company (optional):'}
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="contact-email" className="mono text-[11px] text-muted uppercase block mb-1">
+                {isFr ? 'Adresse E-mail * :' : 'Email Address *:'}
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="contact@domaine.com"
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="contact-message" className="mono text-[11px] text-muted uppercase block mb-1">
+              {isFr ? 'Détails du projet (facultatif) :' : 'Project details (optional):'}
+            </label>
+            <textarea
+              id="contact-message"
+              rows={3}
+              value={brief}
+              onChange={(e) => setBrief(e.target.value)}
+              placeholder={isFr ? 'Objectifs visuels, références, délais souhaités (facultatif)' : 'Visual goals, references, timelines (optional)'}
+              className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+            />
+          </div>
+
+          {errorMsg && (
+            <p
+              role="alert"
+              aria-live="polite"
+              className="text-xs text-red-400 font-mono text-center pt-1"
+            >
+              {errorMsg}
+            </p>
+          )}
+
+          <div className="pt-2">
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="w-full min-h-[48px] bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
+              {status === 'loading' ? (
+                <>
+                  <Loader2 className="w-4 h-4 text-black animate-spin" />
+                  <span>{isFr ? 'Envoi en cours…' : 'Sending…'}</span>
+                </>
+              ) : (
+                <>
+                  <span>{isFr ? 'Envoyer mon Brief Qualifié +' : 'Submit Qualified Brief +'}</span>
+                  <Send className="w-4 h-4 text-black" />
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <section id="contact" className="max-w-xl mx-auto mb-8 px-4">
+    <section id="contact" className="max-w-xl mx-auto mb-1.5 sm:mb-2 px-4">
       <form onSubmit={handleSubmit}>
-        {/* Anti-spam honeypot fields */}
         <input
           type="text"
           name="company"
@@ -230,233 +419,7 @@ export default function QualifiedContact({
           className="hidden absolute opacity-0 pointer-events-none"
         />
 
-        {/* ── UNIFIED LISTMENUCARD ACCORDION BOX ── */}
-        <div className="ovizai-card divide-y divide-white/[0.06] rounded-xl sm:rounded-2xl overflow-hidden">
-          
-          {/* ── STEP 1: TYPE DE PROJET ── */}
-          <div className="w-full">
-            <button
-              type="button"
-              onClick={() => toggleSection('step-project')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <Clapperboard className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
-                <div className="flex flex-col min-w-0">
-                  <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                    {isFr ? '01 // Type de Projet' : '01 // Project Type'}
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-muted mt-0.5 truncate">
-                    {projectObj ? projectObj.title[lang] : (isFr ? 'Format & intention de production' : 'Format & production intent')}
-                  </span>
-                </div>
-              </div>
-
-              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
-                {isStep1Open ? '↑' : '↓'}
-              </span>
-            </button>
-
-            {isStep1Open && (
-              <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-white/[0.06] bg-black/20 animate-fadeIn">
-                <p className="mono text-[10.5px] text-gold font-bold uppercase tracking-wider mb-2.5">
-                  {isFr ? 'Sélectionnez le format souhaité :' : 'Select your desired format:'}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {PROJECT_TYPES.map((pt) => {
-                    const Icon = pt.icon;
-                    const isSelected = selectedProject === pt.id;
-
-                    return (
-                      <button
-                        key={pt.id}
-                        type="button"
-                        aria-pressed={isSelected}
-                        onClick={() => {
-                          setSelectedProject(pt.id);
-                          // Seamlessly advance to Step 2 without closing Step 1
-                          ensureOpen('step-budget');
-                        }}
-                        className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] ${
-                          isSelected
-                            ? 'border-gold bg-gold/15 text-fg font-bold'
-                            : 'border-white/[0.08] bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
-                        }`}
-                      >
-                        <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? 'text-gold' : 'text-muted'}`} />
-                        <span className="mono text-xs">{pt.title[lang]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* ── STEP 2: ENVELOPPE BUDGÉTAIRE ── */}
-          <div className="w-full">
-            <button
-              type="button"
-              onClick={() => toggleSection('step-budget')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <Clock className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
-                <div className="flex flex-col min-w-0">
-                  <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                    {isFr ? '02 // Enveloppe Budgétaire' : '02 // Budget Tier'}
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-muted mt-0.5 truncate">
-                    {budgetObj ? budgetObj.title[lang] : (isFr ? 'Enveloppe estimée pour votre projet' : 'Estimated budget tier')}
-                  </span>
-                </div>
-              </div>
-
-              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
-                {isStep2Open ? '↑' : '↓'}
-              </span>
-            </button>
-
-            {isStep2Open && (
-              <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-white/[0.06] bg-black/20 animate-fadeIn">
-                <p className="mono text-[10.5px] text-gold font-bold uppercase tracking-wider mb-2.5">
-                  {isFr ? 'Sélectionnez votre palier budgétaire :' : 'Select your budget tier:'}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {BUDGET_TIERS.map((tier) => {
-                    const isSelected = selectedBudget === tier.id;
-
-                    return (
-                      <button
-                        key={tier.id}
-                        type="button"
-                        aria-pressed={isSelected}
-                        onClick={() => {
-                          setSelectedBudget(tier.id);
-                          // Seamlessly advance to Step 3 without closing Step 1 and Step 2
-                          ensureOpen('step-contact');
-                        }}
-                        className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer min-h-[44px] flex items-center ${
-                          isSelected
-                            ? 'border-gold bg-gold/15 text-fg font-bold'
-                            : 'border-white/[0.08] bg-black/40 text-muted hover:border-white/[0.2] hover:text-fg'
-                        }`}
-                      >
-                        <span className="mono text-xs block">{tier.title[lang]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* ── STEP 3: COORDONNÉES & ENVOI DU BRIEF ── */}
-          <div className="w-full">
-            <button
-              type="button"
-              onClick={() => toggleSection('step-contact')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <Send className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
-                <div className="flex flex-col min-w-0">
-                  <span className="mono text-xs sm:text-[13px] font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                    {isFr ? '03 // Coordonnées & Envoi du Brief' : '03 // Contact Details & Submit'}
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-muted mt-0.5 truncate">
-                    {email ? email : (isFr ? 'Nom, e-mail & détails de votre brief' : 'Name, email & project notes')}
-                  </span>
-                </div>
-              </div>
-
-              <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
-                {isStep3Open ? '↑' : '↓'}
-              </span>
-            </button>
-
-            {isStep3Open && (
-              <div className="px-4 sm:px-5 py-3 sm:py-4 border-t border-white/[0.06] bg-black/20 animate-fadeIn space-y-3">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div>
-                    <label htmlFor="contact-name" className="mono text-[11px] text-muted uppercase block mb-1">
-                      {isFr ? 'Nom / Organisation (facultatif) :' : 'Name / Company (optional):'}
-                    </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
-                      className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="contact-email" className="mono text-[11px] text-muted uppercase block mb-1">
-                      {isFr ? 'Adresse E-mail * :' : 'Email Address *:'}
-                    </label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="contact@domaine.com"
-                      className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="mono text-[11px] text-muted uppercase block mb-1">
-                    {isFr ? 'Détails du projet (facultatif) :' : 'Project details (optional):'}
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    rows={3}
-                    value={brief}
-                    onChange={(e) => setBrief(e.target.value)}
-                    placeholder={isFr ? 'Objectifs visuels, références, délais souhaités (facultatif)' : 'Visual goals, references, timelines (optional)'}
-                    className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
-                  />
-                </div>
-
-                {errorMsg && (
-                  <p
-                    role="alert"
-                    aria-live="polite"
-                    className="text-xs text-red-400 font-mono text-center pt-1"
-                  >
-                    {errorMsg}
-                  </p>
-                )}
-
-                {/* Submit Action Button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="w-full min-h-[48px] bg-gold hover:bg-gold-bright disabled:opacity-50 text-black font-bold py-3 rounded-xl mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
-                  >
-                    {status === 'loading' ? (
-                      <>
-                        <Loader2 className="w-4 h-4 text-black animate-spin" />
-                        <span>{isFr ? 'Envoi en cours…' : 'Sending…'}</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>{isFr ? 'Envoyer mon Brief Qualifié +' : 'Submit Qualified Brief +'}</span>
-                        <Send className="w-4 h-4 text-black" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-        </div>
+        <ListMenuCard items={contactItems} />
       </form>
     </section>
   );

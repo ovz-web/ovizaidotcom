@@ -472,7 +472,7 @@ export default function TarifsClient() {
             {/* Pricing Items */}
             <ListMenuCard
               items={pricingItems}
-              className="border-0 bg-transparent rounded-none [&_a]:!py-1.5 sm:[&_a]:!py-2 [&_a]:!px-3"
+              className="border-0 bg-transparent rounded-none"
             />
           </div>
 

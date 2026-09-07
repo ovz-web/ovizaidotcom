@@ -22,17 +22,19 @@ export default function Footer({ lang }: FooterProps) {
 
   return (
     <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/70 backdrop-blur-md mt-auto">
-      <div className="w-full px-3 sm:px-6 md:px-8 py-2 sm:py-2.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4 text-[10px] sm:text-[11.5px] text-muted/75">
+      <div className="w-full px-3 sm:px-6 md:px-8 py-2 sm:py-2.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex flex-row items-center justify-start sm:justify-between gap-2.5 sm:gap-4 text-[10px] sm:text-[11.5px] text-muted/75 overflow-x-auto sm:overflow-visible scrollbar-hide whitespace-nowrap">
         
         {/* Left: Copyright */}
-        <div className="flex items-center gap-2 text-muted/80 select-none order-2 sm:order-1">
+        <div className="flex items-center gap-2 text-muted/80 select-none shrink-0">
           <span>
             © 2026 OVIZai. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}
           </span>
         </div>
 
+        <span className="text-white/[0.15] select-none sm:hidden shrink-0">·</span>
+
         {/* Right: Support/legal links & socials */}
-        <div className="flex items-center flex-wrap justify-center sm:justify-end gap-x-2.5 sm:gap-x-4 gap-y-1 order-1 sm:order-2">
+        <div className="flex items-center flex-nowrap sm:flex-wrap justify-start sm:justify-end gap-x-2.5 sm:gap-x-4 gap-y-1 overflow-x-auto sm:overflow-visible whitespace-nowrap scrollbar-hide shrink-0">
           <Link href="/contact" className="hover:text-fg transition-colors">
             {isFr ? 'Contact' : 'Contact'}
           </Link>
@@ -58,6 +60,7 @@ export default function Footer({ lang }: FooterProps) {
           </Link>
 
           <span className="text-white/[0.2] select-none hidden sm:inline">|</span>
+          <span className="text-white/[0.15] select-none sm:hidden">·</span>
 
           <a
             href="https://youtube.com/@ovizaidotcom"
@@ -69,7 +72,7 @@ export default function Footer({ lang }: FooterProps) {
             <span>YouTube</span>
           </a>
 
-          <span className="text-white/[0.15] select-none sm:hidden">·</span>
+          <span className="text-white/[0.15] select-none">·</span>
 
           <a
             href="https://instagram.com/ovizai.co"
