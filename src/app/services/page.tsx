@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import PageHeader from '@/components/PageHeader';
@@ -52,8 +51,8 @@ export default function ServicesPage() {
           }
           subtitle={
             isFr
-              ? 'Direction artistique, films de marque et étalonnage 4K'
-              : 'Art direction, brand films and 4K color grading'
+              ? 'Direction artistique et films de marque'
+              : 'Art direction and brand films'
           }
           showDetailsHint={true}
           lang={lang}
@@ -66,16 +65,6 @@ export default function ServicesPage() {
           onSelectCurrency={setCurrency}
         />
       </main>
-
-      {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 p-3 bg-black/85 backdrop-blur-md border-t border-border sm:hidden">
-        <Link
-          href="/contact"
-          className="w-full py-2.5 px-4 rounded-xl bg-gold text-black font-semibold text-xs tracking-wider uppercase text-center block shadow-lg hover:bg-gold-bright transition-colors"
-        >
-          {isFr ? 'Demander un devis (24h)' : 'Request a quote (24h)'}
-        </Link>
-      </div>
 
       <Footer lang={lang} onShowToast={showToast} />
       <Toast message={toastMessage} />

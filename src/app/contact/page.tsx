@@ -48,18 +48,18 @@ function ContactPageContent() {
           title={
             isFr ? (
               <>
-                LANCER UN PROJET AVEC <span className="text-gold-gradient">LE STUDIO OVIZAI</span>
+                LANCER UN PROJET AVEC <span className="text-gold-gradient">OVIZAI</span>
               </>
             ) : (
               <>
-                START A PROJECT WITH <span className="text-gold-gradient">OVIZAI STUDIO</span>
+                START A PROJECT WITH <span className="text-gold-gradient">OVIZAI</span>
               </>
             )
           }
           subtitle={
             isFr
-              ? 'Déposez votre brief en 3 étapes et recevez une proposition sous 24h'
-              : 'Submit your brief in 3 steps and receive a quote within 24h'
+              ? 'Déposez votre brief en 3 étapes'
+              : 'Submit your brief in 3 steps'
           }
           showDetailsHint={true}
           lang={lang}

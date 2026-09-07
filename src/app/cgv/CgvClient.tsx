@@ -137,8 +137,8 @@ export default function CgvClient() {
           }
           subtitle={
             isFr
-              ? 'Modalités contractuelles de nos prestations et de la formation'
-              : 'Contractual terms for our video productions and masterclass'
+              ? 'Conditions de nos prestations et de la formation'
+              : 'Terms for our services and masterclass'
           }
           showDetailsHint={true}
           lang={lang}

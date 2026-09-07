@@ -125,8 +125,8 @@ export default function FormationPage() {
           }
           subtitle={
             isFr
-              ? '5 modules pratiques pour maîtriser la réalisation de films 4K'
-              : '5 practical modules to master 4K filmmaking workflow'
+              ? '5 modules pratiques pour maîtriser'
+              : '5 practical modules to master'
           }
           showDetailsHint={true}
           lang={lang}

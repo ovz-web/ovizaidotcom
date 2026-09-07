@@ -165,8 +165,8 @@ export default function ConfidentialiteClient() {
           }
           subtitle={
             isFr
-              ? 'Transparence totale sur vos données personnelles et vos droits'
-              : 'Complete transparency on personal data and your privacy rights'
+              ? 'Protection de vos données et respect du RGPD'
+              : 'Personal data protection & GDPR compliance'
           }
           showDetailsHint={true}
           lang={lang}

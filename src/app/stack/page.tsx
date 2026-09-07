@@ -53,8 +53,8 @@ export default function StackPage() {
           }
           subtitle={
             isFr
-              ? 'De la direction artistique au master cinéma 4K sans compromis'
-              : 'From art direction to final 4K cinema master without compromise'
+              ? 'De la direction artistique au master cinéma 4K'
+              : 'From art direction to final 4K cinema master'
           }
           showDetailsHint={true}
           lang={lang}

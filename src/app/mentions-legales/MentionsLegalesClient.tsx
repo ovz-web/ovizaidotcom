@@ -158,8 +158,8 @@ export default function MentionsLegalesClient() {
           }
           subtitle={
             isFr
-              ? 'Propriété intellectuelle, hébergement et cadre légal du studio'
-              : 'Intellectual property, hosting and legal framework of the studio'
+              ? 'Éditeur, hébergement et cadre légal du studio'
+              : 'Publisher, hosting and legal framework'
           }
           showDetailsHint={true}
           lang={lang}
