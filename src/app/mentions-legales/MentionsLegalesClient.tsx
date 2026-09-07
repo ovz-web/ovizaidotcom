@@ -140,8 +140,7 @@ export default function MentionsLegalesClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3"
-        style={{ paddingTop: 'calc(var(--topbar-height, 44px) + 6px)' }}
+        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+94px)]"
       >
         <PageHeader
           tag={isFr ? 'INFORMATIONS LÉGALES' : 'LEGAL NOTICE'}
