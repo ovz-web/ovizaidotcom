@@ -92,7 +92,7 @@ export default function FormationPage() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
+    <div className="min-h-screen min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(COURSE_JSON_LD) }}

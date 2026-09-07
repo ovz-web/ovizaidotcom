@@ -22,19 +22,17 @@ export default function Footer({ lang }: FooterProps) {
 
   return (
     <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/70 backdrop-blur-md mt-auto">
-      <div className="w-full px-3 sm:px-6 md:px-8 py-2 sm:py-2.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex flex-row items-center justify-start sm:justify-between gap-2.5 sm:gap-4 text-[10px] sm:text-[11.5px] text-muted/75 overflow-x-auto sm:overflow-visible scrollbar-hide whitespace-nowrap">
+      <div className="w-full px-2 sm:px-6 md:px-8 py-1.5 sm:py-2.5 pb-[max(0.4rem,env(safe-area-inset-bottom))] flex flex-row items-center justify-between gap-1 sm:gap-4 text-[8px] min-[375px]:text-[8.5px] sm:text-[11.5px] text-muted/75 whitespace-nowrap">
         
         {/* Left: Copyright */}
-        <div className="flex items-center gap-2 text-muted/80 select-none shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 text-muted/80 select-none shrink-0 font-medium">
           <span>
-            © 2026 OVIZai. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}
+            © 2026 OVIZai<span className="hidden sm:inline">. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}</span>
           </span>
         </div>
 
-        <span className="text-white/[0.15] select-none sm:hidden shrink-0">·</span>
-
         {/* Right: Support/legal links & socials */}
-        <div className="flex items-center flex-nowrap sm:flex-wrap justify-start sm:justify-end gap-x-2.5 sm:gap-x-4 gap-y-1 overflow-x-auto sm:overflow-visible whitespace-nowrap scrollbar-hide shrink-0">
+        <div className="flex items-center flex-row justify-end gap-x-1 sm:gap-x-4 gap-y-1 shrink-0">
           <Link href="/contact" className="hover:text-fg transition-colors">
             {isFr ? 'Contact' : 'Contact'}
           </Link>
@@ -59,17 +57,18 @@ export default function Footer({ lang }: FooterProps) {
             {isFr ? 'Mentions' : 'Legal'}
           </Link>
 
-          <span className="text-white/[0.2] select-none hidden sm:inline">|</span>
-          <span className="text-white/[0.15] select-none sm:hidden">·</span>
+          <span className="text-white/[0.2] select-none mx-0.5 sm:mx-0">|</span>
 
           <a
             href="https://youtube.com/@ovizaidotcom"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors inline-flex items-center gap-1"
+            className="hover:text-gold-bright transition-colors inline-flex items-center gap-0.5 sm:gap-1 text-gold"
+            aria-label="YouTube"
           >
-            <Youtube className="w-3 h-3 text-gold" />
-            <span>YouTube</span>
+            <Youtube className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold shrink-0" />
+            <span className="hidden sm:inline">YouTube</span>
+            <span className="sm:hidden">YT</span>
           </a>
 
           <span className="text-white/[0.15] select-none">·</span>
@@ -78,10 +77,12 @@ export default function Footer({ lang }: FooterProps) {
             href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors inline-flex items-center gap-1"
+            className="hover:text-gold-bright transition-colors inline-flex items-center gap-0.5 sm:gap-1 text-gold"
+            aria-label="Instagram"
           >
-            <Instagram className="w-3 h-3 text-gold" />
-            <span>Instagram</span>
+            <Instagram className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold shrink-0" />
+            <span className="hidden sm:inline">Instagram</span>
+            <span className="sm:hidden">IG</span>
           </a>
         </div>
       </div>
