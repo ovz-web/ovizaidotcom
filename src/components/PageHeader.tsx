@@ -36,7 +36,7 @@ export default function PageHeader({
             alt={isFr ? 'OVIZai — Logo Studio Cinéma & Vidéo IA 4K' : 'OVIZai — 4K AI Cinema & Video Studio Logo'}
             width={240}
             height={240}
-            className="h-10 sm:h-20 md:h-24 w-auto object-contain mix-blend-screen"
+            className="h-13 sm:h-20 md:h-24 w-auto object-contain mix-blend-screen"
             priority
           />
         </Link>

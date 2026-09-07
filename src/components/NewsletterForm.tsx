@@ -59,8 +59,8 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
   };
 
   return (
-    <section id="resources" className="max-w-xl mx-auto mb-1.5 sm:mb-2 md:mb-2.5 px-4">
-      <div className="ovizai-card p-2.5 sm:p-3.5 bg-black/20 relative">
+    <section id="resources" className="max-w-xl mx-auto mb-1 sm:mb-2 px-4">
+      <div className="ovizai-card p-2 sm:p-3 bg-black/20 relative">
         <div className="flex items-center justify-between mb-1">
           <h3 className="mono text-[11px] sm:text-xs font-bold text-fg tracking-wide uppercase">
             {t.freePromptsTitle}
@@ -68,7 +68,7 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
           <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block animate-ping" />
         </div>
 
-        <p className="text-[10px] sm:text-[11px] text-fg-muted leading-tight mb-2 sm:mb-2.5">
+        <p className="text-[10px] sm:text-[11px] text-fg-muted leading-tight mb-1.5 sm:mb-2">
           {t.freePromptsDesc}
         </p>
 

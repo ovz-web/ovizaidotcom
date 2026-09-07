@@ -106,7 +106,7 @@ export default function FormationPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
+        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Page Header */}
         <PageHeader
@@ -135,14 +135,14 @@ export default function FormationPage() {
         <MasterclassSection lang={lang} />
 
         {/* 2. Direct Enrollment Card (Collapsible, closed by default) */}
-        <div id="inscription" className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
+        <div id="inscription" className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
           <div className="ovizai-card border border-border bg-card/90 rounded-xl overflow-hidden transition-all">
             {/* Clickable Card Header */}
             <button
               type="button"
               onClick={() => setIsEnrollOpen((prev) => !prev)}
               aria-expanded={isEnrollOpen}
-              className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+              className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
             >
               <div className="flex flex-col min-w-0">
                 <span className="mono text-[9px] text-gold font-bold uppercase tracking-[0.18em] block mb-0.5">
@@ -289,7 +289,7 @@ export default function FormationPage() {
         </div>
 
         {/* Contact fallback */}
-        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2 text-center">
+        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-1.5 text-center">
           <p className="text-[11px] text-muted">
             {isFr
               ? 'Une question sur le programme ou les modalités de formation ?'

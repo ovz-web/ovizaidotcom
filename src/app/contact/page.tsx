@@ -39,7 +39,7 @@ function ContactPageContent() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
+        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Standardized Unified Page Header */}
         <PageHeader
@@ -74,8 +74,8 @@ function ContactPageContent() {
         />
 
         {/* Sober Reassurance & Link Hub balancing page density */}
-        <div className="max-w-xl mx-auto px-4 mt-1.5 mb-2 sm:mb-2.5">
-          <div className="ovizai-card border border-border bg-card/80 p-3 sm:p-3.5">
+        <div className="max-w-xl mx-auto px-4 mt-1 mb-1 sm:mb-2">
+          <div className="ovizai-card border border-border bg-card/80 p-2 sm:p-3">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start gap-2">
                 <Clock className="w-3.5 h-3.5 text-gold flex-shrink-0" />

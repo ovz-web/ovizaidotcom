@@ -238,7 +238,7 @@ export default function QualifiedContact({
             <button
               type="button"
               onClick={() => toggleSection('step-project')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <Clapperboard className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
@@ -298,7 +298,7 @@ export default function QualifiedContact({
             <button
               type="button"
               onClick={() => toggleSection('step-budget')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <Clock className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
@@ -356,7 +356,7 @@ export default function QualifiedContact({
             <button
               type="button"
               onClick={() => toggleSection('step-contact')}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-3.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <Send className="w-4 h-4 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />

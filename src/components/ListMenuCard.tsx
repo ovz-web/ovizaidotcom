@@ -59,7 +59,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
               <Link
                 key={item.id}
                 href={item.href}
-                className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+                className="group w-full flex items-center justify-between gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
               >
                 {innerContent}
               </Link>
@@ -73,7 +73,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
                   type="button"
                   onClick={item.onClick}
                   aria-expanded={item.expanded !== undefined ? item.expanded : undefined}
-                  className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
+                  className="group w-full flex items-center justify-between gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2.5 bg-none hover:bg-white/[0.025] text-left transition-colors cursor-pointer"
                 >
                   {innerContent}
                 </button>
@@ -90,7 +90,7 @@ export default function ListMenuCard({ items, className = '' }: ListMenuCardProp
           return (
             <div
               key={item.id}
-              className="group w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 bg-none text-left"
+              className="group w-full flex items-center justify-between gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2.5 bg-none text-left"
             >
               {innerContent}
             </div>

@@ -34,7 +34,7 @@ export default function StackPage() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
+        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Unified Page Header */}
         <PageHeader
@@ -63,8 +63,8 @@ export default function StackPage() {
         <AIPipeline lang={lang} />
 
         {/* 2. Compact Studio Standards & Commitments Card */}
-        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2.5">
-          <div className="ovizai-card border border-border bg-card/90 rounded-xl p-2.5 sm:p-3.5">
+        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
+          <div className="ovizai-card border border-border bg-card/90 rounded-xl p-2 sm:p-3">
             <div className="flex items-center gap-1.5 mb-1.5">
               <Sparkles className="w-3.5 h-3.5 text-gold" />
               <span className="mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-gold font-bold">
@@ -113,17 +113,17 @@ export default function StackPage() {
         </div>
 
         {/* 3. Action CTAs */}
-        <div className="max-w-xl mx-auto px-4 mb-1.5 sm:mb-2 flex flex-row items-center justify-center gap-2">
+        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-1.5 flex flex-row items-center justify-center gap-2">
           <Link
             href="/tarifs"
-            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-3 py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[38px]"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-3 py-1.5 sm:py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[34px]"
           >
             <span>{isFr ? 'Tarifs & formules →' : 'View pricing →'}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
           <Link
             href="/contact"
-            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-black/60 border border-border-strong hover:border-gold/50 text-fg hover:text-gold-bright font-bold px-3 py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[38px]"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-black/60 border border-border-strong hover:border-gold/50 text-fg hover:text-gold-bright font-bold px-3 py-1.5 sm:py-2 rounded-lg mono text-[11px] sm:text-xs uppercase tracking-wider transition-all min-h-[34px]"
           >
             <span>{isFr ? 'Devis sous 24h →' : '24h quote →'}</span>
           </Link>

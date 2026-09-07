@@ -407,7 +407,7 @@ export default function TarifsClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
+        className="flex-grow relative z-10 pb-1 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
       >
         {/* Page Header */}
         <PageHeader
@@ -432,9 +432,9 @@ export default function TarifsClient() {
           lang={lang}
         />
 
-        <div className="max-w-xl mx-auto px-4 mb-2 sm:mb-2.5">
+        <div className="max-w-xl mx-auto px-4 mb-1 sm:mb-2">
           {/* Unified Pricing Box with integrated Promo Switch Header */}
-          <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-1.5 sm:mb-2">
+          <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-1 sm:mb-1.5">
             {/* iOS Style Promo Switch Toggle Header */}
             <div className="flex items-center justify-between gap-3 px-3 py-1.5 border-b border-border bg-white/[0.02]">
               <div className="flex items-center gap-1.5">
@@ -477,13 +477,13 @@ export default function TarifsClient() {
           </div>
 
           {/* Centralized Clean FAQ (Collapsible accordion card) */}
-          <div className="mb-1.5 sm:mb-2">
+          <div className="mb-1 sm:mb-1.5">
             <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
               <button
                 type="button"
                 onClick={() => setIsFaqSectionOpen((prev) => !prev)}
                 aria-expanded={isFaqSectionOpen}
-                className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
+                className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-1.5 sm:py-2 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <HelpCircle className="w-3.5 h-3.5 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
