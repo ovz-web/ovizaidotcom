@@ -43,7 +43,7 @@ export default function Home() {
 
       {/* Main Content Area */}
       <main
-        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+4px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
+        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
       >
         {/* 1. Minimalist Hero Section (Enlarged Logo + Main Title + Tagline) */}
         <HeroBrutalist lang={lang} />

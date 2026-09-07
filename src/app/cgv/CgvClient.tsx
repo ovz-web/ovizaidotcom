@@ -119,7 +119,7 @@ export default function CgvClient() {
       />
 
       <main
-        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+94px)]"
+        className="flex-grow relative z-10 pb-2 sm:pb-3 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+30px)]"
       >
         <PageHeader
           tag={isFr ? 'CADRE CONTRACTUEL' : 'LEGAL FRAMEWORK'}
