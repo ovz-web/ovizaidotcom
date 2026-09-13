@@ -3,7 +3,7 @@ import TarifsClient from './TarifsClient';
 
 export const metadata: Metadata = {
   title: 'Tarifs & Offres — Production Vidéo IA | OVIZai',
-  description: 'Grille tarifaire et formules de production vidéo IA OVIZai. Comparaison marché avec la production vidéo traditionnelle. Formule Sprint Pilote dès 1 050 € / $1 150 USD et Campagnes de marque.',
+  description: 'Grille tarifaire et formules de production vidéo IA OVIZai. Formule Sprint Pilote 48-72h dès 890 $ USD / 790 €, Campagnes de marque et productions sur-mesure.',
   keywords: ['Tarifs Vidéo IA', 'Prix Production Vidéo', 'Sprint Pilote Vidéo IA', 'OVIZai Tarifs', 'Vidéo de marque IA'],
   alternates: {
     canonical: 'https://ovizai.com/tarifs',

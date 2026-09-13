@@ -50,49 +50,66 @@ export async function POST(req: NextRequest) {
     const cleanSourcePlan = sourcePlan ? sanitizeString(sourcePlan, 50) : null;
 
     // Insert into Supabase leads table — persist the FULL qualified brief.
-    const { data, error } = await supabaseAdmin
-      .from('leads')
-      .insert([{
-        email: cleanEmail,
-        name: cleanName,
-        project_type: cleanProjectType,
-        budget_range: cleanBudgetRange,
-        currency: cleanCurrency,
-        message: cleanMessage,
-        source_plan: cleanSourcePlan,
-      }])
-      .select();
+    let dbSuccess = false;
+    let dbData: any = null;
 
-    if (error) {
-      if (error.code === '23505') {
-        return NextResponse.json(
-          { status: 'already_subscribed', message: 'E-mail déjà inscrit' },
-          { status: 200 }
-        );
+    try {
+      const { data, error } = await supabaseAdmin
+        .from('leads')
+        .insert([{
+          email: cleanEmail,
+          name: cleanName,
+          project_type: cleanProjectType,
+          budget_range: cleanBudgetRange,
+          currency: cleanCurrency,
+          message: cleanMessage,
+          source_plan: cleanSourcePlan,
+        }])
+        .select();
+
+      if (error) {
+        if (error.code === '23505') {
+          return NextResponse.json(
+            { status: 'already_subscribed', message: 'E-mail déjà inscrit' },
+            { status: 200 }
+          );
+        }
+        console.error(`[SUPABASE ERROR] Lead insert failed for ${maskEmail(cleanEmail)}:`, error.message);
+      } else {
+        dbSuccess = true;
+        dbData = data;
       }
-      console.error(`[SUPABASE ERROR] Lead insert failed for ${maskEmail(cleanEmail)}:`, error.message);
-      return NextResponse.json(
-        { error: 'Erreur lors de l’enregistrement de l’e-mail' },
-        { status: 500 }
-      );
+    } catch (dbErr: any) {
+      console.error(`[SUPABASE EXCEPTION] Connection failed for ${maskEmail(cleanEmail)}:`, dbErr?.message || dbErr);
     }
 
-    // Dispatch transactional email notifications in background (non-blocking)
-    sendTeamNotification({
+    // Dispatch transactional email notifications (non-blocking prospect, awaiting team)
+    const mailResult = await sendTeamNotification({
       email: cleanEmail,
       name,
       projectType,
       budgetRange,
       currency,
       message,
-    }).catch(err => console.error(`[MAIL ERROR] Team notification error for ${maskEmail(cleanEmail)}:`, err));
+    }).catch(err => {
+      console.error(`[MAIL ERROR] Team notification error for ${maskEmail(cleanEmail)}:`, err);
+      return { success: false, reason: err?.message };
+    });
 
     sendProspectConfirmation(cleanEmail, name).catch(err =>
       console.error(`[MAIL ERROR] Prospect confirmation error for ${maskEmail(cleanEmail)}:`, err)
     );
 
+    // If both database AND email notification failed, return structured error with direct contact fallback
+    if (!dbSuccess && (!mailResult || !mailResult.success)) {
+      return NextResponse.json(
+        { error: 'Erreur temporaire de transmission. Veuillez réessayer ou nous contacter à contact@ovizai.com' },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { status: 'subscribed', data },
+      { status: 'subscribed', data: dbData },
       { status: 201 }
     );
   } catch (err: any) {

@@ -107,7 +107,7 @@ export default function NewsletterForm({ lang, onShowToast }: NewsletterFormProp
               onChange={e => setEmail(e.target.value)}
               placeholder={t.emailPlaceholder}
               disabled={loading}
-              className="flex-1 bg-bg-inset border border-border-strong rounded-lg px-2.5 py-1.5 sm:px-3 text-fg mono text-[11px] sm:text-xs focus:outline-none focus:border-gold placeholder:text-fg-muted transition-colors"
+              className="flex-1 bg-bg-inset border border-border-strong rounded-lg px-2.5 py-1.5 sm:px-3 text-fg mono text-base sm:text-xs focus:outline-none focus:border-gold placeholder:text-fg-muted transition-colors"
             />
             <button
               type="submit"

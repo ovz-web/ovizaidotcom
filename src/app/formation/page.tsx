@@ -44,7 +44,6 @@ export default function FormationPage() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [showPromo, setShowPromo] = useState(true);
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -55,12 +54,8 @@ export default function FormationPage() {
 
   const isFr = lang === 'fr';
 
-  const promoPrice = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
-  const standardPrice = MASTERCLASS_ORIGINAL_PRICE[currency] || MASTERCLASS_ORIGINAL_PRICE.USD;
-  const displayedPrice = showPromo ? promoPrice : standardPrice;
-
-  const formattedDisplayedPrice = currency === 'EUR' ? `${displayedPrice} €` : `${displayedPrice} $ ${currency}`;
-  const formattedOriginalPrice = currency === 'EUR' ? `${standardPrice} €` : `${standardPrice} $ ${currency}`;
+  const masterclassPrice = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
+  const formattedDisplayedPrice = currency === 'EUR' ? `${masterclassPrice} €` : `${masterclassPrice} $ ${currency}`;
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -68,8 +63,7 @@ export default function FormationPage() {
     trackEvent('checkout_started', {
       plan: 'masterclass',
       currency,
-      price: displayedPrice,
-      promoApplied: showPromo,
+      price: masterclassPrice,
     });
 
     try {
@@ -155,7 +149,7 @@ export default function FormationPage() {
 
               <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 ml-2">
                 <span className="mono text-[10px] sm:text-[10.5px] text-gold bg-gold/10 border border-gold/30 px-1.5 sm:px-2 py-0.5 rounded font-mono font-medium">
-                  {showPromo ? (isFr ? 'Offre −30%' : '−30% Offer') : (isFr ? 'Standard' : 'Standard')}
+                  {isFr ? 'ACCÈS ILLIMITÉ' : 'LIFETIME ACCESS'}
                 </span>
                 <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0">
                   {isEnrollOpen ? '↑' : '↓'}
@@ -166,38 +160,15 @@ export default function FormationPage() {
             {/* Expandable Details Content */}
             {isEnrollOpen && (
               <div className="px-4 sm:px-5 pb-5 pt-3 border-t border-border animate-fadeIn space-y-4">
-                {/* iOS Style Promo Switch Toggle */}
+                {/* Masterclass Studio Guarantee Header */}
                 <div className="flex items-center justify-between pb-3 border-b border-border">
-                  <span className="mono text-xs text-muted font-mono">
-                    {isFr ? 'Offre de lancement (−30%)' : 'Launch offer (−30%)'}
+                  <span className="mono text-xs text-fg font-semibold font-mono">
+                    {isFr ? 'Programme Complet & Bibles de Prompts' : 'Complete Program & Prompt Bibles'}
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="mono text-[10.5px] text-muted font-mono">
-                      {showPromo
-                        ? (isFr ? 'Offre −30%' : '−30% Offer')
-                        : (isFr ? 'Standard' : 'Standard')}
+                    <span className="mono text-[10.5px] text-gold font-mono font-bold uppercase tracking-wider">
+                      {isFr ? 'Accès Immédiat' : 'Instant Access'}
                     </span>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={showPromo}
-                      aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowPromo((prev) => !prev);
-                      }}
-                      className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
-                        showPromo ? 'bg-gold' : 'bg-white/[0.15]'
-                      }`}
-                    >
-                      <span
-                        className={`pointer-events-none inline-block h-5 w-5 transform rounded-full transition duration-200 ease-in-out ${
-                          showPromo
-                            ? 'translate-x-5 bg-black shadow-sm'
-                            : 'translate-x-0 bg-white/80 shadow-sm'
-                        }`}
-                      />
-                    </button>
                   </div>
                 </div>
 
@@ -210,25 +181,18 @@ export default function FormationPage() {
                     <span className="mono text-[10px] sm:text-xs text-muted font-bold uppercase tracking-wider">
                       {isFr ? 'TTC' : 'Incl. VAT'}
                     </span>
-                    {showPromo && (
-                      <span className="text-sm text-muted line-through font-mono ml-1">
-                        {formattedOriginalPrice}
-                      </span>
-                    )}
                     <span className="mono text-xs text-muted ml-auto">
                       {isFr ? 'Paiement unique sans abonnement' : 'One-time fee, zero subscription'}
                     </span>
                   </div>
-                  {showPromo && (
-                    <p className="text-[11px] font-mono text-gold-bright mt-1.5 flex items-center gap-1">
-                      <span>✓</span>
-                      <span>
-                        {isFr
-                          ? 'Tarif de lancement appliqué : 30% de réduction immédiate'
-                          : 'Launch rate applied: 30% immediate discount'}
-                      </span>
-                    </p>
-                  )}
+                  <p className="text-[11px] font-mono text-gold-bright mt-1.5 flex items-center gap-1">
+                    <span>✓</span>
+                    <span>
+                      {isFr
+                        ? 'Accès illimité à vie + toutes les futures mises à jour des modèles IA'
+                        : 'Lifetime unlimited access + all future AI model updates included'}
+                    </span>
+                  </p>
                 </div>
 
                 {/* What is included */}

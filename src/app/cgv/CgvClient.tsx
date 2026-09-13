@@ -32,59 +32,95 @@ export default function CgvClient() {
       title: isFr ? '1 // Objet & Champ d’Application' : '1 // Scope & Purpose',
       content: [
         isFr
-          ? 'Les présentes conditions régissent les relations contractuelles avec OVIZai Studio.'
-          : 'These terms govern all contractual relations with OVIZai Studio.',
+          ? 'Les présentes conditions régissent l’ensemble des prestations de production vidéo IA et services créatifs proposés par OVIZai Studio.'
+          : 'These terms govern all AI video production and creative services provided by OVIZai Studio.',
         isFr
-          ? 'Elles s’appliquent à l’ensemble de nos formules de production vidéo IA (Sprint Pilote et Campagne de Marque).'
-          : 'They apply to all our AI video production packages (Pilot Sprint and Brand Campaign).',
-        isFr
-          ? 'Elles encadrent également toutes nos prestations sur-mesure ainsi que l’accès à la Masterclass Vidéo IA.'
-          : 'They also govern all custom briefs and access to the AI Video Masterclass.',
+          ? 'Elles s’appliquent à nos formules de production (Sprint Pilote 48-72h, Campagne de Marque), aux productions sur-mesure, aux interventions en marque blanche pour les agences, ainsi qu’à l’accès à la Masterclass Vidéo IA.'
+          : 'They apply to our studio packages (48-72h Pilot Sprint, Brand Campaign), custom commissions, white-label agency partnerships, and the AI Video Masterclass.',
       ],
     },
     {
-      id: 'orders',
-      title: isFr ? '2 // Commandes & Délais de Livraison' : '2 // Orders & Delivery Timelines',
+      id: 'turnaround',
+      title: isFr ? '2 // Commandes & Délais d’Exécution' : '2 // Orders & Turnaround Times',
       content: [
         isFr
-          ? 'Sprint Pilote 48-72h : 1 asset publicitaire court livré en 48 à 72h ouvrées.'
-          : 'Pilot Sprint 48-72h: 1 short commercial asset delivered within 48 to 72 business hours.',
+          ? 'Sprint Pilote : livraison garantie sous 48 à 72 heures ouvrées à compter de la validation du brief créatif.'
+          : 'Pilot Sprint: guaranteed delivery within 48 to 72 business hours following creative brief sign-off.',
         isFr
-          ? 'Campagne de Marque : 3 vidéos cinématographiques livrées en 48 à 72h prioritaires.'
-          : 'Brand Campaign: 3 cinematic videos delivered within 48 to 72 priority business hours.',
+          ? 'Campagne de Marque (3 films) : livraison prioritaire sous 48 à 72 heures ouvrées avec direction artistique dédiée.'
+          : 'Brand Campaign (3 films): priority delivery within 48 to 72 business hours with dedicated art direction.',
         isFr
-          ? 'Prestations sur-mesure : délais fixés contractuellement selon le devis validé.'
-          : 'Custom projects: timelines established in writing according to the validated quote.',
+          ? 'Projets d’envergure sur-mesure (séries, clips 4K) : calendrier de production personnalisé validé au devis sous 24h.'
+          : 'Scale custom productions (series, 4K clips): tailored delivery schedule confirmed in written quote within 24h.',
       ],
     },
     {
-      id: 'pricing',
-      title: isFr ? '3 // Tarifs & Règlement' : '3 // Pricing & Payment Terms',
+      id: 'revisions',
+      title: isFr ? '3 // Rounds de Révision & Processus de Validation' : '3 // Revision Rounds & Approval Pipeline',
       content: [
         isFr
-          ? 'Les tarifs sont indiqués en USD, EUR et CAD selon votre sélection.'
-          : 'Rates are specified in USD, EUR and CAD depending on your selection.',
+          ? 'Chaque formule inclut des rounds de révision complets spécifiés au devis (1 round inclus pour le Sprint Pilote, 3 rounds inclus pour la Campagne de Marque).'
+          : 'Each package includes dedicated revision rounds specified in the quote (1 round for Pilot Sprint, 3 rounds for Brand Campaign).',
         isFr
-          ? 'Les paiements de la Masterclass sont traités de façon sécurisée via Stripe Checkout.'
-          : 'Masterclass course orders are processed securely via Stripe Checkout.',
+          ? 'Une prévisualisation rythmée en basse résolution est soumise au client pour ajuster le cadrage, les raccords et l’étalonnage avant tout export définitif 4K.'
+          : 'A paced low-res preview cut is submitted for client feedback to fine-tune framing, cuts, and color grading prior to final 4K master delivery.',
         isFr
-          ? 'Pour les formules de production, le règlement s’effectue selon les modalités du devis validé.'
-          : 'Production packages are settled according to terms stipulated in the formal brief quote.',
+          ? 'Toute modification substantielle du brief initial ou demande d’itérations additionnelles hors forfait fera l’objet d’un devis complémentaire préalable.'
+          : 'Any major change to the initial brief or additional iteration requests beyond included rounds will be subject to a separate estimate.',
       ],
     },
     {
-      id: 'withdrawal',
-      title: isFr ? '4 // Droit de Rétractation & Renoncement Exprès' : '4 // Right of Withdrawal & Waiver',
+      id: 'payment',
+      title: isFr ? '4 // Tarifs & Conditions de Paiement' : '4 // Rates & Payment Terms',
       content: [
         isFr
-          ? 'L’accès à la Masterclass constitue la fourniture d’un contenu numérique immédiat.'
-          : 'Access to the Masterclass constitutes digital content delivered immediately.',
+          ? 'Les tarifs sont libellés en USD, EUR ou CAD selon la sélection de facturation.'
+          : 'Rates are expressed in USD, EUR, or CAD depending on client billing selection.',
         isFr
-          ? 'En validant votre commande, vous accédez au programme immédiatement et renoncez expressément à votre droit de rétractation (Code de la consommation).'
-          : 'Upon order validation, access to course materials is granted immediately with express waiver of the withdrawal period.',
+          ? 'Prestations de production : acompte de 50 % exigible à la commande pour engager le pipeline de calcul GPU, solde de 50 % à la livraison finale du master 4K.'
+          : 'Production services: 50% deposit required at contract kickoff to initiate GPU pipeline, 50% balance upon final 4K master delivery.',
         isFr
-          ? 'Pour les prestations vidéo personnalisées, le droit de rétractation ne s’applique pas une fois la production lancée.'
-          : 'For custom video commissions, withdrawal rights do not apply once production pipeline is initiated.',
+          ? 'Masterclass Vidéo IA : règlement comptant en paiement unique sécurisé via Stripe Checkout (carte bancaire internationale).'
+          : 'AI Video Masterclass: upfront one-time payment processed securely via Stripe Checkout (international cards).',
+      ],
+    },
+    {
+      id: 'rights',
+      title: isFr ? '5 // Cession des Droits & Propriété Intellectuelle' : '5 // Intellectual Property & Rights Transfer',
+      content: [
+        isFr
+          ? 'Dès le règlement intégral des factures, OVIZai cède au client 100 % des droits patrimoniaux et d’exploitation commerciale sur les masters livrés (diffusion web, réseaux sociaux, TV, cinéma sans limite géographique ni temporelle).'
+          : 'Upon receipt of full payment, OVIZai grants the client 100% of commercial exploitation rights for delivered master files (web, social media, broadcast, cinema worldwide in perpetuity).',
+        isFr
+          ? 'Sauf accord contraire écrit ou clause de marque blanche stricte, OVIZai se réserve le droit de mentionner la réalisation à titre de référence dans son portfolio professionnel.'
+          : 'Unless agreed otherwise in writing or governed by a strict white-label clause, OVIZai reserves the right to showcase the work as a portfolio reference.',
+      ],
+    },
+    {
+      id: 'whitelabel-nda',
+      title: isFr ? '6 // Marque Blanche (White-Label) & Confidentialité (NDA)' : '6 // White-Label Agency Partner & NDA',
+      content: [
+        isFr
+          ? 'Pour les agences de communication et médias partenaires, OVIZai intervient en marque blanche (white-label) intégrale : livrables neutres sans filigrane ni mention OVIZai, communication indirecte avec vos clients finaux.'
+          : 'For creative and media agency partners, OVIZai operates in full white-label mode: unbranded neutral master deliverables, zero public disclosure, direct delivery ready for your end clients.',
+        isFr
+          ? 'Un accord de non-divulgation (NDA) bilatéral strict protège systématiquement vos concepts, assets de marque et lancements confidentiels avant leur diffusion publique.'
+          : 'A strict bilateral Non-Disclosure Agreement (NDA) systematically protects your concepts, brand assets, and upcoming releases prior to official launch.',
+      ],
+    },
+    {
+      id: 'legal-framework',
+      title: isFr ? '7 // Rétractation, Droit Applicable & Juridiction' : '7 // Cancellation, Governing Law & Jurisdiction',
+      content: [
+        isFr
+          ? 'Masterclass : conformément à la réglementation relative aux contenus numériques fournis immédiatement, l’utilisateur renonce expressément à son droit de rétractation lors de l’achat pour accéder immédiatement aux bibles de prompts et vidéos.'
+          : 'Masterclass: in accordance with consumer regulations on digital content supplied immediately, the customer expressly waives any right of cancellation to access course assets instantly upon checkout.',
+        isFr
+          ? 'Productions vidéo personnalisées : les prestations sur-mesure débutant dès validation du brief ne donnent lieu à aucun droit de rétractation une fois la génération engagée.'
+          : 'Custom video services: custom commissions initiating upon brief validation cannot be cancelled once generation and direction pipeline is active.',
+        isFr
+          ? 'Droit applicable : les présentes stipulations sont soumises aux lois en vigueur applicables au siège d’exploitation d’OVIZai Studio (dispositions relatives au droit canadien et québécois ou au droit français et européen selon l’entité contractante, à faire valider par votre conseil juridique).'
+          : 'Governing law: these terms are governed by the applicable laws of OVIZai Studio’s registered operating jurisdiction (Canadian/Quebec law or French/European law depending on the contracting party, to be reviewed by qualified legal counsel).',
       ],
     },
   ];

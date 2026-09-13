@@ -94,7 +94,6 @@ export default function TarifsClient() {
   const { lang, toggleLanguage } = useLanguage();
   const { currency, setCurrency, formatPrice } = useCurrency();
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [showPromo, setShowPromo] = useState(true);
   const [openCard, setOpenCard] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isFaqSectionOpen, setIsFaqSectionOpen] = useState(false);
@@ -104,12 +103,8 @@ export default function TarifsClient() {
   const isFr = lang === 'fr';
   const showToast = (msg: string) => setToastMessage(msg);
 
-  const promoPrice = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
-  const standardPrice = MASTERCLASS_ORIGINAL_PRICE[currency] || MASTERCLASS_ORIGINAL_PRICE.USD;
-  const currentMcPrice = showPromo ? promoPrice : standardPrice;
-
+  const currentMcPrice = MASTERCLASS_PRICE[currency] || MASTERCLASS_PRICE.USD;
   const formattedMcCurrent = currency === 'EUR' ? `${currentMcPrice} €` : `${currentMcPrice} $ ${currency}`;
-  const formattedMcOriginal = currency === 'EUR' ? `${standardPrice} €` : `${standardPrice} $ ${currency}`;
 
   const sprintPlan = PRICING_PLANS.find((p) => p.id === 'sprint')!;
   const campaignPlan = PRICING_PLANS.find((p) => p.id === 'premium')!;
@@ -121,7 +116,6 @@ export default function TarifsClient() {
       plan: 'masterclass',
       currency,
       price: currentMcPrice,
-      promoApplied: showPromo,
     });
     try {
       const res = await fetch('/api/checkout', {
@@ -347,11 +341,6 @@ export default function TarifsClient() {
               <span className="mono text-[10.5px] text-muted font-bold uppercase">
                 {isFr ? 'TTC' : 'Incl. VAT'}
               </span>
-              {showPromo && (
-                <span className="text-xs text-muted line-through font-mono ml-1">
-                  {formattedMcOriginal}
-                </span>
-              )}
             </div>
             <span className="mono text-[11px] text-muted">
               {isFr ? 'Paiement unique sans abonnement' : 'One-time fee, zero subscription'}
@@ -445,37 +434,19 @@ export default function TarifsClient() {
         <div className="max-w-xl mx-auto px-4 mb-0.5 sm:mb-1.5">
           {/* Unified Pricing Box with integrated Promo Switch Header */}
           <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden mb-0.5 sm:mb-1.5">
-            {/* iOS Style Promo Switch Toggle Header */}
+            {/* Studio Guarantee Header */}
             <div className="flex items-center justify-between gap-3 px-3 py-1.5 border-b border-border bg-white/[0.02]">
               <div className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-gold flex-shrink-0" />
                 <span className="mono text-[11px] sm:text-xs text-fg font-semibold block leading-tight">
-                  {isFr ? 'Offre de Lancement (−30%)' : 'Launch Offer (−30%)'}
+                  {isFr ? 'Formules de Production Studio' : 'Studio Production Packages'}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="mono text-[10px] text-muted hidden sm:inline uppercase tracking-wider">
-                  {showPromo ? (isFr ? 'Activé' : 'On') : (isFr ? 'Désactivé' : 'Off')}
+                <span className="mono text-[10px] text-gold uppercase tracking-wider font-bold">
+                  {isFr ? 'Délais 48-72h Garantis' : 'Guaranteed 48-72h Delivery'}
                 </span>
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={showPromo}
-                  aria-label={isFr ? 'Activer ou désactiver l’offre de lancement' : 'Toggle launch offer discount'}
-                  onClick={() => setShowPromo((prev) => !prev)}
-                  className={`relative inline-flex h-5 w-9 sm:h-5 sm:w-10 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 ${
-                    showPromo ? 'bg-gold' : 'bg-white/[0.15]'
-                  }`}
-                >
-                  <span
-                    className={`pointer-events-none inline-block h-4 w-4 transform rounded-full transition duration-200 ease-in-out ${
-                      showPromo
-                        ? 'translate-x-4 sm:translate-x-5 bg-black shadow-sm'
-                        : 'translate-x-0 bg-white/80 shadow-sm'
-                    }`}
-                  />
-                </button>
               </div>
             </div>
 

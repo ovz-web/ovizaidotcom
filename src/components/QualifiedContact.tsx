@@ -330,7 +330,7 @@ export default function QualifiedContact({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
-                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
               />
             </div>
 
@@ -345,7 +345,7 @@ export default function QualifiedContact({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="contact@domaine.com"
-                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
               />
             </div>
           </div>
@@ -360,7 +360,7 @@ export default function QualifiedContact({
               value={brief}
               onChange={(e) => setBrief(e.target.value)}
               placeholder={isFr ? 'Objectifs visuels, références, délais souhaités (facultatif)' : 'Visual goals, references, timelines (optional)'}
-              className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-xs text-fg focus:border-gold outline-none transition-colors"
+              className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
             />
           </div>
 
