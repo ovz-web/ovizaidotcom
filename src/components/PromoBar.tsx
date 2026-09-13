@@ -24,8 +24,8 @@ export default function PromoBar({ lang }: PromoBarProps) {
 
       {/* Main Promo Text - strictly whitespace-nowrap, ultra-compact on mobile */}
       <span className="text-fg group-hover:text-gold-bright font-medium tracking-wide text-[10px] sm:text-xs whitespace-nowrap">
-        <span className="sm:hidden">{isFr ? 'Offre -30% →' : 'Offer -30% →'}</span>
-        <span className="hidden sm:inline">{isFr ? 'Offre de lancement -30% →' : 'Launch offer -30% →'}</span>
+        <span className="sm:hidden">{isFr ? 'Sprint Pilote →' : 'Pilot Sprint →'}</span>
+        <span className="hidden sm:inline">{isFr ? 'Sprint Pilote 48-72h →' : '48-72h Pilot Sprint →'}</span>
       </span>
     </Link>
   );

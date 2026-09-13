@@ -26,8 +26,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     },
     youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
     objective: {
-      fr: 'Explorer la création d’une campagne de marque haute parfumerie sans tournage physique.',
-      en: 'Explore high-end perfume brand campaign creation without physical filming.',
+      fr: 'Original Spec Project — Explorer la création d’une campagne de marque haute parfumerie sans tournage physique (concept original OVIZai non commercial).',
+      en: 'Original Spec Project — Explore high-end perfume brand campaign creation without physical filming (OVIZai original non-commercial concept).',
     },
     creativeDirection: {
       fr: 'Esthétique sombre et dorée, reflets métalliques, mouvements de caméra fluides et macro-gros plans liquides.',
@@ -53,8 +53,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     },
     youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
     objective: {
-      fr: 'Développer un univers scénographique futuriste avec synchronisation rythmique.',
-      en: 'Develop a futuristic stage visual universe with rhythmic beat synchronization.',
+      fr: 'Original Spec Project — Développer un univers scénographique futuriste avec synchronisation rythmique (concept original OVIZai non commercial).',
+      en: 'Original Spec Project — Develop a futuristic stage visual universe with rhythmic beat synchronization (OVIZai original non-commercial concept).',
     },
     creativeDirection: {
       fr: 'Ambiance néo-noir, néons dorés, particules volumétriques et montage dynamique à 60fps.',

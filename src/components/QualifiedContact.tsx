@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, GraduationCap, Clock, Sparkles, Loader2, HelpCircle } from 'lucide-react';
+import { Send, CheckCircle2, Film, Music2, Clapperboard, Palette, Globe2, Building2, GraduationCap, Clock, Sparkles, Loader2, HelpCircle } from 'lucide-react';
 import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 import { Language, Currency } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -21,7 +21,7 @@ const PROJECT_TYPES = [
   { id: 'clip-visualiser', icon: Music2, title: { fr: 'Clip Vidéo & Visualiser', en: 'Music Video & Visualiser' } },
   { id: 'film-series', icon: Film, title: { fr: 'Film & Série', en: 'Film & Series' } },
   { id: 'da-univers', icon: Palette, title: { fr: 'Direction Artistique & Univers', en: 'Art Direction & Brand Worlds' } },
-  { id: 'web-digital', icon: Globe2, title: { fr: 'Site Web & Expérience Next.js', en: 'Custom Next.js Website' } },
+  { id: 'agence-whitelabel', icon: Building2, title: { fr: 'Partenariat Agences (White-Label)', en: 'Agency White-Label Partner' } },
   { id: 'formation-pro', icon: GraduationCap, title: { fr: 'Formation & Masterclass Pro', en: 'Masterclass Pro Training' } },
 ];
 
@@ -30,14 +30,17 @@ const SERVICE_ID_MAP: Record<string, string> = {
   'clips-visualisers': 'clip-visualiser',
   'films-series': 'film-series',
   'da-univers-visuels': 'da-univers',
-  'web-digital': 'web-digital',
+  'partenariat-agences': 'agence-whitelabel',
+  'agence-whitelabel': 'agence-whitelabel',
+  'web-digital': 'agence-whitelabel',
+  'sites-web-nextjs': 'agence-whitelabel',
   'formation-pro': 'formation-pro',
 };
 
 const BUDGET_TIERS = [
   { id: 'tier-0', title: { fr: 'Sprint Pilote (Asset court 15-30s)', en: 'Pilot Sprint (Short asset 15-30s)' } },
   { id: 'tier-1', title: { fr: 'Direction Artistique & Pack Visuels', en: 'Art Direction & Key Visuals' } },
-  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / Site Web', en: 'Brand Campaign / Music Video / Web' } },
+  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / White-Label', en: 'Brand Campaign / Music Video / Agency' } },
   { id: 'tier-3', title: { fr: 'Production Majeure (Film / Série)', en: 'Scale Production (Film / Series)' } },
 ];
 

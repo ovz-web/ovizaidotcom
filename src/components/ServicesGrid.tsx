@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Film, Music2, Clapperboard, Palette, Globe2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Film, Music2, Clapperboard, Palette, Globe2, Building2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
 import TrustSection from '@/components/TrustSection';
@@ -19,7 +19,8 @@ const SERVICE_TYPE_MAP: Record<string, { type: string; budget: string }> = {
   'clips-visualisers': { type: 'clip-visualiser', budget: 'tier-2' },
   'pub-brand-content': { type: 'pub-brand', budget: 'tier-2' },
   'direction-artistique': { type: 'art-direction', budget: 'tier-1' },
-  'sites-web-nextjs': { type: 'site-web', budget: 'tier-2' }
+  'partenariat-agences': { type: 'agence-whitelabel', budget: 'tier-2' },
+  'sites-web-nextjs': { type: 'agence-whitelabel', budget: 'tier-2' }
 };
 
 const FIVE_SERVICES = [
@@ -142,33 +143,33 @@ const FIVE_SERVICES = [
     icon: Palette
   },
   {
-    id: 'sites-web-nextjs',
+    id: 'partenariat-agences',
     number: '05',
     letterCode: 'A5',
-    title: { fr: 'Sites Web Next.js', en: 'Next.js Websites' },
+    title: { fr: 'Partenariat Agences (White-Label)', en: 'Agency Partner (White-Label)' },
     tagline: {
-      fr: 'Expériences web & 3D sur-mesure',
-      en: 'Custom web & 3D experiences'
+      fr: 'Production vidéo & IA en marque blanche',
+      en: 'White-label AI video production for agencies'
     },
     descriptionLines: {
       fr: [
-        'Conception et développement de sites vitrines et plateformes',
-        'Architecture moderne propulsée par Next.js',
-        'Performances d\'affichage ultra-rapides et design sombre',
-        'Intégrations complètes incluant Stripe, CMS et formulaires'
+        'Capacité de production vidéo et cinématographie IA externalisée',
+        'Exécution en marque blanche (white-label) pour agences créatives et médias',
+        'Rendu cinématique haute fidélité sans mobiliser vos équipes de tournage',
+        'Accord de confidentialité strict (NDA) et respect rigoureux des délais'
       ],
       en: [
-        'Design and development of showcase websites and platforms',
-        'Modern architecture powered by Next.js',
-        'Lightning-fast load speed and cinematic dark aesthetics',
-        'Full integrations including Stripe, CMS and custom forms'
+        'Outsourced AI video production and cinematography capacity',
+        'White-label creative execution for ad agencies and media brands',
+        'High-fidelity cinematic output without mobilizing filming crews',
+        'Strict non-disclosure agreements (NDA) and guaranteed turnaround'
       ]
     },
     deliverables: {
-      fr: ['Maquette & design UI/UX', 'Développement Next.js sur-mesure', 'Animations & interactions', 'SEO sémantique', 'Mise en ligne & hébergement'],
-      en: ['UI/UX Design Mockup', 'Custom Next.js Development', 'Animations & Micro-Interactions', 'Semantic SEO', 'Deployment & Hosting']
+      fr: ['Production en marque blanche (White-Label)', 'Accord de confidentialité (NDA) & cession 100 % droits', 'Formats prêts pour vos clients (Ads, DOOH, Social)', 'Direction artistique, sound design & étalonnage pro', 'Livrables haute fidélité sous 48-72h ouvrées'],
+      en: ['White-Label Production Delivery', 'NDA & 100% Commercial IP Rights Assignment', 'Client-Ready Formats (Ads, DOOH, Social)', 'Art Direction, Sound Design & Pro Color Grading', 'High-Fidelity Assets in 48-72 Business Hours']
     },
-    icon: Globe2
+    icon: Building2
   }
 ];
 
@@ -183,12 +184,12 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
       en: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
     },
     description: {
-      fr: 'Collision entre romantisme victorien sombre et béton brut\nBande-son : PNL — Autre monde',
-      en: 'Dark romanticism, opulence, and raw asphalt\nSoundtrack: PNL — Autre monde',
+      fr: 'Original Spec Project — Concept original développé par OVIZai (étude visuelle autonome sans affiliation commerciale tierce).\nCollision entre romantisme victorien sombre et béton brut.\nBande-son : PNL — Autre monde',
+      en: 'Original Spec Project — Original concept developed by OVIZai (autonomous visual study without third-party commercial affiliation).\nDark romanticism, opulence, and raw asphalt.\nSoundtrack: PNL — Autre monde',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'pub-brand-content',
-    badge: { fr: 'SPEC FILM — PARIS 1990', en: 'SPEC FILM — PARIS 1990' },
+    badge: { fr: 'ORIGINAL SPEC PROJECT', en: 'ORIGINAL SPEC PROJECT' },
   },
   {
     src: LOCAL_VIDEOS.spec02.src,
@@ -200,12 +201,12 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
       en: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
     },
     description: {
-      fr: 'Dandysme nocturne et dérive gothique sur l’asphalte froid\nBande-son : PNL — Autre monde',
-      en: 'Nocturnal dandyism, gothic drift, and cold concrete\nSoundtrack: PNL — Autre monde',
+      fr: 'Original Spec Project — Concept original développé par OVIZai (étude visuelle autonome sans affiliation commerciale tierce).\nDandysme nocturne et dérive gothique sur l’asphalte froid.\nBande-son : PNL — Autre monde',
+      en: 'Original Spec Project — Original concept developed by OVIZai (autonomous visual study without third-party commercial affiliation).\nNocturnal dandyism, gothic drift, and cold concrete.\nSoundtrack: PNL — Autre monde',
     },
     uploadDate: '2026-09-01',
     relatedServiceId: 'clips-visualisers',
-    badge: { fr: 'SPEC FILM — PARIS 1990', en: 'SPEC FILM — PARIS 1990' },
+    badge: { fr: 'ORIGINAL SPEC PROJECT', en: 'ORIGINAL SPEC PROJECT' },
   },
 ];
 

@@ -15,7 +15,7 @@ import {
   Music2,
   Clapperboard,
   Palette,
-  Globe2,
+  Building2,
   Clock,
 } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
@@ -34,7 +34,7 @@ const CUSTOM_SERVICES = [
   { id: 'clips-visualisers', num: '02', title: { fr: 'Clips Vidéos & Visualisers', en: 'Music Videos & Visualizers' }, type: 'clip-visualiser', budget: 'tier-2', icon: Music2 },
   { id: 'pub-brand-content', num: '03', title: { fr: 'Publicités & Brand Content', en: 'Commercials & Brand Content' }, type: 'pub-brand', budget: 'tier-2', icon: Clapperboard },
   { id: 'da-univers-visuels', num: '04', title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' }, type: 'da-univers', budget: 'tier-1', icon: Palette },
-  { id: 'web-digital', num: '05', title: { fr: 'Création de Sites Web & Plateformes Digitales', en: 'Websites & Digital Experiences' }, type: 'web-digital', budget: 'tier-2', icon: Globe2 },
+  { id: 'partenariat-agences', num: '05', title: { fr: 'Partenariat Agences (Marque Blanche)', en: 'Agency Partnership (White-Label)' }, type: 'agence-whitelabel', budget: 'tier-2', icon: Building2 },
 ];
 
 const FAQ_ITEMS = [
@@ -76,6 +76,16 @@ const FAQ_ITEMS = [
     a: {
       fr: 'Oui, 100 % des droits patrimoniaux et d’exploitation commerciale sont intégralement cédés à votre marque dès le règlement final du projet (diffusion web, réseaux sociaux, TV ou cinéma sans limite de durée).',
       en: 'Yes, 100% of intellectual property and commercial exploitation rights are assigned to your brand upon final delivery (unlimited web, social, TV, or cinema broadcast).',
+    },
+  },
+  {
+    q: {
+      fr: 'Travaillez-vous en marque blanche (white-label) avec des agences ?',
+      en: 'Do you work in white-label with creative agencies?',
+    },
+    a: {
+      fr: 'Oui, nous intervenons régulièrement comme studio de production vidéo IA externalisé pour les agences créatives et médias. Accord de confidentialité (NDA) systématique, cession intégrale des droits et livrables finaux sous 48-72h prêts pour vos clients.',
+      en: 'Yes, we act as an outsourced AI video production studio for creative and ad agencies. Systematic NDA, 100% IP rights transfer, and final deliverables under 48-72h ready for your clients.',
     },
   },
 ];
@@ -138,9 +148,186 @@ export default function TarifsClient() {
 
   const pricingItems: ListMenuItem[] = [
     {
+      id: 'offer-sprint',
+      icon: Zap,
+      title: isFr ? '01 // Sprint Pilote (48-72h)' : '01 // Pilot Sprint (48-72h)',
+      subtitle: isFr ? '1 asset pub court (Reel/Ad 15-30s)' : '1 short ad asset (Reel/Ad 15-30s)',
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{formatPrice(sprintPlan.minUsd, currency)}</span>
+          <span className="text-gold">{openCard === 'offer-sprint' ? '↑' : '↓'}</span>
+        </span>
+      ),
+      onClick: () => toggleCard('offer-sprint'),
+      expanded: openCard === 'offer-sprint',
+      expandedContent: (
+        <div className="space-y-4 pt-1">
+          <div className="flex items-baseline justify-between gap-2 pb-3 border-b border-white/[0.06] flex-wrap">
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-semibold text-fg font-mono tracking-tight">
+                {formatPrice(sprintPlan.minUsd, currency)}
+              </span>
+              <span className="mono text-[10.5px] text-muted font-bold uppercase">
+                {isFr ? 'HT' : 'Excl. VAT'}
+              </span>
+            </div>
+            <span className="mono text-[11px] text-gold font-bold">
+              {isFr ? 'Livraison express sous 48-72h ouvrées' : 'Guaranteed 48-72h turnaround'}
+            </span>
+          </div>
+
+          <div className="space-y-2 text-xs text-fg/90">
+            {sprintPlan.includes[lang].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+            <div className="flex items-center gap-2 text-gold">
+              <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+              <span>
+                {isFr
+                  ? 'Garantie prévisualisation : validation du cut avant tout prélèvement'
+                  : 'Preview guarantee: cut approved before final balance charge'}
+              </span>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-end">
+            <Link
+              href={`/contact?service=sprint&type=pub-brand&budget=${sprintPlan.budgetTierId}`}
+              onClick={() => trackEvent('cta_reserve_sprint', { plan: 'sprint', currency })}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
+            >
+              <span>{isFr ? 'Réserver un Sprint Pilote 48h →' : 'Book a 48h Pilot Sprint →'}</span>
+              <ArrowUpRight className="w-4 h-4 text-black" />
+            </Link>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      id: 'offer-campaign',
+      icon: Film,
+      title: isFr ? '02 // Campagne de Marque' : '02 // Brand Campaign',
+      subtitle: isFr ? '3 vidéos ciné & DA dédiée' : '3 cinematic videos & art direction',
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{formatPrice(campaignPlan.minUsd, currency)}</span>
+          <span className="text-gold">{openCard === 'offer-campaign' ? '↑' : '↓'}</span>
+        </span>
+      ),
+      onClick: () => toggleCard('offer-campaign'),
+      expanded: openCard === 'offer-campaign',
+      expandedContent: (
+        <div className="space-y-4 pt-1">
+          <div className="flex items-baseline justify-between gap-2 pb-3 border-b border-white/[0.06] flex-wrap">
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-semibold text-fg font-mono tracking-tight">
+                {formatPrice(campaignPlan.minUsd, currency)}
+              </span>
+              <span className="mono text-[10.5px] text-muted font-bold uppercase">
+                {isFr ? 'HT' : 'Excl. VAT'}
+              </span>
+            </div>
+            <span className="mono text-[11px] text-gold font-bold">
+              {isFr ? 'Direction artistique dédiée & 3 rounds de révisions' : 'Dedicated art direction & 3 revision rounds'}
+            </span>
+          </div>
+
+          <div className="space-y-2 text-xs text-fg/90">
+            {campaignPlan.includes[lang].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+            <div className="flex items-center gap-2 text-gold">
+              <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+              <span>
+                {isFr
+                  ? 'Garantie révisions : 3 rounds inclus jusqu’au master 4K validé'
+                  : 'Revision guarantee: 3 rounds included until approved 4K master'}
+              </span>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-end">
+            <Link
+              href={`/contact?service=premium&type=pub-brand&budget=${campaignPlan.budgetTierId}`}
+              onClick={() => trackEvent('cta_reserve_campaign', { plan: 'premium', currency })}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
+            >
+              <span>{isFr ? 'Réserver une Campagne de Marque →' : 'Book a Brand Campaign →'}</span>
+              <ArrowUpRight className="w-4 h-4 text-black" />
+            </Link>
+          </div>
+        </div>
+      ),
+    },
+
+    {
+      id: 'offer-custom',
+      icon: Palette,
+      title: isFr ? '03 // Sur-Mesure & Agences' : '03 // Custom & Agency White-Label',
+      subtitle: isFr ? 'Films, clips, univers visuels & agences' : 'Films, clips, brand worlds & agency work',
+      trailing: (
+        <span className="flex items-center gap-1.5 font-medium">
+          <span>{isFr ? 'Sur devis (24h)' : 'Custom quote (24h)'}</span>
+          <span className="text-gold">{openCard === 'offer-custom' ? '↑' : '↓'}</span>
+        </span>
+      ),
+      onClick: () => toggleCard('offer-custom'),
+      expanded: openCard === 'offer-custom',
+      expandedContent: (
+        <div className="space-y-4 pt-1">
+          <p className="text-xs text-muted leading-relaxed">
+            {isFr
+              ? 'Pour les projets d’envergure, fictions narratives, clips artistiques ou univers de marque complets. Devis clair et chiffré remis sous 24h ouvrées.'
+              : 'For ambitious cinematic projects, music videos, narrative fiction or complete brand identity worlds. Clear tailored quote delivered in 24 business hours.'}
+          </p>
+
+          <div className="divide-y divide-white/[0.04] border border-white/[0.06] rounded-lg bg-black/40 overflow-hidden">
+            {CUSTOM_SERVICES.map((srv) => {
+              const Icon = srv.icon;
+              return (
+                <Link
+                  key={srv.id}
+                  href={`/contact?service=${srv.id}&type=${srv.type}&budget=${srv.budget}`}
+                  className="group flex items-center justify-between gap-3 p-2.5 hover:bg-white/[0.02] transition-colors"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Icon className="w-4 h-4 text-gold flex-shrink-0" />
+                    <span className="mono text-xs text-fg group-hover:text-gold transition-colors font-medium truncate">
+                      {`${srv.num} // ${srv.title[lang]}`}
+                    </span>
+                  </div>
+                  <span className="mono text-xs text-muted group-hover:text-gold transition-colors flex-shrink-0">
+                    →
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="pt-2 flex items-center justify-end">
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
+            >
+              <span>{isFr ? 'Demander un devis personnalisé →' : 'Request a Custom Quote →'}</span>
+              <ArrowUpRight className="w-4 h-4 text-black" />
+            </Link>
+          </div>
+        </div>
+      ),
+    },
+
+    {
       id: 'offer-masterclass',
       icon: GraduationCap,
-      title: isFr ? '01 // Formation & Masterclass' : '01 // Masterclass Course',
+      title: isFr ? '04 // Formation & Masterclass' : '04 // Masterclass Course',
       subtitle: isFr ? '5 modules pratiques & bibles prompts' : '5 practical modules & prompt bibles',
       trailing: (
         <span className="flex items-center gap-1.5 font-medium">
@@ -214,183 +401,6 @@ export default function TarifsClient() {
           </div>
 
           {mcError && <p className="text-xs text-red-400 font-mono text-center">{mcError}</p>}
-        </div>
-      ),
-    },
-
-    {
-      id: 'offer-sprint',
-      icon: Zap,
-      title: isFr ? '02 // Sprint Pilote (48-72h)' : '02 // Pilot Sprint (48-72h)',
-      subtitle: isFr ? '1 asset pub court (Reel/Ad 15-30s)' : '1 short ad asset (Reel/Ad 15-30s)',
-      trailing: (
-        <span className="flex items-center gap-1.5 font-medium">
-          <span>{formatPrice(sprintPlan.minUsd, currency)}</span>
-          <span className="text-gold">{openCard === 'offer-sprint' ? '↑' : '↓'}</span>
-        </span>
-      ),
-      onClick: () => toggleCard('offer-sprint'),
-      expanded: openCard === 'offer-sprint',
-      expandedContent: (
-        <div className="space-y-4 pt-1">
-          <div className="flex items-baseline justify-between gap-2 pb-3 border-b border-white/[0.06] flex-wrap">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl sm:text-3xl font-semibold text-fg font-mono tracking-tight">
-                {formatPrice(sprintPlan.minUsd, currency)}
-              </span>
-              <span className="mono text-[10.5px] text-muted font-bold uppercase">
-                {isFr ? 'HT' : 'Excl. VAT'}
-              </span>
-            </div>
-            <span className="mono text-[11px] text-gold font-bold">
-              {isFr ? 'Livraison express sous 48-72h ouvrées' : 'Guaranteed 48-72h turnaround'}
-            </span>
-          </div>
-
-          <div className="space-y-2 text-xs text-fg/90">
-            {sprintPlan.includes[lang].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2">
-                <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                <span>{item}</span>
-              </div>
-            ))}
-            <div className="flex items-center gap-2 text-gold">
-              <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <span>
-                {isFr
-                  ? 'Garantie prévisualisation : validation du cut avant tout prélèvement'
-                  : 'Preview guarantee: cut approved before final balance charge'}
-              </span>
-            </div>
-          </div>
-
-          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-end">
-            <Link
-              href={`/contact?service=sprint&type=pub-brand&budget=${sprintPlan.budgetTierId}`}
-              onClick={() => trackEvent('cta_reserve_sprint', { plan: 'sprint', currency })}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
-            >
-              <span>{isFr ? 'Réserver un Sprint Pilote 48h →' : 'Book a 48h Pilot Sprint →'}</span>
-              <ArrowUpRight className="w-4 h-4 text-black" />
-            </Link>
-          </div>
-        </div>
-      ),
-    },
-
-    {
-      id: 'offer-campaign',
-      icon: Film,
-      title: isFr ? '03 // Campagne de Marque' : '03 // Brand Campaign',
-      subtitle: isFr ? '3 vidéos ciné & DA dédiée' : '3 cinematic videos & art direction',
-      trailing: (
-        <span className="flex items-center gap-1.5 font-medium">
-          <span>{formatPrice(campaignPlan.minUsd, currency)}</span>
-          <span className="text-gold">{openCard === 'offer-campaign' ? '↑' : '↓'}</span>
-        </span>
-      ),
-      onClick: () => toggleCard('offer-campaign'),
-      expanded: openCard === 'offer-campaign',
-      expandedContent: (
-        <div className="space-y-4 pt-1">
-          <div className="flex items-baseline justify-between gap-2 pb-3 border-b border-white/[0.06] flex-wrap">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl sm:text-3xl font-semibold text-fg font-mono tracking-tight">
-                {formatPrice(campaignPlan.minUsd, currency)}
-              </span>
-              <span className="mono text-[10.5px] text-muted font-bold uppercase">
-                {isFr ? 'HT' : 'Excl. VAT'}
-              </span>
-            </div>
-            <span className="mono text-[11px] text-gold font-bold">
-              {isFr ? 'Direction artistique dédiée & 3 rounds de révisions' : 'Dedicated art direction & 3 revision rounds'}
-            </span>
-          </div>
-
-          <div className="space-y-2 text-xs text-fg/90">
-            {campaignPlan.includes[lang].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2">
-                <Check className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                <span>{item}</span>
-              </div>
-            ))}
-            <div className="flex items-center gap-2 text-gold">
-              <ShieldCheck className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <span>
-                {isFr
-                  ? 'Garantie révisions : 3 rounds inclus jusqu’au master 4K validé'
-                  : 'Revision guarantee: 3 rounds included until approved 4K master'}
-              </span>
-            </div>
-          </div>
-
-          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-end">
-            <Link
-              href={`/contact?service=premium&type=pub-brand&budget=${campaignPlan.budgetTierId}`}
-              onClick={() => trackEvent('cta_reserve_campaign', { plan: 'premium', currency })}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
-            >
-              <span>{isFr ? 'Réserver une Campagne de Marque →' : 'Book a Brand Campaign →'}</span>
-              <ArrowUpRight className="w-4 h-4 text-black" />
-            </Link>
-          </div>
-        </div>
-      ),
-    },
-
-    {
-      id: 'offer-custom',
-      icon: Palette,
-      title: isFr ? '04 // Prestations Sur-Mesure' : '04 // Custom Productions',
-      subtitle: isFr ? 'Films, clips, univers visuels & web' : 'Films, clips, brand worlds & web',
-      trailing: (
-        <span className="flex items-center gap-1.5 font-medium">
-          <span>{isFr ? 'Sur devis (24h)' : 'Custom quote (24h)'}</span>
-          <span className="text-gold">{openCard === 'offer-custom' ? '↑' : '↓'}</span>
-        </span>
-      ),
-      onClick: () => toggleCard('offer-custom'),
-      expanded: openCard === 'offer-custom',
-      expandedContent: (
-        <div className="space-y-4 pt-1">
-          <p className="text-xs text-muted leading-relaxed">
-            {isFr
-              ? 'Pour les projets d’envergure, fictions narratives, clips artistiques ou univers de marque complets. Devis clair et chiffré remis sous 24h ouvrées.'
-              : 'For ambitious cinematic projects, music videos, narrative fiction or complete brand identity worlds. Clear tailored quote delivered in 24 business hours.'}
-          </p>
-
-          <div className="divide-y divide-white/[0.04] border border-white/[0.06] rounded-lg bg-black/40 overflow-hidden">
-            {CUSTOM_SERVICES.map((srv) => {
-              const Icon = srv.icon;
-              return (
-                <Link
-                  key={srv.id}
-                  href={`/contact?service=${srv.id}&type=${srv.type}&budget=${srv.budget}`}
-                  className="group flex items-center justify-between gap-3 p-2.5 hover:bg-white/[0.02] transition-colors"
-                >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <Icon className="w-4 h-4 text-gold flex-shrink-0" />
-                    <span className="mono text-xs text-fg group-hover:text-gold transition-colors font-medium truncate">
-                      {`${srv.num} // ${srv.title[lang]}`}
-                    </span>
-                  </div>
-                  <span className="mono text-xs text-muted group-hover:text-gold transition-colors flex-shrink-0">
-                    →
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="pt-2 flex items-center justify-end">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-5 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[44px]"
-            >
-              <span>{isFr ? 'Demander un devis personnalisé →' : 'Request a Custom Quote →'}</span>
-              <ArrowUpRight className="w-4 h-4 text-black" />
-            </Link>
-          </div>
         </div>
       ),
     },
@@ -489,7 +499,7 @@ export default function TarifsClient() {
                   <HelpCircle className="w-3.5 h-3.5 text-gold group-hover:text-gold-bright flex-shrink-0 transition-colors" />
                   <div className="flex flex-col min-w-0">
                     <span className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                      {isFr ? 'Questions Fréquentes (4)' : 'Frequently Asked Questions (4)'}
+                      {isFr ? 'Questions Fréquentes (5)' : 'Frequently Asked Questions (5)'}
                     </span>
                     <span className="text-[10px] text-muted truncate">
                       {isFr ? 'Facturation, production & délais de livraison' : 'Billing, turnaround & production workflow'}

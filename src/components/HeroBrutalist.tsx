@@ -15,7 +15,7 @@ export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
     <section className="relative z-10 max-w-xl mx-auto px-4 text-center">
       {/* Eyebrow */}
       <p className="text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-gold mb-0.5 font-mono font-bold">
-        {isFr ? 'CRÉATION VIDÉO IA POUR MARQUES ET ARTISTES' : 'AI VIDEO PRODUCTION FOR BRANDS AND ARTISTS'}
+        {isFr ? 'CRÉATION VIDÉO IA POUR MARQUES & AGENCES' : 'AI VIDEO PRODUCTION FOR BRANDS & AGENCIES'}
       </p>
 
       {/* Hero Logo - Responsive & Scaled */}
