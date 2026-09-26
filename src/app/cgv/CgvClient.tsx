@@ -32,11 +32,11 @@ export default function CgvClient() {
       title: isFr ? '1 // Objet & Champ d’Application' : '1 // Scope & Purpose',
       content: [
         isFr
-          ? 'Les présentes conditions régissent l’ensemble des prestations de production vidéo IA et services créatifs proposés par OVIZai Studio.'
-          : 'These terms govern all AI video production and creative services provided by OVIZai Studio.',
+          ? 'Les présentes conditions régissent l’ensemble des prestations de création publicitaire et services de production proposés par OVIZai Studio.'
+          : 'These terms govern all advertising creation and production services provided by OVIZai Studio.',
         isFr
-          ? 'Elles s’appliquent à nos formules de production (Sprint Pilote 48-72h, Campagne de Marque), aux productions sur-mesure, aux interventions en marque blanche pour les agences, ainsi qu’à l’accès à la Masterclass Vidéo IA.'
-          : 'They apply to our studio packages (48-72h Pilot Sprint, Brand Campaign), custom commissions, white-label agency partnerships, and the AI Video Masterclass.',
+          ? 'Elles s’appliquent à notre Offre de Lancement (530 USD), aux productions sur-mesure sur devis, aux partenariats agences en marque blanche, ainsi qu’à l’accès à la Masterclass Vidéo IA.'
+          : 'They apply to our introductory Launch Offer ($530 USD), custom productions on quote, white-label agency partnerships, and the AI Video Masterclass.',
       ],
     },
     {
@@ -44,41 +44,41 @@ export default function CgvClient() {
       title: isFr ? '2 // Commandes & Délais d’Exécution' : '2 // Orders & Turnaround Times',
       content: [
         isFr
-          ? 'Sprint Pilote : livraison garantie sous 48 à 72 heures ouvrées à compter de la validation du brief créatif.'
-          : 'Pilot Sprint: guaranteed delivery within 48 to 72 business hours following creative brief sign-off.',
+          ? 'Offre de Lancement (530 USD) : première version livrée sous 5 jours ouvrables. Ce délai commence après réception de l’ensemble des éléments nécessaires et validation conjointe du planning.'
+          : 'Launch Offer ($530 USD): first cut delivered within 5 business days. This timeframe begins once all required assets are received and the production schedule is agreed upon.',
         isFr
-          ? 'Campagne de Marque (3 films) : livraison prioritaire sous 48 à 72 heures ouvrées avec direction artistique dédiée.'
-          : 'Brand Campaign (3 films): priority delivery within 48 to 72 business hours with dedicated art direction.',
-        isFr
-          ? 'Projets d’envergure sur-mesure (séries, clips 4K) : calendrier de production personnalisé validé au devis sous 24h.'
-          : 'Scale custom productions (series, 4K clips): tailored delivery schedule confirmed in written quote within 24h.',
+          ? 'Projets plus complexes ou formats additionnels : calendrier de production personnalisé validé au devis sous 24h ouvrées.'
+          : 'Complex custom productions or additional formats: dedicated production schedule confirmed in written quote within 24 business hours.',
       ],
     },
     {
       id: 'revisions',
-      title: isFr ? '3 // Rounds de Révision & Processus de Validation' : '3 // Revision Rounds & Approval Pipeline',
+      title: isFr ? '3 // Série de Corrections & Validation' : '3 // Revision Round & Approval Pipeline',
       content: [
         isFr
-          ? 'Chaque formule inclut des rounds de révision complets spécifiés au devis (1 round inclus pour le Sprint Pilote, 3 rounds inclus pour la Campagne de Marque).'
-          : 'Each package includes dedicated revision rounds specified in the quote (1 round for Pilot Sprint, 3 rounds for Brand Campaign).',
+          ? 'L’Offre de Lancement inclut 1 série de corrections sur la première version livrée (ajustements de cadrage, rythme, étalonnage et sound design).'
+          : 'The Launch Offer includes 1 revision round on the delivered initial cut (framing, pacing, color grading, and sound design adjustments).',
         isFr
-          ? 'Une prévisualisation rythmée en basse résolution est soumise au client pour ajuster le cadrage, les raccords et l’étalonnage avant tout export définitif 4K.'
-          : 'A paced low-res preview cut is submitted for client feedback to fine-tune framing, cuts, and color grading prior to final 4K master delivery.',
+          ? 'Une prévisualisation rythmée est soumise au client pour recueillir ses retours avant tout export définitif du master.'
+          : 'A paced preview cut is submitted for client feedback prior to final master export.',
         isFr
-          ? 'Toute modification substantielle du brief initial ou demande d’itérations additionnelles hors forfait fera l’objet d’un devis complémentaire préalable.'
-          : 'Any major change to the initial brief or additional iteration requests beyond included rounds will be subject to a separate estimate.',
+          ? 'Toute modification substantielle du concept validé ou demande d’itérations supplémentaires fera l’objet d’un devis complémentaire préalable.'
+          : 'Any major change to the approved concept or additional revision requests beyond the included round will require a separate quote.',
       ],
     },
     {
       id: 'payment',
-      title: isFr ? '4 // Tarifs & Conditions de Paiement' : '4 // Rates & Payment Terms',
+      title: isFr ? '4 // Tarifs & Modalités de Paiement' : '4 // Rates & Payment Terms',
       content: [
         isFr
           ? 'Les tarifs sont libellés en USD, EUR ou CAD selon la sélection de facturation.'
           : 'Rates are expressed in USD, EUR, or CAD depending on client billing selection.',
         isFr
-          ? 'Prestations de production : acompte de 50 % exigible à la commande pour engager le pipeline de calcul GPU, solde de 50 % à la livraison finale du master 4K.'
-          : 'Production services: 50% deposit required at contract kickoff to initiate GPU pipeline, 50% balance upon final 4K master delivery.',
+          ? 'Offre de Lancement (530 USD) : acompte de 265 USD exigible à la commande pour engager la production, et solde de 265 USD exigible avant livraison du master final.'
+          : 'Launch Offer ($530 USD): $265 USD deposit required upfront to launch production, and $265 USD balance due prior to final master delivery.',
+        isFr
+          ? 'Projets sur devis : acompte (généralement 50 %) à la commande, solde à la livraison du master final.'
+          : 'Custom quote projects: deposit (typically 50%) upon kickoff, balance upon final master delivery.',
         isFr
           ? 'Masterclass Vidéo IA : règlement comptant en paiement unique sécurisé via Stripe Checkout (carte bancaire internationale).'
           : 'AI Video Masterclass: upfront one-time payment processed securely via Stripe Checkout (international cards).',

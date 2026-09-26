@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import TarifsClient from './TarifsClient';
 
 export const metadata: Metadata = {
-  title: 'Tarifs & Offres — Production Vidéo IA | OVIZai',
-  description: 'Grille tarifaire et formules de production vidéo IA OVIZai. Formule Sprint Pilote 48-72h dès 890 $ USD / 790 €, Campagnes de marque et productions sur-mesure.',
-  keywords: ['Tarifs Vidéo IA', 'Prix Production Vidéo', 'Sprint Pilote Vidéo IA', 'OVIZai Tarifs', 'Vidéo de marque IA'],
+  title: 'Offre de Lancement & Tarifs — Publicités Courtes | OVIZai',
+  description: 'Offre de lancement publicitaire court à 530 USD : 1 publicité 10-15s, concept créatif, format 9:16, sound design et 1 série de corrections. Projets sur-mesure sur devis.',
+  keywords: ['Offre de Lancement Vidéo', 'Tarifs OVIZai', 'Publicité Courte 9:16', 'Prix Publicité IA', 'Studio Créatif OVIZai'],
   alternates: {
     canonical: 'https://ovizai.com/tarifs',
     languages: {
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Tarifs & Formules de Production Vidéo IA — OVIZai',
-    description: 'Le même rendu qu’une production vidéo traditionnelle à 5k–30k€, sans le tournage et livré sous 48h à 5 jours.',
+    title: 'Offre de Lancement & Tarifs — OVIZai Studio',
+    description: 'Offre de lancement à 530 USD : 1 publicité courte (10-15s), format 9:16, sound design et première version sous 5 jours ouvrables.',
     url: 'https://ovizai.com/tarifs',
     siteName: 'OVIZai',
     locale: 'fr_FR',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tarifs & Formules — OVIZai AI Video Studio',
-    description: 'Production vidéo IA cinématographique. Formules d’entrée Sprint Pilote et campagnes sur-mesure.',
+    title: 'Offre de Lancement & Tarifs — OVIZai',
+    description: 'Offre de lancement publicitaire court à 530 USD. Projets plus complexes sur devis.',
   },
 };
 

@@ -17,31 +17,37 @@ interface QualifiedContactProps {
 }
 
 const PROJECT_TYPES = [
-  { id: 'pub-brand', icon: Clapperboard, title: { fr: 'Publicité & Brand Content', en: 'Commercial & Brand Content' } },
-  { id: 'clip-visualiser', icon: Music2, title: { fr: 'Clip Vidéo & Visualiser', en: 'Music Video & Visualiser' } },
-  { id: 'film-series', icon: Film, title: { fr: 'Film & Série', en: 'Film & Series' } },
-  { id: 'da-univers', icon: Palette, title: { fr: 'Direction Artistique & Univers', en: 'Art Direction & Brand Worlds' } },
-  { id: 'agence-whitelabel', icon: Building2, title: { fr: 'Partenariat Agences (White-Label)', en: 'Agency White-Label Partner' } },
-  { id: 'formation-pro', icon: GraduationCap, title: { fr: 'Formation & Masterclass Pro', en: 'Masterclass Pro Training' } },
+  { id: 'pub-restaurants', icon: Clapperboard, title: { fr: 'Publicité Restaurant / Marque Alimentaire', en: 'Restaurant / Food Brand Ad' } },
+  { id: 'pub-produits', icon: Film, title: { fr: 'Publicité Produit & E-commerce', en: 'Product & E-commerce Ad' } },
+  { id: 'da-univers', icon: Palette, title: { fr: 'Direction Artistique & Univers de Marque', en: 'Art Direction & Brand Worlds' } },
+  { id: 'agence-whitelabel', icon: Building2, title: { fr: 'Partenariat Agences (Marque Blanche)', en: 'Agency Partner (White-Label)' } },
+  { id: 'clips-surmesure', icon: Music2, title: { fr: 'Clips Vidéos & Projets Sur-Mesure', en: 'Music Video & Custom Projects' } },
+  { id: 'formation-pro', icon: GraduationCap, title: { fr: 'Formation & Masterclass Vidéo IA', en: 'AI Video Masterclass Pro' } },
 ];
 
 const SERVICE_ID_MAP: Record<string, string> = {
-  'pub-brand-content': 'pub-brand',
-  'clips-visualisers': 'clip-visualiser',
-  'films-series': 'film-series',
-  'da-univers-visuels': 'da-univers',
+  'pub-restaurants': 'pub-restaurants',
+  'pub-produits': 'pub-produits',
+  'pub-brand-content': 'pub-restaurants',
+  'pub-brand': 'pub-restaurants',
+  'direction-artistique': 'da-univers',
+  'da-univers': 'da-univers',
   'partenariat-agences': 'agence-whitelabel',
   'agence-whitelabel': 'agence-whitelabel',
-  'web-digital': 'agence-whitelabel',
-  'sites-web-nextjs': 'agence-whitelabel',
+  'clips-sur-mesure': 'clips-surmesure',
+  'clips-visualisers': 'clips-surmesure',
+  'clip-visualiser': 'clips-surmesure',
   'formation-pro': 'formation-pro',
+  'launch': 'pub-restaurants',
+  'sprint': 'pub-restaurants',
+  'custom': 'pub-restaurants',
 };
 
 const BUDGET_TIERS = [
-  { id: 'tier-0', title: { fr: 'Sprint Pilote (Asset court 15-30s)', en: 'Pilot Sprint (Short asset 15-30s)' } },
-  { id: 'tier-1', title: { fr: 'Direction Artistique & Pack Visuels', en: 'Art Direction & Key Visuals' } },
-  { id: 'tier-2', title: { fr: 'Campagne / Clip Vidéo / White-Label', en: 'Brand Campaign / Music Video / Agency' } },
-  { id: 'tier-3', title: { fr: 'Production Majeure (Film / Série)', en: 'Scale Production (Film / Series)' } },
+  { id: 'launch-530', title: { fr: 'Offre de Lancement (530 $ USD · Acompte 265 $)', en: 'Launch Offer ($530 USD · $265 Deposit)' } },
+  { id: 'sur-devis', title: { fr: 'Projet Sur Devis (Formats complexes / Multi-formats)', en: 'Custom Quote (Scale / Multi-formats)' } },
+  { id: 'agence', title: { fr: 'Partenariat Agence (Marque Blanche)', en: 'Agency Partner (White-Label)' } },
+  { id: 'masterclass', title: { fr: 'Formation Vidéo IA (320 $ USD)', en: 'AI Video Masterclass ($320 USD)' } },
 ];
 
 export default function QualifiedContact({
@@ -56,19 +62,20 @@ export default function QualifiedContact({
   const { currency: ctxCurrency } = useCurrency();
   const activeCurrency = propCurrency || ctxCurrency;
 
-  const [selectedProject, setSelectedProject] = useState<string>('pub-brand');
-  const [selectedBudget, setSelectedBudget] = useState<string>('tier-2');
+  const [selectedProject, setSelectedProject] = useState<string>('pub-restaurants');
+  const [selectedBudget, setSelectedBudget] = useState<string>('launch-530');
   const [originPlan, setOriginPlan] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [brief, setBrief] = useState('');
   const [company, setCompany] = useState('');
   const [website, setWebsite] = useState('');
+  const [botHp, setBotHp] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   // Closed by default; multi-open accordion: opening a new step keeps previous steps OPEN
-  const [openSections, setOpenSections] = useState<string[]>([]);
+  const [openSections, setOpenSections] = useState<string[]>(['step-project']);
 
   const toggleSection = (id: string) => {
     setOpenSections((prev) =>
@@ -85,21 +92,23 @@ export default function QualifiedContact({
       setOriginPlan(initialServiceId);
     }
 
-    if (initialType && PROJECT_TYPES.some(p => p.id === initialType)) {
+    if (initialType && PROJECT_TYPES.some((p) => p.id === initialType)) {
       setSelectedProject(initialType);
     } else if (initialServiceId && SERVICE_ID_MAP[initialServiceId]) {
       setSelectedProject(SERVICE_ID_MAP[initialServiceId]);
     }
 
-    if (initialBudget && BUDGET_TIERS.some(b => b.id === initialBudget)) {
+    if (initialBudget && BUDGET_TIERS.some((b) => b.id === initialBudget)) {
       setSelectedBudget(initialBudget);
+    } else if (initialBudget === 'tier-launch' || initialServiceId === 'launch') {
+      setSelectedBudget('launch-530');
     }
   }, [initialServiceId, initialType, initialBudget]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
-      setErrorMsg(isFr ? 'Adresse e-mail invalide' : 'Invalid email address');
+      setErrorMsg(isFr ? 'Adresse e-mail valide requise' : 'Valid email address required');
       setStatus('error');
       ensureOpen('step-contact');
       return;
@@ -108,8 +117,8 @@ export default function QualifiedContact({
     setStatus('loading');
     setErrorMsg('');
 
-    const projectObj = PROJECT_TYPES.find(p => p.id === selectedProject);
-    const budgetObj = BUDGET_TIERS.find(b => b.id === selectedBudget);
+    const projectObj = PROJECT_TYPES.find((p) => p.id === selectedProject);
+    const budgetObj = BUDGET_TIERS.find((b) => b.id === selectedBudget);
     const formattedBudget = budgetObj ? budgetObj.title[lang] : selectedBudget;
 
     try {
@@ -119,14 +128,15 @@ export default function QualifiedContact({
         body: JSON.stringify({
           email,
           name: name || undefined,
+          company: company || undefined,
+          website: website || undefined,
           projectType: projectObj ? projectObj.title[lang] : selectedProject,
           budgetRange: formattedBudget,
           currency: activeCurrency,
           message: brief || undefined,
-          company: company || undefined,
-          website: website || undefined,
           sourcePlan: originPlan || undefined,
           originPlan: originPlan || undefined,
+          bot_hp: botHp || undefined,
         }),
       });
 
@@ -312,8 +322,8 @@ export default function QualifiedContact({
       icon: Send,
       title: isFr ? '03 // Coordonnées & Envoi du Brief' : '03 // Contact Details & Submit',
       subtitle: email
-        ? email
-        : (isFr ? 'Nom, e-mail & détails de votre brief' : 'Name, email & project notes'),
+        ? `${name ? `${name} · ` : ''}${email}`
+        : (isFr ? 'Nom, marque, e-mail & détails de votre projet' : 'Name, brand, email & project notes'),
       trailing: isStep3Open ? '↑' : '↓',
       onClick: () => toggleSection('step-contact'),
       expanded: isStep3Open,
@@ -322,18 +332,34 @@ export default function QualifiedContact({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label htmlFor="contact-name" className="mono text-[11px] text-muted uppercase block mb-1">
-                {isFr ? 'Nom / Organisation (facultatif) :' : 'Name / Company (optional):'}
+                {isFr ? 'Votre Nom (facultatif) :' : 'Your Name (optional):'}
               </label>
               <input
                 id="contact-name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder={isFr ? 'ex: Jean Dupont (Studio X)' : 'e.g. Sarah Jenkins (Studio X)'}
+                placeholder={isFr ? 'ex: Jean Dupont' : 'e.g. Sarah Jenkins'}
                 className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
               />
             </div>
 
+            <div>
+              <label htmlFor="contact-company" className="mono text-[11px] text-muted uppercase block mb-1">
+                {isFr ? 'Entreprise / Marque / Établissement :' : 'Company / Brand / Venue:'}
+              </label>
+              <input
+                id="contact-company"
+                type="text"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                placeholder={isFr ? 'ex: Le Bistro Gourmand / Maison X' : 'e.g. Atelier Gourmet / Brand X'}
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label htmlFor="contact-email" className="mono text-[11px] text-muted uppercase block mb-1">
                 {isFr ? 'Adresse E-mail * :' : 'Email Address *:'}
@@ -348,18 +374,32 @@ export default function QualifiedContact({
                 className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
               />
             </div>
+
+            <div>
+              <label htmlFor="contact-website" className="mono text-[11px] text-muted uppercase block mb-1">
+                {isFr ? 'Site web / Instagram / Références :' : 'Website / Instagram / Links:'}
+              </label>
+              <input
+                id="contact-website"
+                type="text"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                placeholder="https://... ou @instagram"
+                className="w-full min-h-[44px] bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
+              />
+            </div>
           </div>
 
           <div>
             <label htmlFor="contact-message" className="mono text-[11px] text-muted uppercase block mb-1">
-              {isFr ? 'Détails du projet (facultatif) :' : 'Project details (optional):'}
+              {isFr ? 'Courte description du projet :' : 'Short project description:'}
             </label>
             <textarea
               id="contact-message"
               rows={3}
               value={brief}
               onChange={(e) => setBrief(e.target.value)}
-              placeholder={isFr ? 'Objectifs visuels, références, délais souhaités (facultatif)' : 'Visual goals, references, timelines (optional)'}
+              placeholder={isFr ? 'Produit à mettre en valeur, atmosphère souhaitée, attentes particulières' : 'Product to feature, desired mood, specific requirements'}
               className="w-full bg-black/60 border border-white/[0.1] rounded-lg px-3 py-2 text-base sm:text-xs text-fg focus:border-gold outline-none transition-colors"
             />
           </div>
@@ -383,11 +423,11 @@ export default function QualifiedContact({
               {status === 'loading' ? (
                 <>
                   <Loader2 className="w-4 h-4 text-black animate-spin" />
-                  <span>{isFr ? 'Envoi en cours…' : 'Sending…'}</span>
+                  <span>{isFr ? 'Transmission en cours…' : 'Submitting…'}</span>
                 </>
               ) : (
                 <>
-                  <span>{isFr ? 'Envoyer mon Brief Qualifié +' : 'Submit Qualified Brief +'}</span>
+                  <span>{isFr ? 'Transmettre mon Brief au Studio →' : 'Submit Brief to Studio →'}</span>
                   <Send className="w-4 h-4 text-black" />
                 </>
               )}
@@ -403,23 +443,14 @@ export default function QualifiedContact({
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="company"
+          name="bot_hp"
           tabIndex={-1}
           aria-hidden="true"
           autoComplete="off"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
+          value={botHp}
+          onChange={(e) => setBotHp(e.target.value)}
           className="hidden"
           style={{ position: 'absolute', left: '-9999px', top: '-9999px', width: '1px', height: '1px', opacity: 0, pointerEvents: 'none' }}
-        />
-        <input
-          type="text"
-          name="website"
-          tabIndex={-1}
-          autoComplete="off"
-          value={website}
-          onChange={(e) => setWebsite(e.target.value)}
-          className="hidden absolute opacity-0 pointer-events-none"
         />
 
         <ListMenuCard items={contactItems} />

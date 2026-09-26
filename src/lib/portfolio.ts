@@ -1,10 +1,11 @@
 export interface PortfolioProject {
   id: string;
   title: { fr: string; en: string };
-  status: 'SPEC PROJECT' | 'PROJET CONCEPT' | 'AI CINEMATIC STUDY' | 'INTERNAL PROJECT';
+  status: 'CONCEPT PUBLICITAIRE' | 'PROJET CONCEPTUEL' | 'ÉTUDE DE PROCESSUS';
   category: { fr: string; en: string };
   youtubeId?: string;
   thumbnailUrl?: string;
+  videoSrc?: string;
   objective: { fr: string; en: string };
   creativeDirection: { fr: string; en: string };
   productionTools: string[];
@@ -14,57 +15,85 @@ export interface PortfolioProject {
 
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
-    id: 'spec-luxury-perfume',
+    id: 'concept-dernier-burger',
     title: {
-      fr: 'Étude Visuelle — Parfum d’Exception "Nuit d’Or"',
-      en: 'Visual Study — Luxury Fragrance "Nuit d’Or"',
+      fr: 'Le Dernier Burger',
+      en: 'The Last Burger',
     },
-    status: 'SPEC PROJECT',
+    status: 'CONCEPT PUBLICITAIRE',
     category: {
-      fr: 'Publicité & Brand Content',
-      en: 'Commercial & Brand Content',
+      fr: 'Restauration & Marque Alimentaire',
+      en: 'Restaurant & Food Brand',
     },
-    youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
+    videoSrc: '/videos/spec-01.mp4',
+    thumbnailUrl: '/videos/spec-01-poster.webp',
     objective: {
-      fr: 'Original Spec Project — Explorer la création d’une campagne de marque haute parfumerie sans tournage physique (concept original OVIZai non commercial).',
-      en: 'Original Spec Project — Explore high-end perfume brand campaign creation without physical filming (OVIZai original non-commercial concept).',
+      fr: 'Projet conceptuel OVIZai — Démontrer l’appétence visuelle, le travail des textures, la gourmandise et la capacité à transformer un produit culinaire en publicité courte cinématographique pour les réseaux sociaux (10-15s).',
+      en: 'OVIZai concept project — Demonstrating appetite appeal, rich texture rendering, cinematic food styling, and the ability to elevate a food product into a punchy short social ad (10-15s).',
     },
     creativeDirection: {
-      fr: 'Esthétique sombre et dorée, reflets métalliques, mouvements de caméra fluides et macro-gros plans liquides.',
-      en: 'Dark gold aesthetic, metallic reflections, smooth camera drifts, and liquid macro close-ups.',
+      fr: 'Éclairage chaud et contrasté, plans macro sur les ingrédients, vapeur et textures gourmandes, rythme court et dynamique pensé pour capter l’attention.',
+      en: 'Warm contrasting lighting, macro texture close-ups, steam and appetite highlights, dynamic short-form pacing engineered for instant retention.',
     },
-    productionTools: ['Génération visuelle 8K', 'Animation cinématique', 'Caméra virtuelle 3D', 'Upscaling & netteté', 'Étalonnage cinéma'],
+    productionTools: ['Direction créative humaine', 'Génération visuelle haute définition', 'Animation cinématique', 'Sound design immersif', 'Étalonnage cinéma'],
     deliverables: {
-      fr: ['Spot principal 30s', 'Déclinaison verticale Reel 15s', 'Visuels clés 8K'],
-      en: ['Main 30s commercial', 'Vertical 15s Reel variant', '8K key visuals'],
+      fr: ['Publicité courte 10-15s (format 9:16 vertical)', 'Sound design immersif', 'Déclinaison 16:9'],
+      en: ['10-15s short-form ad (9:16 vertical format)', 'Immersive sound design', '16:9 landscape cut'],
     },
     featured: true,
   },
   {
-    id: 'spec-cyberpunk-clip',
+    id: 'concept-apres-fermeture',
     title: {
-      fr: 'Étude Visuelle — Clip Musical "Neon Horizons"',
-      en: 'Visual Study — Music Video "Neon Horizons"',
+      fr: 'Après la Fermeture',
+      en: 'After Closing',
     },
-    status: 'AI CINEMATIC STUDY',
+    status: 'CONCEPT PUBLICITAIRE',
     category: {
-      fr: 'Clip Vidéo & Visualiser',
-      en: 'Music Video & Stage Visualiser',
+      fr: 'Établissement & Expérience de Lieu',
+      en: 'Venue & Place Experience',
     },
-    youtubeId: '', // Champ vide définitivement (vidéo bloquée sur YouTube pour droits d'auteur, hébergement local exclusif)
+    videoSrc: '/videos/spec-02.mp4',
+    thumbnailUrl: '/videos/spec-02-poster.webp',
     objective: {
-      fr: 'Original Spec Project — Développer un univers scénographique futuriste avec synchronisation rythmique (concept original OVIZai non commercial).',
-      en: 'Original Spec Project — Develop a futuristic stage visual universe with rhythmic beat synchronization (OVIZai original non-commercial concept).',
+      fr: 'Projet conceptuel OVIZai — Créer une publicité courte autour d’un établissement, d’une atmosphère nocturne et d’une identité de lieu pour susciter l’envie de s’y rendre et vivre l’expérience.',
+      en: 'OVIZai concept project — Crafting a short ad around a venue, nighttime atmosphere, and space identity to spark curiosity and drive foot traffic.',
     },
     creativeDirection: {
-      fr: 'Ambiance néo-noir, néons dorés, particules volumétriques et montage dynamique à 60fps.',
-      en: 'Neo-noir atmosphere, golden neons, volumetric particles, and dynamic 60fps editing.',
+      fr: 'Ambiance nocturne cinématographique, néons et reflets sur le bitume, immersion sensorielle dans l’énergie du lieu après le service.',
+      en: 'Cinematic neo-noir mood, neons and asphalt reflections, sensory immersion into the late-night venue atmosphere after service.',
     },
-    productionTools: ['Génération visuelle', 'Animation dynamique', 'Rendu cinématique', 'Étalonnage cinéma'],
+    productionTools: ['Direction créative & scénarisation', 'Génération d’ambiance spatiale', 'Mouvement de caméra immersif', 'Mixage audio & sound design', 'Finishing cinéma'],
     deliverables: {
-      fr: ['Visualiser complet 3mn', 'Loops scéniques VJ 4K'],
-      en: ['3mn full visualiser', '4K VJ stage loops'],
+      fr: ['Publicité courte 10-15s (format 9:16 vertical)', 'Sound design de lieu', 'Déclinaison 16:9'],
+      en: ['10-15s short-form ad (9:16 vertical format)', 'Venue sound design', '16:9 landscape cut'],
     },
     featured: true,
+  },
+  {
+    id: 'concept-fidelite-produit',
+    title: {
+      fr: 'Fidélité Produit & Respect de Marque (Gravity / Packshot)',
+      en: 'Product Fidelity & Brand Compliance (Gravity / Packshot)',
+    },
+    status: 'ÉTUDE DE PROCESSUS',
+    category: {
+      fr: 'Méthodologie & Prochains Travaux',
+      en: 'Methodology & Upcoming Work',
+    },
+    objective: {
+      fr: 'Démonstration de notre méthodologie pour préserver l’intégrité des vrais produits clients : respect des emballages exacts, logos nets et lisibles, proportions fidèles et palette de marque conservée sans déformation.',
+      en: 'Demonstrating our workflow to preserve real client product integrity: exact packaging replication, crisp readable logos, accurate proportions, and brand color palette consistency.',
+    },
+    creativeDirection: {
+      fr: 'Intégration d’assets réels (packshots studio 2D/3D) dans des environnements génératifs cinématiques avec éclairage réaliste et ombres de contact crédibles.',
+      en: 'Seamless integration of real reference assets (2D/3D studio packshots) into cinematic generative environments with realistic lighting and contact shadows.',
+    },
+    productionTools: ['Packshots réels haute résolution', 'Contrôle vectoriel des logos', 'Projection 3D & éclairage adapté', 'Validation sur prévisualisation'],
+    deliverables: {
+      fr: ['Démonstration de fidélité produit en cours d’intégration au portfolio', 'Validation préalable sur prévisualisation pour chaque client'],
+      en: ['Product fidelity demonstration in progress for portfolio release', 'Systematic preview cut validation for every client'],
+    },
+    featured: false,
   },
 ];

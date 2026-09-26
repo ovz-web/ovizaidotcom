@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Prestations & Services — Production Vidéo IA Cinématographique | OVIZai',
-  description: 'Films publicitaires IA, clips musicaux, direction artistique et univers visuels cinématographiques haute fidélité. Livraison 48h à 5 jours.',
-  keywords: ['Production Vidéo IA', 'Films Publicitaires IA', 'Direction Artistique IA', 'Clips Musicaux IA', 'OVIZai Services'],
+  title: 'Services & Portfolio — Studio Publicitaire OVIZai',
+  description: 'Studio de création publicitaire : publicités courtes 10-15s pour restaurants, marques alimentaires et produits. Direction créative humaine et production générative.',
+  keywords: ['Publicité Restaurant', 'Publicité Produit', 'Studio Publicitaire OVIZai', 'Publicité Courte 9:16', 'Direction Créative IA'],
   alternates: {
     canonical: 'https://ovizai.com/services',
     languages: {
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Prestations & Services — OVIZai AI Video Studio',
-    description: 'Films IA cinématographiques 4K pour marques et artistes. Direction artistique, clips, publicités et univers visuels.',
+    title: 'Services & Portfolio — OVIZai Studio',
+    description: 'Publicités courtes à forte qualité visuelle pour marques et commerces. Offre de lancement à 530 USD.',
     url: 'https://ovizai.com/services',
     siteName: 'OVIZai',
     locale: 'fr_FR',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Services Production Vidéo IA — OVIZai',
-    description: 'Films, clips, publicités IA cinématographiques 4K. Livraison sous 48h à 5 jours.',
+    title: 'Services & Portfolio — OVIZai',
+    description: 'Publicités courtes et direction artistique pour marques et restaurants. Offre de lancement à 530 USD.',
   },
 };
 
@@ -32,8 +32,8 @@ import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 const serviceJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Production Vidéo IA Cinématographique & Direction Artistique',
-  serviceType: 'AI Video Production',
+  name: 'Studio de Création Publicitaire & Production Vidéo',
+  serviceType: 'Advertising & Video Production',
   provider: {
     '@type': 'Organization',
     name: 'OVIZai',
@@ -42,30 +42,37 @@ const serviceJsonLd = {
   areaServed: 'Worldwide',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Prestations Vidéo IA',
+    name: 'Offres & Prestations OVIZai',
     itemListElement: [
       {
         '@type': 'Offer',
+        price: '530',
+        priceCurrency: 'USD',
+        name: 'Offre de Lancement Publicitaire',
+        description: '1 publicité courte (10-15s), format 9:16, sound design et 1 série de corrections.',
+      },
+      {
+        '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Publicités & Brand Content IA',
-          description: 'Films publicitaires et campagnes de marque haute fidélité.',
+          name: 'Publicités Restaurants & Marques Alimentaires',
+          description: 'Mise en valeur culinaire, textures, appétence et identité de lieu.',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Clips Musicaux & Visualisers',
-          description: 'Clips vidéos immersifs, visualisers narratifs pour artistes.',
+          name: 'Publicités Produits & E-commerce',
+          description: 'Packshots cinématiques et publicités courtes pour réseaux sociaux.',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Direction Artistique & Univers Visuels',
-          description: 'Conception de brand worlds et univers cinématographiques uniques.',
+          name: 'Direction Artistique & Univers de Marque',
+          description: 'Conception de brand worlds et univers visuels distinctifs.',
         },
       },
     ],

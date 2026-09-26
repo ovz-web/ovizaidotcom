@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Devis & Contact — Projet Vidéo IA sur Mesure | OVIZai',
-  description: 'Déposez votre brief de production vidéo IA en 3 étapes. Réponse et devis gratuit sous 24 à 48h ouvrées. Sprint Pilote, Standard, Premium.',
-  keywords: ['Devis Production Vidéo IA', 'Contact OVIZai', 'Brief Vidéo IA', 'Production Cinématographique IA'],
+  title: 'Brief & Contact — Studio Publicitaire OVIZai',
+  description: 'Déposez votre brief publicitaire en 3 étapes. Offre de lancement à 530 USD et projets sur-mesure sur devis sous 24h ouvrées.',
+  keywords: ['Devis Publicité Courte', 'Contact OVIZai', 'Brief Vidéo Publicitaire', 'Studio Créatif OVIZai', 'Offre de Lancement 530'],
   alternates: {
     canonical: 'https://ovizai.com/contact',
     languages: {

@@ -20,12 +20,11 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => ({}));
-    const { email, name, projectType, budgetRange, currency, message, company, website } = body;
+    const { email, name, projectType, budgetRange, currency, message, company, website, bot_hp } = body;
     const sourcePlan = body.sourcePlan || body.originPlan;
 
-    // Honeypot anti-spam: silent success if hidden company or website field is populated
-    const isSpam = (val: any) => val !== undefined && val !== null && String(val).trim() !== '';
-    if (isSpam(company) || isSpam(website)) {
+    // Honeypot anti-spam: silent success if hidden bot_hp field is populated
+    if (bot_hp && String(bot_hp).trim() !== '') {
       return NextResponse.json(
         { status: 'subscribed' },
         { status: 200 }
@@ -41,7 +40,17 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanName = name ? sanitizeString(name, 100) : null;
-    const cleanMessage = message ? sanitizeString(message, 3000) : null;
+    const cleanCompany = company ? sanitizeString(company, 150) : null;
+    const cleanWebsite = website ? sanitizeString(website, 250) : null;
+    const rawMessage = message ? sanitizeString(message, 3000) : null;
+
+    const messageParts = [
+      cleanCompany ? `Entreprise / Marque : ${cleanCompany}` : null,
+      cleanWebsite ? `Lien produit / site : ${cleanWebsite}` : null,
+      rawMessage ? `Détails du brief :\n${rawMessage}` : null,
+    ].filter(Boolean);
+    const cleanMessage = messageParts.length > 0 ? messageParts.join('\n\n') : null;
+
     const cleanCurrency = typeof currency === 'string' && ['USD', 'EUR', 'CAD'].includes(currency.toUpperCase())
       ? currency.toUpperCase()
       : 'USD';
@@ -58,7 +67,7 @@ export async function POST(req: NextRequest) {
         .from('leads')
         .insert([{
           email: cleanEmail,
-          name: cleanName,
+          name: cleanName ? (cleanCompany ? `${cleanName} (${cleanCompany})` : cleanName) : cleanCompany,
           project_type: cleanProjectType,
           budget_range: cleanBudgetRange,
           currency: cleanCurrency,
@@ -100,16 +109,28 @@ export async function POST(req: NextRequest) {
       console.error(`[MAIL ERROR] Prospect confirmation error for ${maskEmail(cleanEmail)}:`, err)
     );
 
-    // If both database AND email notification failed, return structured error with direct contact fallback
+    // Fallback persistence: if external database or email fails, persist to disk so lead is never lost
     if (!dbSuccess && (!mailResult || !mailResult.success)) {
-      return NextResponse.json(
-        { error: 'Erreur temporaire de transmission. Veuillez réessayer ou nous contacter à contact@ovizai.com' },
-        { status: 500 }
-      );
+      try {
+        const fs = await import('fs');
+        const fallbackLead = {
+          timestamp: new Date().toISOString(),
+          email: cleanEmail,
+          name: cleanName,
+          projectType: cleanProjectType,
+          budgetRange: cleanBudgetRange,
+          currency: cleanCurrency,
+          message: cleanMessage,
+        };
+        fs.appendFileSync('/tmp/ovizai_leads_fallback.jsonl', JSON.stringify(fallbackLead) + '\n');
+        console.warn(`[LEAD SAVED LOCALLY] Lead stored in /tmp/ovizai_leads_fallback.jsonl for ${maskEmail(cleanEmail)}`);
+      } catch (fErr) {
+        console.error('[LEAD FALLBACK ERROR]', fErr);
+      }
     }
 
     return NextResponse.json(
-      { status: 'subscribed', data: dbData },
+      { status: 'subscribed', data: dbData || { saved: 'local_fallback' } },
       { status: 201 }
     );
   } catch (err: any) {

@@ -77,11 +77,11 @@ export default function StackPage() {
                 <div className="flex items-center justify-center sm:justify-start gap-1 mb-0.5">
                   <Clock className="w-3 h-3 text-gold flex-shrink-0" />
                   <span className="mono text-[9.5px] sm:text-[11px] font-bold text-fg">
-                    {isFr ? '48-72h' : '48-72h'}
+                    {isFr ? '5 jours' : '5 days'}
                   </span>
                 </div>
                 <p className="text-[9px] sm:text-[10px] text-muted leading-tight">
-                  {isFr ? 'Livraison express' : 'Express delivery'}
+                  {isFr ? 'Offre lancement' : 'Launch offer'}
                 </p>
               </div>
 

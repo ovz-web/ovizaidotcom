@@ -33,3 +33,7 @@ yarn-error.log*
 /test-results/
 /playwright-report/
 /scratch/
+/scripts/
+/LACOSTE_OVIZAI/
+/LELABONOIR*/
+*.jsonl

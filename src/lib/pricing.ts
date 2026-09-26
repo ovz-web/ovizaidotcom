@@ -2,12 +2,72 @@ export const MASTERCLASS_PRICE = { USD: 320, EUR: 290, CAD: 430 } as const;
 export const MASTERCLASS_ORIGINAL_PRICE = { USD: 450, EUR: 415, CAD: 620 } as const;
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
 
+export interface LaunchOfferDetails {
+  id: string;
+  name: { fr: string; en: string };
+  badge: { fr: string; en: string };
+  totalUsd: number;
+  depositUsd: number;
+  balanceUsd: number;
+  duration: { fr: string; en: string };
+  concept: { fr: string; en: string };
+  format: { fr: string; en: string };
+  soundDesign: { fr: string; en: string };
+  revisions: { fr: string; en: string };
+  turnaround: { fr: string; en: string };
+  paymentTerms: { fr: string; en: string };
+  includes: { fr: string[]; en: string[] };
+}
+
+export const LAUNCH_OFFER: LaunchOfferDetails = {
+  id: 'launch',
+  name: { fr: 'Offre de Lancement', en: 'Launch Offer' },
+  badge: { fr: 'OFFRE DE LANCEMENT', en: 'LAUNCH OFFER' },
+  totalUsd: 530,
+  depositUsd: 265,
+  balanceUsd: 265,
+  duration: { fr: '10 à 15 secondes', en: '10 to 15 seconds' },
+  concept: { fr: '1 concept créatif', en: '1 creative concept' },
+  format: { fr: 'Format principal 9:16 (vertical mobile / social)', en: 'Main 9:16 vertical format (mobile / social)' },
+  soundDesign: { fr: 'Sound design & mix audio inclus', en: 'Sound design & audio mix included' },
+  revisions: { fr: '1 série de corrections incluse', en: '1 revision round included' },
+  turnaround: {
+    fr: 'Première version sous 5 jours ouvrables (après réception des éléments & validation du planning)',
+    en: 'First cut within 5 business days (upon receipt of all assets & schedule sign-off)',
+  },
+  paymentTerms: {
+    fr: 'Acompte : 265 USD à la commande · Solde : 265 USD avant livraison du master final',
+    en: 'Deposit: $265 USD upfront · Balance: $265 USD before final master delivery',
+  },
+  includes: {
+    fr: [
+      '1 publicité courte (durée finale : 10 à 15 secondes)',
+      '1 concept créatif pensé pour votre produit ou établissement',
+      'Format principal 9:16 optimisé pour les réseaux sociaux (Reels, TikTok, Ads)',
+      'Sound design et habillage audio immersif',
+      '1 série de corrections incluse sur la première version',
+      'Première version sous 5 jours ouvrables (après réception des éléments et validation du planning)',
+      'Acompte de 265 USD · Solde de 265 USD avant livraison du master final',
+    ],
+    en: [
+      '1 short-form commercial (final duration: 10 to 15 seconds)',
+      '1 creative concept tailored to your product or venue',
+      'Primary 9:16 vertical format optimized for social channels (Reels, TikTok, Ads)',
+      'Immersive sound design and audio mix included',
+      '1 revision round included on the initial version',
+      'First cut delivered within 5 business days (after receipt of assets & schedule sign-off)',
+      '$265 USD deposit upfront · $265 USD balance before final master delivery',
+    ],
+  },
+};
+
 export interface PricingPlan {
-  id: 'sprint' | 'premium';
+  id: 'launch' | 'custom' | 'sprint' | 'premium';
   name: { fr: string; en: string };
   badge: { fr: string; en: string };
   minUsd: number;
-  originalMinUsd?: number;
+  depositUsd?: number;
+  balanceUsd?: number;
   launchOffer?: boolean;
   budgetTierId: string;
   tag?: { fr: string; en: string };
@@ -19,59 +79,21 @@ export interface PricingPlan {
 
 export const PRICING_PLANS: PricingPlan[] = [
   {
-    id: 'sprint',
-    name: { fr: 'Sprint Pilote 48-72h', en: '48-72h Pilot Sprint' },
-    badge: { fr: 'ASSET COURT 48-72H', en: '48-72H SHORT ASSET' },
-    minUsd: 890,
-    originalMinUsd: 1250,
-    launchOffer: false,
-    budgetTierId: 'tier-0',
-    tag: { fr: 'Sans engagement — validation sur prévisualisation', en: 'No commitment — preview validation' },
-    period: { fr: '/ asset 15-30s', en: '/ 15-30s asset' },
-    includes: {
-      fr: [
-        '1 asset publicitaire court (Reel/TikTok 15-30s)',
-        '1 round de révision inclus',
-        'Livraison garantie sous 48-72h ouvrées',
-        'Export 4K Master (16:9 & 9:16 vertical)',
-        'Direction artistique, concept & étalonnage cinéma',
-      ],
-      en: [
-        '1 short ad asset (Reel/TikTok 15-30s)',
-        '1 revision round included',
-        'Guaranteed 48-72h delivery',
-        '4K Master export (16:9 & 9:16 vertical)',
-        'Art direction, concept & cinema color grading',
-      ],
+    id: 'launch',
+    name: { fr: 'Offre de Lancement', en: 'Launch Offer' },
+    badge: { fr: 'OFFRE DE LANCEMENT', en: 'LAUNCH OFFER' },
+    minUsd: 530,
+    depositUsd: 265,
+    balanceUsd: 265,
+    launchOffer: true,
+    budgetTierId: 'tier-launch',
+    tag: {
+      fr: 'Acompte : 265 USD · Solde avant livraison du master final',
+      en: 'Deposit: $265 USD · Balance before final master delivery',
     },
-    primary: false,
-    starterHighlight: true,
-  },
-  {
-    id: 'premium',
-    name: { fr: 'Campagne de Marque (3 Films)', en: 'Brand Campaign (3 Films)' },
-    badge: { fr: 'CAMPAGNE COMPLÈTE', en: 'COMPLETE CAMPAIGN' },
-    minUsd: 2100,
-    originalMinUsd: 2950,
-    launchOffer: false,
-    budgetTierId: 'tier-1',
-    period: { fr: '/ campagne 3 films', en: '/ 3-film campaign' },
-    includes: {
-      fr: [
-        '3 vidéos cinématographiques (campagne déclinée)',
-        '3 rounds de révision inclus',
-        'Livraison prioritaire 48-72h',
-        'Export multi-formats 4K (Ciné, Reel, YouTube)',
-        'Direction artistique dédiée & accompagnement sur-mesure',
-      ],
-      en: [
-        '3 finalised cinematic videos (campaign package)',
-        '3 revision rounds included',
-        'Priority delivery 48-72h',
-        '4K multi-format export (Cinema, Reel, YouTube)',
-        'Dedicated art direction & tailored support',
-      ],
-    },
+    period: { fr: '/ publicité 10-15s', en: '/ 10-15s ad' },
+    includes: LAUNCH_OFFER.includes,
     primary: true,
+    starterHighlight: true,
   },
 ];

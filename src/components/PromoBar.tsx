@@ -24,8 +24,10 @@ export default function PromoBar({ lang }: PromoBarProps) {
 
       {/* Main Promo Text - strictly whitespace-nowrap, ultra-compact on mobile */}
       <span className="text-fg group-hover:text-gold-bright font-medium tracking-wide text-[10px] sm:text-xs whitespace-nowrap">
-        <span className="sm:hidden">{isFr ? 'Sprint Pilote →' : 'Pilot Sprint →'}</span>
-        <span className="hidden sm:inline">{isFr ? 'Sprint Pilote 48-72h →' : '48-72h Pilot Sprint →'}</span>
+        <span className="sm:hidden">{isFr ? 'Offre 530 $ →' : 'Offer $530 →'}</span>
+        <span className="hidden sm:inline">
+          {isFr ? 'Offre de Lancement 530 $ · Publicité 10-15s →' : 'Launch Offer $530 · 10-15s Ad →'}
+        </span>
       </span>
     </Link>
   );

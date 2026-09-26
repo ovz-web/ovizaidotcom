@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Film, Music2, Clapperboard, Palette, Globe2, Building2, ChevronDown, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Film, Music2, Clapperboard, Palette, Building2, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Language, Currency } from '@/types';
 import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
 import TrustSection from '@/components/TrustSection';
 import { YOUTUBE_VIDEOS, LOCAL_VIDEOS } from '@/lib/videos';
+import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 
 interface ServicesGridProps {
   lang: Language;
@@ -15,162 +16,230 @@ interface ServicesGridProps {
 }
 
 const SERVICE_TYPE_MAP: Record<string, { type: string; budget: string }> = {
-  'films-series': { type: 'film-series', budget: 'tier-3' },
-  'clips-visualisers': { type: 'clip-visualiser', budget: 'tier-2' },
-  'pub-brand-content': { type: 'pub-brand', budget: 'tier-2' },
-  'direction-artistique': { type: 'art-direction', budget: 'tier-1' },
-  'partenariat-agences': { type: 'agence-whitelabel', budget: 'tier-2' },
-  'sites-web-nextjs': { type: 'agence-whitelabel', budget: 'tier-2' }
+  'pub-restaurants': { type: 'pub-restaurant', budget: 'tier-launch' },
+  'pub-produits': { type: 'pub-produit', budget: 'tier-launch' },
+  'direction-artistique': { type: 'da-univers', budget: 'tier-custom' },
+  'partenariat-agences': { type: 'agence-whitelabel', budget: 'tier-custom' },
+  'clips-sur-mesure': { type: 'clip-visualiser', budget: 'tier-custom' },
 };
 
 const FIVE_SERVICES = [
   {
-    id: 'films-series',
+    id: 'pub-restaurants',
     number: '01',
     letterCode: 'A1',
-    title: { fr: 'Films & Séries IA', en: 'AI Films & Series' },
+    title: {
+      fr: 'Publicités Restaurants & Marques Alimentaires',
+      en: 'Commercials for Restaurants & Food Brands',
+    },
     tagline: {
-      fr: 'Courts-métrages, fictions & pilotes',
-      en: 'Short films, fiction & series pilots'
+      fr: 'Publicités courtes 10-15s & mise en valeur culinaire',
+      en: '10-15s short-form ads & culinary food styling',
     },
     descriptionLines: {
       fr: [
-        'Conception intégrale de fictions cinématographiques',
-        'De l\'écriture du scénario jusqu\'au montage final',
-        'Plans cinématiques au réalisme saisissant',
-        'Cohérence totale des personnages et des décors',
-        'Gestion sur-mesure de la lumière sur chaque séquence'
+        'Mise en valeur des produits, textures, vapeurs et appétence visuelle',
+        'Publicités courtes au format 9:16 pensées pour attirer l\'attention sur les réseaux sociaux',
+        'Valorisation de votre établissement, de l\'atmosphère et de votre savoir-faire',
+        'Direction créative humaine et outils génératifs pour sublimer votre carte',
       ],
       en: [
-        'End-to-end production of cinematic fiction',
-        'From original scriptwriting to final cut',
-        'Strikingly realistic generative shots',
-        'Seamless consistency for characters and sets',
-        'Custom lighting control across every sequence'
-      ]
+        'Showcasing food products, textures, sizzle, and visual appetite appeal',
+        'Short 9:16 vertical ads engineered to capture immediate social attention',
+        'Highlighting your restaurant venue, ambiance, and culinary craftsmanship',
+        'Human creative direction combined with generative tools to elevate your menu',
+      ],
     },
     deliverables: {
-      fr: ['Bible visuelle & character design', 'Génération 4K cinématographique', 'Montage narratif & étalonnage', 'Sound design & bande-son originale', 'Export master cinéma (DCP / Pro-Res)'],
-      en: ['Visual Bible & Character Design', '4K Cinematic Generation', 'Narrative Editing & Color Grading', 'Sound Design & Original Score', 'Cinema Master Export (DCP / ProRes)']
+      fr: [
+        '1 publicité courte (durée finale : 10 à 15 secondes)',
+        '1 concept créatif adapté à votre identité',
+        'Format principal 9:16 (Reels, TikTok, Ads)',
+        'Sound design & mixage audio immersif',
+        '1 série de corrections incluse (Offre de lancement)',
+        'Première version sous 5 jours ouvrables',
+      ],
+      en: [
+        '1 short commercial (final duration: 10 to 15 seconds)',
+        '1 creative concept tailored to your identity',
+        'Primary 9:16 vertical format (Reels, TikTok, Ads)',
+        'Immersive sound design & audio mix',
+        '1 revision round included (Launch offer)',
+        'First cut delivered within 5 business days',
+      ],
     },
-    icon: Film
+    icon: Clapperboard,
   },
   {
-    id: 'clips-visualisers',
+    id: 'pub-produits',
     number: '02',
     letterCode: 'A2',
-    title: { fr: 'Clips Vidéos & VJing', en: 'Music Videos & VJing' },
+    title: {
+      fr: 'Publicités Produits & E-commerce',
+      en: 'Product Commercials & E-commerce',
+    },
     tagline: {
-      fr: 'Visuels scéniques & clips musicaux',
-      en: 'Stage visuals & music videos'
+      fr: 'Packshots dynamiques & création publicitaire courte',
+      en: 'Dynamic packshots & short-form commercial ads',
     },
     descriptionLines: {
       fr: [
-        'Réalisation de clips musicaux complets et visuels de scène',
-        'Traduction de votre univers sonore en images inédites',
-        'Synchronisation rythmique précise calée sur le tempo',
-        'Direction artistique sur-mesure pour artistes et labels'
+        'Sublimation de vos produits sous des angles et éclairages cinématographiques',
+        'Mise en avant des détails, matières et de l\'usage concret de votre produit',
+        'Création publicitaire courte conçue pour susciter l\'intérêt et l\'engagement',
+        'Adaptation aux exigences des campagnes sociales et digitales',
       ],
       en: [
-        'Music video production and immersive stage visuals',
-        'Translating your sound identity into distinctive imagery',
-        'Precise rhythm synchronization mapped to BPM',
-        'Tailored art direction for artists and record labels'
-      ]
+        'Elevating your products under cinematic angles and bespoke lighting',
+        'Highlighting fine details, premium materials, and product in-use',
+        'Short-form ad creation designed to spark curiosity and user action',
+        'Tailored for paid social campaigns and digital brand acquisition',
+      ],
     },
     deliverables: {
-      fr: ['Storyboard & moodboards visuels', 'Génération calée sur le BPM/rythme', 'Boucles VJing haute résolution', 'Déclinaisons réseaux (9:16, 1:1, 16:9)', 'Livrables prêts pour diffusion scène'],
-      en: ['Storyboard & Visual Moodboards', 'BPM-Synced Generation', 'High-Res VJing Loops', 'Social Media Cuts (9:16, 1:1, 16:9)', 'Stage-Ready Display Files']
-    },
-    icon: Music2
-  },
-  {
-    id: 'pub-brand-content',
-    number: '03',
-    letterCode: 'A3',
-    title: { fr: 'Publicité & Brand Content', en: 'Commercials & Brand Content' },
-    tagline: {
-      fr: 'Spots publicitaires & brand content',
-      en: 'Commercial spots & brand content'
-    },
-    descriptionLines: {
       fr: [
-        'Campagnes publicitaires cinématiques conçues pour captiver',
-        'Scènes impossibles à tourner en conditions réelles',
-        'Qualité digne des plus grands studios de production',
-        'Formats optimisés pour la conversion et l\'autorité de marque'
+        'Scénarisation & packshots cinématiques',
+        'Format principal vertical 9:16 ou déclinaison 16:9',
+        'Sound design & mix audio calibré',
+        'Première version sous 5 jours ouvrables (Offre de lancement)',
+        'Export haute définition prêt à diffuser',
       ],
       en: [
-        'Cinematic ad campaigns designed to capture immediate attention',
-        'Visual scenes impossible to shoot in real life',
-        'Studio-grade quality matching major production houses',
-        'Formats optimized for conversion and brand authority'
-      ]
+        'Scripting & cinematic product packshots',
+        'Primary 9:16 vertical format or 16:9 cut',
+        'Bespoke sound design & calibrated audio mix',
+        'First cut within 5 business days (Launch offer)',
+        'High-definition export ready for broadcasting',
+      ],
     },
-    deliverables: {
-      fr: ['Concept créatif & scénarisation', 'Packshots & scènes de marque sur-mesure', 'Formats multi-plateformes (Ads, Social, DOOH)', 'Voix-off IA ou studio & mix audio', 'A/B testing visuel disponible'],
-      en: ['Creative Concept & Scripting', 'Custom Packshots & Brand Scenes', 'Multi-Platform Formats (Ads, Social, DOOH)', 'Studio or AI Voiceover & Audio Mix', 'Visual A/B Testing Variations']
-    },
-    icon: Clapperboard
+    icon: Film,
   },
   {
     id: 'direction-artistique',
-    number: '04',
-    letterCode: 'A4',
-    title: { fr: 'Direction Artistique', en: 'Art Direction' },
+    number: '03',
+    letterCode: 'A3',
+    title: {
+      fr: 'Direction Artistique & Univers de Marque',
+      en: 'Art Direction & Brand Worlds',
+    },
     tagline: {
-      fr: 'Univers visuels & moodboards ciné',
-      en: 'Visual worlds & cinematic moodboards'
+      fr: 'Moodboards cinématographiques & bibles visuelles',
+      en: 'Cinematic moodboards & visual style bibles',
     },
     descriptionLines: {
       fr: [
-        'Accompagnement créatif stratégique pour marques et artistes',
-        'Fondations esthétiques complètes pour votre projet',
-        'Exploration visuelle par génération haute fidélité',
-        'Palettes de couleurs, textures et grammaire cinématographique'
+        'Accompagnement créatif stratégique pour marques et créateurs',
+        'Définition d\'une grammaire esthétique cohérente et distinctive',
+        'Création de moodboards, keyframes de référence et palettes chromatiques',
+        'Cohérence visuelle assurée entre toutes vos prises de parole',
       ],
       en: [
-        'Strategic creative direction for brands and artists',
-        'Complete aesthetic foundations for your visual project',
-        'Generative exploration in high definition',
-        'Color palettes, textures and cinematic visual language'
-      ]
+        'Strategic creative direction for brands and innovators',
+        'Defining a distinct, coherent aesthetic visual language',
+        'Moodboards, reference keyframes, and tailored color grading palettes',
+        'Consistent artistic continuity across all communication touchpoints',
+      ],
     },
     deliverables: {
-      fr: ['Guide de style & charte visuelle IA', 'Génération de keyframes de référence', 'Exploration de concepts en haute définition', 'Consulting & prompts certifiés', 'Fichiers sources & documentation'],
-      en: ['AI Style Guide & Visual Specs', 'Reference Keyframe Generation', 'High-Definition Concept Exploration', 'Consulting & Verified Prompts', 'Source Files & Documentation']
+      fr: [
+        'Guide de style visuel & moodboards de marque',
+        'Keyframes de référence haute définition',
+        'Palettes chromatiques & univers de textures',
+        'Consulting créatif & accompagnement dédié',
+      ],
+      en: [
+        'Visual style guide & brand moodboards',
+        'High-definition reference keyframes',
+        'Color grading palettes & texture styling',
+        'Creative consulting & dedicated direction',
+      ],
     },
-    icon: Palette
+    icon: Palette,
   },
   {
     id: 'partenariat-agences',
-    number: '05',
-    letterCode: 'A5',
-    title: { fr: 'Partenariat Agences (White-Label)', en: 'Agency Partner (White-Label)' },
+    number: '04',
+    letterCode: 'A4',
+    title: {
+      fr: 'Partenariat Agences (Marque Blanche)',
+      en: 'Agency Partner (White-Label)',
+    },
     tagline: {
-      fr: 'Production vidéo & IA en marque blanche',
-      en: 'White-label AI video production for agencies'
+      fr: 'Production vidéo & IA externalisée en marque blanche',
+      en: 'Outsourced white-label AI video production',
     },
     descriptionLines: {
       fr: [
-        'Capacité de production vidéo et cinématographie IA externalisée',
-        'Exécution en marque blanche (white-label) pour agences créatives et médias',
-        'Rendu cinématique haute fidélité sans mobiliser vos équipes de tournage',
-        'Accord de confidentialité strict (NDA) et respect rigoureux des délais'
+        'Capacité de production vidéo et générative en marque blanche',
+        'Exécution discrète pour agences de publicité, créatives et médias',
+        'Accord de confidentialité strict (NDA) et cession intégrale des droits',
+        'Respect rigoureux des plannings de vos clients finaux',
       ],
       en: [
-        'Outsourced AI video production and cinematography capacity',
-        'White-label creative execution for ad agencies and media brands',
-        'High-fidelity cinematic output without mobilizing filming crews',
-        'Strict non-disclosure agreements (NDA) and guaranteed turnaround'
-      ]
+        'White-label video and generative production capacity',
+        'Discreet execution for ad agencies, creative boutiques, and media brands',
+        'Strict non-disclosure agreements (NDA) and 100% IP rights assignment',
+        'Rigorous adherence to your clients’ delivery deadlines',
+      ],
     },
     deliverables: {
-      fr: ['Production en marque blanche (White-Label)', 'Accord de confidentialité (NDA) & cession 100 % droits', 'Formats prêts pour vos clients (Ads, DOOH, Social)', 'Direction artistique, sound design & étalonnage pro', 'Livrables haute fidélité sous 48-72h ouvrées'],
-      en: ['White-Label Production Delivery', 'NDA & 100% Commercial IP Rights Assignment', 'Client-Ready Formats (Ads, DOOH, Social)', 'Art Direction, Sound Design & Pro Color Grading', 'High-Fidelity Assets in 48-72 Business Hours']
+      fr: [
+        'Exécution 100 % marque blanche (White-Label)',
+        'Accord de confidentialité (NDA) & cession totale des droits',
+        'Formats prêts à diffuser pour vos clients finaux',
+        'Interlocuteur dédié & devis sur-mesure sous 24h',
+      ],
+      en: [
+        '100% White-label production delivery',
+        'Strict NDA & full IP rights assignment',
+        'Broadcast-ready assets for your end clients',
+        'Dedicated production lead & 24h quote turnaround',
+      ],
     },
-    icon: Building2
-  }
+    icon: Building2,
+  },
+  {
+    id: 'clips-sur-mesure',
+    number: '05',
+    letterCode: 'A5',
+    title: {
+      fr: 'Clips Vidéos & Projets Sur-Mesure',
+      en: 'Music Videos & Custom Projects',
+    },
+    tagline: {
+      fr: 'Clips musicaux, visuels scéniques & fictions courtes',
+      en: 'Music videos, stage visuals & short fiction',
+    },
+    descriptionLines: {
+      fr: [
+        'Traduction d\'un univers sonore ou narratif en images marquantes',
+        'Synchronisation précise sur le tempo, la rythmique et les impacts sonores',
+        'Scénographie visuelle sur-mesure pour artistes, labels et créateurs',
+        'Projets plus complexes ou formats narratifs : sur devis',
+      ],
+      en: [
+        'Translating sound identities or narrative concepts into impactful imagery',
+        'Precise synchronization to musical tempo, rhythm, and sonic impacts',
+        'Custom scenography for artists, record labels, and creative storytellers',
+        'Complex productions or longer narrative formats: custom quote',
+      ],
+    },
+    deliverables: {
+      fr: [
+        'Storyboard & scénarisation complète',
+        'Génération calée sur le tempo musical',
+        'Formats réseaux (9:16) et écrans larges (16:9)',
+        'Master final haute qualité sur devis',
+      ],
+      en: [
+        'Complete storyboard & script development',
+        'Generation synced to musical tempo / BPM',
+        'Social cuts (9:16) & widescreen masters (16:9)',
+        'High-quality final master upon custom quote',
+      ],
+    },
+    icon: Music2,
+  },
 ];
 
 const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
@@ -180,16 +249,16 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
     poster: LOCAL_VIDEOS.spec01.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
     title: {
-      fr: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
-      en: 'SPEC 01 — THE BANQUET / LE BANQUET (PARIS 1990)',
+      fr: 'CONCEPT 01 — LE DERNIER BURGER',
+      en: 'CONCEPT 01 — THE LAST BURGER',
     },
     description: {
-      fr: 'Original Spec Project — Concept original développé par OVIZai (étude visuelle autonome sans affiliation commerciale tierce).\nCollision entre romantisme victorien sombre et béton brut.\nBande-son : PNL — Autre monde',
-      en: 'Original Spec Project — Original concept developed by OVIZai (autonomous visual study without third-party commercial affiliation).\nDark romanticism, opulence, and raw asphalt.\nSoundtrack: PNL — Autre monde',
+      fr: 'Concept publicitaire OVIZai — Démontrer immédiatement le produit, les textures, l’appétence, la qualité cinématographique et la capacité à transformer un produit culinaire en publicité courte.',
+      en: 'OVIZai advertising concept — Immediately showcasing the product, textures, appetite appeal, cinematic quality, and the ability to turn a culinary item into a compelling short ad.',
     },
     uploadDate: '2026-09-01',
-    relatedServiceId: 'pub-brand-content',
-    badge: { fr: 'ORIGINAL SPEC PROJECT', en: 'ORIGINAL SPEC PROJECT' },
+    relatedServiceId: 'pub-restaurants',
+    badge: { fr: 'CONCEPT PUBLICITAIRE', en: 'ADVERTISING CONCEPT' },
   },
   {
     src: LOCAL_VIDEOS.spec02.src,
@@ -197,36 +266,50 @@ const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
     poster: LOCAL_VIDEOS.spec02.poster,
     youtubeId: YOUTUBE_VIDEOS.servicesShowcase2,
     title: {
-      fr: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
-      en: 'SPEC 02 — THE PROCESSION / LE CORTÈGE (PARIS 1990)',
+      fr: 'CONCEPT 02 — APRÈS LA FERMETURE',
+      en: 'CONCEPT 02 — AFTER CLOSING',
     },
     description: {
-      fr: 'Original Spec Project — Concept original développé par OVIZai (étude visuelle autonome sans affiliation commerciale tierce).\nDandysme nocturne et dérive gothique sur l’asphalte froid.\nBande-son : PNL — Autre monde',
-      en: 'Original Spec Project — Original concept developed by OVIZai (autonomous visual study without third-party commercial affiliation).\nNocturnal dandyism, gothic drift, and cold concrete.\nSoundtrack: PNL — Autre monde',
+      fr: 'Projet conceptuel OVIZai — Montrer qu’OVIZai sait créer une publicité courte autour d’un établissement, d’une atmosphère nocturne, d’une expérience et d’une identité de lieu.',
+      en: 'OVIZai concept project — Demonstrating how OVIZai crafts a short ad around an establishment, nighttime atmosphere, real experience, and venue identity.',
     },
     uploadDate: '2026-09-01',
-    relatedServiceId: 'clips-visualisers',
-    badge: { fr: 'ORIGINAL SPEC PROJECT', en: 'ORIGINAL SPEC PROJECT' },
+    relatedServiceId: 'pub-restaurants',
+    badge: { fr: 'PROJET CONCEPTUEL OVIZAI', en: 'OVIZAI CONCEPT PROJECT' },
   },
 ];
-
-import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
 
 export default function ServicesGrid({ lang }: ServicesGridProps) {
   const isFr = lang === 'fr';
   const [openService, setOpenService] = useState<string | null>(null);
   const [isDemosOpen, setIsDemosOpen] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkHash = () => {
+        if (window.location.hash === '#portfolio') {
+          setIsDemosOpen(true);
+          setTimeout(() => {
+            const el = document.getElementById('portfolio');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }
+      };
+      checkHash();
+      window.addEventListener('hashchange', checkHash);
+      return () => window.removeEventListener('hashchange', checkHash);
+    }
+  }, []);
+
   const toggleService = (id: string) => {
-    setOpenService(prev => (prev === id ? null : id));
+    setOpenService((prev) => (prev === id ? null : id));
   };
 
-  const serviceItems: ListMenuItem[] = FIVE_SERVICES.map(service => {
+  const serviceItems: ListMenuItem[] = FIVE_SERVICES.map((service) => {
     const isOpen = openService === service.id;
     const mapInfo = SERVICE_TYPE_MAP[service.id];
-    const quoteHref = mapInfo
-      ? `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`
-      : `/contact?service=${service.id}`;
+    const isLaunchEligible = service.id === 'pub-restaurants' || service.id === 'pub-produits';
+    const quoteHref = `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`;
 
     return {
       id: service.id,
@@ -251,7 +334,7 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
 
           <div>
             <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2.5">
-              {isFr ? 'Livrables inclus' : 'Deliverables'}
+              {isFr ? 'Périmètre & Livrables' : 'Scope & Deliverables'}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
@@ -264,13 +347,21 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
           </div>
 
           {/* Footer CTAs inside card */}
-          <div className="pt-3 flex justify-end border-t border-white/[0.06]">
+          <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 border-t border-white/[0.06]">
+            {isLaunchEligible && (
+              <Link
+                href="/tarifs"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gold/15 hover:bg-gold/25 border border-gold/40 text-gold-bright font-bold px-3.5 py-2 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
+              >
+                <span>{isFr ? 'Voir l’Offre de Lancement (530 $) →' : 'View Launch Offer ($530) →'}</span>
+              </Link>
+            )}
             <Link
               href={quoteHref}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
             >
-              <span>{isFr ? 'Demander un devis pour ce service →' : 'Request a quote for this service →'}</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>{isFr ? 'Démarrer un projet avec ce service →' : 'Start a project with this service →'}</span>
+              <ArrowUpRight className="w-4 h-4 text-black" />
             </Link>
           </div>
         </div>
@@ -286,8 +377,8 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
         className="mb-1 sm:mb-1.5"
       />
 
-      {/* Video Showcase Section (Collapsible accordion, closed by default) */}
-      <div className="mt-1 sm:mt-1.5">
+      {/* Video Showcase Section (Collapsible accordion, closed by default, opens with #portfolio) */}
+      <div id="portfolio" className="mt-1 sm:mt-1.5 scroll-mt-20">
         <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
           <button
             type="button"
@@ -297,10 +388,10 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
           >
             <div className="flex flex-col min-w-0">
               <span className="mono text-[8.5px] sm:text-[9px] uppercase tracking-[0.18em] text-gold font-bold block mb-0.5">
-                {isFr ? 'DÉMONSTRATIONS EN ACTION' : 'DEMONSTRATIONS IN ACTION'}
+                {isFr ? 'PORTFOLIO & RÉALISATIONS' : 'PORTFOLIO & WORK'}
               </span>
               <h3 className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                {isFr ? 'Réalisations Vidéo & Direction Artistique (2)' : 'Video Output & Art Direction Showcase (2)'}
+                {isFr ? 'Concepts Publicitaires & Études Visuelles (2)' : 'Advertising Concepts & Visual Studies (2)'}
               </h3>
             </div>
 
@@ -317,7 +408,41 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
                 ))}
               </div>
 
-              {/* Social Proof & Guarantees accompanying demonstrations */}
+              {/* Product Fidelity & Brand Integrity Note */}
+              <div className="bg-black/50 border border-white/[0.08] rounded-xl p-4 sm:p-5 text-left space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="mono text-[9px] uppercase tracking-[0.2em] text-gold font-bold bg-gold/10 border border-gold/20 px-2 py-0.5 rounded">
+                    {isFr ? 'MÉTHODOLOGIE & FIDÉLITÉ PRODUIT' : 'METHODOLOGY & PRODUCT FIDELITY'}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="mono text-xs sm:text-[13px] font-semibold text-fg mb-1">
+                    {isFr ? 'Préservation de l’Intégrité de Marque & Produits Réels' : 'Brand Integrity & Real Product Preservation'}
+                  </h4>
+                  <p className="text-xs text-muted leading-relaxed">
+                    {isFr
+                      ? 'Notre processus intègre vos packshots et assets de référence pour respecter fidèlement emballages, logos lisibles, proportions et teintes de votre marque. Chaque projet fait l’objet d’une validation sur prévisualisation avant livraison du master final.'
+                      : 'Our workflow integrates your reference packshots and assets to faithfully preserve real packaging, readable logos, accurate proportions, and brand colors. Every project undergoes preview validation prior to final master delivery.'}
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-fg/80">
+                  <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/[0.04]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                    <span>{isFr ? 'Logos lisibles & proportions fidèles' : 'Readable logos & accurate proportions'}</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/[0.04]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                    <span>{isFr ? 'Validation préalable sur prévisualisation' : 'Systematic preview cut validation'}</span>
+                  </div>
+                </div>
+                <p className="text-[10px] font-mono text-muted/70 italic">
+                  {isFr
+                    ? 'Note : Démonstration spécifique de fidélité produit (Gravity / Packshot) en cours d’intégration au portfolio.'
+                    : 'Note: Dedicated product fidelity demonstration (Gravity / Packshot) in progress for portfolio integration.'}
+                </p>
+              </div>
+
+              {/* Guarantees & Production Process */}
               <TrustSection lang={lang} hideProcessStep={true} />
             </div>
           )}
