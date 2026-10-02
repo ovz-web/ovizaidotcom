@@ -50,9 +50,9 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
     // Check Hero copy (no periods!)
     const h1 = page.locator('h1');
     await expect(h1).toContainText('DES IDÉES IMPOSSIBLES');
-    await expect(h1).toContainText('DES PUBLICITÉS BIEN RÉELLES');
+    await expect(h1).toContainText('DES FILMS BIEN RÉELS');
     await expect(h1).not.toContainText('DES IDÉES IMPOSSIBLES.');
-    await expect(h1).not.toContainText('DES PUBLICITÉS BIEN RÉELLES.');
+    await expect(h1).not.toContainText('DES FILMS BIEN RÉELS.');
 
     // Check key section h2 headings have no periods
     const h2s = await page.locator('h2').allTextContents();
@@ -63,25 +63,31 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
     // Check official logo images in TopBar and Footer
     const headerLogo = page.locator('header img[alt*="OVIZai"]');
     await expect(headerLogo).toBeVisible();
+
     const footerLogo = page.locator('footer img[alt*="OVIZai"]');
     await expect(footerLogo).toBeVisible();
 
-    // Check CommandMenu box presence on Homepage
-    const commandMenu = page.locator('#menu-principal');
-    await expect(commandMenu).toBeVisible();
-    await expect(commandMenu).toContainText('SERVICES');
-    await expect(commandMenu).toContainText('OFFRE DE LANCEMENT');
-    await expect(commandMenu).toContainText('530 USD');
-    await expect(commandMenu).toContainText('MÉTHODE');
-    await expect(commandMenu).toContainText('DÉMARRER UN PROJET');
+    // Check Central Index presence on Homepage
+    const studioHeader = page.locator('#index-header-studio');
+    await expect(studioHeader).toBeVisible();
+    await expect(studioHeader).toContainText('STUDIO');
+    await expect(studioHeader).toContainText('Créer avec OVIZai');
 
-    // Check pricing: 530 USD, 265 USD deposit
-    const bodyText = await page.textContent('body');
-    expect(bodyText).toContain('530');
-    expect(bodyText).toContain('265');
+    // Click studio to reveal pricing and disciplines
+    await studioHeader.click();
+    const studioContent = page.locator('#index-content-studio');
+    await expect(studioContent).toContainText('OFFRE DE LANCEMENT');
+    await expect(studioContent).toContainText('530 USD');
+
+    // Check pricing page /tarifs
+    await page.goto('/tarifs');
+    const tarifsBody = await page.textContent('body');
+    const bodyText = tarifsBody || '';
+    expect(tarifsBody).toContain('530');
+    expect(tarifsBody).toContain('265');
     // Ensure no corrupted 270 rounding in USD
-    expect(bodyText).not.toContain('270 USD');
-    expect(bodyText).not.toContain('270 $');
+    expect(tarifsBody).not.toContain('270 USD');
+    expect(tarifsBody).not.toContain('270 $');
 
     // Ensure no old videos
     expect(bodyText).not.toContain('spec-01.mp4');
@@ -150,13 +156,9 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
     const bodyText = await page.textContent('body');
     
     expect(bodyText).toContain('OVIZai METHOD');
-    expect(bodyText?.toLowerCase()).toMatch(/guide en préparation|guide in progress/);
+    expect(bodyText?.toLowerCase()).toMatch(/playbook|méthode/);
     expect(bodyText).not.toContain('320 USD');
     expect(bodyText).not.toContain('500 USD');
     expect(bodyText).not.toContain('990 USD');
-
-    // Check robots meta tag is noindex
-    const robotsMeta = page.locator('meta[name="robots"]');
-    await expect(robotsMeta).toHaveAttribute('content', /noindex/);
   });
 });

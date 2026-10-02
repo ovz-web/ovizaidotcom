@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { sendMasterclassWelcome, sendMasterclassSaleNotification, maskEmail } from '@/lib/mail';
-import { MASTERCLASS_PRICE } from '@/lib/pricing';
+import { FORMATION_OFFER } from '@/lib/formation';
 import { checkRateLimit } from '@/lib/rateLimit';
 
 export async function POST(req: NextRequest) {
@@ -49,8 +49,8 @@ export async function POST(req: NextRequest) {
 
     const customerEmail = session.customer_details?.email || session.customer_email;
     const customerName = session.customer_details?.name || 'Étudiant Masterclass';
-    const currencyUpper = (session.currency || 'cad').toUpperCase();
-    const fallbackAmount = MASTERCLASS_PRICE[currencyUpper as keyof typeof MASTERCLASS_PRICE] || MASTERCLASS_PRICE.CAD;
+    const currencyUpper = (session.currency || 'USD').toUpperCase();
+    const fallbackAmount = currencyUpper === 'USD' ? FORMATION_OFFER.priceUsd : currencyUpper === 'EUR' ? FORMATION_OFFER.priceEur : FORMATION_OFFER.priceCad;
     const amountTotal = session.amount_total ? session.amount_total / 100 : fallbackAmount;
 
     if (customerEmail) {

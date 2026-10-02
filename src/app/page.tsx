@@ -4,12 +4,7 @@ import React from 'react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
-import CommandMenu from '@/components/CommandMenu';
-import ServicesGrid from '@/components/ServicesGrid';
-import LaunchOfferSection from '@/components/LaunchOfferSection';
-import ProductionMethod from '@/components/ProductionMethod';
-import HomeFaq from '@/components/HomeFaq';
-import FinalCta from '@/components/FinalCta';
+import CentralIndex from '@/components/CentralIndex';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -21,36 +16,19 @@ export default function Home() {
       {/* 35mm Silver Film Grain Filter */}
       <FilmGrain />
 
-      {/* 1. Header with simple desktop nav + mobile drawer */}
+      {/* 1. HEADER */}
       <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
-      {/* Main Content Area */}
+      {/* 2. MAIN CONTENT AREA */}
       <main id="main-content" className="flex-grow relative z-10 pt-[var(--topbar-height,56px)]">
-        {/* 1. HERO */}
+        {/* HERO */}
         <HeroBrutalist lang={lang} />
 
-        {/* 2. BOÎTE DE MENU PRINCIPALE (Accès direct centralisé) */}
-        <CommandMenu lang={lang} />
-
-        {/* 3. SELECTED WORK (renders ONLY when official projects are marked published in portfolio.ts) */}
-
-        {/* 4. WHAT WE MAKE / SERVICES */}
-        <ServicesGrid lang={lang} />
-
-        {/* 4. OFFRE DE LANCEMENT (530 USD) */}
-        <LaunchOfferSection lang={lang} />
-
-        {/* 5. MÉTHODE EN 3 ÉTAPES */}
-        <ProductionMethod lang={lang} />
-
-        {/* 6. FAQ TRÈS COURTE */}
-        <HomeFaq lang={lang} />
-
-        {/* 7. CTA FINAL */}
-        <FinalCta lang={lang} />
+        {/* INDEX CENTRAL (Logique Ohneis : Choix évident, destinations épurées) */}
+        <CentralIndex lang={lang} />
       </main>
 
-      {/* 8. FOOTER */}
+      {/* 3. FOOTER */}
       <Footer lang={lang} onToggleLang={toggleLanguage} />
     </div>
   );

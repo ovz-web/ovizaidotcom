@@ -40,9 +40,9 @@ test.describe('QA Final Typographique et Visuel', () => {
     await page.waitForLoadState('networkidle');
     await page.screenshot({ path: path.join(outputDir, 'homepage_375px.png') });
 
-    // 2. menu 375 px
-    const menu375 = page.locator('#menu-principal');
-    await menu375.screenshot({ path: path.join(outputDir, 'menu_375px.png') });
+    // 2. index 375 px
+    const index375 = page.locator('section:has(#index-header-studio)');
+    await index375.screenshot({ path: path.join(outputDir, 'menu_375px.png') });
 
     // 3. homepage 393 px
     await page.setViewportSize({ width: 393, height: 852 });
@@ -56,16 +56,14 @@ test.describe('QA Final Typographique et Visuel', () => {
     await page.waitForLoadState('networkidle');
     await page.screenshot({ path: path.join(outputDir, 'homepage_1440px.png') });
 
-    // 5. services desktop (element #services)
-    const services = page.locator('#services');
-    await services.screenshot({ path: path.join(outputDir, 'services_desktop.png') });
+    // 5. services desktop (/services)
+    await page.goto('/services');
+    await page.waitForLoadState('networkidle');
+    await page.screenshot({ path: path.join(outputDir, 'services_desktop.png') });
 
-    // 6. méthode desktop (element #methode)
-    const methode = page.locator('#methode');
-    await methode.screenshot({ path: path.join(outputDir, 'methode_desktop.png') });
-
-    // 7. tarifs desktop (element #tarifs)
-    const tarifs = page.locator('#tarifs');
-    await tarifs.screenshot({ path: path.join(outputDir, 'tarifs_desktop.png') });
+    // 6. tarifs desktop (/tarifs)
+    await page.goto('/tarifs');
+    await page.waitForLoadState('networkidle');
+    await page.screenshot({ path: path.join(outputDir, 'tarifs_desktop.png') });
   });
 });

@@ -5,7 +5,6 @@
 
 export const LAUNCH_OFFER_PRICE = { USD: 530, EUR: 490, CAD: 720 } as const;
 export type PricingCurrency = keyof typeof LAUNCH_OFFER_PRICE;
-export const MASTERCLASS_PRICE = LAUNCH_OFFER_PRICE;
 
 export interface LaunchOfferDetails {
   id: string;

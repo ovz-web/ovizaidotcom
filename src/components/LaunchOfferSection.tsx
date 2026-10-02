@@ -19,7 +19,7 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
       <div className="text-center mb-12 sm:mb-16">
         <div className="inline-flex items-center gap-2 mb-3">
           <span className="mono text-xs sm:text-sm uppercase tracking-[0.2em] text-gold font-bold">
-            {isFr ? '02 // TARIF & ENGAGEMENT' : '02 // PRICING & COMMITMENT'}
+            {isFr ? 'OFFRE PILOTE & SUR MESURE' : 'PILOT OFFER & CUSTOM'}
           </span>
         </div>
         <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
@@ -109,7 +109,7 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
           <div className="flex items-center gap-2 mb-2">
             <Layers className="w-4 h-4 text-muted" />
             <h4 className="font-display font-bold text-lg sm:text-xl text-fg uppercase">
-              {isFr ? 'PROJET PLUS COMPLEXE ?' : 'MORE COMPLEX PROJECT?'}
+              {isFr ? 'PROJET SUR MESURE' : 'CUSTOM PROJECT'}
             </h4>
             <span className="mono text-[10px] uppercase tracking-wider text-muted px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08]">
               {isFr ? 'Sur devis' : 'Custom quote'}
@@ -117,8 +117,8 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
           </div>
           <p className="text-sm text-muted leading-relaxed">
             {isFr
-              ? 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes complètes, production en marque blanche pour agences ou exigences particulières'
-              : 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full campaigns, white-label agency production or custom technical requests'}
+              ? 'Films publicitaires, contenus de marque, films produit, clips, campagnes et formats sur mesure adaptés à vos objectifs'
+              : 'Commercial films, branded content, product films, music videos, campaigns and tailored formats adapted to your goals'}
           </p>
         </div>
 

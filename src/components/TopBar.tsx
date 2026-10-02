@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { Language } from '@/types';
 import { hasPublishedProjects } from '@/lib/portfolio';
 
@@ -15,17 +14,17 @@ interface TopBarProps {
   onSelectCurrency?: (curr: any) => void;
 }
 
-export default function TopBar({
-  lang,
-  onToggleLang,
-}: TopBarProps) {
+export default function TopBar({ lang, onToggleLang }: TopBarProps) {
   const isFr = lang === 'fr';
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
   const hasWork = hasPublishedProjects();
 
-  // Dynamic header height measurement for layout padding
+  // Dynamic header height measurement
   useEffect(() => {
     const updateHeaderHeight = () => {
       if (headerRef.current) {
@@ -41,16 +40,46 @@ export default function TopBar({
     return () => window.removeEventListener('resize', updateHeaderHeight);
   }, []);
 
-  // Lock body scroll on mobile drawer open
+  // Lock body scroll and handle keyboard accessibility (Escape + Focus Trap)
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      // Focus the close button when opened
+      closeButtonRef.current?.focus();
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setIsMobileMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }
+
+        // Focus trap
+        if (e.key === 'Tab' && mobileDrawerRef.current) {
+          const focusable = mobileDrawerRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusable.length > 0) {
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       document.body.style.overflow = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isMobileMenuOpen]);
 
   // Close menu on route change
@@ -59,131 +88,192 @@ export default function TopBar({
   }, [pathname]);
 
   const navLinks = [
-    ...(hasWork ? [{ href: '/services#portfolio', label: isFr ? 'Work' : 'Work' }] : []),
-    { href: '/services', label: isFr ? 'Services' : 'Services' },
-    { href: '/tarifs', label: isFr ? 'Tarifs' : 'Pricing' },
-    { href: '/contact', label: isFr ? 'Contact' : 'Contact' },
+    ...(hasWork ? [{ href: '/services#portfolio', label: isFr ? 'WORK' : 'WORK' }] : []),
+    { href: '/services', label: 'STUDIO' },
+    { href: '/formation', label: 'FORMATION' },
+    { href: '/contact', label: 'CONTACT' },
   ];
 
   return (
-    <header
-      ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.08] transition-all"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
-        {/* Logo OVIZai */}
-        <Link
-          href="/"
-          className="group flex items-center text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg py-1 px-1 -ml-1"
-          aria-label={isFr ? 'OVIZai — Accueil' : 'OVIZai — Home'}
-        >
-          <Image
-            src="/logo.png"
-            alt={isFr ? 'OVIZai — Studio de création publicitaire' : 'OVIZai — Creative Ad Studio'}
-            width={120}
-            height={63}
-            className="h-6 sm:h-7 md:h-8 w-auto object-contain mix-blend-screen"
-            priority
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Navigation principale">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors py-1 ${
-                  isActive
-                    ? 'text-gold font-semibold'
-                    : 'text-muted hover:text-fg'
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Desktop Actions: Lang Switcher & Primary CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            type="button"
-            onClick={onToggleLang}
-            className="text-xs mono uppercase tracking-wider text-muted hover:text-gold transition-colors py-1 px-2 rounded border border-white/[0.08] hover:border-gold/40 cursor-pointer"
-            aria-label={isFr ? 'Basculer en Anglais' : 'Switch to French'}
-          >
-            {isFr ? 'EN' : 'FR'}
-          </button>
-
+    <>
+      <header
+        ref={headerRef}
+        className="fixed top-0 left-0 right-0 z-40 bg-[#050505]/95 backdrop-blur-sm border-b border-white/[0.06] transition-all"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
+          {/* Logo OVIZai officiel (Mix-blend screen vintage emblem) */}
           <Link
-            href="/contact"
-            className="inline-flex items-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-semibold text-xs mono uppercase tracking-wider px-4 py-2.5 rounded-full transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-gold/10"
+            href="/"
+            className="group flex items-center text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg py-1 px-1 -ml-1"
+            aria-label={isFr ? 'OVIZai — Accueil' : 'OVIZai — Home'}
           >
-            <span>{isFr ? 'Démarrer un projet' : 'Start a project'}</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <Image
+              src="/logo.png"
+              alt={isFr ? 'OVIZai — Studio créatif' : 'OVIZai — Creative studio'}
+              width={120}
+              height={63}
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain mix-blend-screen"
+              priority
+            />
           </Link>
-        </div>
 
-        {/* Mobile Right Bar: Lang + Hamburger Toggle */}
-        <div className="flex md:hidden items-center gap-3">
-          <button
-            type="button"
-            onClick={onToggleLang}
-            className="text-xs mono uppercase tracking-wider text-muted hover:text-fg py-1 px-2 rounded border border-white/[0.08]"
-            aria-label={isFr ? 'Basculer en Anglais' : 'Switch to French'}
+          {/* Desktop Navigation — Épurée, sans bouton agressif */}
+          <nav
+            className="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase"
+            aria-label="Navigation principale"
           >
-            {isFr ? 'EN' : 'FR'}
-          </button>
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-colors py-1 ${
+                    isActive
+                      ? 'text-gold font-bold border-b border-gold'
+                      : 'text-muted/80 hover:text-fg'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-fg hover:text-gold rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-            aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Desktop Lang Switcher */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              type="button"
+              onClick={onToggleLang}
+              className="text-xs font-mono uppercase tracking-wider text-muted hover:text-gold transition-colors py-1 px-2 rounded border border-white/[0.08] hover:border-gold/40 cursor-pointer"
+              aria-label={isFr ? 'Basculer en Anglais' : 'Switch to French'}
+            >
+              {isFr ? 'EN' : 'FR'}
+            </button>
+          </div>
+
+          {/* Mobile Right Bar: Lang + Evident Menu Toggle */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              type="button"
+              onClick={onToggleLang}
+              className="text-xs font-mono uppercase tracking-wider text-muted hover:text-fg py-1.5 px-2 rounded border border-white/[0.08]"
+              aria-label={isFr ? 'Basculer en Anglais' : 'Switch to French'}
+            >
+              {isFr ? 'EN' : 'FR'}
+            </button>
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.14] bg-white/[0.04] text-fg hover:text-gold font-mono text-xs uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              aria-label="Ouvrir le menu de navigation"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation-overlay"
+            >
+              <span className="text-gold font-bold">☰</span>
+              <span>MENU</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Accessible Mobile Drawer */}
+      {/* 
+        Mobile Fullscreen Overlay:
+        100% OPAQUE (#050505), zero transparency, zero background bleeding through.
+        Respects safe-area-inset and locks body scroll.
+      */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-x-0 top-14 sm:top-16 bg-[#080808]/98 border-b border-white/[0.08] px-6 py-8 flex flex-col gap-6 backdrop-blur-xl animate-fadeIn"
-          style={{ minHeight: 'calc(100dvh - 56px)' }}
+          id="mobile-navigation-overlay"
+          ref={mobileDrawerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={isFr ? 'Menu de navigation' : 'Navigation menu'}
+          className="md:hidden fixed inset-0 z-[100] bg-[#050505] text-fg flex flex-col justify-between p-6 sm:p-8 animate-fadeIn"
+          style={{
+            backgroundColor: '#050505',
+            opacity: 1,
+            paddingTop: 'calc(1.5rem + env(safe-area-inset-top, 0px))',
+            paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
+          }}
         >
-          <nav className="flex flex-col gap-5 text-lg font-display tracking-wide" aria-label="Navigation mobile">
-            {navLinks.map((link) => (
+          {/* Top Bar inside Overlay */}
+          <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center"
+              aria-label="OVIZai — Accueil"
+            >
+              <Image
+                src="/logo.png"
+                alt="OVIZai"
+                width={110}
+                height={58}
+                className="h-7 w-auto object-contain mix-blend-screen"
+                priority
+              />
+            </Link>
+
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                menuButtonRef.current?.focus();
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold/40 bg-gold/10 text-gold font-mono text-xs uppercase tracking-wider hover:bg-gold/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold cursor-pointer"
+              aria-label="Fermer le menu de navigation"
+            >
+              <span>FERMER</span>
+              <span className="font-bold text-sm">×</span>
+            </button>
+          </div>
+
+          {/* Navigation Links — Grande typographie éditoriale */}
+          <nav className="flex flex-col gap-6 my-auto py-8" aria-label="Liens principaux">
+            {navLinks.map((link, idx) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-fg hover:text-gold transition-colors py-2 border-b border-white/[0.04]"
+                className="group flex items-baseline gap-4 py-2 border-b border-white/[0.06] text-fg hover:text-gold transition-colors"
               >
-                {link.label}
+                <span className="mono text-xs text-gold/70 font-semibold tracking-widest">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span className="font-display font-extrabold text-2xl sm:text-3xl tracking-tight uppercase group-hover:translate-x-1 transition-transform">
+                  {link.label}
+                </span>
               </Link>
             ))}
           </nav>
 
-          <div className="pt-4 flex flex-col gap-3">
-            <Link
-              href="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold text-sm mono uppercase tracking-wider py-3.5 rounded-xl transition-all"
+          {/* Footer inside Overlay */}
+          <div className="flex items-center justify-between pt-6 border-t border-white/[0.08] text-xs font-mono text-muted">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={onToggleLang}
+                className="uppercase tracking-wider text-fg hover:text-gold underline underline-offset-4"
+              >
+                {isFr ? 'ENGLISH' : 'FRANÇAIS'}
+              </button>
+            </div>
+
+            <a
+              href="https://instagram.com/ovizai.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted/70 hover:text-gold transition-colors tracking-widest uppercase"
             >
-              <span>{isFr ? 'Démarrer un projet' : 'Start a project'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-            <p className="text-xs text-muted text-center mono pt-2">
-              {isFr ? 'Studio Publicitaire · Worldwide' : 'Creative Ad Studio · Worldwide'}
-            </p>
+              INSTAGRAM ↗
+            </a>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

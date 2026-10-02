@@ -34,7 +34,7 @@ export default function Footer({ lang }: FooterProps) {
             />
           </Link>
           <p className="text-sm font-medium text-fg/90">
-            Creative Ad Studio
+            {isFr ? 'Studio créatif' : 'Creative Studio'}
           </p>
           <p className="text-xs text-muted mt-0.5">
             Worldwide

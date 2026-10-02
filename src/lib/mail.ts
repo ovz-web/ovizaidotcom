@@ -3,7 +3,7 @@
  * Powered by Resend API (https://resend.com)
  */
 
-import { MASTERCLASS_PRICE } from '@/lib/pricing';
+import { FORMATION_OFFER } from '@/lib/formation';
 
 export interface LeadEmailPayload {
   email: string;
@@ -256,7 +256,7 @@ export async function sendMasterclassSaleNotification(payload: MasterclassSalePa
     return { success: false, reason: 'MISSING_API_KEY' };
   }
 
-  const { email, name = 'Étudiant Masterclass', amount = MASTERCLASS_PRICE.CAD, currency = 'CAD' } = payload;
+  const { email, name = 'Étudiant Masterclass', amount = FORMATION_OFFER.priceCad, currency = 'CAD' } = payload;
 
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
