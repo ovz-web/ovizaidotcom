@@ -90,8 +90,8 @@ export default function TrustSection({ lang, hideProcessStep = false }: TrustSec
             </h3>
             <p className="text-xs text-muted leading-relaxed">
               {isFr
-                ? 'Studio indépendant combinant direction créative humaine et outils génératifs pour sublimer produits et établissements'
-                : 'Independent studio combining human creative direction and generative tools to elevate products and venues'}
+                ? 'Studio indépendant combinant direction créative et production visuelle avancée pour sublimer produits et établissements'
+                : 'Independent studio combining creative direction and visual production to elevate products and brands'}
             </p>
           </div>
           <div className="mt-4 pt-3 border-t border-white/[0.06] text-[10.5px] font-mono text-muted">

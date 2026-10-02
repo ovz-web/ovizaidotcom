@@ -154,8 +154,8 @@ export default function VideoShowcase({ video, lang, compact = false }: VideoSho
             </summary>
             <p className="mt-2 p-2.5 bg-black/40 rounded-lg border border-border text-[11px] text-muted leading-relaxed font-sans">
               {isFr
-                ? `Extrait de réalisation cinématique OVIZai : « ${video.title.fr} ». Direction artistique générative haute définition, esthétique Paris 1990, textures 35mm grainées, contrastes profonds et lumières dorées. ${video.description.fr.replace(/\n/g, ' ')}`
-                : `OVIZai cinematic showcase excerpt: "${video.title.en}". High-definition generative art direction, Paris 1990 aesthetic, 35mm silver film grain, deep contrast and amber highlights. ${video.description.en.replace(/\n/g, ' ')}`}
+                ? `Extrait de réalisation cinématique OVIZai : « ${video.title.fr} ». Direction artistique cinématique haute définition, esthétique Paris 1990, textures 35mm grainées, contrastes profonds et lumières dorées. ${video.description.fr.replace(/\n/g, ' ')}`
+                : `OVIZai cinematic showcase excerpt: "${video.title.en}". High-definition cinematic art direction, Paris 1990 aesthetic, 35mm silver film grain, deep contrast and amber highlights. ${video.description.en.replace(/\n/g, ' ')}`}
             </p>
           </details>
         </div>

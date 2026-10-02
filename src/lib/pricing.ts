@@ -3,9 +3,9 @@
  * Contractual truth source: Launch Offer (530 USD) & Custom projects on quote.
  */
 
-export const MASTERCLASS_PRICE = { USD: 320, EUR: 290, CAD: 430 } as const;
-export const MASTERCLASS_ORIGINAL_PRICE = { USD: 450, EUR: 415, CAD: 620 } as const;
-export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
+export const LAUNCH_OFFER_PRICE = { USD: 530, EUR: 490, CAD: 720 } as const;
+export type PricingCurrency = keyof typeof LAUNCH_OFFER_PRICE;
+export const MASTERCLASS_PRICE = LAUNCH_OFFER_PRICE;
 
 export interface LaunchOfferDetails {
   id: string;
@@ -94,17 +94,14 @@ export const CUSTOM_PROJECT_OFFER: CustomProjectDetails = {
       'Campagnes complètes & variations de concepts',
       'Production externalisée en marque blanche pour agences',
       'Accompagnement créatif dédié de bout en bout',
-      'Devis personnalisé sous 24h ouvrées',
+      'Devis personnalisé selon votre périmètre',
     ],
     en: [
       'Multi-format variations (9:16, 16:9, 1:1, 4:5)',
       'Complete multi-concept social campaigns',
       'Outsourced white-label production for agencies',
       'Dedicated creative direction end-to-end',
-      'Custom tailored quote within 24 business hours',
+      'Custom tailored quote based on your scope',
     ],
   },
 };
-
-// Internal reference preserved safely for feature flag restoration if needed
-export const INTERNAL_FORMATION_PRICE = { USD: 320, EUR: 290, CAD: 430 } as const;

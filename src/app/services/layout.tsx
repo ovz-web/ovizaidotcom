@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Services — Studio de Publicité Vidéo OVIZai',
-    description: 'Publicités courtes à forte qualité visuelle pour marques et commerces. Offre de lancement à 530 USD.',
+    description: 'Trois formats vidéo essentiels : publicités courtes (Reels, TikTok, Shorts), films produit cinématiques et production externalisée en marque blanche pour agences.',
     url: 'https://www.ovizai.com/services',
     siteName: 'OVIZai',
     locale: 'fr_FR',
