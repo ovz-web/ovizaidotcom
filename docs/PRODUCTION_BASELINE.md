@@ -1,9 +1,9 @@
 # OVIZai — Production Baseline (Freeze Release)
 
-- **Date** : 2026-10-02 (22:08 UTC / 18:08 EDT)
-- **SHA Git exact** : `c265f2d3bdd8a0a0a0b4ec87d9e8bf69d6529387`
-- **Deployment Vercel ID** : `dpl_5SWW6DNQwjFimXqf33gEAuGP9SoU`
-- **URL Deployment direct** : https://ovizaidotcom-968k22hsd-cinemaaistudiocontact-9752s-projects.vercel.app
+- **Date** : 2026-10-02 (22:12 UTC / 18:12 EDT)
+- **SHA Git exact** : `e49a433fd43909a2d09c403fc84b672984c110ca`
+- **Deployment Vercel ID** : `dpl_EmmM5ALygnhzj1kHH3yuy3pAXUjP`
+- **URL Deployment direct** : https://ovizaidotcom-kc6pj7yh0-cinemaaistudiocontact-9752s-projects.vercel.app
 - **Alias www.ovizai.com** : https://www.ovizai.com (cible canonique de production)
 - **Alias ovizai.com** : https://ovizai.com (redirection permanente HTTP 308 vers https://www.ovizai.com/)
 
