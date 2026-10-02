@@ -66,7 +66,7 @@ test.describe('Production Anti-Regression & Visual QA against https://www.ovizai
     expect(bodyText).toContain('265 USD');
 
     // Authentic logo (mix-blend-screen / logo.png)
-    const logoImg = page.locator('header img[alt="OVIZai"]');
+    const logoImg = page.locator('header img[alt*="OVIZai"]');
     await expect(logoImg).toBeVisible();
     const src = await logoImg.getAttribute('src');
     expect(src).toContain('logo.png');
