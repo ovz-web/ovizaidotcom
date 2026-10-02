@@ -27,8 +27,8 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
         </h2>
         <p className="text-base sm:text-lg text-muted max-w-xl mx-auto">
           {isFr
-            ? 'Périmètre clair, délais calibrés, sans frais cachés.'
-            : 'Clear scope, committed turnaround, zero hidden fees.'}
+            ? 'Périmètre clair · Délais calibrés · Sans frais cachés'
+            : 'Clear scope · Committed turnaround · Zero hidden fees'}
         </p>
       </div>
 

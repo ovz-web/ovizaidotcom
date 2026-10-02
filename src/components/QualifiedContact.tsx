@@ -91,12 +91,12 @@ export default function QualifiedContact({ lang }: QualifiedContactProps) {
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-fg uppercase mb-3">
-          {isFr ? 'Brief reçu.' : 'Brief received.'}
+          {isFr ? 'Brief reçu' : 'Brief received'}
         </h2>
         <p className="text-base sm:text-lg text-muted max-w-md mx-auto leading-relaxed mb-6 font-sans">
           {isFr
-            ? 'Nous revenons vers vous avec la prochaine étape.'
-            : 'We will review your project and get back to you with the next step.'}
+            ? 'Nous revenons vers vous avec la prochaine étape'
+            : 'We will review your project and get back to you with the next step'}
         </p>
         <button
           type="button"
@@ -326,8 +326,8 @@ export default function QualifiedContact({ lang }: QualifiedContactProps) {
 
         <p className="text-center text-xs text-muted/70 mono">
           {isFr
-            ? 'Sans engagement. Vos éléments restent confidentiels.'
-            : 'No commitment. Your assets remain strictly confidential.'}
+            ? 'Sans engagement · Vos éléments restent confidentiels'
+            : 'No commitment · Your assets remain strictly confidential'}
         </p>
       </div>
     </form>

@@ -55,12 +55,12 @@ export default function ProductionMethod({ lang }: ProductionMethodProps) {
           </span>
         </div>
         <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
-          {isFr ? 'DE L’IDÉE AU FILM FINALISÉ.' : 'FROM CONCEPT TO FINAL FILM.'}
+          {isFr ? 'DE L’IDÉE AU FILM FINALISÉ' : 'FROM CONCEPT TO FINAL FILM'}
         </h2>
         <p className="text-base sm:text-lg text-muted max-w-xl mx-auto">
           {isFr
-            ? 'Trois étapes limpides. Une direction créative rigoureuse.'
-            : 'Three clear steps. Rigorous creative direction.'}
+            ? 'Trois étapes limpides · Une direction créative rigoureuse'
+            : 'Three clear steps · Rigorous creative direction'}
         </p>
       </div>
 

@@ -79,7 +79,7 @@ export default function HomeFaq({ lang }: HomeFaqProps) {
           </span>
         </div>
         <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-fg tracking-tight uppercase leading-tight">
-          {isFr ? 'RÉPONSES DIRECTES.' : 'DIRECT ANSWERS.'}
+          {isFr ? 'RÉPONSES DIRECTES' : 'DIRECT ANSWERS'}
         </h2>
       </div>
 

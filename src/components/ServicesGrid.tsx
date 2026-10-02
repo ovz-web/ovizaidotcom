@@ -111,12 +111,12 @@ export default function ServicesGrid({ lang }: ServicesGridProps) {
           </span>
         </div>
         <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
-          {isFr ? 'TROIS FORMATS ESSENTIELS.' : 'THREE ESSENTIAL FORMATS.'}
+          {isFr ? 'TROIS FORMATS ESSENTIELS' : 'THREE ESSENTIAL FORMATS'}
         </h2>
         <p className="text-base sm:text-lg text-muted leading-relaxed">
           {isFr
-            ? 'Direction créative humaine et production visuelle augmentée. Rien de superflu.'
-            : 'Human creative direction and elevated visual production. Pure signal, zero noise.'}
+            ? 'Direction créative humaine et production visuelle augmentée · Rien de superflu'
+            : 'Human creative direction and elevated visual production · Pure signal, zero noise'}
         </p>
       </div>
 

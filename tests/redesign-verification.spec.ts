@@ -51,6 +51,12 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
     await expect(h1).not.toContainText('DES IDÉES IMPOSSIBLES.');
     await expect(h1).not.toContainText('DES PUBLICITÉS BIEN RÉELLES.');
 
+    // Check key section h2 headings have no periods
+    const h2s = await page.locator('h2').allTextContents();
+    for (const h2 of h2s) {
+      expect(h2.trim().endsWith('.')).toBe(false);
+    }
+
     // Check official logo images in TopBar and Footer
     const headerLogo = page.locator('header img[alt="OVIZai"]');
     await expect(headerLogo).toBeVisible();
