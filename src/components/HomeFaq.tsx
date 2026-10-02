@@ -22,8 +22,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       en: 'What is the production turnaround for the launch offer?',
     },
     a: {
-      fr: 'La première version est visée sous 5 jours ouvrables. Ce délai commence dès réception de l’ensemble des éléments nécessaires de votre brief (produit, identité, logo) et après confirmation conjointe du planning.',
-      en: 'The first cut is targeted within 5 business days. This timeframe begins once all required brief assets (product, brand, logo) are received and the production schedule is mutually confirmed.',
+      fr: 'La première version est visée sous 5 jours ouvrables — ce délai commence dès réception de l’ensemble des éléments nécessaires de votre brief (produit, identité, logo) et après confirmation conjointe du planning',
+      en: 'The first cut is targeted within 5 business days — this timeframe begins once all required brief assets (product, brand, logo) are received and the production schedule is mutually confirmed',
     },
   },
   {
@@ -33,8 +33,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       en: 'How does payment work for the $530 USD offer?',
     },
     a: {
-      fr: 'Le paiement est divisé en deux étapes claires : un acompte de 265 USD exigible à la commande pour engager la production, et le solde de 265 USD avant la remise du master final en haute définition.',
-      en: 'Payment is structured in two clear milestones: a $265 USD deposit upon ordering to initiate production, and the $265 USD balance prior to releasing the high-definition final master.',
+      fr: 'Le paiement est divisé en deux étapes claires : un acompte de 265 USD exigible à la commande pour engager la production, et le solde de 265 USD avant la remise du master final en haute définition',
+      en: 'Payment is structured in two clear milestones: a $265 USD deposit upon ordering to initiate production, and the $265 USD balance prior to releasing the high-definition final master',
     },
   },
   {
@@ -44,8 +44,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       en: 'What does the included revision round cover?',
     },
     a: {
-      fr: 'L’offre comprend une série de retours consolidés sur la première version (ajustements de montage, équilibrage audio, sound design ou texte). Les changements radicaux de concept hors brief initial font l’objet d’un devis complémentaire.',
-      en: 'The offer includes one consolidated round of revisions on the initial cut (editing pace, audio mix, sound design or text tweaks). Foundational concept changes outside the approved brief are quoted separately.',
+      fr: 'L’offre comprend une série de retours consolidés sur la première version (ajustements de montage, équilibrage audio, sound design ou texte) — les changements radicaux de concept hors brief initial font l’objet d’un devis complémentaire',
+      en: 'The offer includes one consolidated round of revisions on the initial cut (editing pace, audio mix, sound design or text tweaks) — foundational concept changes outside the approved brief are quoted separately',
     },
   },
   {
@@ -55,8 +55,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       en: 'What usage rights and licenses are included?',
     },
     a: {
-      fr: 'Les droits et licences applicables pour vos campagnes publicitaires (réseaux sociaux, diffusion digitale) sont clairement définis et formalisés dans votre devis et contrat de production.',
-      en: 'Applicable usage rights and licenses for your advertising campaigns (social channels, digital marketing) are clearly specified and formalized in your production quote and agreement.',
+      fr: 'Les droits et licences applicables pour vos campagnes publicitaires (réseaux sociaux, diffusion digitale) sont clairement définis et formalisés dans votre devis et contrat de production',
+      en: 'Applicable usage rights and licenses for your advertising campaigns (social channels, digital marketing) are clearly specified and formalized in your production quote and agreement',
     },
   },
 ];

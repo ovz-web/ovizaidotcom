@@ -30,16 +30,16 @@ export const THREE_SERVICES: ServiceFamily[] = [
       en: 'SHORT-FORM ADS',
     },
     tagline: {
-      fr: 'Publicités courtes pensées pour Reels, TikTok, Shorts et campagnes sociales.',
-      en: 'Short-form ads engineered for Reels, TikTok, Shorts and social campaigns.',
+      fr: 'Publicités courtes pensées pour Reels, TikTok, Shorts et campagnes sociales',
+      en: 'Short-form ads engineered for Reels, TikTok, Shorts and social campaigns',
     },
     description: {
-      fr: 'Formats verticaux 9:16 percutants (10 à 15 secondes) avec rythme serré, sound design immersif et accroche visuelle immédiate pour capter l’attention en moins de deux secondes.',
-      en: 'High-impact 9:16 vertical video (10 to 15 seconds) featuring dynamic pacing, immersive sound design and immediate hook retention.',
+      fr: 'Formats verticaux 9:16 percutants (10 à 15 secondes) avec rythme serré, sound design immersif et accroche visuelle immédiate pour capter l’attention en moins de deux secondes',
+      en: 'High-impact 9:16 vertical video (10 to 15 seconds) featuring dynamic pacing, immersive sound design and immediate hook retention',
     },
     examples: {
-      fr: 'Idéal pour : restaurants, marques alimentaires, hospitality, retail et commerces.',
-      en: 'Ideal for: restaurants, food & beverage, hospitality, retail, and lifestyle brands.',
+      fr: 'Idéal pour : restaurants, marques alimentaires, hospitality, retail et commerces',
+      en: 'Ideal for: restaurants, food & beverage, hospitality, retail, and lifestyle brands',
     },
     ctaText: {
       fr: 'Démarrer une publicité courte →',
@@ -55,16 +55,16 @@ export const THREE_SERVICES: ServiceFamily[] = [
       en: 'PRODUCT & BRAND FILMS',
     },
     tagline: {
-      fr: 'Films produit, lancements et concepts visuels pour marques.',
-      en: 'Product films, brand launches and cinematic visual concepts.',
+      fr: 'Films produit, lancements et concepts visuels pour marques',
+      en: 'Product films, brand launches and cinematic visual concepts',
     },
     description: {
-      fr: 'Mise en valeur cinématique de votre produit : éclairage studio, textures détaillées, univers visuel affirmé et scénarisation valorisant vos caractéristiques uniques.',
-      en: 'Cinematic showcase of your product: studio lighting, rich textural detail, distinctive brand aesthetic, and narrative pacing highlighting your key attributes.',
+      fr: 'Mise en valeur cinématique de votre produit : éclairage studio, textures détaillées, univers visuel affirmé et scénarisation valorisant vos caractéristiques uniques',
+      en: 'Cinematic showcase of your product: studio lighting, rich textural detail, distinctive brand aesthetic, and narrative pacing highlighting your key attributes',
     },
     examples: {
-      fr: 'Idéal pour : lancements produits, e-commerce, cosmétique, mode et design.',
-      en: 'Ideal for: product launches, e-commerce, cosmetics, fashion and design brands.',
+      fr: 'Idéal pour : lancements produits, e-commerce, cosmétique, mode et design',
+      en: 'Ideal for: product launches, e-commerce, cosmetics, fashion and design brands',
     },
     ctaText: {
       fr: 'Créer un film produit →',
@@ -80,16 +80,16 @@ export const THREE_SERVICES: ServiceFamily[] = [
       en: 'AGENCY / WHITE-LABEL',
     },
     tagline: {
-      fr: 'Production créative externalisée pour agences, livrée en marque blanche.',
-      en: 'Outsourced creative production for agencies, delivered white-label.',
+      fr: 'Production créative externalisée pour agences, livrée en marque blanche',
+      en: 'Outsourced creative production for agencies, delivered white-label',
     },
     description: {
-      fr: 'Partenaire de production agile pour vos comptes clients : concepts publicitaires courts, déclinaisons rapides et exécution visuelle haute fidélité intégrée à vos plannings de campagne.',
-      en: 'Agile creative production partner for agency client rosters: short-form ad concepts, rapid variations, and high-fidelity visual execution on tight schedules.',
+      fr: 'Partenaire de production agile pour vos comptes clients : concepts publicitaires courts, déclinaisons rapides et exécution visuelle haute fidélité intégrée à vos plannings de campagne',
+      en: 'Agile creative production partner for agency client rosters: short-form ad concepts, rapid variations, and high-fidelity visual execution on tight schedules',
     },
     examples: {
-      fr: 'Idéal pour : agences de publicité, studios digitaux, directeurs de création et médias.',
-      en: 'Ideal for: ad agencies, creative studios, art directors, and media agencies.',
+      fr: 'Idéal pour : agences de publicité, studios digitaux, directeurs de création et médias',
+      en: 'Ideal for: ad agencies, creative studios, art directors, and media agencies',
     },
     ctaText: {
       fr: 'Échanger en marque blanche →',

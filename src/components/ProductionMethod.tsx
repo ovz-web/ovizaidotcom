@@ -17,31 +17,31 @@ export default function ProductionMethod({ lang }: ProductionMethodProps) {
       num: '01',
       title: isFr ? 'BRIEF' : 'BRIEF',
       lead: isFr
-        ? 'Nous définissons le produit, le message et l’objectif.'
-        : 'We define the product, the core message, and your campaign objective.',
+        ? 'Nous définissons le produit, le message et l’objectif'
+        : 'We define the product, the core message, and your campaign objective',
       details: isFr
-        ? 'Vous partagez vos éléments (produit, identité, logo, ton) et vos intentions. Nous cadrons le format et le calendrier de livraison.'
-        : 'You share your brand assets (product, logo, style, tone) and goals. We lock in the format, schedule and delivery timeline.',
+        ? 'Vous partagez vos éléments (produit, identité, logo, ton) et vos intentions. Nous cadrons le format et le calendrier de livraison'
+        : 'You share your brand assets (product, logo, style, tone) and goals. We lock in the format, schedule and delivery timeline',
     },
     {
       num: '02',
       title: isFr ? 'DIRECTION' : 'DIRECTION',
       lead: isFr
-        ? 'OVIZai développe le concept et la direction visuelle.'
-        : 'OVIZai develops the creative concept and visual direction.',
+        ? 'OVIZai développe le concept et la direction visuelle'
+        : 'OVIZai develops the creative concept and visual direction',
       details: isFr
-        ? 'Storyboard, intentions de plans, composition visuelle et ambiance sonore validés en amont pour garantir la cohérence du film.'
-        : 'Storyboard, shot intentions, visual framing and sonic moodboard aligned upfront to guarantee film cohesion.',
+        ? 'Storyboard, intentions de plans, composition visuelle et ambiance sonore validés en amont pour garantir la cohérence du film'
+        : 'Storyboard, shot intentions, visual framing and sonic moodboard aligned upfront to guarantee film cohesion',
     },
     {
       num: '03',
       title: isFr ? 'PRODUCTION' : 'PRODUCTION',
       lead: isFr
-        ? 'Nous produisons, montons et finalisons la publicité.'
-        : 'We produce, edit, design sound, and master the final commercial.',
+        ? 'Nous produisons, montons et finalisons la publicité'
+        : 'We produce, edit, design sound, and master the final commercial',
       details: isFr
-        ? 'Génération visuelle haute fidélité, animation, étalonnage couleur cinéma, sound design immersif et intégration de votre logo final.'
-        : 'High-fidelity visual generation, animation, cinematic color grading, immersive sound design, and clean end-card branding.',
+        ? 'Génération visuelle haute fidélité, animation, étalonnage couleur cinéma, sound design immersif et intégration de votre logo final'
+        : 'High-fidelity visual generation, animation, cinematic color grading, immersive sound design, and clean end-card branding',
     },
   ];
 

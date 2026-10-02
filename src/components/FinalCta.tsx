@@ -35,8 +35,8 @@ export default function FinalCta({ lang }: FinalCtaProps) {
 
         <p className="text-base sm:text-lg text-muted mb-8 sm:mb-10 leading-relaxed text-balance">
           {isFr
-            ? 'Décrivez votre produit ou marque en deux minutes. Nous revenons vers vous rapidement avec une orientation créative et les prochaines étapes.'
-            : 'Outline your product or brand in two minutes. We will respond promptly with creative guidance and next steps.'}
+            ? 'Décrivez votre produit ou marque en deux minutes — nous revenons vers vous rapidement avec une orientation créative et les prochaines étapes'
+            : 'Outline your product or brand in two minutes — we will respond promptly with creative guidance and next steps'}
         </p>
 
         <Link

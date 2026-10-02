@@ -46,8 +46,7 @@ export default function NotFound() {
           </div>
 
           <p className="text-sm text-muted leading-relaxed font-sans">
-            La page recherchée n’existe pas ou a été déplacée.
-            Retournez à l’accueil pour découvrir nos réalisations et notre offre de lancement.
+            La page recherchée n’existe pas ou a été déplacée — retournez à l’accueil pour découvrir nos services et notre offre de lancement
           </p>
 
           <div className="pt-2">

@@ -38,7 +38,7 @@ export default function HeroBrutalist({
         </div>
 
         {/* Headline — Deux phrases distinctes, chacune sur sa ligne, sans point */}
-        <h1 className="font-display font-extrabold text-[clamp(1.45rem,4.4vw,4.25rem)] tracking-tight leading-[1.08] text-fg uppercase mb-6 sm:mb-8 text-center">
+        <h1 className="font-display font-extrabold text-[clamp(1.05rem,5.2vw,4.5rem)] tracking-tight leading-[1.08] text-fg uppercase mb-6 sm:mb-8 text-center">
           {isFr ? (
             <>
               <span className="block whitespace-nowrap">DES IDÉES IMPOSSIBLES</span>
@@ -55,8 +55,8 @@ export default function HeroBrutalist({
         {/* Sub-headline — Une phrase = un bloc logique, sans division artificielle ni point */}
         <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
           {isFr
-            ? 'OVIZai conçoit des publicités courtes pour marques, produits et établissements de l’idée au film final'
-            : 'OVIZai creates short-form ads for brands, products and businesses from concept to final film'}
+            ? 'OVIZai conçoit des publicités courtes pour marques, produits et établissements — de l’idée au film final'
+            : 'OVIZai creates short-form ads for brands, products and businesses — from concept to final film'}
         </p>
 
         {/* Dual Commercial CTAs */}

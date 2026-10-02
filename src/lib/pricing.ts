@@ -85,8 +85,8 @@ export const CUSTOM_PROJECT_OFFER: CustomProjectDetails = {
   badge: { fr: 'SUR DEVIS', en: 'CUSTOM QUOTE' },
   priceText: { fr: 'Sur devis', en: 'Custom quote' },
   description: {
-    fr: 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes sociales complètes, production en marque blanche pour agences ou exigences spécifiques.',
-    en: 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full social campaigns, white-label agency production or custom technical requirements.',
+    fr: 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes sociales complètes, production en marque blanche pour agences ou exigences spécifiques',
+    en: 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full social campaigns, white-label agency production or custom technical requirements',
   },
   includes: {
     fr: [

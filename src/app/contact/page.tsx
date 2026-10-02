@@ -28,8 +28,8 @@ function ContactContent() {
           </h1>
           <p className="text-base sm:text-lg text-muted max-w-lg mx-auto">
             {isFr
-              ? 'Décrivez votre produit ou établissement en quelques lignes. Nous revenons vers vous avec une orientation créative et les prochaines étapes.'
-              : 'Outline your product or brand in a few lines. We will get back to you promptly with creative guidance and next steps.'}
+              ? 'Décrivez votre produit ou établissement en quelques lignes — nous revenons vers vous avec une orientation créative et les prochaines étapes'
+              : 'Outline your product or brand in a few lines — we will get back to you promptly with creative guidance and next steps'}
           </p>
         </div>
 

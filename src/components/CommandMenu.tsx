@@ -102,7 +102,7 @@ export default function CommandMenu({ lang }: CommandMenuProps) {
                 <span className="font-display font-bold text-sm sm:text-base text-fg tracking-wide uppercase group-hover:text-gold transition-colors shrink-0">
                   {item.title}
                 </span>
-                <span className="text-xs sm:text-sm text-muted/70 font-sans truncate">
+                <span className="text-xs sm:text-sm text-muted/70 font-sans">
                   {item.desc}
                 </span>
               </div>

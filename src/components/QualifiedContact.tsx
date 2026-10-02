@@ -70,16 +70,16 @@ export default function QualifiedContact({ lang }: QualifiedContactProps) {
         setErrorMessage(
           data.error ||
             (isFr
-              ? 'Une erreur est survenue lors de l’envoi. Veuillez réessayer ou écrire à contact@ovizai.com.'
-              : 'An error occurred. Please try again or write to contact@ovizai.com.')
+              ? 'Une erreur est survenue lors de l’envoi. Veuillez réessayer ou écrire à contact@ovizai.com'
+              : 'An error occurred. Please try again or write to contact@ovizai.com')
         );
       }
     } catch (err: any) {
       setStatus('error');
       setErrorMessage(
         isFr
-          ? 'Connexion interrompue. Veuillez vérifier votre réseau ou écrire à contact@ovizai.com.'
-          : 'Network error. Please check your connection or contact contact@ovizai.com directly.'
+          ? 'Connexion interrompue. Veuillez vérifier votre réseau ou écrire à contact@ovizai.com'
+          : 'Network error. Please check your connection or contact contact@ovizai.com directly'
       );
     }
   };

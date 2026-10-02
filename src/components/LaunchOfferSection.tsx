@@ -117,8 +117,8 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
           </div>
           <p className="text-sm text-muted leading-relaxed">
             {isFr
-              ? 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes complètes, production en marque blanche pour agences ou exigences particulières.'
-              : 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full campaigns, white-label agency production or custom technical requests.'}
+              ? 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes complètes, production en marque blanche pour agences ou exigences particulières'
+              : 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full campaigns, white-label agency production or custom technical requests'}
           </p>
         </div>
 
