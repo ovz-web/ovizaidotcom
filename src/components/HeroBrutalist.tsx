@@ -52,17 +52,25 @@ export default function HeroBrutalist({
           )}
         </h1>
 
-        {/* Sub-headline — phrases organisées, sans point à la fin */}
-        <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10 flex flex-col items-center text-center">
+        {/* Sub-headline — phrases organisées sans saut de ligne disgracieux, sans point */}
+        <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-3xl sm:max-w-4xl leading-relaxed mb-8 sm:mb-10 text-center flex flex-col items-center">
           {isFr ? (
             <>
-              <span className="block">OVIZai conçoit des publicités courtes pour marques, produits et établissements</span>
-              <span className="block text-fg/90 mt-1">de l’idée au film final</span>
+              <span className="block sm:whitespace-nowrap">
+                OVIZai conçoit des publicités courtes pour marques, produits et établissements
+              </span>
+              <span className="block text-fg/90 mt-1 sm:whitespace-nowrap">
+                de l’idée au film final
+              </span>
             </>
           ) : (
             <>
-              <span className="block">OVIZai creates short-form ads for brands, products and businesses</span>
-              <span className="block text-fg/90 mt-1">from concept to final film</span>
+              <span className="block sm:whitespace-nowrap">
+                OVIZai creates short-form ads for brands, products and businesses
+              </span>
+              <span className="block text-fg/90 mt-1 sm:whitespace-nowrap">
+                from concept to final film
+              </span>
             </>
           )}
         </p>
