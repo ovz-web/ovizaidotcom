@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'OVIZai METHOD — Guide de Production',
-  description: 'La méthode de production publicitaire OVIZai.',
+  description: 'La méthode de production et direction visuelle derrière les films OVIZai',
   robots: {
     index: false,
     follow: false,
