@@ -40,9 +40,9 @@ export default function NotFound() {
             </h1>
           </div>
 
-          <p className="text-xs sm:text-sm text-muted leading-relaxed font-sans">
-            Le plan recherché n’existe pas dans notre pipeline ou a été déplacé.
-            Retournez à la grille de production principale.
+          <p className="text-sm text-muted leading-relaxed font-sans">
+            La page recherchée n’existe pas ou a été déplacée.
+            Retournez à l’accueil pour découvrir nos réalisations et notre offre de lancement.
           </p>
 
           <div className="pt-2">
@@ -51,15 +51,15 @@ export default function NotFound() {
               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gold hover:bg-gold-bright text-black font-semibold mono text-xs uppercase tracking-wider transition-all"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Retour au Studio</span>
+              <span>Retour à l’accueil</span>
             </Link>
           </div>
         </div>
       </main>
 
-      <footer className="w-full px-4 py-3 border-t border-border/40 text-center relative z-20">
+      <footer className="w-full px-4 py-3 border-t border-white/[0.08] text-center relative z-20">
         <span className="mono text-[10px] text-muted">
-          © 2026 OVIZai Studio · AI Video Production
+          © 2026 OVIZai · Creative Ad Studio · Worldwide
         </span>
       </footer>
     </div>
