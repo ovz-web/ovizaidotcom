@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, ArrowUpRight } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Language } from '@/types';
 
 interface FooterProps {
@@ -12,43 +12,40 @@ interface FooterProps {
   onShowToast?: (msg: string) => void;
 }
 
-export default function Footer({ lang, onToggleLang, onShowToast }: FooterProps) {
+export default function Footer({ lang }: FooterProps) {
   const isFr = lang === 'fr';
 
   return (
     <footer className="border-t border-white/[0.08] bg-[#050505] py-12 sm:py-16 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        {/* Brand identity */}
+        {/* Brand identity: Real OVIZai Logo */}
         <div>
           <Link
             href="/"
             className="inline-block mb-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
-            aria-label="OVIZai — Accueil"
+            aria-label={isFr ? 'OVIZai — Accueil' : 'OVIZai — Home'}
           >
             <Image
               src="/logo.png"
-              alt="OVIZai"
-              width={110}
-              height={36}
+              alt={isFr ? 'OVIZai — Studio de création publicitaire' : 'OVIZai — Creative Ad Studio'}
+              width={120}
+              height={63}
               className="h-7 sm:h-8 w-auto object-contain mix-blend-screen"
             />
           </Link>
-          <p className="text-sm text-muted">
-            {isFr ? 'Studio de Création Publicitaire' : 'Creative Ad Studio'} · Worldwide
+          <p className="text-sm font-medium text-fg/90">
+            Creative Ad Studio
           </p>
-          <p className="text-xs text-muted/60 mt-1">
+          <p className="text-xs text-muted mt-0.5">
+            Worldwide
+          </p>
+          <p className="text-xs text-muted/60 mt-3">
             © {new Date().getFullYear()} OVIZai Studio · {isFr ? 'Tous droits réservés' : 'All rights reserved'}
           </p>
         </div>
 
-        {/* Primary nav links */}
-        <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-sm font-medium">
-          <Link href="/services" className="text-muted hover:text-fg transition-colors">
-            Services
-          </Link>
-          <Link href="/tarifs" className="text-muted hover:text-fg transition-colors">
-            {isFr ? 'Tarifs' : 'Pricing'}
-          </Link>
+        {/* Minimal Links: Contact, Instagram, CGV, Confidentialité, Mentions légales */}
+        <div className="flex flex-wrap items-center gap-5 sm:gap-7 text-xs sm:text-sm">
           <Link href="/contact" className="text-muted hover:text-fg transition-colors">
             Contact
           </Link>
@@ -56,33 +53,20 @@ export default function Footer({ lang, onToggleLang, onShowToast }: FooterProps)
             href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-muted hover:text-gold transition-colors"
+            className="inline-flex items-center gap-1.5 text-muted hover:text-gold transition-colors"
           >
-            <Instagram className="w-4 h-4" />
+            <Instagram className="w-3.5 h-3.5" />
             <span>Instagram</span>
           </a>
-          {onToggleLang && (
-            <button
-              type="button"
-              onClick={onToggleLang}
-              className="text-xs mono uppercase text-muted hover:text-gold px-2 py-1 rounded border border-white/[0.08]"
-              aria-label={isFr ? 'Basculer en anglais' : 'Switch to French'}
-            >
-              {isFr ? 'EN' : 'FR'}
-            </button>
-          )}
-        </div>
-
-        {/* Legal links */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-muted/80 mono border-t md:border-t-0 pt-4 md:pt-0 w-full md:w-auto border-white/[0.04]">
-          <Link href="/cgv" className="hover:text-fg transition-colors">
+          <span className="text-white/[0.12] hidden sm:inline select-none">|</span>
+          <Link href="/cgv" className="text-muted/80 hover:text-fg transition-colors">
             CGV
           </Link>
-          <Link href="/confidentialite" className="hover:text-fg transition-colors">
+          <Link href="/confidentialite" className="text-muted/80 hover:text-fg transition-colors">
             {isFr ? 'Confidentialité' : 'Privacy'}
           </Link>
-          <Link href="/mentions-legales" className="hover:text-fg transition-colors">
-            {isFr ? 'Mentions Légales' : 'Legal'}
+          <Link href="/mentions-legales" className="text-muted/80 hover:text-fg transition-colors">
+            {isFr ? 'Mentions légales' : 'Legal'}
           </Link>
         </div>
       </div>

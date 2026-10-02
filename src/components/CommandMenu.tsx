@@ -1,59 +1,123 @@
 'use client';
 
 import React from 'react';
-import { Film, Tag, Cpu, Mail, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
 import { Language } from '@/types';
-import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
+import { hasPublishedProjects } from '@/lib/portfolio';
 
 interface CommandMenuProps {
   lang: Language;
-  onShowToast?: (msg: string) => void;
+}
+
+interface NavEntry {
+  id: string;
+  num: string;
+  title: string;
+  desc: string;
+  href: string;
 }
 
 /**
- * Boîte de menu principale OVIZai — Navigation claire et tactile au centre de la page.
+ * Boîte de navigation principale OVIZai — Élément éditorial fort au centre de la homepage.
+ * Design épuré, fond sombre, bordure fine, index numérique discret, flèche à droite,
+ * grandes zones cliquables pleine largeur.
  */
 export default function CommandMenu({ lang }: CommandMenuProps) {
   const isFr = lang === 'fr';
+  const hasWork = hasPublishedProjects();
 
-  const items: ListMenuItem[] = [
+  const rawEntries: Array<{
+    id: string;
+    title: { fr: string; en: string };
+    desc: { fr: string; en: string };
+    href: string;
+  }> = [
+    ...(hasWork
+      ? [
+          {
+            id: 'nav-work',
+            title: { fr: 'WORK', en: 'WORK' },
+            desc: { fr: 'Voir les projets', en: 'View projects' },
+            href: '/services#portfolio',
+          },
+        ]
+      : []),
     {
       id: 'nav-services',
-      title: isFr ? '01 // Services Publicitaires' : '01 // Advertising Services',
-      subtitle: isFr ? 'Publicités courtes, films produit & marque blanche' : 'Short-form ads, product films & agency',
+      title: { fr: 'SERVICES', en: 'SERVICES' },
+      desc: { fr: 'Ce que nous créons', en: 'What we create' },
       href: '/services',
-      icon: Film,
-      trailing: '→',
     },
     {
       id: 'nav-tarifs',
-      title: isFr ? '02 // Offre de Lancement (530 USD)' : '02 // Launch Offer (530 USD)',
-      subtitle: isFr ? '10–15 s · Format 9:16 · 265 USD d’acompte' : '10–15 sec · 9:16 format · $265 deposit',
+      title: { fr: 'OFFRE DE LANCEMENT', en: 'LAUNCH OFFER' },
+      desc: { fr: '530 USD', en: '530 USD' },
       href: '/tarifs',
-      icon: Tag,
-      trailing: '→',
     },
     {
       id: 'nav-method',
-      title: isFr ? '03 // Méthode de Production' : '03 // Production Method',
-      subtitle: isFr ? 'Brief → Direction visuelle → Production' : 'Brief → Creative direction → Production',
+      title: { fr: 'MÉTHODE', en: 'METHOD' },
+      desc: { fr: 'Brief → Direction → Production', en: 'Brief → Direction → Production' },
       href: '#methode',
-      icon: Cpu,
-      trailing: '→',
     },
     {
       id: 'nav-contact',
-      title: isFr ? '04 // Démarrer un Projet' : '04 // Start a Project',
-      subtitle: isFr ? 'Devis gratuit & réponse sous 24h ouvrées' : 'Free quote & response within 24 business hours',
+      title: { fr: 'DÉMARRER UN PROJET', en: 'START A PROJECT' },
+      desc: {
+        fr: 'Parlez-nous de ce que vous souhaitez promouvoir',
+        en: 'Tell us what you want to promote',
+      },
       href: '/contact',
-      icon: Mail,
-      trailing: '→',
     },
   ];
 
+  // Auto-number entries (01, 02, 03, ...)
+  const entries: NavEntry[] = rawEntries.map((item, idx) => ({
+    id: item.id,
+    num: String(idx + 1).padStart(2, '0'),
+    title: item.title[lang],
+    desc: item.desc[lang],
+    href: item.href,
+  }));
+
   return (
-    <section className="px-4 max-w-xl mx-auto my-6 sm:my-10" aria-label={isFr ? 'Accès rapide aux sections' : 'Quick navigation'}>
-      <ListMenuCard items={items} />
+    <section
+      id="menu-principal"
+      className="max-w-3xl mx-auto px-4 sm:px-6 my-8 sm:my-14"
+      aria-label={isFr ? 'Navigation principale OVIZai' : 'OVIZai main navigation'}
+    >
+      <div className="bg-[#0c0b0a] border border-white/[0.08] hover:border-white/[0.14] rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 divide-y divide-white/[0.06] shadow-2xl transition-colors">
+        {entries.map((item) => (
+          <Link
+            key={item.id}
+            href={item.href}
+            className="group w-full flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4 py-4 sm:py-5 px-4 sm:px-6 hover:bg-white/[0.03] rounded-xl transition-all cursor-pointer text-left"
+          >
+            {/* Left side: index + title + short description */}
+            <div className="flex items-baseline gap-3 sm:gap-4 min-w-0 flex-1">
+              <span className="mono text-xs sm:text-sm text-gold/80 font-bold tracking-widest shrink-0 select-none">
+                {item.num}
+              </span>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 min-w-0">
+                <span className="font-display font-bold text-sm sm:text-base text-fg tracking-wide uppercase group-hover:text-gold transition-colors shrink-0">
+                  {item.title}
+                </span>
+                <span className="text-xs sm:text-sm text-muted/70 font-sans truncate">
+                  {item.desc}
+                </span>
+              </div>
+            </div>
+
+            {/* Right side: sleek trailing arrow */}
+            <span
+              className="mono text-sm sm:text-base text-muted/40 group-hover:text-gold group-hover:translate-x-1 transition-all shrink-0 self-end sm:self-center ml-2"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }

@@ -26,7 +26,7 @@ export default function HeroBrutalist({
         aria-hidden="true"
       />
 
-      <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm mb-6 sm:mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
@@ -37,8 +37,8 @@ export default function HeroBrutalist({
           </span>
         </div>
 
-        {/* Headline — chaque phrase sur une seule ligne sans point */}
-        <h1 className="font-display font-extrabold text-[clamp(1.45rem,6.2vw,5.5rem)] tracking-tight leading-[1.08] text-fg uppercase mb-6 sm:mb-8 flex flex-col items-center">
+        {/* Headline — Deux phrases distinctes, chacune sur sa ligne, sans point */}
+        <h1 className="font-display font-extrabold text-[clamp(1.45rem,4.4vw,4.25rem)] tracking-tight leading-[1.08] text-fg uppercase mb-6 sm:mb-8 text-center">
           {isFr ? (
             <>
               <span className="block whitespace-nowrap">DES IDÉES IMPOSSIBLES</span>
@@ -52,27 +52,11 @@ export default function HeroBrutalist({
           )}
         </h1>
 
-        {/* Sub-headline — phrases organisées sans saut de ligne disgracieux, sans point */}
-        <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-3xl sm:max-w-4xl leading-relaxed mb-8 sm:mb-10 text-center flex flex-col items-center">
-          {isFr ? (
-            <>
-              <span className="block sm:whitespace-nowrap">
-                OVIZai conçoit des publicités courtes pour marques, produits et établissements
-              </span>
-              <span className="block text-fg/90 mt-1 sm:whitespace-nowrap">
-                de l’idée au film final
-              </span>
-            </>
-          ) : (
-            <>
-              <span className="block sm:whitespace-nowrap">
-                OVIZai creates short-form ads for brands, products and businesses
-              </span>
-              <span className="block text-fg/90 mt-1 sm:whitespace-nowrap">
-                from concept to final film
-              </span>
-            </>
-          )}
+        {/* Sub-headline — Une phrase = un bloc logique, sans division artificielle ni point */}
+        <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
+          {isFr
+            ? 'OVIZai conçoit des publicités courtes pour marques, produits et établissements de l’idée au film final'
+            : 'OVIZai creates short-form ads for brands, products and businesses from concept to final film'}
         </p>
 
         {/* Dual Commercial CTAs */}

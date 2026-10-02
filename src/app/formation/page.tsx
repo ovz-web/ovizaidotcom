@@ -26,13 +26,13 @@ export default function FormationPage() {
           </div>
 
           <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-fg uppercase tracking-tight">
-            {isFr ? 'GUIDE EN PRÉPARATION.' : 'GUIDE IN PROGRESS.'}
+            {isFr ? 'GUIDE EN PRÉPARATION' : 'GUIDE IN PROGRESS'}
           </h1>
 
           <p className="text-base sm:text-lg text-muted max-w-md mx-auto leading-relaxed">
             {isFr
-              ? 'La méthode complète de production OVIZai sera publiée prochainement.'
-              : 'The complete OVIZai production methodology will be released soon.'}
+              ? 'La méthode complète de production OVIZai sera publiée prochainement'
+              : 'The complete OVIZai production methodology will be released soon'}
           </p>
 
           <div className="pt-4">

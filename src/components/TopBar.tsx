@@ -74,20 +74,17 @@ export default function TopBar({
         {/* Logo OVIZai */}
         <Link
           href="/"
-          className="group flex items-center gap-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg py-1 px-1 -ml-1"
-          aria-label="OVIZai — Accueil"
+          className="group flex items-center text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg py-1 px-1 -ml-1"
+          aria-label={isFr ? 'OVIZai — Accueil' : 'OVIZai — Home'}
         >
           <Image
             src="/logo.png"
-            alt="OVIZai"
-            width={110}
-            height={36}
-            className="h-7 sm:h-8 w-auto object-contain mix-blend-screen"
+            alt={isFr ? 'OVIZai — Studio de création publicitaire' : 'OVIZai — Creative Ad Studio'}
+            width={120}
+            height={63}
+            className="h-6 sm:h-7 md:h-8 w-auto object-contain mix-blend-screen"
             priority
           />
-          <span className="hidden md:inline-block text-[11px] mono text-muted uppercase tracking-widest pl-2 border-l border-white/[0.1]">
-            Studio
-          </span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -2,10 +2,13 @@ import { test, expect } from '@playwright/test';
 
 test.describe('OVIZai Strategic Redesign Verification', () => {
   const viewports = [
-    { name: 'iPhone SE', width: 375, height: 667 },
-    { name: 'iPhone 14/15', width: 393, height: 852 },
-    { name: 'iPad / Tablet', width: 768, height: 1024 },
-    { name: 'Desktop', width: 1440, height: 900 },
+    { name: '375x667 (iPhone SE)', width: 375, height: 667 },
+    { name: '393x852 (iPhone 14/15)', width: 393, height: 852 },
+    { name: '430x932 (iPhone Pro Max)', width: 430, height: 932 },
+    { name: '768x1024 (iPad Portrait)', width: 768, height: 1024 },
+    { name: '1024x768 (iPad Landscape)', width: 1024, height: 768 },
+    { name: '1440x900 (Desktop)', width: 1440, height: 900 },
+    { name: '1920x1080 (Full HD)', width: 1920, height: 1080 },
   ];
 
   const pages = [
@@ -58,14 +61,19 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
     }
 
     // Check official logo images in TopBar and Footer
-    const headerLogo = page.locator('header img[alt="OVIZai"]');
+    const headerLogo = page.locator('header img[alt*="OVIZai"]');
     await expect(headerLogo).toBeVisible();
-    const footerLogo = page.locator('footer img[alt="OVIZai"]');
+    const footerLogo = page.locator('footer img[alt*="OVIZai"]');
     await expect(footerLogo).toBeVisible();
 
     // Check CommandMenu box presence on Homepage
-    const commandMenu = page.locator('section[aria-label*="Accès rapide"], section[aria-label*="navigation"]');
+    const commandMenu = page.locator('#menu-principal');
     await expect(commandMenu).toBeVisible();
+    await expect(commandMenu).toContainText('SERVICES');
+    await expect(commandMenu).toContainText('OFFRE DE LANCEMENT');
+    await expect(commandMenu).toContainText('530 USD');
+    await expect(commandMenu).toContainText('MÉTHODE');
+    await expect(commandMenu).toContainText('DÉMARRER UN PROJET');
 
     // Check pricing: 530 USD, 265 USD deposit
     const bodyText = await page.textContent('body');

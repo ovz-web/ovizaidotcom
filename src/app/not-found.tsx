@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Film } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 
 export const metadata = {
@@ -18,11 +19,15 @@ export default function NotFound() {
       <FilmGrain />
 
       <header className="w-full px-4 sm:px-6 py-4 flex items-center justify-between border-b border-border/40 bg-black/60 backdrop-blur-md relative z-20">
-        <Link href="/" className="flex items-center gap-2 group">
-          <Film className="w-4 h-4 text-gold" />
-          <span className="mono text-xs font-bold tracking-widest text-fg group-hover:text-gold transition-colors">
-            OVIZAI STUDIO
-          </span>
+        <Link href="/" className="flex items-center group py-1" aria-label="OVIZai — Accueil">
+          <Image
+            src="/logo.png"
+            alt="OVIZai"
+            width={100}
+            height={52}
+            className="h-6 sm:h-7 w-auto object-contain mix-blend-screen"
+            priority
+          />
         </Link>
         <span className="mono text-[10px] text-muted uppercase tracking-widest">
           ERROR 404

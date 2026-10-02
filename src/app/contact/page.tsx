@@ -24,7 +24,7 @@ function ContactContent() {
             </span>
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
-            {isFr ? 'DÉMARRER UN PROJET.' : 'START A PROJECT.'}
+            {isFr ? 'DÉMARRER UN PROJET' : 'START A PROJECT'}
           </h1>
           <p className="text-base sm:text-lg text-muted max-w-lg mx-auto">
             {isFr
