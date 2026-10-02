@@ -154,53 +154,48 @@ export default function CentralIndex({ lang }: CentralIndexProps) {
                           </Link>
                         </div>
 
-                        {/* Deux options : Offre de lancement (Pilote) & Projet sur mesure */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                          {/* Offre de lancement */}
-                          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.08] hover:border-gold/40 transition-colors flex flex-col justify-between">
-                            <div>
-                              <div className="flex items-baseline justify-between mb-2">
-                                <span className="mono text-xs font-bold uppercase tracking-wider text-gold">
-                                  {isFr ? 'OFFRE DE LANCEMENT' : 'LAUNCH OFFER'}
-                                </span>
-                                <span className="font-display font-bold text-sm text-fg">530 USD</span>
-                              </div>
-                              <p className="text-xs text-muted leading-relaxed mb-4">
-                                {isFr
-                                  ? 'Un projet publicitaire de 10–15 secondes pour découvrir le studio'
-                                  : 'A 10–15 second commercial ad project to experience the studio'}
-                              </p>
+                        {/* Deux options éditoriales simples : sans boîte arrondie, sans background différent */}
+                        <div className="border-t border-white/[0.08] divide-y divide-white/[0.06] pt-1">
+                          {/* Ligne 1: Offre de lancement */}
+                          <Link
+                            href="/tarifs"
+                            className="group block py-3.5 hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded"
+                          >
+                            <div className="flex items-baseline justify-between gap-4 mb-1">
+                              <span className="mono text-xs uppercase tracking-wider text-gold font-bold">
+                                {isFr ? 'OFFRE DE LANCEMENT' : 'LAUNCH OFFER'}
+                              </span>
+                              <span className="font-display text-sm font-semibold text-fg group-hover:text-gold transition-colors flex items-center gap-1.5">
+                                <span>530 USD</span>
+                                <span className="text-gold group-hover:translate-x-1 transition-transform">→</span>
+                              </span>
                             </div>
-                            <Link
-                              href="/tarifs"
-                              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-gold hover:text-gold-bright transition-colors"
-                            >
-                              <span>{isFr ? 'VOIR L’OFFRE →' : 'VIEW OFFER →'}</span>
-                            </Link>
-                          </div>
+                            <p className="text-xs text-muted/80 leading-relaxed">
+                              {isFr
+                                ? 'Un premier projet publicitaire pour découvrir le studio'
+                                : 'A first commercial project to experience the studio'}
+                            </p>
+                          </Link>
 
-                          {/* Projet sur mesure */}
-                          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.08] hover:border-gold/40 transition-colors flex flex-col justify-between">
-                            <div>
-                              <div className="flex items-baseline justify-between mb-2">
-                                <span className="mono text-xs font-bold uppercase tracking-wider text-fg">
-                                  {isFr ? 'PROJET SUR MESURE' : 'CUSTOM PROJECT'}
-                                </span>
-                                <span className="mono text-xs text-muted">{isFr ? 'Sur devis' : 'Quote'}</span>
-                              </div>
-                              <p className="text-xs text-muted leading-relaxed mb-4">
-                                {isFr
-                                  ? 'Films, campagnes et productions adaptés au périmètre de votre projet'
-                                  : 'Films, campaigns and productions tailored to your project scope'}
-                              </p>
+                          {/* Ligne 2: Projet sur mesure */}
+                          <Link
+                            href="/contact?offer=custom"
+                            className="group block py-3.5 hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded"
+                          >
+                            <div className="flex items-baseline justify-between gap-4 mb-1">
+                              <span className="mono text-xs uppercase tracking-wider text-fg/90 font-bold group-hover:text-gold transition-colors">
+                                {isFr ? 'PROJET SUR MESURE' : 'CUSTOM PROJECT'}
+                              </span>
+                              <span className="text-muted group-hover:text-gold group-hover:translate-x-1 transition-all">
+                                →
+                              </span>
                             </div>
-                            <Link
-                              href="/contact?offer=custom"
-                              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-fg hover:text-gold transition-colors"
-                            >
-                              <span>{isFr ? 'PARLER DU PROJET →' : 'DISCUSS PROJECT →'}</span>
-                            </Link>
-                          </div>
+                            <p className="text-xs text-muted/80 leading-relaxed">
+                              {isFr
+                                ? 'Films, campagnes et productions selon le projet'
+                                : 'Films, campaigns and productions tailored to the project'}
+                            </p>
+                          </Link>
                         </div>
                       </div>
                     )}

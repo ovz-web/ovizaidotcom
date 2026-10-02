@@ -64,9 +64,9 @@ test.describe('OVIZai Radical Simplification & Hybrid Architecture', () => {
     // Contains Launch Offer 530 USD and Custom Project
     await expect(studioContent).toContainText('OFFRE DE LANCEMENT');
     await expect(studioContent).toContainText('530 USD');
-    await expect(studioContent).toContainText('VOIR L’OFFRE →');
+    await expect(studioContent).toContainText('Un premier projet publicitaire pour découvrir le studio');
     await expect(studioContent).toContainText('PROJET SUR MESURE');
-    await expect(studioContent).toContainText('PARLER DU PROJET →');
+    await expect(studioContent).toContainText('Films, campagnes et productions selon le projet');
 
     // 2. Open FORMATION -> STUDIO should automatically close
     await formationButton.click();

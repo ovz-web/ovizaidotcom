@@ -29,7 +29,7 @@ test.describe('Visual Proof Screenshots', () => {
     // 5. Services Editorial Desktop (Le Labo Noir style 4 disciplines)
     await page.goto('/services');
     await page.waitForLoadState('networkidle');
-    await page.screenshot({ path: path.join(outputDir, 'services_editorial_desktop.png') });
+    await page.screenshot({ path: path.join(outputDir, 'services_editorial_desktop.png'), fullPage: true });
 
     // 6. Tarifs Page (Offer 530 USD & Custom Quote)
     await page.goto('/tarifs');

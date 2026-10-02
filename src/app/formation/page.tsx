@@ -62,8 +62,8 @@ export default function FormationPage() {
             ))}
           </div>
 
-          {/* Statut & Action */}
-          <div className="p-6 rounded-2xl bg-[#0b0b0a] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          {/* Statut & Action — Épure éditoriale avec filet fin */}
+          <div className="border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
               <span className="mono text-xs uppercase tracking-widest text-gold font-bold block mb-1">
                 {isFr ? 'STATUT' : 'STATUS'}

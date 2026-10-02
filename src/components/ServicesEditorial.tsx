@@ -177,54 +177,49 @@ export default function ServicesEditorial({ lang }: ServicesEditorialProps) {
           })}
         </div>
 
-        {/* Section de conclusion : Deux accès clairs */}
-        <div className="mt-16 sm:mt-24 pt-10 border-t border-white/[0.1] grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Offre de lancement */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#0b0b0a] border border-white/[0.08] flex flex-col justify-between hover:border-gold/40 transition-colors">
-            <div>
-              <div className="flex items-baseline justify-between mb-3">
-                <span className="mono text-xs uppercase tracking-widest text-gold font-bold">
-                  {isFr ? 'OFFRE DE LANCEMENT' : 'LAUNCH OFFER'}
-                </span>
-                <span className="font-display font-extrabold text-base text-fg">530 USD</span>
-              </div>
-              <p className="text-xs text-muted/80 leading-relaxed mb-6">
-                {isFr
-                  ? 'Un projet publicitaire de 10–15 secondes pour tester la méthode et découvrir le studio'
-                  : 'A 10–15 second commercial pilot to experience our methodology and studio speed'}
-              </p>
+        {/* Section de conclusion : Deux entrées éditoriales simples (sans boîtes arrondies, même langage que la liste) */}
+        <div className="mt-16 sm:mt-24 pt-8 border-t border-white/[0.1] divide-y divide-white/[0.08]">
+          {/* Entrée 1: Offre de lancement */}
+          <Link
+            href="/tarifs"
+            className="group block py-8 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-xl hover:bg-white/[0.015] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
+            <div className="flex items-baseline justify-between gap-6 mb-2">
+              <span className="mono text-xs uppercase tracking-widest text-gold font-bold">
+                {isFr ? 'OFFRE DE LANCEMENT' : 'LAUNCH OFFER'}
+              </span>
+              <span className="font-display font-bold text-base text-fg group-hover:text-gold transition-colors flex items-center gap-1.5">
+                <span>530 USD</span>
+                <span className="text-gold group-hover:translate-x-1 transition-transform">→</span>
+              </span>
             </div>
-            <Link
-              href="/tarifs"
-              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gold hover:text-gold-bright transition-colors"
-            >
-              <span>{isFr ? 'VOIR L’OFFRE DE LANCEMENT →' : 'VIEW LAUNCH OFFER →'}</span>
-            </Link>
-          </div>
+            <p className="text-sm sm:text-base text-muted/90 leading-relaxed max-w-2xl">
+              {isFr
+                ? 'Un premier projet publicitaire pour tester la méthode et découvrir le studio'
+                : 'A first commercial project to experience our methodology and studio speed'}
+            </p>
+          </Link>
 
-          {/* Projet sur mesure */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#0b0b0a] border border-white/[0.08] flex flex-col justify-between hover:border-gold/40 transition-colors">
-            <div>
-              <div className="flex items-baseline justify-between mb-3">
-                <span className="mono text-xs uppercase tracking-widest text-fg font-bold">
-                  {isFr ? 'PROJET SUR MESURE' : 'CUSTOM PROJECT'}
-                </span>
-                <span className="mono text-xs text-muted">{isFr ? 'Sur devis' : 'Custom Quote'}</span>
-              </div>
-              <p className="text-xs text-muted/80 leading-relaxed mb-6">
-                {isFr
-                  ? 'Campagnes complètes, films produit, clips ou production créative en marque blanche'
-                  : 'Full brand campaigns, product films, music videos or white-label creative production'}
-              </p>
+          {/* Entrée 2: Projet sur mesure */}
+          <Link
+            href="/contact?offer=custom"
+            className="group block py-8 -mx-4 px-4 sm:-mx-6 sm:px-6 rounded-xl hover:bg-white/[0.015] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
+            <div className="flex items-baseline justify-between gap-6 mb-2">
+              <span className="mono text-xs uppercase tracking-widest text-fg/90 font-bold group-hover:text-gold transition-colors">
+                {isFr ? 'PROJET SUR MESURE' : 'CUSTOM PROJECT'}
+              </span>
+              <span className="text-muted group-hover:text-gold transition-colors flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
+                <span>{isFr ? 'Sur devis' : 'Custom Quote'}</span>
+                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+              </span>
             </div>
-            <Link
-              href="/contact?offer=custom"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gold hover:bg-gold-bright text-black font-semibold text-xs mono uppercase tracking-wider transition-all self-start"
-            >
-              <span>{isFr ? 'PARLER DU PROJET' : 'DISCUSS PROJECT'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-            </Link>
-          </div>
+            <p className="text-sm sm:text-base text-muted/90 leading-relaxed max-w-2xl">
+              {isFr
+                ? 'Films, campagnes et productions selon le projet'
+                : 'Films, campaigns and productions tailored to the project'}
+            </p>
+          </Link>
         </div>
       </div>
     </section>
