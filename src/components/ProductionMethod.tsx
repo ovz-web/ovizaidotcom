@@ -46,7 +46,7 @@ export default function ProductionMethod({ lang }: ProductionMethodProps) {
   ];
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto border-t border-white/[0.06]">
+    <section id="methode" className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto border-t border-white/[0.06]">
       {/* Section Heading */}
       <div className="text-center mb-12 sm:mb-16">
         <div className="inline-flex items-center gap-2 mb-3">

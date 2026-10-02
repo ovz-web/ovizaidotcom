@@ -44,10 +44,22 @@ test.describe('OVIZai Strategic Redesign Verification', () => {
   test('Homepage has exact required copy, 530 USD, 265 USD, and NO 270 USD', async ({ page }) => {
     await page.goto('/');
 
-    // Check Hero copy
+    // Check Hero copy (no periods!)
     const h1 = page.locator('h1');
-    await expect(h1).toContainText('DES IDÉES IMPOSSIBLES.');
-    await expect(h1).toContainText('DES PUBLICITÉS BIEN RÉELLES.');
+    await expect(h1).toContainText('DES IDÉES IMPOSSIBLES');
+    await expect(h1).toContainText('DES PUBLICITÉS BIEN RÉELLES');
+    await expect(h1).not.toContainText('DES IDÉES IMPOSSIBLES.');
+    await expect(h1).not.toContainText('DES PUBLICITÉS BIEN RÉELLES.');
+
+    // Check official logo images in TopBar and Footer
+    const headerLogo = page.locator('header img[alt="OVIZai"]');
+    await expect(headerLogo).toBeVisible();
+    const footerLogo = page.locator('footer img[alt="OVIZai"]');
+    await expect(footerLogo).toBeVisible();
+
+    // Check CommandMenu box presence on Homepage
+    const commandMenu = page.locator('section[aria-label*="Accès rapide"], section[aria-label*="navigation"]');
+    await expect(commandMenu).toBeVisible();
 
     // Check pricing: 530 USD, 265 USD deposit
     const bodyText = await page.textContent('body');

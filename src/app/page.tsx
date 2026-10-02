@@ -4,6 +4,7 @@ import React from 'react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
+import CommandMenu from '@/components/CommandMenu';
 import ServicesGrid from '@/components/ServicesGrid';
 import LaunchOfferSection from '@/components/LaunchOfferSection';
 import ProductionMethod from '@/components/ProductionMethod';
@@ -28,9 +29,12 @@ export default function Home() {
         {/* 1. HERO */}
         <HeroBrutalist lang={lang} />
 
-        {/* 2. SELECTED WORK (renders ONLY when official projects are marked published in portfolio.ts) */}
+        {/* 2. BOÎTE DE MENU PRINCIPALE (Accès direct centralisé) */}
+        <CommandMenu lang={lang} />
 
-        {/* 3. WHAT WE MAKE / SERVICES */}
+        {/* 3. SELECTED WORK (renders ONLY when official projects are marked published in portfolio.ts) */}
+
+        {/* 4. WHAT WE MAKE / SERVICES */}
         <ServicesGrid lang={lang} />
 
         {/* 4. OFFRE DE LANCEMENT (530 USD) */}

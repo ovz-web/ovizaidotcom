@@ -23,7 +23,7 @@ export default function LaunchOfferSection({ lang }: LaunchOfferSectionProps) {
           </span>
         </div>
         <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
-          {isFr ? 'UNE OFFRE SIMPLE. PENSÉE POUR COMMENCER.' : 'ONE SIMPLE OFFER. BUILT TO START.'}
+          {isFr ? 'UNE OFFRE SIMPLE PENSÉE POUR COMMENCER' : 'ONE SIMPLE OFFER BUILT TO START'}
         </h2>
         <p className="text-base sm:text-lg text-muted max-w-xl mx-auto">
           {isFr

@@ -24,11 +24,11 @@ export default function FinalCta({ lang }: FinalCtaProps) {
         <h2 className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl text-fg tracking-tight uppercase leading-[1.1] mb-6">
           {isFr ? (
             <>
-              PARLONS DE VOTRE <span className="text-gold-gradient">PROCHAINE PUBLICITÉ.</span>
+              PARLONS DE VOTRE <span className="text-gold-gradient">PROCHAINE PUBLICITÉ</span>
             </>
           ) : (
             <>
-              LET’S TALK ABOUT YOUR <span className="text-gold-gradient">NEXT AD.</span>
+              LET’S TALK ABOUT YOUR <span className="text-gold-gradient">NEXT AD</span>
             </>
           )}
         </h2>

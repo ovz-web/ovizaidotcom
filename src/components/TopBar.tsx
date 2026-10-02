@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { Language } from '@/types';
@@ -74,10 +75,16 @@ export default function TopBar({
         <Link
           href="/"
           className="group flex items-center gap-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg py-1 px-1 -ml-1"
+          aria-label="OVIZai — Accueil"
         >
-          <span className="font-display font-extrabold text-xl sm:text-2xl tracking-tighter text-fg group-hover:text-gold-bright transition-colors">
-            OVIZ<span className="text-gold">ai</span>
-          </span>
+          <Image
+            src="/logo.png"
+            alt="OVIZai"
+            width={110}
+            height={36}
+            className="h-7 sm:h-8 w-auto object-contain mix-blend-screen"
+            priority
+          />
           <span className="hidden md:inline-block text-[11px] mono text-muted uppercase tracking-widest pl-2 border-l border-white/[0.1]">
             Studio
           </span>

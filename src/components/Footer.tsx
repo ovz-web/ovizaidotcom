@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram, ArrowUpRight } from 'lucide-react';
 import { Language } from '@/types';
 
@@ -21,15 +22,22 @@ export default function Footer({ lang, onToggleLang, onShowToast }: FooterProps)
         <div>
           <Link
             href="/"
-            className="font-display font-extrabold text-2xl tracking-tighter text-fg hover:text-gold transition-colors inline-block mb-2"
+            className="inline-block mb-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded"
+            aria-label="OVIZai — Accueil"
           >
-            OVIZ<span className="text-gold">ai</span>
+            <Image
+              src="/logo.png"
+              alt="OVIZai"
+              width={110}
+              height={36}
+              className="h-7 sm:h-8 w-auto object-contain mix-blend-screen"
+            />
           </Link>
           <p className="text-sm text-muted">
             {isFr ? 'Studio de Création Publicitaire' : 'Creative Ad Studio'} · Worldwide
           </p>
           <p className="text-xs text-muted/60 mt-1">
-            © {new Date().getFullYear()} OVIZai Studio. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}
+            © {new Date().getFullYear()} OVIZai Studio · {isFr ? 'Tous droits réservés' : 'All rights reserved'}
           </p>
         </div>
 

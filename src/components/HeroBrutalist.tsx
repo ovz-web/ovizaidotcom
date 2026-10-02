@@ -37,26 +37,34 @@ export default function HeroBrutalist({
           </span>
         </div>
 
-        {/* Headline */}
-        <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-fg uppercase mb-6 sm:mb-8">
+        {/* Headline — chaque phrase sur une seule ligne sans point */}
+        <h1 className="font-display font-extrabold text-[clamp(1.45rem,6.2vw,5.5rem)] tracking-tight leading-[1.08] text-fg uppercase mb-6 sm:mb-8 flex flex-col items-center">
           {isFr ? (
             <>
-              DES IDÉES IMPOSSIBLES.<br />
-              <span className="text-gold-gradient">DES PUBLICITÉS BIEN RÉELLES.</span>
+              <span className="block whitespace-nowrap">DES IDÉES IMPOSSIBLES</span>
+              <span className="block whitespace-nowrap text-gold-gradient">DES PUBLICITÉS BIEN RÉELLES</span>
             </>
           ) : (
             <>
-              IMPOSSIBLE IDEAS.<br />
-              <span className="text-gold-gradient">REAL ADS.</span>
+              <span className="block whitespace-nowrap">IMPOSSIBLE IDEAS</span>
+              <span className="block whitespace-nowrap text-gold-gradient">REAL ADS</span>
             </>
           )}
         </h1>
 
-        {/* Sub-headline */}
-        <p className="text-lg sm:text-xl md:text-2xl text-muted font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10 text-balance">
-          {isFr
-            ? 'OVIZai conçoit des publicités courtes pour marques, produits et établissements — de l’idée au film final.'
-            : 'OVIZai creates short-form ads for brands, products and businesses — from concept to final film.'}
+        {/* Sub-headline — phrases organisées, sans point à la fin */}
+        <p className="text-base sm:text-lg md:text-xl text-muted font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10 flex flex-col items-center text-center">
+          {isFr ? (
+            <>
+              <span className="block">OVIZai conçoit des publicités courtes pour marques, produits et établissements</span>
+              <span className="block text-fg/90 mt-1">de l’idée au film final</span>
+            </>
+          ) : (
+            <>
+              <span className="block">OVIZai creates short-form ads for brands, products and businesses</span>
+              <span className="block text-fg/90 mt-1">from concept to final film</span>
+            </>
+          )}
         </p>
 
         {/* Dual Commercial CTAs */}
