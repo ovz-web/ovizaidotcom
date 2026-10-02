@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, IBM_Plex_Mono, Syne, Archivo_Black } from 'next/font/google';
+import { Inter, Syne } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
@@ -13,14 +13,6 @@ const inter = Inter({
   display: 'swap',
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-plex-mono',
-  display: 'swap',
-});
-
 const syne = Syne({
   subsets: ['latin'],
   weight: ['700', '800'],
@@ -28,25 +20,28 @@ const syne = Syne({
   display: 'swap',
 });
 
-const archivoBlack = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-archivo-black',
-  display: 'swap',
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ovizai.com'),
-  title: 'OVIZai — AI Art Direction & Cinematography Studio',
-  description: 'Direction artistique IA, films publicitaires narratifs, clips musicaux et pipelines vidéo haute fidélité.',
-  keywords: ['AI Video', 'Direction Artistique IA', 'Cinéma Génératif', 'Production Vidéo IA', 'Animation Virtuelle', 'Post-Production 4K', 'OVIZai'],
+  metadataBase: new URL('https://www.ovizai.com'),
+  title: {
+    default: 'OVIZai — Studio de Publicité Vidéo pour Marques',
+    template: '%s | OVIZai',
+  },
+  description: 'OVIZai conçoit des publicités courtes pour marques, produits et établissements — de l’idée au film final.',
+  keywords: [
+    'Publicité Vidéo',
+    'Short-form Ads',
+    'Studio Créatif Publicitaire',
+    'Production Vidéo Marques',
+    'Films Produits',
+    'OVIZai',
+  ],
   authors: [{ name: 'OVIZai' }],
   alternates: {
-    canonical: 'https://ovizai.com',
+    canonical: 'https://www.ovizai.com',
     languages: {
-      fr: 'https://ovizai.com',
-      en: 'https://ovizai.com',
-      'x-default': 'https://ovizai.com',
+      fr: 'https://www.ovizai.com',
+      en: 'https://www.ovizai.com',
+      'x-default': 'https://www.ovizai.com',
     },
   },
   icons: {
@@ -54,9 +49,9 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'OVIZai — AI Art Direction & Cinematography',
-    description: 'Cinematic AI video for visionaries, brands and artists. No templates, no noise.',
-    url: 'https://ovizai.com',
+    title: 'OVIZai — Studio de Publicité Vidéo pour Marques',
+    description: 'OVIZai conçoit des publicités courtes pour marques, produits et établissements — de l’idée au film final.',
+    url: 'https://www.ovizai.com',
     siteName: 'OVIZai',
     locale: 'fr_FR',
     type: 'website',
@@ -65,14 +60,14 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'OVIZai — AI Art Direction & Cinematography Studio',
+        alt: 'OVIZai — Studio Créatif Publicitaire',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OVIZai — AI Video',
-    description: 'Algorithmic Art Meets Narrative Cinema.',
+    title: 'OVIZai — Creative Video Ads for Brands',
+    description: 'From impossible ideas to real commercial ads. Short-form video for brands and venues.',
     images: ['/og-image.png'],
   },
 };
@@ -81,17 +76,17 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'OVIZai',
-  url: 'https://ovizai.com',
-  logo: 'https://ovizai.com/logo.png',
-  description: 'Studio de production vidéo et direction artistique IA cinématographique.',
+  url: 'https://www.ovizai.com',
+  logo: 'https://www.ovizai.com/logo.png',
+  description: 'Studio de création publicitaire : publicités courtes, films produit et production en marque blanche.',
   sameAs: [
-    'https://youtube.com/@ovizaidotcom',
     'https://instagram.com/ovizai.co',
+    'https://youtube.com/@ovizaidotcom',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
-    contactType: 'customer support',
-    url: 'https://ovizai.com/contact',
+    contactType: 'sales',
+    url: 'https://www.ovizai.com/contact',
   },
 };
 
@@ -103,20 +98,25 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`dark ${inter.variable} ${plexMono.variable} ${syne.variable} ${archivoBlack.variable}`}
+      className={`dark ${inter.variable} ${syne.variable}`}
     >
       <head>
-        <link rel="alternate" hrefLang="fr" href="https://ovizai.com" />
-        <link rel="alternate" hrefLang="en" href="https://ovizai.com" />
-        <link rel="alternate" hrefLang="x-default" href="https://ovizai.com" />
-        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
-        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="alternate" hrefLang="fr" href="https://www.ovizai.com" />
+        <link rel="alternate" hrefLang="en" href="https://www.ovizai.com" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.ovizai.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
-      <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright">
+      <body className="antialiased bg-bg text-fg selection:bg-gold/25 selection:text-gold-bright min-h-[100dvh]">
+        {/* WCAG 2.2 AA Skip Link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-gold focus:text-black focus:font-bold focus:rounded-lg focus:shadow-2xl focus:outline-none"
+        >
+          Aller au contenu principal / Skip to content
+        </a>
         <CurrencyProvider>
           <LanguageProvider>
             {children}

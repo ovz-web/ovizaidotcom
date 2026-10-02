@@ -18,12 +18,17 @@ const LanguageContext = createContext<LanguageContextType>({
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState<Language>('fr');
 
-  // Load persisted language preference on mount (same pattern as CurrencyContext)
+  // Load persisted language preference on mount and sync document.documentElement.lang
   useEffect(() => {
     try {
       const saved = localStorage.getItem('selected_lang') as Language;
       if (saved === 'fr' || saved === 'en') {
         setLangState(saved);
+        if (typeof document !== 'undefined') {
+          document.documentElement.lang = saved;
+        }
+      } else if (typeof document !== 'undefined') {
+        document.documentElement.lang = 'fr';
       }
     } catch (e) {
       console.warn('[LANGUAGE] localStorage access failed:', e);
@@ -32,6 +37,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = newLang;
+    }
     try {
       localStorage.setItem('selected_lang', newLang);
     } catch (e) {

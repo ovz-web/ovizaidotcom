@@ -35,8 +35,8 @@ export default function CgvClient() {
           ? 'Les présentes conditions régissent l’ensemble des prestations de création publicitaire et services de production proposés par OVIZai Studio.'
           : 'These terms govern all advertising creation and production services provided by OVIZai Studio.',
         isFr
-          ? 'Elles s’appliquent à notre Offre de Lancement (530 USD), aux productions sur-mesure sur devis, aux partenariats agences en marque blanche, ainsi qu’à l’accès à la Masterclass Vidéo IA.'
-          : 'They apply to our introductory Launch Offer ($530 USD), custom productions on quote, white-label agency partnerships, and the AI Video Masterclass.',
+          ? 'Elles s’appliquent à notre Offre de Lancement (530 USD), aux productions sur-mesure sur devis, ainsi qu’aux partenariats agences en marque blanche.'
+          : 'They apply to our introductory Launch Offer ($530 USD), custom productions on quote, and white-label agency partnerships.',
       ],
     },
     {
@@ -71,17 +71,14 @@ export default function CgvClient() {
       title: isFr ? '4 // Tarifs & Modalités de Paiement' : '4 // Rates & Payment Terms',
       content: [
         isFr
-          ? 'Les tarifs sont libellés en USD, EUR ou CAD selon la sélection de facturation.'
-          : 'Rates are expressed in USD, EUR, or CAD depending on client billing selection.',
+          ? 'Les tarifs sont libellés en USD (devise contractuelle de référence).'
+          : 'Rates are expressed in USD (contractual baseline currency).',
         isFr
           ? 'Offre de Lancement (530 USD) : acompte de 265 USD exigible à la commande pour engager la production, et solde de 265 USD exigible avant livraison du master final.'
           : 'Launch Offer ($530 USD): $265 USD deposit required upfront to launch production, and $265 USD balance due prior to final master delivery.',
         isFr
           ? 'Projets sur devis : acompte (généralement 50 %) à la commande, solde à la livraison du master final.'
           : 'Custom quote projects: deposit (typically 50%) upon kickoff, balance upon final master delivery.',
-        isFr
-          ? 'Masterclass Vidéo IA : règlement comptant en paiement unique sécurisé via Stripe Checkout (carte bancaire internationale).'
-          : 'AI Video Masterclass: upfront one-time payment processed securely via Stripe Checkout (international cards).',
       ],
     },
     {
@@ -89,8 +86,8 @@ export default function CgvClient() {
       title: isFr ? '5 // Cession des Droits & Propriété Intellectuelle' : '5 // Intellectual Property & Rights Transfer',
       content: [
         isFr
-          ? 'Dès le règlement intégral des factures, OVIZai cède au client 100 % des droits patrimoniaux et d’exploitation commerciale sur les masters livrés (diffusion web, réseaux sociaux, TV, cinéma sans limite géographique ni temporelle).'
-          : 'Upon receipt of full payment, OVIZai grants the client 100% of commercial exploitation rights for delivered master files (web, social media, broadcast, cinema worldwide in perpetuity).',
+          ? 'Dès le règlement intégral du solde, OVIZai concède au client les droits et licences d’exploitation commerciale applicables, tels que définis et spécifiés au devis ou contrat de production.'
+          : 'Upon receipt of full payment, OVIZai grants the client the applicable commercial exploitation rights and licenses as defined and specified in the production quote or agreement.',
         isFr
           ? 'Sauf accord contraire écrit ou clause de marque blanche stricte, OVIZai se réserve le droit de mentionner la réalisation à titre de référence dans son portfolio professionnel.'
           : 'Unless agreed otherwise in writing or governed by a strict white-label clause, OVIZai reserves the right to showcase the work as a portfolio reference.',
@@ -184,7 +181,7 @@ export default function CgvClient() {
         </div>
       </main>
 
-      <Footer lang={lang} onShowToast={showToast} />
+      <Footer lang={lang} onToggleLang={toggleLanguage} onShowToast={showToast} />
       <Toast message={toastMessage} />
     </div>
   );

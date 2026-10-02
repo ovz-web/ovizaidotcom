@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/*',
+      disallow: ['/api/*', '/formation*', '/stack*'],
     },
-    sitemap: 'https://ovizai.com/sitemap.xml',
+    sitemap: 'https://www.ovizai.com/sitemap.xml',
   };
 }

@@ -1,3 +1,8 @@
+/**
+ * OVIZai Studio Pricing Constants
+ * Contractual truth source: Launch Offer (530 USD) & Custom projects on quote.
+ */
+
 export const MASTERCLASS_PRICE = { USD: 320, EUR: 290, CAD: 430 } as const;
 export const MASTERCLASS_ORIGINAL_PRICE = { USD: 450, EUR: 415, CAD: 620 } as const;
 export type PricingCurrency = keyof typeof MASTERCLASS_PRICE;
@@ -30,10 +35,10 @@ export const LAUNCH_OFFER: LaunchOfferDetails = {
   concept: { fr: '1 concept créatif', en: '1 creative concept' },
   format: { fr: 'Format principal 9:16 (vertical mobile / social)', en: 'Main 9:16 vertical format (mobile / social)' },
   soundDesign: { fr: 'Sound design & mix audio inclus', en: 'Sound design & audio mix included' },
-  revisions: { fr: '1 série de corrections incluse', en: '1 revision round included' },
+  revisions: { fr: '1 série de retours consolidés incluse', en: '1 consolidated revision round included' },
   turnaround: {
-    fr: 'Première version sous 5 jours ouvrables (après réception des éléments & validation du planning)',
-    en: 'First cut within 5 business days (upon receipt of all assets & schedule sign-off)',
+    fr: 'Première version visée sous 5 jours ouvrables (après réception du brief complet, des éléments et validation du planning)',
+    en: 'First cut targeted within 5 business days (after receipt of full brief, assets & schedule sign-off)',
   },
   paymentTerms: {
     fr: 'Acompte : 265 USD à la commande · Solde : 265 USD avant livraison du master final',
@@ -42,58 +47,64 @@ export const LAUNCH_OFFER: LaunchOfferDetails = {
   includes: {
     fr: [
       '1 publicité courte (durée finale : 10 à 15 secondes)',
-      '1 concept créatif pensé pour votre produit ou établissement',
-      'Format principal 9:16 optimisé pour les réseaux sociaux (Reels, TikTok, Ads)',
-      'Sound design et habillage audio immersif',
-      '1 série de corrections incluse sur la première version',
-      'Première version sous 5 jours ouvrables (après réception des éléments et validation du planning)',
-      'Acompte de 265 USD · Solde de 265 USD avant livraison du master final',
+      '1 concept créatif pensé pour votre produit ou marque',
+      'Format principal 9:16 optimisé pour les réseaux sociaux (Reels, TikTok, Shorts)',
+      'Direction créative, storyboard, animation & montage',
+      'Sound design et mix audio immersif',
+      'Carton final simple (logo & appel à l’action)',
+      '1 série de retours consolidés sur le concept retenu',
+      'Première version visée sous 5 jours ouvrables (après validation du brief)',
+      'Acompte de 265 USD · Solde de 265 USD avant remise du master final',
     ],
     en: [
-      '1 short-form commercial (final duration: 10 to 15 seconds)',
-      '1 creative concept tailored to your product or venue',
-      'Primary 9:16 vertical format optimized for social channels (Reels, TikTok, Ads)',
-      'Immersive sound design and audio mix included',
-      '1 revision round included on the initial version',
-      'First cut delivered within 5 business days (after receipt of assets & schedule sign-off)',
+      '1 short-form ad (final duration: 10 to 15 seconds)',
+      '1 creative concept tailored to your product or brand',
+      'Primary 9:16 vertical format optimized for social channels (Reels, TikTok, Shorts)',
+      'Creative direction, storyboard, animation & editing',
+      'Immersive sound design and audio mix',
+      'Simple end card (logo & call to action)',
+      '1 consolidated revision round on the approved concept',
+      'First cut targeted within 5 business days (upon brief sign-off)',
       '$265 USD deposit upfront · $265 USD balance before final master delivery',
     ],
   },
 };
 
-export interface PricingPlan {
-  id: 'launch' | 'custom' | 'sprint' | 'premium';
+export interface CustomProjectDetails {
+  id: string;
   name: { fr: string; en: string };
   badge: { fr: string; en: string };
-  minUsd: number;
-  depositUsd?: number;
-  balanceUsd?: number;
-  launchOffer?: boolean;
-  budgetTierId: string;
-  tag?: { fr: string; en: string };
-  period: { fr: string; en: string };
+  priceText: { fr: string; en: string };
+  description: { fr: string; en: string };
   includes: { fr: string[]; en: string[] };
-  primary: boolean;
-  starterHighlight?: boolean;
 }
 
-export const PRICING_PLANS: PricingPlan[] = [
-  {
-    id: 'launch',
-    name: { fr: 'Offre de Lancement', en: 'Launch Offer' },
-    badge: { fr: 'OFFRE DE LANCEMENT', en: 'LAUNCH OFFER' },
-    minUsd: 530,
-    depositUsd: 265,
-    balanceUsd: 265,
-    launchOffer: true,
-    budgetTierId: 'tier-launch',
-    tag: {
-      fr: 'Acompte : 265 USD · Solde avant livraison du master final',
-      en: 'Deposit: $265 USD · Balance before final master delivery',
-    },
-    period: { fr: '/ publicité 10-15s', en: '/ 10-15s ad' },
-    includes: LAUNCH_OFFER.includes,
-    primary: true,
-    starterHighlight: true,
+export const CUSTOM_PROJECT_OFFER: CustomProjectDetails = {
+  id: 'custom',
+  name: { fr: 'Projets Complexes & Sur-Mesure', en: 'Custom & Multi-Asset Projects' },
+  badge: { fr: 'SUR DEVIS', en: 'CUSTOM QUOTE' },
+  priceText: { fr: 'Sur devis', en: 'Custom quote' },
+  description: {
+    fr: 'Multi-assets, formats multiples (16:9, 1:1, 4:5), campagnes sociales complètes, production en marque blanche pour agences ou exigences spécifiques.',
+    en: 'Multi-asset delivery, multiple aspect ratios (16:9, 1:1, 4:5), full social campaigns, white-label agency production or custom technical requirements.',
   },
-];
+  includes: {
+    fr: [
+      'Déclinaisons multi-formats (9:16, 16:9, 1:1, 4:5)',
+      'Campagnes complètes & variations de concepts',
+      'Production externalisée en marque blanche pour agences',
+      'Accompagnement créatif dédié de bout en bout',
+      'Devis personnalisé sous 24h ouvrées',
+    ],
+    en: [
+      'Multi-format variations (9:16, 16:9, 1:1, 4:5)',
+      'Complete multi-concept social campaigns',
+      'Outsourced white-label production for agencies',
+      'Dedicated creative direction end-to-end',
+      'Custom tailored quote within 24 business hours',
+    ],
+  },
+};
+
+// Internal reference preserved safely for feature flag restoration if needed
+export const INTERNAL_FORMATION_PRICE = { USD: 320, EUR: 290, CAD: 430 } as const;

@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     const rateLimit = await checkRateLimit(req, 'leads', { limit: 5, windowMs: 60_000 });
     if (!rateLimit.success) {
       return NextResponse.json(
-        { error: 'Trop de requêtes. Veuillez patienter avant de réessayer' },
+        { error: 'Trop de requêtes. Veuillez patienter avant de réessayer.' },
         {
           status: 429,
           headers: {
@@ -20,50 +20,63 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => ({}));
-    const { email, name, projectType, budgetRange, currency, message, company, website, bot_hp } = body;
-    const sourcePlan = body.sourcePlan || body.originPlan;
+    const {
+      email,
+      name,
+      company,
+      promotionTarget,
+      projectType,
+      budgetRange,
+      currency,
+      message,
+      links,
+      deadline,
+      bot_hp,
+      source = 'project_inquiry',
+    } = body;
 
-    // Honeypot anti-spam: silent success if hidden bot_hp field is populated
+    // Strict Honeypot: Silent success if invisible bot_hp field is populated
     if (bot_hp && String(bot_hp).trim() !== '') {
-      return NextResponse.json(
-        { status: 'subscribed' },
-        { status: 200 }
-      );
+      return NextResponse.json({ status: 'success' }, { status: 200 });
     }
 
     const cleanEmail = sanitizeEmail(email);
     if (!cleanEmail) {
       return NextResponse.json(
-        { error: 'Adresse e-mail invalide (format RFC 5322 requis)' },
+        { error: 'Adresse e-mail valide requise.' },
         { status: 400 }
       );
     }
 
     const cleanName = name ? sanitizeString(name, 100) : null;
     const cleanCompany = company ? sanitizeString(company, 150) : null;
-    const cleanWebsite = website ? sanitizeString(website, 250) : null;
+    const cleanPromotionTarget = promotionTarget ? sanitizeString(promotionTarget, 200) : null;
+    const cleanLinks = links ? sanitizeString(links, 300) : null;
+    const cleanDeadline = deadline ? sanitizeString(deadline, 100) : null;
     const rawMessage = message ? sanitizeString(message, 3000) : null;
 
+    // Structured message compilation
     const messageParts = [
       cleanCompany ? `Entreprise / Marque : ${cleanCompany}` : null,
-      cleanWebsite ? `Lien produit / site : ${cleanWebsite}` : null,
-      rawMessage ? `Détails du brief :\n${rawMessage}` : null,
+      cleanPromotionTarget ? `Élément à promouvoir : ${cleanPromotionTarget}` : null,
+      cleanLinks ? `Lien produit / site / références : ${cleanLinks}` : null,
+      cleanDeadline ? `Délai souhaité : ${cleanDeadline}` : null,
+      rawMessage ? `Détails & notes complémentaires :\n${rawMessage}` : null,
     ].filter(Boolean);
-    const cleanMessage = messageParts.length > 0 ? messageParts.join('\n\n') : null;
+    const cleanMessage = messageParts.length > 0 ? messageParts.join('\n\n') : 'Demande via formulaire de contact.';
 
     const cleanCurrency = typeof currency === 'string' && ['USD', 'EUR', 'CAD'].includes(currency.toUpperCase())
       ? currency.toUpperCase()
       : 'USD';
-    const cleanProjectType = projectType ? sanitizeString(projectType, 150) : null;
-    const cleanBudgetRange = budgetRange ? sanitizeString(budgetRange, 100) : null;
-    const cleanSourcePlan = sourcePlan ? sanitizeString(sourcePlan, 50) : null;
+    const cleanProjectType = projectType ? sanitizeString(projectType, 150) : (cleanPromotionTarget || 'Publicité');
+    const cleanBudgetRange = budgetRange ? sanitizeString(budgetRange, 100) : 'Offre de Lancement (530 USD)';
 
-    // Insert into Supabase leads table — persist the FULL qualified brief.
-    let dbSuccess = false;
-    let dbData: any = null;
+    let dbSaved = false;
 
+    // 1. Supabase Persistence
     try {
-      const { data, error } = await supabaseAdmin
+      // Attempt insert
+      const { error: insertError } = await supabaseAdmin
         .from('leads')
         .insert([{
           email: cleanEmail,
@@ -72,71 +85,86 @@ export async function POST(req: NextRequest) {
           budget_range: cleanBudgetRange,
           currency: cleanCurrency,
           message: cleanMessage,
-          source_plan: cleanSourcePlan,
-        }])
-        .select();
+          source_plan: source,
+        }]);
 
-      if (error) {
-        if (error.code === '23505') {
-          return NextResponse.json(
-            { status: 'already_subscribed', message: 'E-mail déjà inscrit' },
-            { status: 200 }
-          );
+      if (insertError) {
+        // If email already exists (code 23505 unique constraint violation):
+        // Update the existing contact with new brief details so returning clients are never blocked!
+        if (insertError.code === '23505') {
+          const { error: updateError } = await supabaseAdmin
+            .from('leads')
+            .update({
+              name: cleanName ? (cleanCompany ? `${cleanName} (${cleanCompany})` : cleanName) : cleanCompany,
+              project_type: cleanProjectType,
+              budget_range: cleanBudgetRange,
+              currency: cleanCurrency,
+              message: cleanMessage,
+            })
+            .eq('email', cleanEmail);
+
+          if (!updateError) {
+            dbSaved = true;
+          } else {
+            console.error(`[SUPABASE UPDATE ERROR] Failed for ${maskEmail(cleanEmail)}:`, updateError.message);
+          }
+        } else {
+          console.error(`[SUPABASE INSERT ERROR] Failed for ${maskEmail(cleanEmail)}:`, insertError.message);
         }
-        console.error(`[SUPABASE ERROR] Lead insert failed for ${maskEmail(cleanEmail)}:`, error.message);
       } else {
-        dbSuccess = true;
-        dbData = data;
+        dbSaved = true;
       }
     } catch (dbErr: any) {
       console.error(`[SUPABASE EXCEPTION] Connection failed for ${maskEmail(cleanEmail)}:`, dbErr?.message || dbErr);
     }
 
-    // Dispatch transactional email notifications (non-blocking prospect, awaiting team)
-    const mailResult = await sendTeamNotification({
-      email: cleanEmail,
-      name,
-      projectType,
-      budgetRange,
-      currency,
-      message,
-    }).catch(err => {
-      console.error(`[MAIL ERROR] Team notification error for ${maskEmail(cleanEmail)}:`, err);
-      return { success: false, reason: err?.message };
-    });
+    // 2. Transactional Email Notification via Resend
+    let emailDispatched = false;
+    try {
+      const mailResult = await sendTeamNotification({
+        email: cleanEmail,
+        name: cleanName || cleanCompany || 'Nouveau Prospect',
+        projectType: cleanProjectType,
+        budgetRange: cleanBudgetRange,
+        currency: cleanCurrency,
+        message: cleanMessage,
+      });
 
-    sendProspectConfirmation(cleanEmail, name).catch(err =>
+      if (mailResult && mailResult.success) {
+        emailDispatched = true;
+      }
+    } catch (mailErr: any) {
+      console.error(`[MAIL ERROR] Team notification error for ${maskEmail(cleanEmail)}:`, mailErr?.message || mailErr);
+    }
+
+    // Non-blocking prospect confirmation email
+    sendProspectConfirmation(cleanEmail, cleanName || undefined).catch((err) =>
       console.error(`[MAIL ERROR] Prospect confirmation error for ${maskEmail(cleanEmail)}:`, err)
     );
 
-    // Fallback persistence: if external database or email fails, persist to disk so lead is never lost
-    if (!dbSuccess && (!mailResult || !mailResult.success)) {
-      try {
-        const fs = await import('fs');
-        const fallbackLead = {
-          timestamp: new Date().toISOString(),
-          email: cleanEmail,
-          name: cleanName,
-          projectType: cleanProjectType,
-          budgetRange: cleanBudgetRange,
-          currency: cleanCurrency,
-          message: cleanMessage,
-        };
-        fs.appendFileSync('/tmp/ovizai_leads_fallback.jsonl', JSON.stringify(fallbackLead) + '\n');
-        console.warn(`[LEAD SAVED LOCALLY] Lead stored in /tmp/ovizai_leads_fallback.jsonl for ${maskEmail(cleanEmail)}`);
-      } catch (fErr) {
-        console.error('[LEAD FALLBACK ERROR]', fErr);
-      }
+    // 3. Robust Error Handling: If neither DB nor Email succeeded, DO NOT pretend it succeeded!
+    if (!dbSaved && !emailDispatched) {
+      console.error(`[CRITICAL] Lead failed both DB and Email for ${maskEmail(cleanEmail)}`);
+      return NextResponse.json(
+        {
+          error:
+            'Une erreur technique temporaire est survenue lors de l’enregistrement de votre brief. Veuillez nous contacter directement par e-mail à contact@ovizai.com.',
+        },
+        { status: 503 }
+      );
     }
 
     return NextResponse.json(
-      { status: 'subscribed', data: dbData || { saved: 'local_fallback' } },
+      {
+        status: 'success',
+        message: 'Brief reçu. Nous revenons vers vous avec la prochaine étape.',
+      },
       { status: 201 }
     );
   } catch (err: any) {
     console.error('API /api/leads Catch Error:', err);
     return NextResponse.json(
-      { error: 'Erreur serveur interne' },
+      { error: 'Erreur serveur interne. Veuillez réessayer ou contacter contact@ovizai.com.' },
       { status: 500 }
     );
   }

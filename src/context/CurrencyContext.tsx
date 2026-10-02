@@ -79,17 +79,20 @@ export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   /**
-   * Commercial Luxury Rounding Logic:
-   * - < 1,000 $: Rounded to nearest 10 (e.g. 492 -> 490)
-   * - >= 1,000 $: Rounded to nearest 50 or 100 (e.g. 1,364 -> 1,350)
+   * Commercial Currency Conversion:
+   * - USD is the base contractual currency: ALWAYS return the exact integer (e.g. 530, 265).
+   * - EUR/CAD conversions use live rates with clean commercial rounding.
    */
   const convertAmount = (usdAmount: number, overrideCurr?: Currency): number => {
     const activeCurr = overrideCurr || currency;
+    if (activeCurr === 'USD') {
+      return usdAmount;
+    }
     const rate = rates[activeCurr] || 1;
     const rawConverted = usdAmount * rate;
 
     if (rawConverted < 1000) {
-      return Math.round(rawConverted / 10) * 10;
+      return Math.round(rawConverted / 5) * 5;
     } else {
       return Math.round(rawConverted / 50) * 50;
     }
@@ -101,6 +104,9 @@ export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const formatPrice = (usdAmount: number, overrideCurr?: Currency): string => {
     const activeCurr = overrideCurr || currency;
+    if (activeCurr === 'USD') {
+      return `${formatNumber(usdAmount)} $ USD`;
+    }
     const converted = convertAmount(usdAmount, activeCurr);
     const formattedNum = formatNumber(converted);
 

@@ -169,7 +169,7 @@ export default function MentionsLegalesClient() {
         </div>
       </main>
 
-      <Footer lang={lang} onShowToast={showToast} />
+      <Footer lang={lang} onToggleLang={toggleLanguage} onShowToast={showToast} />
       <Toast message={toastMessage} />
     </div>
   );

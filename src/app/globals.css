@@ -28,13 +28,7 @@
   }
 }
 
-/* Calibrage de la densité d'affichage sur Mac / ordinateur de bureau (équivalent Safari "Zoom arrière" x2 / 75%) */
-@media (min-width: 1024px) {
-  html {
-    zoom: 0.75;
-  }
-}
-
+/* Base HTML and Body styling */
 * {
   box-sizing: border-box;
 }
@@ -45,6 +39,8 @@ html, body {
   background-color: var(--bg);
   color: var(--fg);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100dvh;

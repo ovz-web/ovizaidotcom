@@ -1,65 +1,53 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import HeroBrutalist from '@/components/HeroBrutalist';
-import CommandMenu from '@/components/CommandMenu';
-import NewsletterForm from '@/components/NewsletterForm';
-import Toast from '@/components/Toast';
+import ServicesGrid from '@/components/ServicesGrid';
+import LaunchOfferSection from '@/components/LaunchOfferSection';
+import ProductionMethod from '@/components/ProductionMethod';
+import HomeFaq from '@/components/HomeFaq';
+import FinalCta from '@/components/FinalCta';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
-import { useCurrency } from '@/context/CurrencyContext';
 
 export default function Home() {
   const { lang, toggleLanguage } = useLanguage();
-  const { currency, setCurrency } = useCurrency();
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-  };
-
-  useEffect(() => {
-    if (!toastMessage) return;
-    const timer = setTimeout(() => {
-      setToastMessage(null);
-    }, 2400);
-    return () => clearTimeout(timer);
-  }, [toastMessage]);
 
   return (
     <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       {/* 35mm Silver Film Grain Filter */}
       <FilmGrain />
 
-      {/* 1. Single 100% Fixed Persistent TopBar */}
-      <TopBar
-        lang={lang}
-        onToggleLang={toggleLanguage}
-        currency={currency}
-        onSelectCurrency={setCurrency}
-      />
+      {/* 1. Header with simple desktop nav + mobile drawer */}
+      <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
       {/* Main Content Area */}
-      <main
-        className="flex-grow relative z-10 pt-[calc(var(--topbar-height,44px)+6px)] sm:pt-[calc(var(--topbar-height,44px)+8px)]"
-      >
-        {/* 1. Minimalist Hero Section (Enlarged Logo + Main Title + Tagline) */}
+      <main id="main-content" className="flex-grow relative z-10 pt-[var(--topbar-height,56px)]">
+        {/* 1. HERO */}
         <HeroBrutalist lang={lang} />
 
-        {/* 2. Central Bento Command Card Hub (4 Navigation Links) */}
-        <CommandMenu lang={lang} onShowToast={showToast} />
+        {/* 2. SELECTED WORK (renders ONLY when official projects are marked published in portfolio.ts) */}
 
-        {/* 3. Newsletter & Free Prompts Capture */}
-        <NewsletterForm lang={lang} onShowToast={showToast} />
+        {/* 3. WHAT WE MAKE / SERVICES */}
+        <ServicesGrid lang={lang} />
+
+        {/* 4. OFFRE DE LANCEMENT (530 USD) */}
+        <LaunchOfferSection lang={lang} />
+
+        {/* 5. MÉTHODE EN 3 ÉTAPES */}
+        <ProductionMethod lang={lang} />
+
+        {/* 6. FAQ TRÈS COURTE */}
+        <HomeFaq lang={lang} />
+
+        {/* 7. CTA FINAL */}
+        <FinalCta lang={lang} />
       </main>
 
-      {/* 4. Footer with social links & legal */}
-      <Footer lang={lang} onShowToast={showToast} />
-
-      {/* Gold Toast Notification Bar */}
-      <Toast message={toastMessage} />
+      {/* 8. FOOTER */}
+      <Footer lang={lang} onToggleLang={toggleLanguage} />
     </div>
   );
 }

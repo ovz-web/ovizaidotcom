@@ -1,79 +1,103 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { Language } from '@/types';
 
 interface HeroBrutalistProps {
   lang: Language;
+  heroVideoUrl?: string;
+  heroPosterUrl?: string;
 }
 
-export default function HeroBrutalist({ lang }: HeroBrutalistProps) {
+export default function HeroBrutalist({
+  lang,
+  heroVideoUrl,
+  heroPosterUrl,
+}: HeroBrutalistProps) {
   const isFr = lang === 'fr';
 
   return (
-    <section className="relative z-10 max-w-xl mx-auto px-4 text-center">
-      {/* Eyebrow — Positionnement clair dès la première seconde */}
-      <p className="text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-gold mb-0.5 font-mono font-bold">
-        {isFr ? 'STUDIO DE CRÉATION PUBLICITAIRE · MARQUES & RESTAURANTS' : 'ADVERTISING CREATIVE STUDIO · BRANDS & VENUES'}
-      </p>
+    <section className="relative pt-16 sm:pt-24 pb-16 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+      {/* Background ambient lighting */}
+      <div
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[750px] h-[350px] sm:h-[450px] bg-gradient-to-b from-gold/10 via-gold/[0.03] to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+        aria-hidden="true"
+      />
 
-      {/* Hero Logo - Responsive & Scaled */}
-      <div className="relative flex items-center justify-center my-0.5 overflow-visible">
-        <Image
-          src="/logo.png"
-          alt={isFr ? 'OVIZai — Logo Studio Créatif Publicitaire' : 'OVIZai — Creative Advertising Studio Logo'}
-          width={240}
-          height={240}
-          className="h-[clamp(110px,22dvh,160px)] sm:h-[clamp(140px,18dvh,220px)] w-auto object-contain mix-blend-screen"
-          priority
-        />
-      </div>
+      <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm mb-6 sm:mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+          <span className="mono text-xs sm:text-sm uppercase tracking-[0.2em] text-gold font-semibold">
+            {isFr
+              ? 'STUDIO CRÉATIF PUBLICITAIRE · WORLDWIDE'
+              : 'CREATIVE AD STUDIO · WORLDWIDE'}
+          </span>
+        </div>
 
-      {/* Main Title — Ce qu'OVIZai crée */}
-      <h1 className="text-sm sm:text-lg md:text-xl font-semibold tracking-tight text-fg text-center mb-0.5 sm:mb-1 leading-tight">
-        {isFr ? (
-          <>
-            PUBLICITÉS COURTES <span className="text-gold-gradient">À FORTE QUALITÉ VISUELLE</span>
-          </>
-        ) : (
-          <>
-            SHORT-FORM ADS <span className="text-gold-gradient">WITH HIGH VISUAL IMPACT</span>
-          </>
+        {/* Headline */}
+        <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-fg uppercase mb-6 sm:mb-8">
+          {isFr ? (
+            <>
+              DES IDÉES IMPOSSIBLES.<br />
+              <span className="text-gold-gradient">DES PUBLICITÉS BIEN RÉELLES.</span>
+            </>
+          ) : (
+            <>
+              IMPOSSIBLE IDEAS.<br />
+              <span className="text-gold-gradient">REAL ADS.</span>
+            </>
+          )}
+        </h1>
+
+        {/* Sub-headline */}
+        <p className="text-lg sm:text-xl md:text-2xl text-muted font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10 text-balance">
+          {isFr
+            ? 'OVIZai conçoit des publicités courtes pour marques, produits et établissements — de l’idée au film final.'
+            : 'OVIZai creates short-form ads for brands, products and businesses — from concept to final film.'}
+        </p>
+
+        {/* Dual Commercial CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto mb-6 sm:mb-8">
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold text-sm sm:text-base mono uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-gold/15 min-h-[48px]"
+          >
+            <span>{isFr ? 'Démarrer un projet' : 'Start a project'}</span>
+            <ArrowUpRight className="w-4 h-4 text-black" />
+          </Link>
+
+          <Link
+            href="/tarifs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] hover:border-gold/40 text-fg hover:text-gold font-medium text-sm sm:text-base mono tracking-wide px-7 py-4 rounded-full transition-all duration-200 min-h-[48px]"
+          >
+            <span>{isFr ? 'Voir l’offre — 530 USD' : 'See the launch offer — 530 USD'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* Micro-line */}
+        <p className="mono text-xs sm:text-sm text-muted/80 tracking-wide text-center">
+          {isFr
+            ? '10–15 s · Format 9:16 · Première version visée sous 5 jours ouvrables'
+            : '10–15 sec · 9:16 · First cut targeted within 5 business days'}
+        </p>
+
+        {/* Optional Slot for Future Hero Video (Seamless plug-and-play when official videos arrive) */}
+        {heroVideoUrl && (
+          <div className="w-full max-w-3xl mt-12 sm:mt-16 rounded-2xl overflow-hidden border border-white/[0.1] shadow-2xl bg-black aspect-[9/16] sm:aspect-video">
+            <video
+              src={heroVideoUrl}
+              poster={heroPosterUrl}
+              controls
+              playsInline
+              muted
+              className="w-full h-full object-cover"
+            />
+          </div>
         )}
-      </h1>
-
-      {/* Subtitle — Proposition de valeur en 1 phrase */}
-      <p className="text-[10px] sm:text-xs text-muted max-w-xs sm:max-w-xl text-center mx-auto mb-2 leading-tight font-mono">
-        {isFr
-          ? 'Direction créative humaine et outils génératifs pour sublimer vos produits et établissements.'
-          : 'Human creative direction and generative tools to elevate your products and venues.'}
-      </p>
-
-      {/* Action CTAs — Parcours commercial évident */}
-      <div className="flex flex-row items-center justify-center gap-2 mb-1">
-        <Link
-          href="/tarifs"
-          className="inline-flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-bright text-black font-bold px-3.5 py-1.5 rounded-lg mono text-[10.5px] sm:text-xs uppercase tracking-wider transition-all hover:scale-[1.01] cursor-pointer min-h-[34px]"
-        >
-          <span>{isFr ? 'Offre de Lancement (530 $) →' : 'Launch Offer ($530) →'}</span>
-          <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-        </Link>
-
-        <Link
-          href="/services#portfolio"
-          className="inline-flex items-center justify-center gap-1.5 bg-black/60 border border-white/[0.12] hover:border-gold/60 text-fg hover:text-gold-bright font-medium px-3 py-1.5 rounded-lg mono text-[10.5px] sm:text-xs uppercase tracking-wider transition-all min-h-[34px]"
-        >
-          <Play className="w-3 h-3 text-gold fill-gold" />
-          <span>{isFr ? 'Voir les réalisations' : 'View Ad Concepts'}</span>
-        </Link>
-      </div>
-
-      {/* Spacer matching Détails ↓ to guarantee identical box position */}
-      <div className="hidden sm:flex w-full justify-end text-[8.5px] sm:text-[9.5px] tracking-wider font-mono px-1 mb-0.5 invisible select-none" aria-hidden="true">
-        <span>&nbsp;</span>
       </div>
     </section>
   );

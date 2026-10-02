@@ -1,452 +1,177 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Film, Music2, Clapperboard, Palette, Building2, ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import { Language, Currency } from '@/types';
-import VideoShowcase, { VideoItem } from '@/components/VideoShowcase';
-import TrustSection from '@/components/TrustSection';
-import { YOUTUBE_VIDEOS, LOCAL_VIDEOS } from '@/lib/videos';
-import ListMenuCard, { ListMenuItem } from '@/components/ListMenuCard';
+import { ArrowUpRight, Smartphone, Sparkles, Layers } from 'lucide-react';
+import { Language } from '@/types';
 
 interface ServicesGridProps {
   lang: Language;
-  currency?: Currency;
-  onSelectCurrency?: (curr: Currency) => void;
 }
 
-const SERVICE_TYPE_MAP: Record<string, { type: string; budget: string }> = {
-  'pub-restaurants': { type: 'pub-restaurant', budget: 'tier-launch' },
-  'pub-produits': { type: 'pub-produit', budget: 'tier-launch' },
-  'direction-artistique': { type: 'da-univers', budget: 'tier-custom' },
-  'partenariat-agences': { type: 'agence-whitelabel', budget: 'tier-custom' },
-  'clips-sur-mesure': { type: 'clip-visualiser', budget: 'tier-custom' },
-};
+export interface ServiceFamily {
+  id: string;
+  number: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: { fr: string; en: string };
+  tagline: { fr: string; en: string };
+  description: { fr: string; en: string };
+  examples: { fr: string; en: string };
+  ctaText: { fr: string; en: string };
+}
 
-const FIVE_SERVICES = [
+export const THREE_SERVICES: ServiceFamily[] = [
   {
-    id: 'pub-restaurants',
+    id: 'short-form-ads',
     number: '01',
-    letterCode: 'A1',
+    icon: Smartphone,
     title: {
-      fr: 'Publicités Restaurants & Marques Alimentaires',
-      en: 'Commercials for Restaurants & Food Brands',
+      fr: 'SHORT-FORM ADS',
+      en: 'SHORT-FORM ADS',
     },
     tagline: {
-      fr: 'Publicités courtes 10-15s & mise en valeur culinaire',
-      en: '10-15s short-form ads & culinary food styling',
+      fr: 'Publicités courtes pensées pour Reels, TikTok, Shorts et campagnes sociales.',
+      en: 'Short-form ads engineered for Reels, TikTok, Shorts and social campaigns.',
     },
-    descriptionLines: {
-      fr: [
-        'Mise en valeur des produits, textures, vapeurs et appétence visuelle',
-        'Publicités courtes au format 9:16 pensées pour attirer l\'attention sur les réseaux sociaux',
-        'Valorisation de votre établissement, de l\'atmosphère et de votre savoir-faire',
-        'Direction créative humaine et outils génératifs pour sublimer votre carte',
-      ],
-      en: [
-        'Showcasing food products, textures, sizzle, and visual appetite appeal',
-        'Short 9:16 vertical ads engineered to capture immediate social attention',
-        'Highlighting your restaurant venue, ambiance, and culinary craftsmanship',
-        'Human creative direction combined with generative tools to elevate your menu',
-      ],
+    description: {
+      fr: 'Formats verticaux 9:16 percutants (10 à 15 secondes) avec rythme serré, sound design immersif et accroche visuelle immédiate pour capter l’attention en moins de deux secondes.',
+      en: 'High-impact 9:16 vertical video (10 to 15 seconds) featuring dynamic pacing, immersive sound design and immediate hook retention.',
     },
-    deliverables: {
-      fr: [
-        '1 publicité courte (durée finale : 10 à 15 secondes)',
-        '1 concept créatif adapté à votre identité',
-        'Format principal 9:16 (Reels, TikTok, Ads)',
-        'Sound design & mixage audio immersif',
-        '1 série de corrections incluse (Offre de lancement)',
-        'Première version sous 5 jours ouvrables',
-      ],
-      en: [
-        '1 short commercial (final duration: 10 to 15 seconds)',
-        '1 creative concept tailored to your identity',
-        'Primary 9:16 vertical format (Reels, TikTok, Ads)',
-        'Immersive sound design & audio mix',
-        '1 revision round included (Launch offer)',
-        'First cut delivered within 5 business days',
-      ],
+    examples: {
+      fr: 'Idéal pour : restaurants, marques alimentaires, hospitality, retail et commerces.',
+      en: 'Ideal for: restaurants, food & beverage, hospitality, retail, and lifestyle brands.',
     },
-    icon: Clapperboard,
+    ctaText: {
+      fr: 'Démarrer une publicité courte →',
+      en: 'Start a short-form ad →',
+    },
   },
   {
-    id: 'pub-produits',
+    id: 'product-brand-films',
     number: '02',
-    letterCode: 'A2',
+    icon: Sparkles,
     title: {
-      fr: 'Publicités Produits & E-commerce',
-      en: 'Product Commercials & E-commerce',
+      fr: 'PRODUCT & BRAND FILMS',
+      en: 'PRODUCT & BRAND FILMS',
     },
     tagline: {
-      fr: 'Packshots dynamiques & création publicitaire courte',
-      en: 'Dynamic packshots & short-form commercial ads',
+      fr: 'Films produit, lancements et concepts visuels pour marques.',
+      en: 'Product films, brand launches and cinematic visual concepts.',
     },
-    descriptionLines: {
-      fr: [
-        'Sublimation de vos produits sous des angles et éclairages cinématographiques',
-        'Mise en avant des détails, matières et de l\'usage concret de votre produit',
-        'Création publicitaire courte conçue pour susciter l\'intérêt et l\'engagement',
-        'Adaptation aux exigences des campagnes sociales et digitales',
-      ],
-      en: [
-        'Elevating your products under cinematic angles and bespoke lighting',
-        'Highlighting fine details, premium materials, and product in-use',
-        'Short-form ad creation designed to spark curiosity and user action',
-        'Tailored for paid social campaigns and digital brand acquisition',
-      ],
+    description: {
+      fr: 'Mise en valeur cinématique de votre produit : éclairage studio, textures détaillées, univers visuel affirmé et scénarisation valorisant vos caractéristiques uniques.',
+      en: 'Cinematic showcase of your product: studio lighting, rich textural detail, distinctive brand aesthetic, and narrative pacing highlighting your key attributes.',
     },
-    deliverables: {
-      fr: [
-        'Scénarisation & packshots cinématiques',
-        'Format principal vertical 9:16 ou déclinaison 16:9',
-        'Sound design & mix audio calibré',
-        'Première version sous 5 jours ouvrables (Offre de lancement)',
-        'Export haute définition prêt à diffuser',
-      ],
-      en: [
-        'Scripting & cinematic product packshots',
-        'Primary 9:16 vertical format or 16:9 cut',
-        'Bespoke sound design & calibrated audio mix',
-        'First cut within 5 business days (Launch offer)',
-        'High-definition export ready for broadcasting',
-      ],
+    examples: {
+      fr: 'Idéal pour : lancements produits, e-commerce, cosmétique, mode et design.',
+      en: 'Ideal for: product launches, e-commerce, cosmetics, fashion and design brands.',
     },
-    icon: Film,
+    ctaText: {
+      fr: 'Créer un film produit →',
+      en: 'Create a product film →',
+    },
   },
   {
-    id: 'direction-artistique',
+    id: 'agency-white-label',
     number: '03',
-    letterCode: 'A3',
+    icon: Layers,
     title: {
-      fr: 'Direction Artistique & Univers de Marque',
-      en: 'Art Direction & Brand Worlds',
+      fr: 'AGENCY / WHITE-LABEL',
+      en: 'AGENCY / WHITE-LABEL',
     },
     tagline: {
-      fr: 'Moodboards cinématographiques & bibles visuelles',
-      en: 'Cinematic moodboards & visual style bibles',
-    },
-    descriptionLines: {
-      fr: [
-        'Accompagnement créatif stratégique pour marques et créateurs',
-        'Définition d\'une grammaire esthétique cohérente et distinctive',
-        'Création de moodboards, keyframes de référence et palettes chromatiques',
-        'Cohérence visuelle assurée entre toutes vos prises de parole',
-      ],
-      en: [
-        'Strategic creative direction for brands and innovators',
-        'Defining a distinct, coherent aesthetic visual language',
-        'Moodboards, reference keyframes, and tailored color grading palettes',
-        'Consistent artistic continuity across all communication touchpoints',
-      ],
-    },
-    deliverables: {
-      fr: [
-        'Guide de style visuel & moodboards de marque',
-        'Keyframes de référence haute définition',
-        'Palettes chromatiques & univers de textures',
-        'Consulting créatif & accompagnement dédié',
-      ],
-      en: [
-        'Visual style guide & brand moodboards',
-        'High-definition reference keyframes',
-        'Color grading palettes & texture styling',
-        'Creative consulting & dedicated direction',
-      ],
-    },
-    icon: Palette,
-  },
-  {
-    id: 'partenariat-agences',
-    number: '04',
-    letterCode: 'A4',
-    title: {
-      fr: 'Partenariat Agences (Marque Blanche)',
-      en: 'Agency Partner (White-Label)',
-    },
-    tagline: {
-      fr: 'Production vidéo & IA externalisée en marque blanche',
-      en: 'Outsourced white-label AI video production',
-    },
-    descriptionLines: {
-      fr: [
-        'Capacité de production vidéo et générative en marque blanche',
-        'Exécution discrète pour agences de publicité, créatives et médias',
-        'Accord de confidentialité strict (NDA) et cession intégrale des droits',
-        'Respect rigoureux des plannings de vos clients finaux',
-      ],
-      en: [
-        'White-label video and generative production capacity',
-        'Discreet execution for ad agencies, creative boutiques, and media brands',
-        'Strict non-disclosure agreements (NDA) and 100% IP rights assignment',
-        'Rigorous adherence to your clients’ delivery deadlines',
-      ],
-    },
-    deliverables: {
-      fr: [
-        'Exécution 100 % marque blanche (White-Label)',
-        'Accord de confidentialité (NDA) & cession totale des droits',
-        'Formats prêts à diffuser pour vos clients finaux',
-        'Interlocuteur dédié & devis sur-mesure sous 24h',
-      ],
-      en: [
-        '100% White-label production delivery',
-        'Strict NDA & full IP rights assignment',
-        'Broadcast-ready assets for your end clients',
-        'Dedicated production lead & 24h quote turnaround',
-      ],
-    },
-    icon: Building2,
-  },
-  {
-    id: 'clips-sur-mesure',
-    number: '05',
-    letterCode: 'A5',
-    title: {
-      fr: 'Clips Vidéos & Projets Sur-Mesure',
-      en: 'Music Videos & Custom Projects',
-    },
-    tagline: {
-      fr: 'Clips musicaux, visuels scéniques & fictions courtes',
-      en: 'Music videos, stage visuals & short fiction',
-    },
-    descriptionLines: {
-      fr: [
-        'Traduction d\'un univers sonore ou narratif en images marquantes',
-        'Synchronisation précise sur le tempo, la rythmique et les impacts sonores',
-        'Scénographie visuelle sur-mesure pour artistes, labels et créateurs',
-        'Projets plus complexes ou formats narratifs : sur devis',
-      ],
-      en: [
-        'Translating sound identities or narrative concepts into impactful imagery',
-        'Precise synchronization to musical tempo, rhythm, and sonic impacts',
-        'Custom scenography for artists, record labels, and creative storytellers',
-        'Complex productions or longer narrative formats: custom quote',
-      ],
-    },
-    deliverables: {
-      fr: [
-        'Storyboard & scénarisation complète',
-        'Génération calée sur le tempo musical',
-        'Formats réseaux (9:16) et écrans larges (16:9)',
-        'Master final haute qualité sur devis',
-      ],
-      en: [
-        'Complete storyboard & script development',
-        'Generation synced to musical tempo / BPM',
-        'Social cuts (9:16) & widescreen masters (16:9)',
-        'High-quality final master upon custom quote',
-      ],
-    },
-    icon: Music2,
-  },
-];
-
-const SERVICES_SHOWCASE_VIDEOS: VideoItem[] = [
-  {
-    src: LOCAL_VIDEOS.spec01.src,
-    webmSrc: LOCAL_VIDEOS.spec01.webmSrc,
-    poster: LOCAL_VIDEOS.spec01.poster,
-    youtubeId: YOUTUBE_VIDEOS.servicesShowcase1,
-    title: {
-      fr: 'CONCEPT 01 — LE DERNIER BURGER',
-      en: 'CONCEPT 01 — THE LAST BURGER',
+      fr: 'Production créative externalisée pour agences, livrée en marque blanche.',
+      en: 'Outsourced creative production for agencies, delivered white-label.',
     },
     description: {
-      fr: 'Concept publicitaire OVIZai — Démontrer immédiatement le produit, les textures, l’appétence, la qualité cinématographique et la capacité à transformer un produit culinaire en publicité courte.',
-      en: 'OVIZai advertising concept — Immediately showcasing the product, textures, appetite appeal, cinematic quality, and the ability to turn a culinary item into a compelling short ad.',
+      fr: 'Partenaire de production agile pour vos comptes clients : concepts publicitaires courts, déclinaisons rapides et exécution visuelle haute fidélité intégrée à vos plannings de campagne.',
+      en: 'Agile creative production partner for agency client rosters: short-form ad concepts, rapid variations, and high-fidelity visual execution on tight schedules.',
     },
-    uploadDate: '2026-09-01',
-    relatedServiceId: 'pub-restaurants',
-    badge: { fr: 'CONCEPT PUBLICITAIRE', en: 'ADVERTISING CONCEPT' },
-  },
-  {
-    src: LOCAL_VIDEOS.spec02.src,
-    webmSrc: LOCAL_VIDEOS.spec02.webmSrc,
-    poster: LOCAL_VIDEOS.spec02.poster,
-    youtubeId: YOUTUBE_VIDEOS.servicesShowcase2,
-    title: {
-      fr: 'CONCEPT 02 — APRÈS LA FERMETURE',
-      en: 'CONCEPT 02 — AFTER CLOSING',
+    examples: {
+      fr: 'Idéal pour : agences de publicité, studios digitaux, directeurs de création et médias.',
+      en: 'Ideal for: ad agencies, creative studios, art directors, and media agencies.',
     },
-    description: {
-      fr: 'Projet conceptuel OVIZai — Montrer qu’OVIZai sait créer une publicité courte autour d’un établissement, d’une atmosphère nocturne, d’une expérience et d’une identité de lieu.',
-      en: 'OVIZai concept project — Demonstrating how OVIZai crafts a short ad around an establishment, nighttime atmosphere, real experience, and venue identity.',
+    ctaText: {
+      fr: 'Échanger en marque blanche →',
+      en: 'Discuss agency partnership →',
     },
-    uploadDate: '2026-09-01',
-    relatedServiceId: 'pub-restaurants',
-    badge: { fr: 'PROJET CONCEPTUEL OVIZAI', en: 'OVIZAI CONCEPT PROJECT' },
   },
 ];
 
 export default function ServicesGrid({ lang }: ServicesGridProps) {
   const isFr = lang === 'fr';
-  const [openService, setOpenService] = useState<string | null>(null);
-  const [isDemosOpen, setIsDemosOpen] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const checkHash = () => {
-        if (window.location.hash === '#portfolio') {
-          setIsDemosOpen(true);
-          setTimeout(() => {
-            const el = document.getElementById('portfolio');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
-        }
-      };
-      checkHash();
-      window.addEventListener('hashchange', checkHash);
-      return () => window.removeEventListener('hashchange', checkHash);
-    }
-  }, []);
-
-  const toggleService = (id: string) => {
-    setOpenService((prev) => (prev === id ? null : id));
-  };
-
-  const serviceItems: ListMenuItem[] = FIVE_SERVICES.map((service) => {
-    const isOpen = openService === service.id;
-    const mapInfo = SERVICE_TYPE_MAP[service.id];
-    const isLaunchEligible = service.id === 'pub-restaurants' || service.id === 'pub-produits';
-    const quoteHref = `/contact?service=${service.id}&type=${mapInfo.type}&budget=${mapInfo.budget}`;
-
-    return {
-      id: service.id,
-      icon: service.icon,
-      title: `${service.number} // ${isFr ? service.title.fr : service.title.en}`,
-      subtitle: isFr ? service.tagline.fr : service.tagline.en,
-      trailing: isOpen ? '↑' : '↓',
-      onClick: () => toggleService(service.id),
-      expanded: isOpen,
-      expandedContent: (
-        <div className="space-y-4 animate-fadeIn">
-          <div>
-            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2">
-              {isFr ? 'Présentation' : 'Overview'}
-            </h4>
-            <div className="text-xs text-fg leading-relaxed space-y-1">
-              {(isFr ? service.descriptionLines.fr : service.descriptionLines.en).map((line, idx) => (
-                <p key={idx}>{line}</p>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h4 className="mono text-[10px] uppercase text-gold font-bold tracking-[0.2em] mb-2.5">
-              {isFr ? 'Périmètre & Livrables' : 'Scope & Deliverables'}
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {(isFr ? service.deliverables.fr : service.deliverables.en).map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-xs text-muted bg-black/40 p-2 rounded-lg border border-white/[0.04]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer CTAs inside card */}
-          <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2 border-t border-white/[0.06]">
-            {isLaunchEligible && (
-              <Link
-                href="/tarifs"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-gold/15 hover:bg-gold/25 border border-gold/40 text-gold-bright font-bold px-3.5 py-2 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
-              >
-                <span>{isFr ? 'Voir l’Offre de Lancement (530 $) →' : 'View Launch Offer ($530) →'}</span>
-              </Link>
-            )}
-            <Link
-              href={quoteHref}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-4 py-2.5 rounded-xl mono text-xs uppercase tracking-wider transition-all min-h-[44px]"
-            >
-              <span>{isFr ? 'Démarrer un projet avec ce service →' : 'Start a project with this service →'}</span>
-              <ArrowUpRight className="w-4 h-4 text-black" />
-            </Link>
-          </div>
-        </div>
-      ),
-    };
-  });
 
   return (
-    <section id="services" className="max-w-xl mx-auto mb-0.5 sm:mb-1.5 px-4">
-      {/* 5 Services List in Unified ListMenuCard */}
-      <ListMenuCard
-        items={serviceItems}
-        className="mb-1 sm:mb-1.5"
-      />
-
-      {/* Video Showcase Section (Collapsible accordion, closed by default, opens with #portfolio) */}
-      <div id="portfolio" className="mt-1 sm:mt-1.5 scroll-mt-20">
-        <div className="ovizai-card border border-border bg-card rounded-xl overflow-hidden">
-          <button
-            type="button"
-            onClick={() => setIsDemosOpen((prev) => !prev)}
-            aria-expanded={isDemosOpen}
-            className="w-full flex items-center justify-between gap-3 px-3 sm:px-3.5 py-1 sm:py-1.5 text-left hover:bg-white/[0.025] transition-colors cursor-pointer group"
-          >
-            <div className="flex flex-col min-w-0">
-              <span className="mono text-[8.5px] sm:text-[9px] uppercase tracking-[0.18em] text-gold font-bold block mb-0.5">
-                {isFr ? 'PORTFOLIO & RÉALISATIONS' : 'PORTFOLIO & WORK'}
-              </span>
-              <h3 className="mono text-[11px] sm:text-xs font-semibold text-fg group-hover:text-gold-bright transition-colors truncate">
-                {isFr ? 'Concepts Publicitaires & Études Visuelles (2)' : 'Advertising Concepts & Visual Studies (2)'}
-              </h3>
-            </div>
-
-            <span className="mono text-xs sm:text-[13px] text-gold group-hover:text-gold-bright transition-colors font-medium flex-shrink-0 ml-2">
-              {isDemosOpen ? '↑' : '↓'}
-            </span>
-          </button>
-
-          {isDemosOpen && (
-            <div className="p-4 sm:p-5 border-t border-border animate-fadeIn space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {SERVICES_SHOWCASE_VIDEOS.map((video, idx) => (
-                  <VideoShowcase key={video.src || video.youtubeId || idx} video={video} lang={lang} />
-                ))}
-              </div>
-
-              {/* Product Fidelity & Brand Integrity Note */}
-              <div className="bg-black/50 border border-white/[0.08] rounded-xl p-4 sm:p-5 text-left space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="mono text-[9px] uppercase tracking-[0.2em] text-gold font-bold bg-gold/10 border border-gold/20 px-2 py-0.5 rounded">
-                    {isFr ? 'MÉTHODOLOGIE & FIDÉLITÉ PRODUIT' : 'METHODOLOGY & PRODUCT FIDELITY'}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="mono text-xs sm:text-[13px] font-semibold text-fg mb-1">
-                    {isFr ? 'Préservation de l’Intégrité de Marque & Produits Réels' : 'Brand Integrity & Real Product Preservation'}
-                  </h4>
-                  <p className="text-xs text-muted leading-relaxed">
-                    {isFr
-                      ? 'Notre processus intègre vos packshots et assets de référence pour respecter fidèlement emballages, logos lisibles, proportions et teintes de votre marque. Chaque projet fait l’objet d’une validation sur prévisualisation avant livraison du master final.'
-                      : 'Our workflow integrates your reference packshots and assets to faithfully preserve real packaging, readable logos, accurate proportions, and brand colors. Every project undergoes preview validation prior to final master delivery.'}
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-fg/80">
-                  <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/[0.04]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                    <span>{isFr ? 'Logos lisibles & proportions fidèles' : 'Readable logos & accurate proportions'}</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/[0.04]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                    <span>{isFr ? 'Validation préalable sur prévisualisation' : 'Systematic preview cut validation'}</span>
-                  </div>
-                </div>
-                <p className="text-[10px] font-mono text-muted/70 italic">
-                  {isFr
-                    ? 'Note : Démonstration spécifique de fidélité produit (Gravity / Packshot) en cours d’intégration au portfolio.'
-                    : 'Note: Dedicated product fidelity demonstration (Gravity / Packshot) in progress for portfolio integration.'}
-                </p>
-              </div>
-
-              {/* Guarantees & Production Process */}
-              <TrustSection lang={lang} hideProcessStep={true} />
-            </div>
-          )}
+    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+      {/* Section Header */}
+      <div className="max-w-2xl mb-12 sm:mb-16">
+        <div className="inline-flex items-center gap-2 mb-3">
+          <span className="mono text-xs sm:text-sm uppercase tracking-[0.2em] text-gold font-bold">
+            {isFr ? '01 // CE QUE NOUS CRÉONS' : '01 // WHAT WE MAKE'}
+          </span>
         </div>
+        <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-fg tracking-tight uppercase leading-tight mb-4">
+          {isFr ? 'TROIS FORMATS ESSENTIELS.' : 'THREE ESSENTIAL FORMATS.'}
+        </h2>
+        <p className="text-base sm:text-lg text-muted leading-relaxed">
+          {isFr
+            ? 'Direction créative humaine et production visuelle augmentée. Rien de superflu.'
+            : 'Human creative direction and elevated visual production. Pure signal, zero noise.'}
+        </p>
+      </div>
+
+      {/* 3 Services Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {THREE_SERVICES.map((service) => {
+          const Icon = service.icon;
+          return (
+            <article
+              key={service.id}
+              className="group bg-[#11100e] border border-white/[0.08] hover:border-gold/40 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-gold/5"
+            >
+              <div>
+                {/* Number & Icon */}
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
+                  <span className="mono text-sm font-bold text-gold tracking-widest">
+                    {service.number}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-gold group-hover:text-gold-bright transition-colors">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Title & Tagline */}
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-fg uppercase tracking-tight mb-3">
+                  {service.title[lang]}
+                </h3>
+                <p className="text-sm sm:text-base font-medium text-gold/90 mb-4 leading-snug">
+                  {service.tagline[lang]}
+                </p>
+
+                {/* Description */}
+                <p className="text-sm text-muted leading-relaxed mb-6">
+                  {service.description[lang]}
+                </p>
+
+                {/* Target examples */}
+                <div className="p-3 rounded-lg bg-black/40 border border-white/[0.04] text-xs text-muted/90 mono mb-6">
+                  {service.examples[lang]}
+                </div>
+              </div>
+
+              {/* Action Link */}
+              <div className="pt-2">
+                <Link
+                  href={`/contact?service=${service.id}`}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm mono uppercase tracking-wider text-fg group-hover:text-gold font-semibold transition-colors"
+                >
+                  <span>{service.ctaText[lang]}</span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

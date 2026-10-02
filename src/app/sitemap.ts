@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://ovizai.com';
+  const baseUrl = 'https://www.ovizai.com';
   const currentDate = new Date();
 
   return [
@@ -24,25 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/formation`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/stack`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
       url: `${baseUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/mentions-legales`,
+      url: `${baseUrl}/cgv`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
@@ -54,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/cgv`,
+      url: `${baseUrl}/mentions-legales`,
       lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,

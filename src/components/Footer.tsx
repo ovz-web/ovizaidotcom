@@ -2,91 +2,82 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Youtube, Instagram } from 'lucide-react';
+import { Instagram, ArrowUpRight } from 'lucide-react';
 import { Language } from '@/types';
-import { useLanguage } from '@/context/LanguageContext';
 
 interface FooterProps {
-  lang?: Language;
+  lang: Language;
+  onToggleLang?: () => void;
   onShowToast?: (msg: string) => void;
 }
 
-/**
- * Minimalist, low-profile bottom bar.
- * TopBar remains the single language switch. Social icons included with labels.
- */
-export default function Footer({ lang }: FooterProps) {
-  const langContext = useLanguage();
-  const activeLang = lang || langContext?.lang || 'fr';
-  const isFr = activeLang === 'fr';
+export default function Footer({ lang, onToggleLang, onShowToast }: FooterProps) {
+  const isFr = lang === 'fr';
 
   return (
-    <footer className="relative z-10 w-full border-t border-white/[0.06] bg-black/70 backdrop-blur-md mt-auto">
-      <div className="w-full px-2 sm:px-6 md:px-8 py-1.5 sm:py-2.5 pb-[max(0.4rem,env(safe-area-inset-bottom))] flex flex-row items-center justify-between gap-1 sm:gap-4 text-[8px] min-[375px]:text-[8.5px] sm:text-[11.5px] text-muted/75 whitespace-nowrap">
-        
-        {/* Left: Copyright */}
-        <div className="flex items-center gap-1 sm:gap-2 text-muted/80 select-none shrink-0 font-medium">
-          <span>
-            © 2026 OVIZai<span className="hidden sm:inline">. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}</span>
-          </span>
+    <footer className="border-t border-white/[0.08] bg-[#050505] py-12 sm:py-16 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        {/* Brand identity */}
+        <div>
+          <Link
+            href="/"
+            className="font-display font-extrabold text-2xl tracking-tighter text-fg hover:text-gold transition-colors inline-block mb-2"
+          >
+            OVIZ<span className="text-gold">ai</span>
+          </Link>
+          <p className="text-sm text-muted">
+            {isFr ? 'Studio de Création Publicitaire' : 'Creative Ad Studio'} · Worldwide
+          </p>
+          <p className="text-xs text-muted/60 mt-1">
+            © {new Date().getFullYear()} OVIZai Studio. {isFr ? 'Tous droits réservés.' : 'All rights reserved.'}
+          </p>
         </div>
 
-        {/* Right: Support/legal links & socials */}
-        <div className="flex items-center flex-row justify-end gap-x-1 sm:gap-x-4 gap-y-1 shrink-0">
-          <Link href="/contact" className="hover:text-fg transition-colors">
-            {isFr ? 'Contact' : 'Contact'}
+        {/* Primary nav links */}
+        <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-sm font-medium">
+          <Link href="/services" className="text-muted hover:text-fg transition-colors">
+            Services
           </Link>
-          <span className="text-white/[0.15] select-none">·</span>
-
-          <Link href="/tarifs" className="hover:text-fg transition-colors">
+          <Link href="/tarifs" className="text-muted hover:text-fg transition-colors">
             {isFr ? 'Tarifs' : 'Pricing'}
           </Link>
-          <span className="text-white/[0.15] select-none">·</span>
-
-          <Link href="/cgv" className="hover:text-fg transition-colors">
-            {isFr ? 'CGV' : 'Terms'}
+          <Link href="/contact" className="text-muted hover:text-fg transition-colors">
+            Contact
           </Link>
-          <span className="text-white/[0.15] select-none">·</span>
-
-          <Link href="/confidentialite" className="hover:text-fg transition-colors">
-            {isFr ? 'Confidentialité' : 'Privacy'}
-          </Link>
-          <span className="text-white/[0.15] select-none">·</span>
-
-          <Link href="/mentions-legales" className="hover:text-fg transition-colors">
-            {isFr ? 'Mentions' : 'Legal'}
-          </Link>
-
-          <span className="text-white/[0.2] select-none mx-0.5 sm:mx-0">|</span>
-
-          <a
-            href="https://youtube.com/@ovizaidotcom"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors inline-flex items-center gap-0.5 sm:gap-1 text-gold"
-            aria-label="YouTube"
-          >
-            <Youtube className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold shrink-0" />
-            <span className="hidden sm:inline">YouTube</span>
-            <span className="sm:hidden">YT</span>
-          </a>
-
-          <span className="text-white/[0.15] select-none">·</span>
-
           <a
             href="https://instagram.com/ovizai.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold-bright transition-colors inline-flex items-center gap-0.5 sm:gap-1 text-gold"
-            aria-label="Instagram"
+            className="inline-flex items-center gap-1 text-muted hover:text-gold transition-colors"
           >
-            <Instagram className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold shrink-0" />
-            <span className="hidden sm:inline">Instagram</span>
-            <span className="sm:hidden">IG</span>
+            <Instagram className="w-4 h-4" />
+            <span>Instagram</span>
           </a>
+          {onToggleLang && (
+            <button
+              type="button"
+              onClick={onToggleLang}
+              className="text-xs mono uppercase text-muted hover:text-gold px-2 py-1 rounded border border-white/[0.08]"
+              aria-label={isFr ? 'Basculer en anglais' : 'Switch to French'}
+            >
+              {isFr ? 'EN' : 'FR'}
+            </button>
+          )}
+        </div>
+
+        {/* Legal links */}
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-muted/80 mono border-t md:border-t-0 pt-4 md:pt-0 w-full md:w-auto border-white/[0.04]">
+          <Link href="/cgv" className="hover:text-fg transition-colors">
+            CGV
+          </Link>
+          <Link href="/confidentialite" className="hover:text-fg transition-colors">
+            {isFr ? 'Confidentialité' : 'Privacy'}
+          </Link>
+          <Link href="/mentions-legales" className="hover:text-fg transition-colors">
+            {isFr ? 'Mentions Légales' : 'Legal'}
+          </Link>
         </div>
       </div>
     </footer>
   );
 }
-

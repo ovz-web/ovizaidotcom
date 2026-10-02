@@ -1,122 +1,67 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Mail, BookOpen } from 'lucide-react';
+import { CheckCircle2, Mail } from 'lucide-react';
 import FilmGrain from '@/components/FilmGrain';
 import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
-import Toast from '@/components/Toast';
 import { useLanguage } from '@/context/LanguageContext';
-import { useCurrency } from '@/context/CurrencyContext';
 
 export default function FormationSuccessPage() {
   const { lang, toggleLanguage } = useLanguage();
-  const { currency, setCurrency } = useCurrency();
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-  };
-
   const isFr = lang === 'fr';
 
   return (
     <div className="min-h-[100dvh] relative flex flex-col justify-between overflow-x-hidden bg-bg text-fg">
       <FilmGrain />
-      <TopBar
-        lang={lang}
-        onToggleLang={toggleLanguage}
-        currency={currency}
-        onSelectCurrency={setCurrency}
-      />
+      <TopBar lang={lang} onToggleLang={toggleLanguage} />
 
       <main
-        className="flex-grow relative z-10 pb-16 px-4"
-        style={{ paddingTop: 'calc(var(--topbar-height, 48px) + 16px)' }}
+        id="main-content"
+        className="flex-grow relative z-10 pb-16 px-4 flex items-center justify-center pt-24"
       >
-        <div className="max-w-xl mx-auto">
-
-          {/* Success Card */}
-          <div className="ovizai-card border border-border-strong bg-card/95 backdrop-blur-md rounded-2xl p-6 sm:p-10 text-center space-y-6">
-            <div className="w-16 h-16 bg-gold/10 border border-border-gold rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-8 h-8 text-gold" />
+        <div className="max-w-xl mx-auto w-full">
+          <div className="bg-[#11100e] border border-gold/40 rounded-3xl p-8 sm:p-12 text-center space-y-6">
+            <div className="w-16 h-16 bg-gold/10 border border-gold/40 rounded-full flex items-center justify-center mx-auto text-gold">
+              <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-gold mb-1 font-mono font-bold">
-                {isFr ? 'PAIEMENT CONFIRMÉ & ACCÈS VALIDÉ' : 'PAYMENT CONFIRMED & ACCESS GRANTED'}
+              <p className="text-xs uppercase tracking-[0.2em] text-gold mb-1 mono font-bold">
+                {isFr ? 'ACCÈS VALIDÉ' : 'ACCESS GRANTED'}
               </p>
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-fg text-center mb-1.5 leading-snug">
-                {isFr ? 'Bienvenue dans la Masterclass' : 'Welcome to the Masterclass'}
+              <h1 className="text-2xl sm:text-3xl font-display font-bold text-fg mb-2">
+                {isFr ? 'Transaction confirmée' : 'Transaction confirmed'}
               </h1>
-              <div className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed space-y-1">
-                {isFr ? (
-                  <>
-                    <p>Votre transaction Stripe a été traitée avec succès</p>
-                    <p>Votre accès à vie au programme est officiellement activé</p>
-                  </>
-                ) : (
-                  <>
-                    <p>Your Stripe transaction was processed successfully</p>
-                    <p>Your lifetime access to the program is officially active</p>
-                  </>
-                )}
-              </div>
+              <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+                {isFr
+                  ? 'Un e-mail de confirmation contenant vos accès vous a été adressé.'
+                  : 'A confirmation email containing your access details has been dispatched.'}
+              </p>
             </div>
 
-            {/* Email Instructions Card */}
-            <div className="bg-black/60 border border-border rounded-xl p-5 text-left space-y-3 max-w-lg mx-auto">
-              <div className="flex items-center gap-2 text-gold font-mono text-xs font-bold uppercase">
-                <Mail className="w-4 h-4 text-gold" />
-                <span>{isFr ? 'Accès par e-mail en cours d’envoi' : 'Email access dispatching'}</span>
+            <div className="bg-black/60 border border-white/[0.08] rounded-xl p-5 text-left text-xs font-mono text-muted space-y-2">
+              <div className="flex items-center gap-2 text-gold font-bold">
+                <Mail className="w-4 h-4" />
+                <span>SUPPORT DIRECT :</span>
               </div>
-              <div className="text-xs text-fg leading-relaxed space-y-1 font-sans">
-                {isFr ? (
-                  <>
-                    <p>Un e-mail contenant vos accès personnels a été envoyé à votre adresse</p>
-                    <p>Accédez directement aux 5 modules vidéo 4K et aux prompts certifiés</p>
-                  </>
-                ) : (
-                  <>
-                    <p>A confirmation email containing your personal access has been sent</p>
-                    <p>Access all 5 4K video modules and certified prompt libraries</p>
-                  </>
-                )}
-              </div>
-              <div className="pt-2 border-t border-border flex items-center justify-between text-[11px] text-muted font-mono">
-                <span>{isFr ? 'Support direct :' : 'Direct Support:'}</span>
-                <a
-                  href="mailto:contact@ovizai.com"
-                  className="text-gold hover:underline"
-                >
-                  contact@ovizai.com
-                </a>
-              </div>
+              <p>contact@ovizai.com</p>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <Link
-                href="/formation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-bright text-black font-bold px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
-              >
-                <BookOpen className="w-4 h-4 text-black" />
-                <span>{isFr ? 'Consulter le Programme & Outils' : 'View Masterclass Curriculum'}</span>
-              </Link>
+            <div>
               <Link
                 href="/"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/40 hover:bg-white/[0.04] text-fg border border-border px-6 py-3 rounded-xl mono text-xs uppercase tracking-wider transition-all cursor-pointer"
+                className="inline-flex items-center justify-center bg-gold text-black font-bold px-8 py-3.5 rounded-full mono text-xs uppercase tracking-wider"
               >
-                <span>{isFr ? 'Retour à l’Accueil' : 'Return to Home'}</span>
+                {isFr ? 'Retour à l’Accueil' : 'Return to Home'}
               </Link>
             </div>
           </div>
         </div>
       </main>
 
-      <Footer lang={lang} onShowToast={showToast} />
-      <Toast message={toastMessage} />
+      <Footer lang={lang} onToggleLang={toggleLanguage} />
     </div>
   );
 }
